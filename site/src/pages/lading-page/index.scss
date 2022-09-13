@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap');
+
+
+.principal {
+    display: flex;
+    flex-direction: column;
+
+    .faixa-1 {
+        background-image: url('../../../public/assets/images/Rectangle\ 43.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: space-between;
+
+        margin: 20px 4em;
+    }
+
+    .logo-img {
+        width: 13em;
+    }
+
+    .usuario {
+        display: flex;
+
+        align-items: center;
+
+        img {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    .inscreva-se {
+        color: #FFFFFF;
+
+        text-decoration: underline;
+
+        font-family: 'Baloo Thambi 2', cursive;
+        font-size: 20px;
+
+        background: none;
+        border: none;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    .texto-faixa-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin-left: 4em;
+
+        gap: 50px;
+
+        color: #FFFFFF;
+        font-size: 38px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        width: 420px;
+    }
+
+    .texto-faixa-1 > p {
+        margin: 0px;
+    }
+
+    .como-funciona {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        color: #34193E;
+
+        font-size: 25px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        margin-left: 2em;
+        margin-top: 6em;
+
+    }
+
+    .coracao {
+        width: 50px;
+        height: 50px;
+    }
+
+    .bola-cinza {
+        z-index: -1;
+        position: absolute;
+
+        left: 0px;
+        top: 34em;
+    }
+
+    .bola-roxa {
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+
+
+        top: 62.5em;
+
+    }
+
+    .mocinha {
+        z-index: 0;
+        position: absolute;
+
+        width: 18em;
+
+        top: 45.5em;
+        left: 57em;
+    }
+
+    .faixa-2 {
+        display: flex;
+        justify-content: center;
+        
+        display: inline-block;
+
+        height: 700px;
+    }
+
+    .faixa-2-textos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 50px;
+    }
+
+    .faixa-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: #FFFFFF;
+
+        margin-top: 2em;
+    }
+
+    .faixa-3>h3 {
+        font-family: 'Baloo Thambi 2', cursive;
+        font-size: 24px;
+
+        margin-top: 2em;
+    }
+
+    .faixa-4 {
+        display: flex;
+        justify-content: center;
+
+        background-image: url('../../../public/assets/images/image\ 15.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+
+        margin-top: 3em;
+    }
+
+    .faixa-4-texto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        color: #FFFFFF;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        width: 75em;
+
+    }
+
+    .faixa-5 {
+        display: flex;
+        justify-content: center;
+        padding-top: 5em;
+
+        background-image: url('../../../public/assets/images/Union.png');
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 100%;
+    }
+
+    .faixa-5-texto {
+        width: 1004px;
+        font-family: 'Baloo Thambi 2', cursive;
+    }
+
+    .faixa-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        padding-top: 4em;
+
+        padding-bottom: 50px;
+    }
+
+    .faixa-6-titulo{
+        font-size: 24px;
+        font-family: 'Baloo Thambi 2';
+
+        margin-bottom: 2em;
+    }
+
+    .faixa-6-empresas {
+        display: flex;
+        align-items: center;
+
+        gap: 2em;
+    }
+
+    .faixa-7 {
+        display: flex;
+        flex-direction: column;
+
+        gap: 1em;
+
+        padding-bottom: 50px;
+    }
+
+    .nossa-equipe {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        font-family: 'Baloo Thambi 2', cursive;
+        font-size: 22px;
+
+        margin-left: 50px;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .integrantes {
+        display: flex;
+
+        align-self: center;
+        gap: 4em;
+
+        padding: 8px;
+    }
+
+    .rodape {
+        display: flex;
+        flex-direction: column;
+        
+        background-color: #9D77BB;
+
+        color: #FFFFFF;
+
+        font-family: 'Baloo Thambi 2', cursive;
+
+        padding-top: 1em;
+        padding-left: 10px;
+    }
+
+    .redes-sociais-site {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .redes-rodape {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .termos {
+        display: flex;
+        text-decoration: underline;
+        justify-content: center;
+    }
+    
+    .Crystal-Castles {
+        align-self: flex-end;
+
+        margin-right: 2em;
+    }
+
+}

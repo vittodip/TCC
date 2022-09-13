@@ -1,0 +1,113 @@
+.secao-padrao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+                
+    background: #E1C8F4;
+    border-radius: 30px;
+
+    padding: 0px 30px;
+
+    width: 900px;
+    height: 174px;
+
+    margin-top: 2em;
+    margin-left: 2em;
+    
+
+    h3 {
+        font-size: 20px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        margin-bottom: -5px;
+    }
+            
+    p {         
+        font-size: 16px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        width: 48em;
+    }
+
+    img {
+        width: 100px;
+        height: 114px;
+    }
+}
+
+            
+.secao-padrao-1 {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 0px 30px;
+                
+    background: #E1C8F4;
+    border-radius: 30px;
+
+    width: 900px;
+    height: 190px;
+
+    margin-left: 6em;
+
+    
+
+    h3 {
+        font-size: 20px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        margin-bottom: -5px;
+    }
+            
+    p {         
+        font-size: 16px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        width: 48em;
+    }
+
+    img {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+
+.secao-padrao-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+                
+    background: #E1C8F4;
+    border-radius: 30px;
+
+    padding: 0px 30px;
+
+    width: 900px;
+    height: 174px;
+
+    margin-left: 15em;
+
+    h3 {
+        font-size: 20px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        margin-bottom: -5px;
+    }
+            
+    p {         
+        font-size: 16px;
+        font-family: 'Baloo Thambi 2', cursive;
+
+        width: 48em;
+    }
+
+    img {
+        width: 100px;
+        height: 114px;
+    }
+}

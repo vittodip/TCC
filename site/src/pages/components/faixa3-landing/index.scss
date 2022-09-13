@@ -1,0 +1,88 @@
+.psicologos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border-bottom: 5px solid #E1C8F4;
+    padding-bottom: 1em;
+
+    height: 37em;
+
+    .sobre-psicologo {
+        display: flex;
+        flex-direction: row;
+        
+        gap: 3em;
+
+        width: 58em;
+
+        padding: 4.5em;
+        
+        background: #AF93C5;
+        border-radius: 100px;
+    }
+
+    button {
+        border: none;
+        background: none;
+    }
+
+    .seta-esquerda {
+        z-index: 1;
+        margin-right: -35px;
+    }
+
+    .seta-direita {
+        z-index: 1;
+        margin-left: -35px;
+    }
+
+    .falas-aspas {
+        display: flex;
+        flex-direction: column;
+
+        padding: 20px;
+        width: 35em; 
+    }
+
+    .aspas-1 {
+        z-index: 0;
+        position: absolute;
+
+        left: 29.5em;
+    }
+
+    .aspas-2 {
+        z-index: 0;
+        position: absolute;
+
+        left: 40em;
+        top: 115.8em;
+    }
+
+    .foto-psicologos {
+        width: 273px;
+        height: 347px;
+    }
+
+    .redes-sociais {
+        
+        align-self: flex-end;
+    }
+
+    h3 {
+        color: #fff;
+        font-family: 'Baloo Thambi 2', cursive;
+    }
+
+    h4 {
+        color: #fff;
+        font-family: 'Baloo Thambi 2', cursive;
+    }
+
+p {
+        color: #fff;
+        font-family: 'Baloo Thambi 2', cursive;
+    }
+
+}
