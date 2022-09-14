@@ -1,8 +1,8 @@
 import './index.scss'
 
-import Roxinho from '../components/faixa2-lading/index.js';
-import Pscologos from '../components/faixa3-landing/index.js';
-import Equipe from '../components/faixa7-lading/index.js'
+import Roxinho from '../../components/faixa2-lading/index.js';
+import Pscologos from '../../components/faixa3-landing/index.js';
+import Equipe from '../../components/faixa7-lading/index.js'
 
 export default function Home() {
     return (

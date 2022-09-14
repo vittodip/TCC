@@ -3,12 +3,14 @@ import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 
-import {con} from './repository/connection.js'
+import loginUsuario from './repository/usuarioRepository.js';
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
+
+server.use(loginUsuario);
 
 
 server.listen(process.env.PORT,
