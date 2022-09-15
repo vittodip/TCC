@@ -1,16 +1,20 @@
 import 'dotenv/config'
 
+import usuarioController from './controller/usuarioController.js';
+import voluntarioController from './controller/voluntarioController.js'
+import admController from './controller/admController.js'
+
 import express from 'express';
 import cors from 'cors';
-
-import loginUsuario from './repository/usuarioRepository.js';
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
-server.use(loginUsuario);
+server.use(usuarioController);
+server.use(voluntarioController);
+server.use(admController);
 
 
 server.listen(process.env.PORT,

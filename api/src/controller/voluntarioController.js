@@ -1,16 +1,15 @@
-import { loginUsuario } from '../repository/usuarioRepository.js'
+import { loginVoluntario } from "../repository/voluntarioRepository.js";
 
 import { Router } from "express";
 
-
 const server = Router();
 
-server.post('/login/usuario', async (req, resp) => {
+server.post('/login/voluntario', async (req, resp) => {
     try {
         const { email, senha } = req.body;
-
-        const resposta = await loginUsuario(email, senha);
-
+    
+        const resposta = await loginVoluntario(email, senha);
+    
         if(!email || !senha)
             throw new Error('Credenciais inválidas!')
 
@@ -22,5 +21,6 @@ server.post('/login/usuario', async (req, resp) => {
         })
     }
 })
+
 
 export default server;
