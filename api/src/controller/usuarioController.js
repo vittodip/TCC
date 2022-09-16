@@ -11,13 +11,13 @@ server.post('/login/usuario', async (req, resp) => {
 
         const resposta = await loginUsuario(email, senha);
 
-        if(!email || !senha)
+        if(!resposta)
             throw new Error('Credenciais inválidas!')
 
         resp.send(resposta);
         
     } catch (err) {
-        resp.status(404).send({
+        resp.status(401).send({
             erro: err.message
         })
     }

@@ -1,0 +1,139 @@
+.cadastro-voluntario{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    min-height: 100vh;
+
+    .secao1{
+        width: 60%;
+        min-height: 100vh;
+        padding: 1em 5em 1em 1em;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: 17em;
+        }
+        button{
+            width: 16em;
+            height: 4em;
+            border-radius: 30px;
+            border: none;
+            
+            color: #ffff;
+            background-color: #79458B;
+
+            margin-top: 1em;
+        }
+
+        .logonat{
+            
+            align-self: flex-start;
+            img{
+                width: 14em;
+            }
+        }
+        .s1-alinhamento-texto{
+            width: 75%;
+            font-family: 'Mulish';   
+        }
+        .s1-alinhamento-texto > *{
+            margin-top: 1.5em;
+        }
+
+    }
+
+    .secao2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4em;
+        min-height: 100vh;
+
+        width: 40%;
+
+        .s2-alinhamento-inputs{
+            display: flex;
+            flex-direction: column;
+            margin-top: 1em;
+            
+            width: 100%;
+            
+
+            
+
+            label{
+                margin-left: 5px;
+            }
+            input{
+                width: 75%;
+                height: 3em;
+                border-radius: 20px;
+                border: none;
+                outline: 0;
+                padding: 0px 1px 0px 15px;
+
+                background-color: #DEDEDE;
+            }
+            select{
+                width: 78%;
+                height: 3em;
+                border-radius: 20px;
+                border: none;
+                outline: 0;
+                padding: 0px 1px 0px 15px;
+
+                background-color: #DEDEDE;
+            }
+        }
+        .s2-alinhamento-inputs > *{
+            margin-top: 0.5em;
+        }
+        .s2-radio{
+            display: flex;
+            align-items: center;
+            margin-left: 2px;
+            margin-top: 0.7em;
+            align-self: flex-start;
+            font-size: 13px;
+            padding-left: 0.8em;
+            
+            input{
+                all: unset;
+                border: 2px solid #D9D9D9;
+                width: 12px;
+                height: 12px;
+                display: inline-block;
+                border-radius: 20px;
+                margin-right: 2px;
+                margin-left: px;
+            }
+            input:checked{
+                background-color: #79458B;
+                
+            }
+            
+            span{
+                color: #3A1248;
+                text-decoration: underline;
+            }
+            span:hover{
+                cursor: pointer;
+            }
+        }
+        button{
+            width: 13em;
+            height: 4em;
+            border-radius: 30px;
+            border: none;
+            
+            color: #ffff;
+            background-color: #79458B;
+
+            margin-top: 2em;
+            margin-right: 3em;
+        }
+    }
+}

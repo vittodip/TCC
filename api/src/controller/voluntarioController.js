@@ -10,7 +10,7 @@ server.post('/login/voluntario', async (req, resp) => {
     
         const resposta = await loginVoluntario(email, senha);
     
-        if(!email || !senha)
+        if(!resposta)
             throw new Error('Credenciais inválidas!')
 
         resp.send(resposta);

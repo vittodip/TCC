@@ -11,6 +11,6 @@ export async function loginUsuario(email, senha) {
 
     const [resposta] = await con.query(comando, [email, senha]);
     
-    return resposta;
+    return resposta[0];
 }
 

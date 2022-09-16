@@ -9,5 +9,5 @@ export async function loginVoluntario(email, senha) {
                     AND ds_senha            = ?`
 
     const [resposta] = await con.query(comando, [email, senha]);
-    return resposta;
+    return resposta[0];
 }

@@ -9,7 +9,7 @@ server.post('/login/adm', async (req, resp) => {
         const { email, senha } = req.body;
         const resposta = await loginAdm(email, senha);
 
-        if(!email || !senha)
+        if(!resposta)
             throw new Error('Credenciais inválidas!')
 
         resp.send(resposta);
