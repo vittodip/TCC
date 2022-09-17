@@ -24,8 +24,7 @@ server.post('/login/adm', async (req, resp) => {
 server.post('/cadastro/admin', async (req, resp) => {
     try {
         const admin = req.body;
-        const resposta = await cadastroAdm(admin);
-
+        
         if(!admin.email.trim()) {
             throw new Error('Insira um email!')
         }
@@ -35,7 +34,7 @@ server.post('/cadastro/admin', async (req, resp) => {
         if(!admin.nome.trim()) {
             throw new Error('Insira um nome!')
         }
-        if(!admin.cpf.trim()) {
+        if(!admin.cpf) {
             throw new Error('Insira um cpf!')
         }
         if(!admin.nascimento) {
@@ -44,11 +43,10 @@ server.post('/cadastro/admin', async (req, resp) => {
         if(new Date(admin.nascimento) >= new Date()) {
             throw new Error('Insira uma data de Nascimento Válida!')
         }
-        if(!admin.telefone) {
+        if(!admin.telefone.trim()) {
             throw new Error('Insira um telefone!')
         }
-
-
+        const resposta = await cadastroAdm(admin);
         resp.send(resposta);
 
     } catch (err) {
