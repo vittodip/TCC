@@ -1,5 +1,6 @@
 import { con } from './connection.js';
 
+// Login Admin
 export async function loginAdm(email, senha) {
     const comando = `select id_adm      id,
                             nm_adm      nome,
@@ -10,4 +11,15 @@ export async function loginAdm(email, senha) {
 
     const [resposta] = await con.query(comando, [email, senha]);
     return resposta[0];
+}
+
+// Cadastro Admin
+export async function cadastroAdm(admin) {
+    const comando = `insert into tb_adm (ds_email, ds_senha, nm_adm, ds_cpf, dt_nascimento, nr_telefone)
+                                  values(?, ?, ?, ?, ?, ?)`
+    
+    const [resposta] = await con.query(comando, [admin.email, admin.senha, admin.nome, admin.cpf, admin.nascimento, admin.telefone]);
+    admin.id = resposta.insertId;
+
+    return admin;
 }
