@@ -1,5 +1,6 @@
 import './index.scss'
 import LogoHorizontal from '../../../components/logos'
+import InputsVoluntario from '../../../components/cadastro/voluntario'
 
 export default function CadastroVoluntario() {
     return (
@@ -22,30 +23,16 @@ export default function CadastroVoluntario() {
                 <button>Voltar para a página inicial</button>
             </section>
             <section className="secao2">
-                <div className="s2-alinhamento-inputs">
-                    <label>Nome</label>
-                    <input type="text" />
+                <div className='logonat'>
+                    <LogoHorizontal/>
                 </div>
-                <div className="s2-alinhamento-inputs">
-                    <label>CRP</label>
-                    <input type="text" />
-                </div>
-                <div className="s2-alinhamento-inputs">
-                    <label>CPF</label>
-                    <input type="text" />
-                </div>
-                <div className="s2-alinhamento-inputs">
-                    <label>E-mail</label>
-                    <input type="text" />
-                </div>
-                <div className="s2-alinhamento-inputs">
-                    <label>Senha</label>
-                    <input type="text" />
-                </div>
-                <div className="s2-alinhamento-inputs">
-                    <label>Número de telefone</label>
-                    <input type="text" />
-                </div>
+                <InputsVoluntario info='Nome' placeholder='Nome e sobrenome' />
+                <InputsVoluntario info='CRP' placeholder='XX/00000' />
+                <InputsVoluntario info='CPF' placeholder='000.000.000-00' />
+                <InputsVoluntario info='E-mail' placeholder='email@email' />
+                <InputsVoluntario info='Senha' placeholder='*************' />
+                <InputsVoluntario info='Número de telefone' placeholder='(00) 00000-0000' />
+                
                 <div className="s2-alinhamento-inputs">
                     <label>Qtd. de pacientes que pode atender</label>
                     <select>
