@@ -1,0 +1,182 @@
+.usuario-perfil {
+    font-family: "Mulish";
+
+    .infos {
+        padding: 2em;
+
+        .card-infos-gerais {
+            width: 25%;
+            background: #FFFFFF;
+            box-shadow: 0px 0px 6px #554f5a78;
+            border-radius: 27px;
+            padding: 2em;
+
+            .card-titulo {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                position: relative;
+
+                img {
+                    width: 33px;
+                    height: 35.4px;
+                    position: absolute;
+                    right: -1em;
+                    bottom: 1.2em;
+                }
+            }
+        }
+
+    }
+
+    .faixa-solicitar {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;    
+        h2 {
+            padding-bottom: 2em;
+            font-family: "Mulish";
+        }
+        button {
+            background-color: #79458B;
+            border-radius: 61px;
+            align-self: flex-end;
+            padding: 1em 2em 1em 2em;
+            color: white;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            margin: 1em 3em;
+        }
+
+        .box-solicitacao {
+            width: 90vw;
+            background: #FFFFFF;
+            border: 1px solid #CDBACD;
+            border-radius: 25px;
+            height: auto;
+
+            .top-solicitacao {
+                display: flex;
+                flex-direction: row;
+                
+
+                p {
+                    margin: 0;
+                    margin-right: 0.3em;
+                }
+
+                span {
+
+                    background-color: #fff;
+                    padding: 0px 5px 1px 5px;
+                    border-radius: 100%;
+                }
+
+                background: #EFE1F5;
+                border-radius: 25px 25px 0 0;
+                padding: 1em;
+
+            }
+
+            .text-solicitacao {
+            
+                padding: 1em;
+                textarea {
+                    font-family: "Mulish";
+                    background: #EDECEC;
+                    border: 1px solid #a8a3a8;
+                    border-radius: 25px;
+                    width: 85vw;
+                    padding: 1.5em;
+                    outline:none;
+                    
+                }
+            }
+        }
+    }
+
+
+
+    .faixa-solicitacoes {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;    
+        h2 {
+            padding-bottom: 2em;
+            font-family: "Mulish";
+        }
+      
+
+        .box-solicitacao {
+            width: 90vw;
+            background: #FFFFFF;
+            border: 1px solid #CDBACD;
+            border-radius: 25px;
+            height: auto;
+
+            .top-solicitacao-2 {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                
+
+                p {
+                    margin: 0;
+                    margin-right: 0.3em;
+                }
+
+                span {
+
+                    background-color: #fff;
+                    padding: 0px 5px 1px 5px;
+                    border-radius: 100%;
+                }
+
+                background: #EFE1F5;
+                border-radius: 25px 25px 0 0;
+                padding: 1em;
+
+            }
+
+            .text-solicitacao {
+            
+                padding: 1em 1em 0em 1em;
+               
+            }
+
+            .categorias-solicitacao {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+                padding-left: 1em;
+                color: #999999;
+
+                
+
+                .analise {
+                    display:flex ;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-right: 1em;
+                    width: 8%;
+
+                }   
+
+                img {
+                    width: 29px;
+                    height: 16px;
+                }
+            }
+        }
+    }
+
+}
