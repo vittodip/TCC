@@ -19,8 +19,9 @@ export async function cadastroUsuario (usuario) {
                                         values(?, ?, ?, ?, ?, ?)`
 
     const [resposta] = await con.query(comando, [usuario.email, usuario.senha, usuario.nome, usuario.cpf, usuario.nascimento, usuario.telefone]);
-    usuario = resposta.insertId;
+    usuario.id = resposta.insertId;
 
     return usuario;
 }
+
 
