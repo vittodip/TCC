@@ -1,0 +1,264 @@
+.principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background-color: #ffffff;
+
+
+    height: 100vh;
+
+   
+
+    .div-logo {
+    
+    padding-top: 30em;
+    
+      margin: -30em 0em 40em;
+
+        width: 1px;
+
+        
+    }
+
+
+
+    .global {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+
+    }
+
+    .lado-esquerdo {
+        margin-top: 6em;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 65%;
+
+
+
+    }
+
+    .computadozinho {
+        width: 30em;
+        margin-right: 12em;
+    }
+
+    .botao-direito {
+        margin-left: 5em;
+    }
+
+    .textao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin-right: 7em;
+
+    }
+
+    .textinho {
+        display: flex;
+        flex-direction: column;
+
+        padding: 2px;
+
+        margin-left: -25px;
+        width: 60%;
+    }
+
+    label {
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+
+    .termos {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: -7em;
+
+    }
+
+    .input {
+        width: 30em;
+        height: 10px;
+        border: none;
+
+        padding-left: 12px;
+        padding: 10px;
+
+        background: #DEDEDE;
+        border-radius: 18.5px;
+    }
+
+
+    .link {
+        color: #3A1248;
+
+    }
+
+    .lado-direito {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 35%;
+        padding: 1em;
+    }
+
+    button {
+        width: 15em;
+        padding: 15px;
+        color: #ffffff;
+
+        background-color: #79458B;
+        border: none;
+        border-radius: 25px;
+    }
+
+    .botao {
+        margin-left: 8em;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .principal {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    
+        background-color: #ffffff;
+    
+       
+        height: 100vh;
+    
+       
+    
+        .div-logo {
+        
+        padding-top: 11em;
+                
+          margin: -79em 0em 30em;
+    
+            width: 1px;
+    
+            
+        }
+    
+    
+    
+        .global {
+            display: flex;
+            flex-direction: column-reverse;
+            height: 100vh;
+
+    
+        }
+    
+        .lado-esquerdo {
+    
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            white-space: nowrap;
+            padding-bottom: 3em;
+    
+    
+        }
+    
+        .computadozinho {
+            width: 11em;
+            margin-right: 1em;
+        }
+    
+        .botao-direito {
+            margin-left: 8em;
+        }
+    
+        .textao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            font-size: 13px;
+            margin-left: 20px;
+        }
+    
+        .textinho {
+            display: flex;
+            flex-direction: column;
+    
+            padding: 2px;
+    
+            margin-left: -5px;
+            width: 60%;
+        }
+    
+        label {
+            margin-top: 4em;
+            margin-left: 10px;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    
+        .termos {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-left: 10em;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    
+        .input {
+            width: 24em;
+            height: 10px;
+            border: none;
+    
+            padding-left: 12px;
+            padding: 10px;
+    
+            background: #DEDEDE;
+            border-radius: 18.5px;
+        }
+    
+    
+        .link {
+            color: #3A1248;
+    
+        }
+    
+        .lado-direito {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 35%;
+            padding: 1em;
+        }
+    
+        button {
+            width: 15em;
+            font-size: 10px;
+
+            padding: 15px;
+            color: #ffffff;
+    
+            background-color: #79458B;
+            border: none;
+            border-radius: 25px;
+        }
+    
+        .botao {
+            margin-left: 10em;
+        }
+    
+    }
+    
+
+
+}
