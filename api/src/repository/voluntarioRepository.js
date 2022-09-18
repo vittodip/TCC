@@ -18,7 +18,7 @@ export async function cadastroVoluntario (volunt) {
                                         values(?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome, volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.vagas_disponivel, volunt.crp]);
-    volunt = resposta.insertId;
+    volunt.id = resposta.insertId;
 
     return volunt;
 }

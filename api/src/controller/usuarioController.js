@@ -25,33 +25,34 @@ server.get('/login/usuario', async (req, resp) => {
 
 server.post('/cadastro/usuario', async (req, resp) => {
     try {
+        const user = req.body;
         
-        const usuario = req.body;
-        
-        if(!usuario.email) {
+        if(!user.email.trim()) {
             throw new Error('Insira um email!')
         }
-        if(!usuario.senha) {
+        if(!user.senha) {
             throw new Error('Insira uma senha!')
         }
-        if(!usuario.nome) {
+        if(!user.nome.trim()) {
             throw new Error('Insira um nome!')
         }
-        if(!usuario.cpf) {
+        if(!user.cpf.trim()) {
             throw new Error('Insira um cpf!')
         }
-        if(!usuario.nascimento) {
+        if(!user.nascimento) {
             throw new Error('Insira uma data de Nascimento!')
         }
-        if(new Date(usuario.nascimento) >= new Date()) {
+        if(new Date(user.nascimento) >= new Date()) {
             throw new Error('Insira uma data de nascimento válida!')
         }
-        if(!usuario.telefone) {
+        if(!user.telefone) {
             throw new Error('Insira um telefone!')
         }
         
-        const resposta = await cadastroUsuario(usuario);
-        resp.send(resposta);
+        const resposta = await cadastroUsuario(user);
+        
+        resp.send(resposta)
+        
 
     } catch (err) {
         resp.status(404).send({

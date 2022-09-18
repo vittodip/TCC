@@ -14,13 +14,13 @@ export async function loginUsuario(email, senha) {
     return resposta[0];
 }
 
-export async function cadastroUsuario (usuario) {
+export async function cadastroUsuario (user) {
     const comando = `insert into tb_usuario (ds_email, ds_senha, nm_usuario, ds_cpf, dt_nascimento, nr_telefone)
                                         values(?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [usuario.email, usuario.senha, usuario.nome, usuario.cpf, usuario.nascimento, usuario.telefone]);
-    usuario = resposta.insertId;
+    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.nascimento, user.telefone]);
+    user.id = resposta.insertId;
 
-    return usuario;
+    return user;
 }
 

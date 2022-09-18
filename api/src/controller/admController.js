@@ -46,6 +46,7 @@ server.post('/cadastro/admin', async (req, resp) => {
         if(!admin.telefone.trim()) {
             throw new Error('Insira um telefone!')
         }
+        
         const resposta = await cadastroAdm(admin);
         resp.send(resposta);
 

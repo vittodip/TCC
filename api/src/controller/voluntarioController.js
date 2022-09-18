@@ -27,8 +27,6 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     try {
         const volunt = req.body;
 
-        const resposta = await cadastroVoluntario(volunt);
-
         if(!volunt.email.trim()) {
             throw new Error('Insira um email!')
         }
@@ -57,6 +55,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
             throw new Error('Insira seu crp!')
         }
 
+        const resposta = await cadastroVoluntario(volunt);
         resp.send(resposta);
 
     } catch (err) {
