@@ -1,4 +1,5 @@
-import './index.scss'
+import './index.scss';
+import { Link } from 'react-router-dom';
 
 import Roxinho from '../../components/faixa2-lading/index.js';
 import Pscologos from '../../components/faixa3-landing/index.js';
@@ -13,7 +14,7 @@ export default function Home() {
                     <img className="logo-img" src="/assets/images/logonat.png" alt="logo" />
                     <div className="usuario">
                         <img src="/assets/images/do-utilizador (1) 1.png" alt="inscreva-se" />
-                        <button className="inscreva-se" > Entre ou cadastre-se </button>
+                        <Link to='cadastro/paciente' className="inscreva-se" > Entre ou cadastre-se </Link>
                     </div>
                 </div>
                 <div className="texto-faixa-1">
@@ -102,7 +103,7 @@ a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguid
                 </div>
 
                 <div className="integrantes">
-                    <Equipe className='integrante-1' integrante='/assets/images/image 19.png' nome='Mateus Andrade' função='DBA' />
+                    <Equipe className='integrante-1' integrante='/assets/images/image 19.png' nome='Mateus Andrade' função='DBA' link='https://www.instagram.com/amandafitas/?hl=pt-br' />
                     <Equipe className='integrante-2' integrante='/assets/images/image 18.png' nome='Bruno Virgilio' função='DBA' />
                     <Equipe className='integrante-3' integrante='/assets/images/image 17.png' nome='Jennifer Oliveira' função='Web Designer' />
                     <Equipe className='integrante-4' integrante='/assets/images/image 21.png' nome='Eduardo César' função='Backend' />

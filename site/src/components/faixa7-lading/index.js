@@ -1,5 +1,5 @@
 
-
+import { Link } from 'react-router-dom';
 import './index.scss'
 
 export default function Equipe(props) {
@@ -8,6 +8,7 @@ export default function Equipe(props) {
         <img src={props.integrante} alt="integrantes" />
         <h3> {props.nome} </h3>
         <p> {props.função} </p>
+        
     </div>
    )
 }

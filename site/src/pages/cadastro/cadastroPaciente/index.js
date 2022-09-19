@@ -1,8 +1,13 @@
 import "./index.scss"
+import login from '../../../api/loginUser.js';
+import { Link } from 'react-router-dom';
+
 
 export default function Cadastro1() {
+
+
     return (
-        <main className="principal">
+        <main className="Main">
             <section className="global">
                 <div className="div-logo">
                     <img src="/assets/images/zyro-image__3_-removebg-preview (2) 2.png" alt="logo" />
@@ -13,7 +18,7 @@ export default function Cadastro1() {
                     <div>
                         <p className="textao">Te escutando de onde estiver, quando puder. <span>Seja bem vindo!</span></p>
 
-                        <button className="botao-direito">Voltar para a página inicial</button>
+                        <Link to='/' className="botao-direito">Voltar para a página inicial</Link>
                     </div>
                 </div>
                 <div className="lado-direito">
