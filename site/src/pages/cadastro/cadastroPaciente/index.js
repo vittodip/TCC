@@ -31,7 +31,7 @@ export default function Cadastro1() {
                     </div>
                     <div className="textinho">
                         <label>E-mail</label>
-                        <input className="input" type="text" placeholder="00000-000" />
+                        <input className="input" type="text" placeholder="email@gmail.com" />
                     </div>
 
                     <div className="textinho">
