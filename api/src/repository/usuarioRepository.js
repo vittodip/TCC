@@ -26,3 +26,17 @@ export async function cadastroUsuario (user) {
 }
 
 
+export async function carregarUsuario() {
+    const comando = `
+    select nm_usuario 	 nome,
+    ds_email             email,
+    nr_telefone          telefone,
+    ds_cpf               cpf,
+    dt_nascimento        DataDeNascimento
+    from tb_usuario
+    where id_usuario = ?`
+
+    const [linhas] = await con.query(comando)
+    return linhas
+}
+

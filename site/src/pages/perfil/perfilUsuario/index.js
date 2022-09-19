@@ -1,9 +1,14 @@
 
-import Perfil from "../../components/perfil"
+import Perfil from "../../../components/perfil"
+
+import { useState } from "react"
 
 import './index.scss'
 
 export default function PerfilUsuario() {
+    
+    const [usuario, setUsuario] = useState([]);
+    
     return (
         <main className='usuario-perfil'>
             <Perfil perfil='usuario' />

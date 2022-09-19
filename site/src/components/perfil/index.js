@@ -1,9 +1,16 @@
 import './index.scss'
 
-
+import { useNavigate } from "react-router-dom";
+import Storage from 'local-storage'
 
 export default function Perfil(props) {
 
+    const navigate = useNavigate();
+
+    function sairClick () {
+        Storage.remove('usuario-logado');
+        navigate('/login')
+    }  
 
     return (
 
@@ -17,7 +24,7 @@ export default function Perfil(props) {
                         <button>Denunciar</button>
                     }
                     <button>Conversas</button>
-                    <button> <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    <button onClick={sairClick} > <img src='/assets/images/Logout (1).png'/> Sair</button>
                 </div>
             
                 <div className='pic-user'> 

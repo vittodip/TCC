@@ -1,8 +1,29 @@
 import './index.scss'
+
+import {useState} from 'react'
+
 import LogoHorizontal from '../../../components/logos'
 import InputsVoluntario from '../../../components/cadastro/voluntario'
 
+
+import { cadastroVoluntario } from '../../../api/voluntarioApi'
+
 export default function CadastroVoluntario() {
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [nascimento, setNascimento] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [vagas, setVagas] = useState();
+    const [crp, setCrp] = useState('');
+    
+
+    async function cadastro() {
+        const resposta = await cadastroVoluntario(email, senha, nome, cpf, nascimento, telefone, vagas, crp);
+    }
+    
+
     return (
         <main className="cadastro-voluntario">
             
@@ -26,19 +47,21 @@ export default function CadastroVoluntario() {
                 <div className='logonat'>
                     <LogoHorizontal/>
                 </div>
-                <InputsVoluntario info='Nome' placeholder='Nome e sobrenome' />
-                <InputsVoluntario info='CRP' placeholder='XX/00000' />
-                <InputsVoluntario info='CPF' placeholder='000.000.000-00' />
-                <InputsVoluntario info='E-mail' placeholder='email@email' />
-                <InputsVoluntario info='Senha' placeholder='*************' />
-                <InputsVoluntario info='Número de telefone' placeholder='(00) 00000-0000' />
+                <InputsVoluntario info='Nome' placeholder='Nome e sobrenome' valor={nome} onchange={e => setNome(e.target.value)} />
+                <InputsVoluntario info='CRP' placeholder='XX/00000' valor={crp} onchange={e => setCrp(e.target.value)} />
+                <InputsVoluntario info='CPF' placeholder='000.000.000-00' valor={cpf} onchange={e => setCpf(e.target.value)} />
+                <InputsVoluntario info='E-mail' placeholder='email@email' valor={email} onchange={e => setEmail(e.target.value)} />
+                <InputsVoluntario info='Senha' placeholder='*************' valor={senha} onchange={e => setSenha(e.target.senha)} />
+                <InputsVoluntario info='Número de telefone' placeholder='(00) 00000-0000' value={telefone} onChange={e => setTelefone(e.target.telefone)} />
                 
+
                 <div className="s2-alinhamento-inputs">
                     <label>Qtd. de pacientes que pode atender</label>
-                    <select>
-                        <option value="1-5" key="">1-5</option>
-                        <option value="5-10" key="">5-10</option>
-                        <option value="10-20 ou mais" key="">10-20 ou mais</option>
+                    <select onChange={e => setVagas(e.target.value)}>
+                        <option selected disable hidden>Selecione</option>
+                        <option value={vagas} key="">1-5</option>
+                        <option value={vagas} key="">5-10</option>
+                        <option value={vagas} key="">10-20 ou mais</option>
                     </select>
                 </div>
                 
@@ -47,7 +70,7 @@ export default function CadastroVoluntario() {
                     <label>Eu li e concordo com a <span>política de privacidade</span>.</label>
                 </div>
                 
-                <button>Cadastrar-se</button>
+                <button onClick={cadastro} >Cadastrar-se</button>
                 
             </section>
         </main>

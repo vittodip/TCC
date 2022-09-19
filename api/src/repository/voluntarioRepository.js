@@ -14,10 +14,10 @@ export async function loginVoluntario(email, senha) {
 
 
 export async function cadastroVoluntario (volunt) {
-    const comando = `insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_vagas_disponivel, ds_crp)
+    const comando = `insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp)
                                         values(?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome, volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.vagas_disponivel, volunt.crp]);
+    const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome, volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.crp]);
     volunt.id = resposta.insertId;
 
     return volunt;
