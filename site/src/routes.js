@@ -5,8 +5,7 @@ import Lading from './pages/lading-page/index.js';
 import CadastroVoluntario from './pages/cadastro/cadastroVoluntario/index.js';
 
 import PerfilUsuario from './pages/perfil/perfilUsuario/index.js'
-import CadastroPaciente from './pages/perfil/perfilVoluntario/index.js'
-
+import Cadastro1 from './pages/cadastro/cadastroUsuario/index.js';
 
 
 
@@ -18,7 +17,7 @@ export default function Rotas() {
                 <Route path='/cadastro/voluntario' element={ <CadastroVoluntario /> } />
 
                 <Route path='/perfil/usuario' element={ <PerfilUsuario/>} />
-                <Route path='/cadastro/paciente' element={ <CadastroPaciente /> } />
+                <Route path='/cadastro/paciente' element={ <Cadastro1 /> } />
 
 
             </Routes>
