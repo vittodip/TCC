@@ -15,11 +15,10 @@ export default function Cadastro1() {
         const resposta = await cadastroUsuario(nome, nascimento, cpf, cep, email, senha, telefone);
     }
     
-    
-
+ 
 
     return (
-        <main className="Main">
+        <main className="principal">
             <section className="global">
                 <div className="div-logo">
                     <img src="/assets/images/zyro-image__3_-removebg-preview (2) 2.png" alt="logo" />
