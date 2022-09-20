@@ -1,11 +1,11 @@
-import { cadastroUsuario, loginUsuario } from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
 
 const server = Router();
 
-server.get('/login/usuario', async (req, resp) => {
+server.post('/login/usuario', async (req, resp) => {
     try {
         const { email, senha } = req.body;
 
@@ -62,7 +62,24 @@ server.post('/cadastro/usuario', async (req, resp) => {
 })
 
 
+server.get('/usuario/:id', async (req, resp) => {
+    try {
+        const usuario = Number(req.params.id);
 
+
+        //let horaConsulta = new Date(agendamento.data + 'T' + agendamento.horario);
+        //horaConsulta.setHours(horaConsulta.getHours() - horaConsulta.getTimezoneOffset()/60);
+
+        const resposta = await carregarUsuario(usuario);
+
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 export default server;

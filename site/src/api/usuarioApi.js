@@ -27,3 +27,12 @@ export async function loginUsuario(email, senha) {
 }
 
 
+export async function carregarUsuario(id) {
+    const resposta = await api.get(`/usuario/${id}`);
+    console.log(resposta);
+    return resposta.data;
+}
+
+
+
+

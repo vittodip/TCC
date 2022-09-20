@@ -1,14 +1,33 @@
 
 import Perfil from "../../../components/perfil"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useParams } from 'react-router-dom'
+
 
 import './index.scss'
 
+
+import { carregarUsuario } from "../../../api/usuarioApi.js";
+
 export default function PerfilUsuario() {
-    
     const [usuario, setUsuario] = useState([]);
     
+    const { usuarioParam } = useParams();
+
+    useEffect(() => {
+        carregarUser(); 
+    }, []);
+
+
+    async function carregarUser() {
+        const resposta = await carregarUsuario(1);
+
+    
+        setUsuario(resposta);
+    }
+
+    console.log(usuario);
     return (
         <main className='usuario-perfil'>
             <Perfil perfil='usuario' />
@@ -22,23 +41,23 @@ export default function PerfilUsuario() {
                         <h3>
                             Nome
                         </h3>
-                        <p>Nome e sobrenome</p>
+                        <p>{usuario.nome}</p>
                         <h3>
                             E-mail
                         </h3>
-                        <p>email@usuario.com</p>
+                        <p>{usuario.email}</p>
                         <h3>
                             Telefone
                         </h3>
-                        <p>(00) 00000-0000</p>
+                        <p>{usuario.telefone}</p>
                         <h3>
                             CPF
                         </h3>
-                        <p>000.000.000-00</p>
+                        <p>{usuario.cpf}</p>
                         <h3>
                             Data de nascimento
                         </h3>
-                        <p>00/00/0000</p>
+                        <p>{String(usuario.DataDeNascimento).substr(0,10)}</p>
 
                     </div>
                 </div>
