@@ -2,23 +2,25 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
+    padding: 1em;
     background-color: #ffffff;
 
 
     height: 100vh;
 
-   
+
 
     .div-logo {
-    
-    padding-top: 30em;
-    
-      margin: -30em 0em 40em;
 
-        width: 1px;
 
-        
+
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-start;
+        align-self: flex-start;
+
+
+
     }
 
 
@@ -31,10 +33,11 @@
     }
 
     .lado-esquerdo {
-        margin-top: 10em;
+
 
         display: flex;
         flex-direction: column;
+        gap: 1em;
         align-items: center;
         width: 65%;
 
@@ -45,6 +48,7 @@
     .computadozinho {
         width: 40em;
         margin-right: 12em;
+        margin-top: 2em;
     }
 
     .botao-direito {
@@ -73,32 +77,52 @@
         display: flex;
         flex-direction: column;
 
+
         padding: 10px;
 
-        margin-left: -50px;
-        width: 60%;
+        width: 100%;
     }
 
-    label {
+    .lado-direito {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 35%;
+    }
+
+    label{
         margin-top: 15px;
         margin-left: 10px;
     }
 
     .termos {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        margin-left: -7em;
+        padding-left: 1em;
 
+        input{
+                all: unset;
+                border: 2px solid #D9D9D9;
+                width: 12px;
+                height: 12px;
+                display: inline-block;
+                border-radius: 20px;
+                margin-right: 2px;
+                margin-left: px;
+        }
+        input:checked{
+            background-color: #79458B;
+            
+        }
     }
 
     .input {
-        width: 30em;
-        height: 10px;
+        width: 80%;
+        height: 2.5em;
         border: none;
-
+        font-size: 16px;
         padding-left: 12px;
-        padding: 10px;
 
         background: #DEDEDE;
         border-radius: 18.5px;
@@ -110,13 +134,7 @@
 
     }
 
-    .lado-direito {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        width: 35%;
-        padding-right: 3em;
-    }
+
 
     button {
         width: 15em;
@@ -129,66 +147,82 @@
     }
 
     .botao {
+        text-decoration: none;
         margin-left: 8em;
     }
 
 }
 
-@media (max-width: 480px) {
-    .principal {
+@media (max-width: 414px) {
+    .Main {
         display: flex;
         flex-direction: column;
-        justify-content: stretch;
-    
+
+
         background-color: #ffffff;
-    
-       
+
+
         height: 100vh;
-    
-       
-    
+
+
+
         .div-logo {
-        
-        padding-top: 11em;
-                
-          margin: -89em 0em 30em;
-    
+
+            img {
+                position: absolute;
+                top: 20px;
+            }
+
+
+
+            padding-top: 1em;
+
+
+
             width: 1px;
-    
-            
+
+
         }
-    
-    
-    
+
+
+
         .global {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             height: 100vh;
 
-    
+
+
         }
-    
+
         .lado-esquerdo {
-    
+
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            
+            flex-direction: column;
+            align-items: flex-start;
+
             white-space: nowrap;
             padding-bottom: 3em;
-    
-    
+
+
         }
-    
+
+        .texto-botao {
+            text-decoration: none;
+            position: absolute;
+        }
+
         .computadozinho {
-            width: 11.5em;
-            margin-right: 1em;
+            display: none;
+            width: 0em;
+
         }
-    
+
         .botao-direito {
             margin-left: 8em;
+            text-decoration: none;
         }
-    
+
         .textao {
             display: flex;
             flex-direction: column;
@@ -197,51 +231,51 @@
             font-size: 12px;
             margin-left: 30px;
         }
-    
+
         .textinho {
             display: flex;
             flex-direction: column;
-    
+
             padding: 2px;
-    
+
             margin-left: -5px;
             width: 60%;
         }
-    
+
         label {
             margin-top: 4em;
             margin-left: 10px;
             white-space: nowrap;
             font-size: 12px;
         }
-    
+
         .termos {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             margin-left: 10em;
             font-size: 12px;
             white-space: nowrap;
         }
-    
+
         .input {
             width: 24em;
             height: 10px;
             border: none;
-    
+
             padding-left: 12px;
             padding: 10px;
-    
+
             background: #DEDEDE;
             border-radius: 18.5px;
         }
-    
-    
+
+
         .link {
             color: #3A1248;
-    
+
         }
-    
+
         .lado-direito {
             display: flex;
             justify-content: center;
@@ -249,26 +283,27 @@
             width: 35%;
             padding: 1em;
         }
-    
+
         button {
             width: 15em;
             font-size: 10px;
 
             padding: 15px;
             color: #ffffff;
-    
+
             background-color: #79458B;
             border: none;
             border-radius: 25px;
         }
-    
+
         .botao {
             margin-top: 5em;
             margin-left: 10em;
+            text-decoration: none;
         }
-    
+
     }
-    
+
 
 
 }
