@@ -43,3 +43,5 @@ export async function carregarUsuario(id) {
     return linhas[0]
 }
 
+
+
