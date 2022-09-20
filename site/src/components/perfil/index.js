@@ -2,6 +2,7 @@ import './index.scss'
 
 import { useNavigate } from "react-router-dom";
 import Storage from 'local-storage'
+import { loginUsuario } from '../../api/usuarioApi';
 
 export default function Perfil(props) {
 
@@ -28,11 +29,11 @@ export default function Perfil(props) {
                 </div>
             
                 <div className='pic-user'> 
-                    <span>N</span> 
+                    <span>{props.inicial}</span> 
                 </div>
                 
             </div>
-            <h1 className='nome-usuario'>Sejam bem-vindo, Nome! <img src='/assets/images/Heart.png'/></h1>
+            <h1 className='nome-usuario'>Sejam bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
         </main>
     )
 }

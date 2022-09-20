@@ -21,7 +21,7 @@ export default function PerfilUsuario() {
 
 
     async function carregarUser() {
-        const resposta = await carregarUsuario(1);
+        const resposta = await carregarUsuario(usuarioParam);
 
     
         setUsuario(resposta);
@@ -30,7 +30,7 @@ export default function PerfilUsuario() {
     console.log(usuario);
     return (
         <main className='usuario-perfil'>
-            <Perfil perfil='usuario' />
+            <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
             <div className='infos'>
                 <div className='card-infos-gerais'>
                     <div className='card-titulo'>
