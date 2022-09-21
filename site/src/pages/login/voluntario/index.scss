@@ -1,0 +1,69 @@
+.home-login{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+    .secao1{
+        width: 70%;
+        height: 100vh;
+
+        background-image: linear-gradient(#CFA7CA, #A791C0);
+    }
+    
+    .secao2{
+        width: 30%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .s2-logo{
+            width: 15em;
+        }
+        .s2-texto-logo{
+            position: relative;
+            bottom: 2.5em;
+            color: #3A1248;
+            font-weight: 600;
+        }
+
+        .s2-label-inputs{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 1em;
+            gap: 0.5em;
+
+            input{
+                width: 90%;
+                max-width: 350px;
+                min-height: 3em;
+                padding-left: 15px;
+                border-radius: 25px;
+                border: none;
+                font-size: 16px;
+                outline: none;
+
+                background-color: #DEDEDE;
+            }
+            label{
+                align-self: flex-start;
+                margin-left: 8%;
+                font-weight: 600;
+            }
+            a{
+                align-self: flex-end;
+                margin-right: 7%;
+                font-size: 14px;
+            }
+        }
+        .s2-alinhamento-opcoes{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2em;
+        }
+    }
+}
