@@ -22,10 +22,10 @@ server.post('/solicitacao', async (req, resp) => {
 })
 
 // Mostrar Solicitação
-server.get('/mostrar/solicitacao', async (req, resp) => {
+server.get('/mostrar/solicitacao/:id', async (req, resp) => {
 
     try {
-        const mostrarTudo = req.body
+        const mostrarTudo = Number(req.params.id)
         const resposta = await mostrarSolicitacao(mostrarTudo);
         resp.send(resposta);
     } catch (err) {
