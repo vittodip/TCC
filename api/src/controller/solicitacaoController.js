@@ -25,8 +25,10 @@ server.post('/solicitacao', async (req, resp) => {
 server.get('/mostrar/solicitacao/:id', async (req, resp) => {
 
     try {
-        const mostrarTudo = Number(req.params.id)
+        const mostrarTudo = Number(req.params.id);
+
         const resposta = await mostrarSolicitacao(mostrarTudo);
+        
         resp.send(resposta);
     } catch (err) {
         resp.status(404).send({

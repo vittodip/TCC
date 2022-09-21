@@ -10,7 +10,7 @@ export async function fazerSolicitacao(solicitacao) {
     return solicitacao;
 }
 
-export async function mostrarSolicitacao(solicitacao){
+export async function mostrarSolicitacao(id){
     const comando = `select 
            id_solicitacao solicitacao,
            id_usuario 	  usuario,
@@ -21,6 +21,6 @@ export async function mostrarSolicitacao(solicitacao){
     from tb_solicitacao
     where id_solicitacao = ?`
 
-    const [linhas] = await con.query(comando, [solicitacao.idUsuario])
+    const [linhas] = await con.query(comando, [id])
     return linhas[0];
 }
