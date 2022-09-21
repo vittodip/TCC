@@ -5,7 +5,7 @@ import { Router } from "express";
 
 const server = Router();
 
-server.post('/login/usuario', async (req, resp) => {
+server.get('/login/usuario', async (req, resp) => {
     try {
         const { email, senha } = req.body;
 
