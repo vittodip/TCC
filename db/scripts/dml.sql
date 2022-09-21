@@ -13,8 +13,8 @@ where ds_email = 'email.adm123@gmail.com'
 
 
 -- CADASTRO PSICOLOGO
-insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp, DS_SITUACAO)
-	   values('email.psi1234@gmail.com', '1234', 'Amanda Fitas','123.456.789-02', '1996-07-19', '(11)912345678', null, 'xx/321/123', null);
+insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp)
+	   values('email.psi1234@gmail.com', '1234', 'Amanda Fitas','123.456.789-02', '1996-07-19', '(11)912345678', null, 'xx/321/123');
 
 -- LOGIN PSICOLOGO
 select * 
@@ -31,8 +31,6 @@ select *
   from tb_usuario
 where ds_email = 'email.user1234@gmail.com'
   AND ds_senha = '1234';
-  
-  select * from tb_usuario;
   
 -- INFO PERFIL USUARIO
 select nm_usuario 	 nome,
@@ -53,8 +51,8 @@ update tb_usuario
   
 -- ENVIAR SOLICITACAO  
 insert into tb_solicitacao (id_usuario, id_psicologo, ds_solicitacao, ds_situacao, dt_situacao)
-	 values (1, 1, 'Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-			 ', false, now());
+	 values (1, nullif( '1', ds_situacao = 1), 'Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
+			 ',false , now());
              
 -- MOSTRAR SOLICITACAO             
 select id_solicitacao solicitacao,
@@ -64,8 +62,9 @@ select id_solicitacao solicitacao,
        dt_situacao 	  horario
       
 from tb_solicitacao
-where id_solicitacao = 1;
+where id_solicitacao = 11;
 
+select * from tb_solicitacao;
 
 -- EDITAR SOLICITACAO
 update tb_solicitacao 
@@ -73,6 +72,10 @@ update tb_solicitacao
 	   ds_situacao = null, dt_situacao = now()
  where id_solicitacao = 1;
  
+-- DELETAR SOLICITACAO
+delete from tb_solicitacao
+	  where id_solicitacao = 1;
+
 -- ADICIONAR CATEGORIA
 insert tb_categoria(nm_categoria)
  value('BurnOut');
@@ -81,16 +84,14 @@ select * from tb_categoria;
       
 -- ADICIONAR CATEGORIA NA SOLICITAÇÃO
 insert tb_solicitacao_categoria(ID_SOLICITACAO, ID_CATEGORIA)
- value(2, 1);
+ value(3, 3);
  
 -- MOSTRAR CATEGORIA
 select * 
   from tb_solicitacao_categoria
- where id_solicitacao_categoria = 1;
- 
--- DELETAR SOLICITACAO
-delete from tb_solicitacao
-	  where id_solicitacao = 1;
+ where id_solicitacao_categoria = 5;
 
 
 select * from tb_solicitacao_categoria;
+
+
