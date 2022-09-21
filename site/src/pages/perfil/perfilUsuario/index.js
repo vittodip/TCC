@@ -6,30 +6,41 @@ import { useParams } from 'react-router-dom'
 
 
 import './index.scss'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 import { carregarUsuario } from "../../../api/usuarioApi.js";
+import { carregarSolicitacao } from "../../../api/solicitacaoApi.js";
+import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
 
 export default function PerfilUsuario() {
     const [usuario, setUsuario] = useState([]);
+
+    const [solicitacao, setSolicitacao] = useState([]);
     
     const { usuarioParam } = useParams();
 
     useEffect(() => {
-        carregarUser(); 
+        carregarUser();
+        solicitacaoCarregar();
     }, []);
 
 
     async function carregarUser() {
         const resposta = await carregarUsuario(usuarioParam);
-
-    
         setUsuario(resposta);
     }
 
-    console.log(usuario);
+    
+    async function solicitacaoCarregar() {
+        const resposta = await carregarSolicitacao(usuarioParam);
+        setSolicitacao(resposta);
+    }
+    
+
     return (
         <main className='usuario-perfil'>
+            
             <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
             <div className='infos'>
                 <div className='card-infos-gerais'>
@@ -70,30 +81,33 @@ export default function PerfilUsuario() {
                         <p>Categorias:</p> <span>+</span>
                     </div>
                     <div className='text-solicitacao'>
-                        <textarea type='text' placeholder='Digite sua solicitação'></textarea>    
+                        <textarea type='text' placeholder='Digite sua solicitação' ></textarea>    
                     </div>
                 </div>
                 <button>Enviar solicitação</button>
             </div>
 
             <div className='faixa-solicitacoes'>
-                <div className='box-solicitacao'>
-                    <div className='top-solicitacao-2'>
-                        <p>20/09/2022 às 23:11 - Solicitação em aberto </p>
-                        <img src='/assets/images/black-edit.png'/>
-                        <img src='/assets/images/trash.png'/>
-                    </div>
-                    <div className='text-solicitacao'>
-                        <hr/>
-                        <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
-                        <hr/>
+                {solicitacao.map(item => 
+                        <div className='box-solicitacao'>
+                            <div className='top-solicitacao-2'>
+                                <p> {item.horario} - Solicitação em aberto </p>
+                                <img src='/assets/images/black-edit.png'/>
+                                <img src='/assets/images/trash.png'/>
+                            </div>
+                            <div className='text-solicitacao'>
+                                <hr/>
+                                    <p>{item.texto}</p>
+                                <hr/>
 
-                    </div>
-                    <div className='categorias-solicitacao'>
-                        <div><p>Categorias: Burnout, estresse, neurose</p></div>
-                        <div className='analise'><p>Em análise</p> <img src='/assets/images/eye.png'/></div>
-                    </div>
-                </div>
+                            </div>
+                            <div className='categorias-solicitacao'>
+                                <div><p>Categorias: Burnout, estresse, neurose</p></div>
+                                <div className='analise'><p>{item.situacao ? "Atendido" : "Em análise"}</p> <img src='/assets/images/eye.png'/></div>
+                            </div>
+                        </div>
+                    )}
+                
                 
             </div>
         </main>
