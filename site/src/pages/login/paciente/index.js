@@ -2,7 +2,8 @@ import './index.scss'
 
 import { Link } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { loginUsuario } from '../../../api/usuarioApi';
 
 import Storage from 'local-storage'
@@ -13,6 +14,8 @@ export default function LoginPaciente(){
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+
+    const navigate = useNavigate();
 
     async function loginUser () {
         const r = await loginUsuario(email, senha);
