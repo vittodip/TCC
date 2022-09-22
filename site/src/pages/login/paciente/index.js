@@ -2,8 +2,54 @@ import './index.scss'
 
 import { Link } from 'react-router-dom';
 
+import { useState } from 'react';
+import { loginUsuario } from '../../../api/usuarioApi';
+
+import Storage from 'local-storage'
+
+
+
 export default function LoginPaciente(){
+
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    async function loginUser () {
+        const r = await loginUsuario(email, senha);
+    }
+
+    useEffect(() => {
+        if(Storage('usuario-logado')) {
+          navigate('/perfil/usuario/:usuarioParam');
+        }
+      }, [])
+
+
+      /*async function entrarClick() {
     
+        ref.current.continuousStart();
+        setCarregando(true);
+        
+        try {
+          const r = await login (email, senha);
+          Storage('usuario-logado', r);
+    
+          setTimeout(() => {
+            navigate('/marcadas');
+          }, 3000)
+    
+        }
+        catch (err) {
+          ref.current.complete();
+          setCarregando(false);
+          if (err.response.status === 401) {
+            setErro(err.response.data.erro);
+          }
+        }
+    
+      }*/
+
+
     return(
         <main className='home-login'>
             <section className='secao1'>
@@ -19,15 +65,15 @@ export default function LoginPaciente(){
 
                 <div className='s2-label-inputs'>
                     <label>E-mail</label>
-                    <input type="text" placeholder='email@email.com' />
+                    <input type="text" placeholder='email@email.com'  value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
-                    <input type="text" placeholder='*********' />
+                    <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)} />
                     <a href="">Esqueci minha senha</a>
-                </div>
+                </div> 
 
-            <button className="botao-entrar">
+            <button className="botao-entrar" onClick={loginUser}>
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>

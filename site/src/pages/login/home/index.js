@@ -20,11 +20,11 @@ export default function HomeLogin() {
                     <div className='s2-opcoes'>
 
                         <button>Voluntário</button>
-                        <a href="">Clique para saber mais</a>
+                        <a href="/cadastro/voluntario">Clique para saber mais</a>
                     </div>
                     <div className='s2-opcoes'>
                         <button>Paciente</button>
-                        <a href="">Clique para continuar</a>
+                        <a href="/cadastro/paciente">Clique para continuar</a>
                     </div>
                 </div>
                 <div className='s2-alinhamento-opcoes'>
