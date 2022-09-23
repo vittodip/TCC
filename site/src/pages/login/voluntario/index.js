@@ -1,11 +1,64 @@
-
 import './index.scss'
-
 import { Link } from 'react-router-dom';
 
-export default function LoginVoluntario(){
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
+import { loginVoluntario, LoginVoluntario } from '../../../api/voluntarioApi'
+
+import Storage from 'local-storage'
+
+export default function LoginDoVoluntario(){
+    const [conta, setConta] = useState(0);
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    const [erro, setErro] = useState('');
+    const [carregando, setCarregando] = useState(false);
+
+    const navigate = useNavigate();
+    const ref = useRef();
+
+    
+
+    useEffect(() => {
+        if(Storage('usuario-logado')) {
+          navigate(`/perfil/voluntario/${conta}`);
+        }
+      }, [])
+
+
+      async function entrarClick() {
+    
+        ref.current.continuousStart();
+        setCarregando(true);
+        
+        try {
+          const r = await loginVoluntario(email, senha);
+          const id = r.id;
+          Storage('usuario-logado', r);
+          setTimeout(() => {
+            navigate(`/perfil/voluntario/${id}`);
+          }, 3000)
+          setConta(id)
+          
+    
+        }
+        catch (err) {
+          ref.current.complete();
+          setCarregando(false);
+          if (err.response === 401) {
+            setErro(err.response.data.erro);
+          }
+        }
+    
+      }
+
+
+
     return(
         <main className='home-login'>
+            <LoadingBar color='#2E939C' ref={ref}/>
             <section className='secao1'>
                 <img className="mocas-tocaq" width={350} src="/assets/images/MOCAS TOCAQ 1.png" alt="" />
                 <img className='moca-nuvem'src="/assets/images/moca nuvem.png" width={315} alt="" />
@@ -19,15 +72,15 @@ export default function LoginVoluntario(){
 
                 <div className='s2-label-inputs'>
                     <label>E-mail</label>
-                    <input type="text" placeholder='email@email.com' />
+                    <input type="text" placeholder='email@email.com' value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
-                    <input type="text" placeholder='*********' />
+                    <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)}/>
                     <a href="">Esqueci minha senha</a>
                 </div>
 
-            <button className="botao-entrar">
+            <button className="botao-entrar" onClick={entrarClick}>
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>

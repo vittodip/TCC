@@ -1,7 +1,7 @@
 import './index.scss'
 import { Link } from 'react-router-dom';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLocalStorage } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
 import { loginUsuario } from '../../../api/usuarioApi.js';
@@ -22,11 +22,11 @@ export default function LoginPaciente(){
     const navigate = useNavigate();
     const ref = useRef();
 
-    
+    const localidinfo = localStorage.getItem("id");
 
     useEffect(() => {
         if(Storage('usuario-logado')) {
-          navigate(`/perfil/usuario/${Storage.id}`);
+          navigate(`/perfil/usuario/${localidinfo}`);
         }
       }, [])
 
@@ -40,6 +40,7 @@ export default function LoginPaciente(){
           const r = await loginUsuario(email, senha);
           const id = r.id;
           Storage('usuario-logado', r);
+          localStorage.setItem("id", id)
           setTimeout(() => {
             navigate(`/perfil/usuario/${id}`);
           }, 3000)
@@ -56,6 +57,9 @@ export default function LoginPaciente(){
         }
     
       }
+
+
+      
 
 
     return(
