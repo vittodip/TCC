@@ -1,10 +1,10 @@
 import './index.scss'
-
 import { Link } from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUsuario } from '../../../api/usuarioApi';
+import LoadingBar from 'react-top-loading-bar'
+import { loginUsuario } from '../../../api/usuarioApi.js';
 
 import Storage from 'local-storage'
 
@@ -12,49 +12,55 @@ import Storage from 'local-storage'
 
 export default function LoginPaciente(){
 
+    const [conta, setConta] = useState(0);
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    const navigate = useNavigate();
+    const [erro, setErro] = useState('');
+    const [carregando, setCarregando] = useState(false);
 
-    async function loginUser () {
-        const r = await loginUsuario(email, senha);
-    }
+    const navigate = useNavigate();
+    const ref = useRef();
+
+    
 
     useEffect(() => {
         if(Storage('usuario-logado')) {
-          navigate('/perfil/usuario/:usuarioParam');
+          navigate(`/perfil/usuario/${Storage.id}`);
         }
       }, [])
 
 
-      /*async function entrarClick() {
+      async function entrarClick() {
     
         ref.current.continuousStart();
         setCarregando(true);
         
         try {
-          const r = await login (email, senha);
+          const r = await loginUsuario(email, senha);
+          const id = r.id;
           Storage('usuario-logado', r);
-    
           setTimeout(() => {
-            navigate('/marcadas');
+            navigate(`/perfil/usuario/${id}`);
           }, 3000)
+          setConta(id)
+          
     
         }
         catch (err) {
           ref.current.complete();
           setCarregando(false);
-          if (err.response.status === 401) {
+          if (err.response === 401) {
             setErro(err.response.data.erro);
           }
         }
     
-      }*/
+      }
 
 
     return(
         <main className='home-login'>
+          <LoadingBar color='#2E939C' ref={ref}/>
             <section className='secao1'>
                 <img className="mocas-tocaq" width={350} src="/assets/images/MOCAS TOCAQ 1.png" alt="" />
                 <img className='moca-nuvem'src="/assets/images/moca nuvem.png" width={315} alt="" />
@@ -76,11 +82,11 @@ export default function LoginPaciente(){
                     <a href="">Esqueci minha senha</a>
                 </div> 
 
-            <button className="botao-entrar" onClick={loginUser}>
+            <button className="botao-entrar" onClick={entrarClick} >
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>
-                    <p>Não tem uma conta? Cadastre-se <Link to='/home/login' className='a'>aqui</Link></p>
+                    <p>Não tem uma conta? Cadastre-se <Link to='/home/login' className='a'>aqui.</Link></p>
                     <Link to='/login/voluntario'>Entrar como voluntário</Link>
                 </div>
             </section>

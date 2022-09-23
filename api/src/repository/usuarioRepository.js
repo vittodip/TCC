@@ -38,8 +38,6 @@ export async function carregarUsuario(id) {
     where id_usuario = ?`
 
     const [linhas] = await con.query(comando, id);
-    console.log(linhas);
-
     return linhas[0]
 }
 

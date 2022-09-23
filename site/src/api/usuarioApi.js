@@ -19,11 +19,11 @@ export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telef
 }
 
 export async function loginUsuario(email, senha) {
-    const resposta = api.post('/login/usuario', {
+    const resposta = await api.post('/login/usuario', {
         email: email,
         senha: senha
     })
-
+    console.log(resposta.data);
     return resposta.data;
 }
 
