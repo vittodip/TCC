@@ -3,10 +3,12 @@ import Perfil from "../../../components/perfil"
 
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
+import { storage } from 'local-storage'
 
 
 import './index.scss'
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import { carregarUsuario } from "../../../api/usuarioApi.js";
@@ -20,11 +22,24 @@ export default function PerfilUsuario() {
     
     const { usuarioParam } = useParams();
 
+    const [solicitacaoTex, setSolicitacaoTex] = useState('');
+    const [situacaoSol, setSituacaoSol] = useState(false);
+
     useEffect(() => {
         carregarUser();
         solicitacaoCarregar();
     }, []);
 
+
+    async function cadastrarSolicitacao(){
+        try {
+            const resp = await inserirSolicitacao(solicitacaoTex, situacaoSol)
+            toast('Solicitacao cadastrada com sucesso')
+        } catch (err) {
+            toast(err.message)
+        }
+
+    }
 
     async function carregarUser() {
         const resposta = await carregarUsuario(usuarioParam);
@@ -40,9 +55,9 @@ export default function PerfilUsuario() {
 
     return (
         <main className='usuario-perfil'>
-            
             <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
             <div className='infos'>
+            <ToastContainer/>
                 <div className='card-infos-gerais'>
                     <div className='card-titulo'>
                         <h2>Informações Gerais</h2>
@@ -81,35 +96,18 @@ export default function PerfilUsuario() {
                         <p>Categorias:</p> <span>+</span>
                     </div>
                     <div className='text-solicitacao'>
-                        <textarea type='text' placeholder='Digite sua solicitação' ></textarea>    
+                        <textarea onChange={e => setSolicitacaoTex(e.target.value) } type='text' placeholder='Digite sua solicitação' ></textarea>    
                     </div>
                 </div>
-                <button>Enviar solicitação</button>
+                <button onClick={cadastrarSolicitacao}>Enviar solicitação</button>
             </div>
 
             <div className='faixa-solicitacoes'>
-                {solicitacao.map(item => 
-                        <div className='box-solicitacao'>
-                            <div className='top-solicitacao-2'>
-                                <p> {item.horario} - Solicitação em aberto </p>
-                                <img src='/assets/images/black-edit.png'/>
-                                <img src='/assets/images/trash.png'/>
-                            </div>
-                            <div className='text-solicitacao'>
-                                <hr/>
-                                    <p>{item.texto}</p>
-                                <hr/>
-
-                            </div>
-                            <div className='categorias-solicitacao'>
-                                <div><p>Categorias: Burnout, estresse, neurose</p></div>
-                                <div className='analise'><p>{item.situacao ? "Atendido" : "Em análise"}</p> <img src='/assets/images/eye.png'/></div>
-                            </div>
-                        </div>
-                    )}
+                <p>pao</p>
                 
                 
             </div>
+            
         </main>
     )
 }
