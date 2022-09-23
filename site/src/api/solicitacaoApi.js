@@ -1,16 +1,17 @@
 import axios from 'axios'
-import { API_URL } from './config';
+
 
 const api = axios.create({
-    baseURL: API_URL
+    baseURL: 'http://localhost:5000',     
+    timeout: 1000,
+    headers: {'X-Custom-Header': 'foobar',   'Authorization' : false} 
 })
 
 
-export async function inserirSolicitacao(idUsuario, assunto, data) {
+export async function inserirSolicitacao(idUsuario, assunto) {
     const resposta = api.post('/solicitacao', {
         idUsuario: idUsuario,
-        assunto: assunto,
-        data: data
+        assunto: assunto
     })
 
     return resposta.data;

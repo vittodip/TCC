@@ -11,7 +11,6 @@ server.post('/solicitacao', async (req, resp) => {
         const novaSolicitacao = req.body;
 
         const resposta = await fazerSolicitacao(novaSolicitacao);
-
         resp.send(resposta);
 
     } catch (err) {
