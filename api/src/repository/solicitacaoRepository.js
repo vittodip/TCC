@@ -1,7 +1,7 @@
 import { con } from './connection.js';
 
 
-export async function fazerSolicitacao(solicitacao) {
+export async function inserirSolicitacao(solicitacao) {
     const comando = `insert into tb_solicitacao (id_usuario, ds_solicitacao, ds_situacao, dt_situacao)
     values (?, ?, false, now())`
 

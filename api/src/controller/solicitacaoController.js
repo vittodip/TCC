@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { fazerSolicitacao, mostrarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { inserirSolicitacao, mostrarSolicitacao } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -10,7 +10,7 @@ server.post('/solicitacao', async (req, resp) => {
     try {
         const novaSolicitacao = req.body;
 
-        const resposta = await fazerSolicitacao(novaSolicitacao);
+        const resposta = await inserirSolicitacao(novaSolicitacao);
         resp.send(resposta);
 
     } catch (err) {

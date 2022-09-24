@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { carregarUsuario } from "../../../api/usuarioApi.js";
 import { carregarSolicitacao } from "../../../api/solicitacaoApi.js";
-import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
+import { inserirSolicitacao } from "../../../api/solicitacaoApi.js"
 
 export default function PerfilUsuario() {
     const [usuario, setUsuario] = useState([]);
@@ -30,17 +30,6 @@ export default function PerfilUsuario() {
         solicitacaoCarregar();
     }, []);
 
-
-    async function cadastrarSolicitacao(){
-        try {
-            const resp = await inserirSolicitacao(solicitacaoTex, situacaoSol)
-            toast('Solicitacao cadastrada com sucesso')
-        } catch (err) {
-            toast(err.message)
-        }
-
-    }
-
     async function carregarUser() {
         const resposta = await carregarUsuario(usuarioParam);
         setUsuario(resposta);
@@ -52,10 +41,19 @@ export default function PerfilUsuario() {
         setSolicitacao(resposta);
     }
     
+    async function cadastrarSolicitacao(){
+        try {
+            const resp = await inserirSolicitacao(solicitacaoTex, situacaoSol);
+            toast('Solicitacao cadastrada com sucesso')
+        } catch (err) {
+            toast(err.response.data.erro)
+        }
+
+    }
 
     return (
         <main className='usuario-perfil'>
-            <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
+            <Perfil inicial={usuario.nome[0]} usuario={usuario.nome} perfil='usuario' />
             <div className='infos'>
             <ToastContainer/>
                 <div className='card-infos-gerais'>

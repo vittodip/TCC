@@ -2,19 +2,17 @@ import axios from 'axios'
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000',     
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar',   'Authorization' : false} 
+    baseURL: 'http://localhost:5000/'
 })
 
 
 export async function inserirSolicitacao(idUsuario, assunto) {
-    const resposta = api.post('/solicitacao', {
+    console.log(idUsuario, assunto)
+    const resp = api.post(`/solicitacao`, {
         idUsuario: idUsuario,
         assunto: assunto
     })
-
-    return resposta.data;
+    return resp.data;
 }
 
 export async function carregarSolicitacao(id) {
