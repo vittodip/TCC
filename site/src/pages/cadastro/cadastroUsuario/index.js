@@ -1,5 +1,6 @@
 import "./index.scss"
 import { cadastroUsuario } from "../../../api/usuarioApi";
+import { Link } from 'react-router-dom'
 import LogoHorizontal from "../../../components/logos";
 import { useState } from 'react'
 
@@ -33,7 +34,7 @@ export default function Cadastro1() {
                     <div>
                         <p className="textao">Te escutando de onde estiver, quando puder. <span>Seja bem vindo!</span></p>
 
-                        <button className="botao-direito">Voltar para a página inicial</button>
+                        <Link to='/' className="botao-direito">Voltar para a página inicial</Link>
                     </div>
                 </div>
                 <div className="lado-direito">
@@ -79,7 +80,8 @@ export default function Cadastro1() {
                             <input type="checkbox" value={termos} onChange={e => setTermos(e.target.checked)}/> Eu li e concordo com a  <a className="link">política de privacidade.</a>
                         </p>
                     </div>
-                    <button onClick={Cadastro} className="botao" >Cadastrar-se</button>
+                    {/* <input type="button" onClick={Cadastro} value={"Cadastre-se"}/> */}
+                    <button onClick={Cadastro}>Cadastro</button>
                 </div>
             </section>
         </main>

@@ -10,7 +10,7 @@ export default function Perfil(props) {
 
     function sairClick () {
         Storage.remove('usuario-logado');
-        navigate('/login')
+        navigate('/home/login')
     }  
 
     return (

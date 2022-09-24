@@ -27,16 +27,16 @@ server.post('/cadastro/usuario', async (req, resp) => {
     try {
         const user = req.body;
         
-        if(!user.email.trim()) {
+        if(!user.email) {
             throw new Error('Insira um email!')
         }
         if(!user.senha) {
             throw new Error('Insira uma senha!')
         }
-        if(!user.nome.trim()) {
+        if(!user.nome) {
             throw new Error('Insira um nome!')
         }
-        if(!user.cpf.trim()) {
+        if(!user.cpf) {
             throw new Error('Insira um cpf!')
         }
         if(!user.nascimento) {
