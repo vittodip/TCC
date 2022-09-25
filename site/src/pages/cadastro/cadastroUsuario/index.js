@@ -69,7 +69,7 @@ export default function Cadastro1() {
             <input
               className="input"
               type="text"
-              placeholder="00/00/0000"
+              placeholder="0000/00/00"
               value={nascimento}
               onChange={(e) => setNascimento(e.target.value)}
             />

@@ -54,7 +54,7 @@ export default function PerfilUsuario() {
 
     return (
         <main className='usuario-perfil'>
-            <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
+            <Perfil inicial={usuario.nome[0]} usuario={usuario.nome} perfil='usuario' />
             <div className='infos'>
             <ToastContainer/>
                 <div className='card-infos-gerais'>

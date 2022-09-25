@@ -33,7 +33,7 @@ export default function Perfil(props) {
                 </div>
                 
             </div>
-            <h1 className='nome-usuario'>Sejam bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
+            <h1 className='nome-usuario'>Seja bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
         </main>
     )
 }
