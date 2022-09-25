@@ -23,7 +23,7 @@ export default function CadastroVoluntario() {
     const [cpf, setCpf] = useState('');
     const [nascimento, setNascimento] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [vagas, setVagas] = useState(3);
+    const [vagas, setVagas] = useState(0);
     const [crp, setCrp] = useState('');
     
 
