@@ -48,7 +48,7 @@ export default function LoginDoVoluntario(){
         catch (err) {
           ref.current.complete();
           setCarregando(false);
-          if (err.response === 401) {
+          if (err.response.status === 401) {
             setErro(err.response.data.erro);
           }
         }
@@ -78,7 +78,12 @@ export default function LoginDoVoluntario(){
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
                     <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)}/>
-                    <a href="">Esqueci minha senha</a>
+                    <div className='s2-alinhamento-erro-senha'>
+                      <div>
+                        <p>{erro}</p>
+                      </div>
+                      <a href="">Esqueci minha senha</a>
+                    </div>
                 </div>
 
             <button className="botao-entrar" onClick={entrarClick}>

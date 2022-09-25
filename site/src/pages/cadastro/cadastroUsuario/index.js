@@ -11,7 +11,6 @@ export default function Cadastro1() {
   const [nome, setNome] = useState("");
   const [nascimento, setNascimento] = useState("");
   const [cpf, setCpf] = useState("");
-  const [cep, setCep] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -20,7 +19,8 @@ export default function Cadastro1() {
   async function Cadastro() {
 
     try {
-        const resp = await cadastroUsuario(email, senha, nome, cpf, cep, nascimento, telefone); ;
+        const resp = await cadastroUsuario(email, senha, nome, cpf, nascimento, telefone);
+        console.log(resp)
         toast("Usuario cadastrado com sucesso")
     } catch (err) {
         toast(err.response.data.erro)
@@ -41,7 +41,7 @@ export default function Cadastro1() {
             src="/assets/images/zyro-image__8_-removebg-preview 1.png"
             alt="imagem-de-fundo"
           />
-          <div>
+          <div className="container-texto-botao">
             <p className="textao">
               Te escutando de onde estiver, quando puder.{" "}
               <span>Seja bem vindo!</span>
@@ -82,16 +82,6 @@ export default function Cadastro1() {
               placeholder="000.000.000-00"
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
-            />
-          </div>
-          <div className="textinho">
-            <label>CEP</label>
-            <input
-              className="input"
-              type="text"
-              placeholder="00000-000"
-              value={cep}
-              onChange={(e) => setCep(e.target.value)}
             />
           </div>
           <div className="textinho">
@@ -137,7 +127,7 @@ export default function Cadastro1() {
               <Link to='/politica-privacidade' className="link">política de privacidade.</Link>
             </p>
           </div>
-          <div>
+          <div className="botao-ladodireito">
             <button onClick={Cadastro}>Cadastro</button>
           </div>
         </div>

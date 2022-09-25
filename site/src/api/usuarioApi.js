@@ -7,13 +7,12 @@ const api = axios.create({
 })
 
 
-export async function cadastroUsuario(email, senha, nome, cpf, cep, nascimento, telefone) {
-    console.log(email, senha, nome, cpf, cep, nascimento, telefone)
+export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telefone) {
+    console.log(email, senha, nome, cpf, nascimento, telefone)
     const resposta = await api.post('/cadastro/usuario', {
         email,
         senha,
         nome,
-        cep,
         cpf,
         nascimento,
         telefone

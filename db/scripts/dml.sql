@@ -13,8 +13,8 @@ where ds_email = 'email.adm123@gmail.com'
 
 
 -- CADASTRO PSICOLOGO
-insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp)
-	   values('email.psi1234@gmail.com', '1234', 'Amanda Fitas','123.456.789-02', '1996-07-19', '(11)912345678', null, 'xx/321/123');
+insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_situacao, ds_crp)
+	   values('email.psi1234@gmail.com', '1234', 'Amanda Fitas','123.456.789-02', '1996-07-19', '(11)912345678', null, null, 'xx/321/123');
 
 -- LOGIN PSICOLOGO
 select * 

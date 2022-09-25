@@ -1,9 +1,7 @@
 import './index.scss'
-
-
 import { Link } from 'react-router-dom';
 
-import { useState, useEffect, useRef, useLocalStorage } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
 import { loginUsuario } from '../../../api/usuarioApi.js';
@@ -13,8 +11,6 @@ import Storage from 'local-storage'
 
 
 export default function LoginPaciente(){
-
-    const [conta, setConta] = useState(0);
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
@@ -43,11 +39,10 @@ export default function LoginPaciente(){
           const id = r.id;
           Storage('usuario-logado', r);
           localStorage.setItem("id", id)
-          
           setTimeout(() => {
             navigate(`/perfil/usuario/${id}`);
           }, 3000)
-          setConta(id)  
+          
           
     
         }
@@ -85,15 +80,17 @@ export default function LoginPaciente(){
                 </div>
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
-                    <input type="password" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)} />
-                    <a href="">Esqueci minha senha</a>
+                    <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)} />
+                    <div className='s2-alinhamento-erro-senha'>
+                      <div>
+                        <p>{erro}</p>
+                      </div>
+                      <a href="">Esqueci minha senha</a>
+                    </div>
+                    
                 </div> 
 
-                <div className='cred-invalida'>
-                  {erro}
-                </div>
-
-            <button className="botao-entrar" onClick={entrarClick} disabled= {carregando}>
+            <button className="botao-entrar" onClick={entrarClick} >
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>
@@ -102,7 +99,5 @@ export default function LoginPaciente(){
                 </div>
             </section>
         </main>
- 
- )
- 
+    )
 }
