@@ -22,13 +22,27 @@
             height: 4em;
             border-radius: 30px;
             border: none;
-            
+            color: #ffff;
+            background-color: #79458B;
+            margin-top: 1em;
+
+        }
+        
+        a{
+            display: flex;
+            flex-direction: column;
+            width: 16em;
+            height: 4em;
+            border-radius: 30px;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
             color: #ffff;
             background-color: #79458B;
 
             margin-top: 1em;
         }
-
         .logonat{
             
             align-self: flex-start;

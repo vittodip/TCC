@@ -10,7 +10,7 @@ export async function inserirSolicitacao(solicitacao) {
     return solicitacao;
 }
 
-export async function mostrarSolicitacao(id){
+export async function listarSolicitacao(id){
     const comando = `select 
            id_solicitacao solicitacao,
            id_usuario 	  usuario,
@@ -19,8 +19,8 @@ export async function mostrarSolicitacao(id){
            dt_situacao 	  horario
           
     from tb_solicitacao
-    where id_solicitacao = ?`
+    where id_usuario = ?`
 
     const [linhas] = await con.query(comando, [id])
-    return linhas[0];
+    return linhas;
 }

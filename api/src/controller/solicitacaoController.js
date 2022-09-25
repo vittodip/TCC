@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { inserirSolicitacao, mostrarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { inserirSolicitacao, listarSolicitacao } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -26,7 +26,7 @@ server.get('/mostrar/solicitacao/:id', async (req, resp) => {
     try {
         const mostrarTudo = Number(req.params.id);
 
-        const resposta = await mostrarSolicitacao(mostrarTudo);
+        const resposta = await listarSolicitacao(mostrarTudo);
         
         resp.send(resposta);
     } catch (err) {

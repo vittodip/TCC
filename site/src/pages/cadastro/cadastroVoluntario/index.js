@@ -6,6 +6,7 @@ import LogoHorizontal from '../../../components/logos'
 import InputsVoluntario from '../../../components/cadastro/voluntario'
 import { useParams } from 'react-router-dom'
 import { carregarVoluntario } from "../../../api/voluntarioApi.js";
+import { Link } from 'react-router-dom'
 
 
 import { cadastroVoluntario } from '../../../api/voluntarioApi'
@@ -54,7 +55,7 @@ export default function CadastroVoluntario() {
                         como psicólogo(a).</p>
                     <p>Você passará por um processo avaliativo, podendo ter resultado em apenas 3 dias úteis. Neste tempo, verificaremos seus dados e se poderá contribuir com nossa organização. Enviaremos o resultado para o e-mail cadastrado.</p>
                 </div>
-                <button>Voltar para a página inicial</button>
+                <Link to ='/home/login'>Voltar para a página inicial</Link>
             </section>
             <section className="secao2">
                 <div className='logonat'>
