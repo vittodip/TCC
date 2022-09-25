@@ -29,7 +29,7 @@ export default function Perfil(props) {
                 </div>
             
                 <div className='pic-user'> 
-                    <span>{props.inicial}</span> 
+                    <span>{String(props.inicial).substr(0,1)}</span> 
                 </div>
                 
             </div>

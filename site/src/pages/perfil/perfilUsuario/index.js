@@ -33,7 +33,7 @@ export default function PerfilUsuario() {
   }
 
   async function carregarTodasSolicitacoes(){
-    const resp = await listarSolicitacao()
+    const resp = await listarSolicitacao(usuarioParam)
     setSolicitacao(resp)
   }
 
@@ -87,6 +87,28 @@ export default function PerfilUsuario() {
         </div>
         <button onClick={cadastrarSolicitacao}>Enviar solicitação</button>
       </div>
+
+      <div className='faixa-solicitacoes'>
+              {solicitacao.map (item =>  
+                <div className='box-solicitacao'>
+                    <div className='top-solicitacao-2'>
+                        <p>{item.horario} - Solicitação em aberto </p>
+                        <img src='/assets/images/black-edit.png'/>
+                        <img src='/assets/images/trash.png'/>
+                    </div>
+                    <div className='text-solicitacao'>
+                        <hr/>
+                        <p>{item.texto}</p>
+                        <hr/>
+
+                    </div>
+                    <div className='categorias-solicitacao'>
+                        <div><p>Categorias: Burnout, estresse, neurose</p></div>
+                        <div className='analise'><p>{item.situacao === 0 &&"Em análise"}</p> <img src='/assets/images/eye.png'/></div>
+                    </div>
+                </div>
+                )}
+            </div>
 
 
       

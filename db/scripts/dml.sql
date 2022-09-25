@@ -52,14 +52,14 @@ update tb_usuario
 -- ENVIAR SOLICITACAO  
 insert into tb_solicitacao (id_usuario, id_psicologo, ds_solicitacao, ds_situacao, dt_situacao)
 	 values (1, nullif( '1', ds_situacao = 1), 'Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-			 ',false , now());
+			 ',false , sysdate());
              
 -- MOSTRAR SOLICITACAO             
 select id_solicitacao solicitacao,
 	   id_usuario 	  usuario,
 	   id_psicologo   psicologo,
        ds_solicitacao texto,
-       dt_situacao 	  horario
+       date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
       
 from tb_solicitacao
 where id_solicitacao = 11;

@@ -1,4 +1,6 @@
 import './index.scss'
+
+
 import { Link } from 'react-router-dom';
 
 import { useState, useEffect, useRef, useLocalStorage } from 'react';
@@ -41,17 +43,18 @@ export default function LoginPaciente(){
           const id = r.id;
           Storage('usuario-logado', r);
           localStorage.setItem("id", id)
+          
           setTimeout(() => {
             navigate(`/perfil/usuario/${id}`);
           }, 3000)
-          setConta(id)
+          setConta(id)  
           
     
         }
         catch (err) {
           ref.current.complete();
           setCarregando(false);
-          if (err.response === 401) {
+          if (err.response.status === 401) {
             setErro(err.response.data.erro);
           }
         }
@@ -82,11 +85,15 @@ export default function LoginPaciente(){
                 </div>
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
-                    <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)} />
+                    <input type="password" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)} />
                     <a href="">Esqueci minha senha</a>
                 </div> 
 
-            <button className="botao-entrar" onClick={entrarClick} >
+                <div className='cred-invalida'>
+                  {erro}
+                </div>
+
+            <button className="botao-entrar" onClick={entrarClick} disabled= {carregando}>
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>
@@ -95,5 +102,7 @@ export default function LoginPaciente(){
                 </div>
             </section>
         </main>
-    )
+ 
+ )
+ 
 }

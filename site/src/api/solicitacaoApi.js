@@ -9,7 +9,7 @@ const api = axios.create({
 
 export async function inserirSolicitacao(idUsuario, assunto) {
     console.log(idUsuario, assunto)
-    const resp = api.post(`/solicitacao`, {
+    const resp = await api.post(`/solicitacao`, {
         idUsuario: idUsuario,
         assunto: assunto
     })
@@ -17,7 +17,7 @@ export async function inserirSolicitacao(idUsuario, assunto) {
 }
 
 export async function listarSolicitacao(id) {
-    const resposta = api.get(`/mostrar/solicitacao/${id}`);
-    console.log(resposta)
+    const resposta = await api.get(`/mostrar/solicitacao/${id}`);
+    
     return resposta.data;
 }
