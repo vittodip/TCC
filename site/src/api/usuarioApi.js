@@ -2,11 +2,13 @@ import axios from 'axios'
 import { API_URL } from './config.js';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/'
+    baseURL: API_URL
+
 })
 
+
 export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telefone) {
-    const resposta = await api.post('/cadastro/usuario', {
+    const resposta = api.post('/cadastro/usuario', {
         email,
         senha,
         nome,
@@ -15,7 +17,7 @@ export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telef
         telefone
     })
     console.log(resposta)
-    return resposta.data;
+    return resposta.data
 }
 
 export async function loginUsuario(email, senha) {

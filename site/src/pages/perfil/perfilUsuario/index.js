@@ -17,12 +17,13 @@ import { inserirSolicitacao } from "../../../api/solicitacaoApi.js"
 
 export default function PerfilUsuario() {
     const [usuario, setUsuario] = useState([]);
+    const [idUsuario, setIdUsuario] = useState(usuario.params)
 
     const [solicitacao, setSolicitacao] = useState([]);
     
     const { usuarioParam } = useParams();
 
-    const [solicitacaoTex, setSolicitacaoTex] = useState('');
+    const [assunto, setAssunto] = useState('');
     const [situacaoSol, setSituacaoSol] = useState(false);
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function PerfilUsuario() {
     
     async function cadastrarSolicitacao(){
         try {
-            const resp = await inserirSolicitacao(solicitacaoTex, situacaoSol);
+            const resp = await inserirSolicitacao(usuarioParam ,assunto, situacaoSol);
             toast('Solicitacao cadastrada com sucesso')
         } catch (err) {
             toast(err.response.data.erro)
@@ -94,7 +95,7 @@ export default function PerfilUsuario() {
                         <p>Categorias:</p> <span>+</span>
                     </div>
                     <div className='text-solicitacao'>
-                        <textarea onChange={e => setSolicitacaoTex(e.target.value) } type='text' placeholder='Digite sua solicitação' ></textarea>    
+                        <textarea onChange={e => setAssunto(e.target.value) } type='text' placeholder='Digite sua solicitação' ></textarea>    
                     </div>
                 </div>
                 <button onClick={cadastrarSolicitacao}>Enviar solicitação</button>
