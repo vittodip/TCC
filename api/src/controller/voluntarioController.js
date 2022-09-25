@@ -48,7 +48,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
         if(!volunt.telefone) {
             throw new Error('Insira um telefone!')
         }
-        if(!volunt.vagas_disponivel) {
+        if(!volunt.vagas) {
             throw new Error('Insira a quantidade de vagas que você poderá atender!')
         }
         if(!volunt.crp) {
