@@ -78,7 +78,7 @@
         flex-direction: column;
 
 
-        padding: 10px;
+        padding: 8px;
 
         width: 100%;
     }
@@ -88,6 +88,7 @@
         justify-content: center;
         flex-direction: column;
         width: 35%;
+        align-items: flex-start;
     }
 
     label{

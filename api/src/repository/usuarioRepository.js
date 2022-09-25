@@ -15,11 +15,11 @@ export async function loginUsuario(email, senha) {
 }
 
 export async function cadastroUsuario (user) {
-    const comando = `insert into tb_usuario (ds_email, ds_senha, nm_usuario, ds_cpf, dt_nascimento, nr_telefone)
-                                        values(?, ?, ?, ?, ?, ?)`
+    const comando = `insert into tb_usuario (ds_email, ds_senha, nm_usuario, ds_cpf, ds_cep, dt_nascimento, nr_telefone)
+                                        values(?, ?, ?, ?, ?, ?, ?)`
 
 
-    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.nascimento, user.telefone]);
+    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.cep, user.nascimento, user.telefone]);
     user.id = resposta.insertId;
 
     return user;
