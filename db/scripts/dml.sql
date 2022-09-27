@@ -94,4 +94,7 @@ select *
 
 select * from tb_solicitacao_categoria;
 
-
+-- ACEITAR PSICOLOGO
+update tb_psicologo
+   set ds_situacao = true
+ where id_psicologo = 1;
