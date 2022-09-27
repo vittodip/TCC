@@ -1,4 +1,4 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -74,6 +74,43 @@ server.get('/usuario/:id', async (req, resp) => {
         const resposta = await carregarUsuario(usuario);
 
         resp.send(resposta);
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.put('/alterar/usuario/:id', async (req, resp) => {
+    try {
+        const usuarioId = req.params.id;
+        const user = req.body;
+        const usuario = await carregarUsuario(usuarioId);
+        
+        if(user.nome === usuario.nome) {
+            throw new Error('Insira um nome diferente do anterior!')
+        }
+        if(user.email === usuario.email) {
+            throw new Error('Insira um email diferente do anterios!')
+        }
+        if(user.telefone === usuario.telefone) {
+            throw new Error('Insira um telefone diferente do anterior!')
+        }
+        if(!user.email) {
+            throw new Error('Insira um email!')
+        }
+        if(!user.nome) { 
+            throw new Error('Insira um nome!')
+        }
+        if(!user.telefone) {
+            throw new Error('Insira um telefone!')
+        }
+        
+        const resposta = await alterarUsuario(user, usuarioId);
+        
+        resp.send(resposta)
 
     } catch (err) {
         resp.status(404).send({

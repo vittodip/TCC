@@ -42,4 +42,15 @@ export async function carregarUsuario(id) {
 }
 
 
+export async function alterarUsuario (user, id) {
+    const comando = `update tb_usuario
+                            set nm_usuario      =  ?,
+                                ds_email        =  ?,
+                                nr_telefone     =  ?
+                            where id_usuario    =  ?`
 
+
+    const [resposta] = await con.query(comando, [user.nome, user.email, user.telefone, id]);
+    return resposta[0];
+    
+}
