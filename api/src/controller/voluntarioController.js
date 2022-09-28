@@ -1,4 +1,6 @@
-import { loginVoluntario, cadastroVoluntario, alterarVoluntario } from "../repository/voluntarioRepository.js";
+
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario } from "../repository/voluntarioRepository.js";
+
 
 import { Router } from "express";
 
@@ -68,6 +70,23 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     }
 })
 
+
+server.get('/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntario = Number(req.params.id);
+
+
+        //let horaConsulta = new Date(agendamento.data + 'T' + agendamento.horario);
+        //horaConsulta.setHours(horaConsulta.getHours() - horaConsulta.getTimezoneOffset()/60);
+
+        const resposta = await carregarVoluntario(voluntario);
+
+    }
+    catch {
+
+
+}})
+
 server.put('/alterar/voluntario/:id', async (req, resp) => {
     try {
         const voluntarioId = req.params.id;
@@ -94,6 +113,7 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
             throw new Error('Insira um telefone!')
         }
         const resposta = await cadastroVoluntario(volunt, voluntarioId);
+
         resp.send(resposta);
 
     } catch (err) {
@@ -102,6 +122,8 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
         })
     }
 })
+
+
 
 
 

@@ -24,7 +24,12 @@ export default function Perfil(props) {
                     {props.perfil === 'usuario' && 
                         <button>Denunciar</button>
                     }
-                    <button>Conversas</button>
+                    {props.perfil === 'usuario' && 
+                        <button>Conversas</button>
+                    }
+                    {props.perfil === 'voluntario' &&
+                        <button>Solicitações</button>
+                    }
                     <button onClick={sairClick} > <img src='/assets/images/Logout (1).png'/> Sair</button>
                 </div>
             
