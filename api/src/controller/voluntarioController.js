@@ -1,4 +1,6 @@
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario } from "../repository/voluntarioRepository.js";
+
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario } from "../repository/voluntarioRepository.js";
+
 
 import { Router } from "express";
 
@@ -29,6 +31,9 @@ server.post('/login/voluntario', async (req, resp) => {
 server.post('/cadastro/voluntario', async (req, resp) => {
     try {
         const volunt = req.body;
+
+        volunt.nome = volunt.nome.trim();
+        
 
         if(!volunt.email.trim()) {
             throw new Error('Insira um email!')
@@ -68,6 +73,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     }
 })
 
+
 server.get('/voluntario/:id', async (req, resp) => {
     try {
         const voluntario = Number(req.params.id);
@@ -78,6 +84,39 @@ server.get('/voluntario/:id', async (req, resp) => {
 
         const resposta = await carregarVoluntario(voluntario);
 
+    }
+    catch {
+
+
+}})
+
+server.put('/alterar/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntarioId = req.params.id;
+        const volunt = req.body;
+        const voluntario = await alterarVoluntario(voluntarioId);
+        
+
+        if(volunt.nome === voluntario.nome) {
+            throw new Error('Insira um nome diferente do anterior!')
+        }
+        if(volunt.email == voluntario.email) {
+            throw new Error('Insira um email diferente do anterios!')
+        }
+        if(volunt.telefone === voluntario.telefone) {
+            throw new Error('Insira um telefone diferente do anterior!')
+        }
+        if(!volunt.email.trim()) {
+            throw new Error('Insira um email!')
+        }
+        if(!volunt.nome.trim()) {
+            throw new Error('Insira um nome!')
+        }
+        if(!volunt.telefone) {
+            throw new Error('Insira um telefone!')
+        }
+        const resposta = await cadastroVoluntario(volunt, voluntarioId);
+
         resp.send(resposta);
 
     } catch (err) {
@@ -86,5 +125,9 @@ server.get('/voluntario/:id', async (req, resp) => {
         })
     }
 })
+
+
+
+
 
 export default server;

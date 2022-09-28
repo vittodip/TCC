@@ -18,11 +18,12 @@ export async function cadastroVoluntario (volunt) {
     const comando = `insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp)
                                         values(?, ?, ?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome, volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.crp]);
+    const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome.trim(), volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.crp]);
     volunt.id = resposta.insertId;
 
     return volunt;
 }
+
 
 export async function carregarVoluntario(id) {
     const comando = `
@@ -38,5 +39,17 @@ export async function carregarVoluntario(id) {
 
     const [linhas] = await con.query(comando, id);
     return linhas[0]
+}
+
+export async function alterarVoluntario(volunt, id) {
+    const comando = `update tb_psicologo
+                        set nm_psicologo      =  ?,
+                            ds_email          =  ?,
+                            nr_telefone       =  ?
+                      where id_psicologo      =  ?`
+
+    const [resposta] = await con.query(comando, [volunt.nome, volunt.email, volunt.telefone, id]);
+
+    return resposta[0];
 
 }

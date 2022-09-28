@@ -8,7 +8,6 @@ const api = axios.create({
 
 
 export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telefone) {
-    console.log(email, senha, nome, cpf, nascimento, telefone)
     const resposta = await api.post('/cadastro/usuario', {
         email,
         senha,
@@ -25,7 +24,6 @@ export async function loginUsuario(email, senha) {
         email: email,
         senha: senha
     })
-    console.log(resposta.data);
     return resposta.data;
 }
 
