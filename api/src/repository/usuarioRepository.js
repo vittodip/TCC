@@ -19,7 +19,7 @@ export async function cadastroUsuario (user) {
                                         values(?, ?, ?, ?, ?, ?)`
 
 
-    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.nascimento, user.telefone]);
+    const [resposta] = await con.query(comando, [user.email.trim(), user.senha.trim(), user.nome.trim(), user.cpf.trim(), user.nascimento, user.telefone.trim()]);
     user.id = resposta.insertId;
 
     return user;
@@ -50,7 +50,7 @@ export async function alterarUsuario (user, id) {
                             where id_usuario    =  ?`
 
 
-    const [resposta] = await con.query(comando, [user.nome, user.email, user.telefone, id]);
+    const [resposta] = await con.query(comando, [user.nome.trim(), user.email.trim(), user.telefone.trim(), id]);
     return resposta[0];
     
 }

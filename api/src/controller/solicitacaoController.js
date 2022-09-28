@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { inserirSolicitacao, listarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -9,6 +9,10 @@ server.post('/solicitacao', async (req, resp) => {
 
     try {
         const novaSolicitacao = req.body;
+
+        if (!novaSolicitacao){
+            throw new Error("Não foi possível alterar Solicitação.")
+        }
 
         const resposta = await inserirSolicitacao(novaSolicitacao);
         resp.send(resposta);
@@ -21,7 +25,7 @@ server.post('/solicitacao', async (req, resp) => {
 })
 
 // Mostrar Solicitação
-server.get('/mostrar/solicitacao/:id', async (req, resp) => {
+server.get('/solicitacao/:id', async (req, resp) => {
 
     try {
         const mostrarTudo = Number(req.params.id);
@@ -29,11 +33,74 @@ server.get('/mostrar/solicitacao/:id', async (req, resp) => {
         const resposta = await listarSolicitacao(mostrarTudo);
         
         resp.send(resposta);
+        
     } catch (err) {
         resp.status(404).send({
             erro: err.message
         });
     }
 })
+
+
+server.get('/solicitacao/psicologo', async (req, resp) => {
+    try {
+        const resposta = await listarSoliciPsicologo();
+        
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/solicitacao/:id' , async (req, resp) => {
+    try {
+        const solicitacaoId = Number(req.params.id);
+        const solicitacao = req.body;
+
+        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
+
+        /*if (solicitacaoId.id != undefined) {
+            throw new Error("Não existe Solicitação para ser alterada.")
+        }*/
+        
+        if (!solicitacao){
+            throw new Error("Não foi possível alterar Solicitação.")
+        }
+        if (resposta != 1) {
+            throw new Error("Não foi possível alterar Solicitação.")
+        }
+
+        resp.status(202).send()
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.delete('/solicitacao/:id', async (req, resp) => {
+    try {
+        const solicitacao = Number(req.params.id);
+
+        const resposta = await deletarSolicitacao(solicitacao);
+
+        if (resposta != 1) {
+            throw new Error("Solicitação não pode ser removida")
+        }
+
+        resp.status(204).send();
+        
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
 
 export default server;

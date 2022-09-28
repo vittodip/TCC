@@ -18,7 +18,7 @@ export async function cadastroVoluntario (volunt) {
     const comando = `insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_crp)
                                         values(?, ?, ?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [volunt.email, volunt.senha, volunt.nome.trim(), volunt.cpf, volunt.nascimento, volunt.telefone, volunt.vagas, volunt.crp]);
+    const [resposta] = await con.query(comando, [volunt.email.trim(), volunt.senha.trim(), volunt.nome.trim(), volunt.cpf.trim(), volunt.nascimento, volunt.telefone.trim(), volunt.vagas, volunt.crp.trim()]);
     volunt.id = resposta.insertId;
 
     return volunt;
@@ -31,7 +31,7 @@ export async function alterarVoluntario(volunt, id) {
                             nr_telefone       =  ?
                       where id_psicologo      =  ?`
 
-    const [resposta] = await con.query(comando, [volunt.nome, volunt.email, volunt.telefone, id]);
+    const [resposta] = await con.query(comando, [volunt.nome.trim(), volunt.email.trim(), volunt.telefone.trim(), id]);
 
     return resposta[0];
 }

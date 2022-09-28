@@ -30,10 +30,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     try {
         const volunt = req.body;
 
-        volunt.nome = volunt.nome.trim();
-        
-
-        if(!volunt.email.trim()) {
+        if(!volunt.email) {
             throw new Error('Insira um email!')
         }
         if(!volunt.senha) {
