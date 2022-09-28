@@ -23,3 +23,20 @@ export async function cadastroVoluntario (volunt) {
 
     return volunt;
 }
+
+export async function carregarVoluntario(id) {
+    const comando = `
+    select nm_psicologo 	nome,
+	       ds_email 		email,
+           nr_telefone 		telefone,
+           ds_cpf 			cpf,
+           ds_crp			crp,
+           ds_vagas 		vagas,
+           dt_nascimento	DataDeNascimento
+      from tb_psicologo
+    where id_psicologo = ?`
+
+    const [linhas] = await con.query(comando, id);
+    return linhas[0]
+
+}

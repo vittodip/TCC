@@ -1,4 +1,4 @@
-import { loginVoluntario, cadastroVoluntario } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario } from "../repository/voluntarioRepository.js";
 
 import { Router } from "express";
 
@@ -59,6 +59,25 @@ server.post('/cadastro/voluntario', async (req, resp) => {
         }
 
         const resposta = await cadastroVoluntario(volunt);
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntario = Number(req.params.id);
+
+
+        //let horaConsulta = new Date(agendamento.data + 'T' + agendamento.horario);
+        //horaConsulta.setHours(horaConsulta.getHours() - horaConsulta.getTimezoneOffset()/60);
+
+        const resposta = await carregarVoluntario(voluntario);
+
         resp.send(resposta);
 
     } catch (err) {

@@ -41,6 +41,17 @@ select nm_usuario 	 nome,
   from tb_usuario
 where id_usuario = 1;
 
+-- INFO PERFIL PSICOLOGO
+select nm_psicologo 	nome,
+	   ds_email 		email,
+       nr_telefone 		telefone,
+       ds_cpf 			cpf,
+       ds_crp			crp,
+       ds_vagas 		vagas,
+       dt_nascimento	DataDeNascimento
+  from tb_psicologo
+ where id_psicologo = 1;
+
 -- EDITAR PERFIL USUARIO
 update tb_usuario
    set nm_usuario  =  'Juliano Pistori',
