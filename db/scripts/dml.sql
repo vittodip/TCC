@@ -77,6 +77,13 @@ where id_solicitacao = 11;
 
 select * from tb_solicitacao;
 
+
+-- aceitar solicitação
+update tb_solicitacao
+   set id_psicologo = 4,
+	   ds_situacao = true
+ where id_solicitacao = 1;
+
 -- EDITAR SOLICITACAO
 update tb_solicitacao 
    set ds_solicitacao = ' Sabe tudo começou a pipipi popopo Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.',
