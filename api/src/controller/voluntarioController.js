@@ -1,5 +1,5 @@
 
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, deletarVoluntario } from "../repository/voluntarioRepository.js";
 
 
 import { Router } from "express";
@@ -124,7 +124,25 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
 })
 
 
+server.delete('/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntario = Number(req.params.id);
 
+        const resposta = await deletarVoluntario(voluntario);
+
+        if (resposta != 1) {
+            throw new Error('Não foi possivel deletar este voluntario!')
+        }
+
+
+        resp.status(202).send()
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 export default server;

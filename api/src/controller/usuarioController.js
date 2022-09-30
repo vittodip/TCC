@@ -1,4 +1,4 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -111,6 +111,27 @@ server.put('/alterar/usuario/:id', async (req, resp) => {
         const resposta = await alterarUsuario(user, usuarioId);
         
         resp.send(resposta)
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.delete('/usuario/:id', async (req, resp) => {
+    try {
+        const usuario = Number(req.params.id);
+
+        const resposta = await deletarUsuario(usuario);
+
+        if (resposta != 1) {
+            throw new Error('Não foi possivel remover este Usuario!')
+        }
+
+        resp.status(202).send();
+
 
     } catch (err) {
         resp.status(404).send({

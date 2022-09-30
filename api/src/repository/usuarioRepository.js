@@ -54,3 +54,13 @@ export async function alterarUsuario (user, id) {
     return resposta[0];
     
 }
+
+
+
+export async function deletarUsuario(id) {
+    const comando = `delete from tb_usuario
+                        where id_usuario = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}

@@ -35,3 +35,13 @@ export async function carregarVoluntario(id) {
     const resposta = await api.get(`/voluntario/${id}`);
     return resposta.data;
 }
+
+export async function alterarVoluntario(id, nome, email, telefone) {
+    const resposta = await api.put(`/alterar/voluntario/${id}`, {
+        nome: nome,
+        email: email,
+        telefone: telefone
+    })
+
+    return resposta.data;
+}

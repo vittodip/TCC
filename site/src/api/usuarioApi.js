@@ -9,12 +9,12 @@ const api = axios.create({
 
 export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telefone) {
     const resposta = await api.post('/cadastro/usuario', {
-        email,
-        senha,
-        nome,
-        cpf,
-        nascimento,
-        telefone
+        email: email,
+        senha: senha,
+        nome: nome,
+        cpf: cpf,
+        nascimento: nascimento,
+        telefone: telefone
     })
     return resposta.data
 }
@@ -33,6 +33,22 @@ export async function carregarUsuario(id) {
     return resposta.data;
 }
 
+export async function alterarUsuario(id, email, nome, telefone){
+    const resposta = await api.put(`/alterar/usuario/${id}`, {
+        nome: nome,
+        email: email,
+        telefone: telefone
+    })
+
+    return resposta.data;
+}
+
+
+export async function deletarUsuario(id) {
+    const resposta = await api.delete(`/usuario/${id}`);
+
+    return resposta.data;
+}
 
 
 

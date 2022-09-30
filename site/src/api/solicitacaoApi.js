@@ -8,7 +8,6 @@ const api = axios.create({
 
 
 export async function inserirSolicitacao(idUsuario, assunto) {
-    console.log(idUsuario, assunto)
     const resp = await api.post(`/solicitacao`, {
         idUsuario: idUsuario,
         assunto: assunto
@@ -19,5 +18,26 @@ export async function inserirSolicitacao(idUsuario, assunto) {
 export async function listarSolicitacao(id) {
     const resposta = await api.get(`/mostrar/solicitacao/${id}`);
     
+    return resposta.data;
+}
+
+export async function solicitacaoPsicologo() {
+    const resposta = await api.get(`/solicitacao/psicologo`);
+
+    return resposta.data;
+}
+
+export async function alterarSolicitacao(id, assunto) {
+    const resposta = await api.put(`/solicitacao/${id}`, {
+        assunto: assunto
+    });
+
+    return resposta.data;
+}
+
+
+export async function deletarSolicitacao(id) {
+    const resposta = await api.delete(`/solicitacao/${id}`);
+
     return resposta.data;
 }
