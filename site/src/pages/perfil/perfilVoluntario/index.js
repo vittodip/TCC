@@ -4,7 +4,7 @@ import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import Storage from 'local-storage'
 import './index.scss'
 
 
@@ -14,18 +14,19 @@ export default function PerfilVoluntario() {
   const [voluntario, setVoluntario] = useState([])
   const [solicitacaoPsi, setSolicitacaoPsi] = useState([])
 
-  const { voluntarioParam } = useParams();
-
+  
 
   async function carregarPsicologo() {
-    const resposta = await carregarVoluntario(voluntarioParam);
+    const idPsic = Storage('usuario-logado').id
+    const resposta = await carregarVoluntario(idPsic);
     setVoluntario(resposta);
-
   }
 
+
   async function carregarSolicitacoesAceitas() {
-    const resp = await solicitacaoPsicologo(voluntarioParam)
-    setSolicitacaoPsi(resp)
+    const idPsic = Storage('usuario-logado').id
+    const resp = await solicitacaoPsicologo(idPsic);
+    setSolicitacaoPsi(resp);
 
   }
 
@@ -80,31 +81,32 @@ export default function PerfilVoluntario() {
         <div className="titulo-faixa-f">
           <h2>Fichas de atendimento</h2>
         </div>
-        {solicitacaoPsi.map (item => 
+        
            <div className="fichas">
+           {solicitacaoPsi.map (item => 
            <div className="ficha-1">
              <div className="info-fichas">
                <div className="infos2">
                  <h3>Nome</h3>
-                 <p>{item.nome}</p>
+                 <p>{item.usuario}</p>
                </div>
                <div className="infos2">
-                 <h3>{item.telefone}</h3>
-                 <p>11987493745</p>
+                 <h3>Telefone</h3>
+                 <p>{item.telefone}</p>
                </div>
                <div className="infos2">
-                 <h3>{item.DataDeNascimento}</h3>
-                 <p>13/02/2006</p>
+                 <h3>Nascimento</h3>
+                 <p>{item.DataDeNascimento.substr(0,10)}</p>
                </div>
              </div>
              <div className="solicitacoes-ficha">
                <h3>Solicitação</h3>
-               <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
+               <p>{item.texto}</p>
              </div>
            </div>
-          
+          )}
          </div>
-         )}
+         
        
       </div>
 

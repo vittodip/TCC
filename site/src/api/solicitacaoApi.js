@@ -21,8 +21,8 @@ export async function listarSolicitacao(id) {
     return resposta.data;
 }
 
-export async function solicitacaoPsicologo() {
-    const resposta = await api.get(`/solicitacao/psicologo`);
+export async function solicitacaoPsicologo(id) {
+    const resposta = await api.get(`/solicitacao/psicologo/${id}`);
 
     return resposta.data;
 }

@@ -33,12 +33,15 @@ export async function listarSolicitacao(id){
 
 export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
-                            id_usuario 	  	usuario,
+                            nm_usuario 	  	usuario,
+                            nr_telefone     telefone,
+                            dt_nascimento   DataDeNascimento,
                             id_psicologo   	psicologo,
                             ds_solicitacao 	texto,
                             ds_situacao		situacao,
                             date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
-                    from tb_solicitacao
+                    from tb_solicitacao 
+                    inner join tb_usuario  on tb_usuario.id_usuario = tb_solicitacao.id_usuario
                     where id_psicologo  = ?
                     and ds_situacao     = true`
 
