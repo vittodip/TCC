@@ -57,8 +57,15 @@ export async function alterarSolicitacao(solicitacao, id) {
     return resposta.affectedRows;
 }
 
-export async function aceitarSolicitacao(idsolicitacao, idpsicologo) {
-    const comando = ``
+export async function aceitarSolicitacao(psicologo, solicitacao) {
+    const comando = `update tb_solicitacao
+                        set id_psicologo    = ?,
+                            ds_situacao     = true
+                    where id_solicitacao    = ?`
+                
+    const [resposta] = await con.query(comando, [psicologo, solicitacao]);
+    return resposta.affectedRows;
+    
 }
 
 

@@ -27,6 +27,12 @@ export async function solicitacaoPsicologo() {
     return resposta.data;
 }
 
+export async function aceitarSolicitacao() {
+    const resposta = await api.put(`/solicitacao`);
+    
+    return resposta.data;
+}
+
 export async function alterarSolicitacao(id, assunto) {
     const resposta = await api.put(`/solicitacao/${id}`, {
         assunto: assunto

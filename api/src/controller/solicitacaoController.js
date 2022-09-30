@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -76,6 +76,26 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         }
 
         resp.status(202).send()
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.put('/solicitacao', async (req, resp) => {
+    try {
+        const { psicologo, solicitacao } = req.query;
+
+
+        const resposta = await aceitarSolicitacao(psicologo, solicitacao);
+        
+        if(resposta.changedRows != 1) {
+            throw new Error('Não foi possivel aceitar essa Solicitação!')
+        }
+
+        resp.status(202).send();
     } catch (err) {
         resp.status(404).send({
             erro: err.message
