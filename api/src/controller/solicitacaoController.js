@@ -42,9 +42,11 @@ server.get('/solicitacao/:id', async (req, resp) => {
 })
 
 
-server.get('/solicitacao/psicologo', async (req, resp) => {
+server.get('/solicitacao/psicologo/:id', async (req, resp) => {
     try {
-        const resposta = await listarSoliciPsicologo();
+        const solicitacao = Number(req.params.id);
+
+        const resposta = await listarSoliciPsicologo(solicitacao);
         
         resp.send(resposta);
 
