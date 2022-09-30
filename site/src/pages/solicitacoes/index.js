@@ -4,7 +4,7 @@ import './index.scss'
 
 export default function SolicitacoesPsic() {
 
-    return(
+    return (
         <main className="solicitacoes-principal">
             <header className='header'>
                 <div className='hd-alinhamento-1'>
@@ -31,7 +31,7 @@ export default function SolicitacoesPsic() {
                     </div>
                     <div className="cp-texto">
                         <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-</p>
+                        </p>
                     </div>
                     <div className="cp-funcionalidades">
                         <p>Categorias: Burnout, estresse, neurose</p>

@@ -31,7 +31,7 @@ export async function listarSolicitacao(id){
 }
 
 
-export async function listarSoliciPsicologo() {
+export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
                             id_usuario 	  	usuario,
                             id_psicologo   	psicologo,
@@ -39,9 +39,10 @@ export async function listarSoliciPsicologo() {
                             ds_situacao		situacao,
                             date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
                     from tb_solicitacao
-                    where ds_situacao = true`
+                    where id_psicologo  = ?
+                    and ds_situacao     = true`
 
-    const [resposta] = await con.query(comando);
+    const [resposta] = await con.query(comando, [id]);
     return resposta;
 }
 
@@ -54,6 +55,10 @@ export async function alterarSolicitacao(solicitacao, id) {
                     
     const [resposta] = await con.query(comando, [solicitacao.assunto, id]);
     return resposta.affectedRows;
+}
+
+export async function aceitarSolicitacao(idsolicitacao, idpsicologo) {
+    const comando = ``
 }
 
 

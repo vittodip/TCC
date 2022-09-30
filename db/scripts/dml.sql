@@ -71,7 +71,6 @@ select id_solicitacao solicitacao,
 	   id_psicologo   psicologo,
        ds_solicitacao texto,
        date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
-      
 from tb_solicitacao
 where id_solicitacao = 11;
 
