@@ -84,6 +84,8 @@ server.get('/voluntario/:id', async (req, resp) => {
         })
     }})
 
+
+    
 server.put('/alterar/voluntario/:id', async (req, resp) => {
     try {
         const voluntarioId = req.params.id;

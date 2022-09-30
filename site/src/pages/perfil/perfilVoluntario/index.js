@@ -1,5 +1,6 @@
 
 import { carregarVoluntario } from "../../../api/voluntarioApi";
+import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ import './index.scss'
 export default function PerfilVoluntario() {
 
   const [voluntario, setVoluntario] = useState([])
+  const [solicitacaoPsi, setSolicitacaoPsi] = useState([])
 
   const { voluntarioParam } = useParams();
 
@@ -21,9 +23,17 @@ export default function PerfilVoluntario() {
 
   }
 
+  async function carregarSolicitacoesAceitas() {
+    const resp = await solicitacaoPsicologo(voluntarioParam)
+    setSolicitacaoPsi(resp)
+
+  }
+
+
 
   useEffect(() => {
     carregarPsicologo();
+    carregarSolicitacoesAceitas();
   }, []);
 
 
@@ -70,48 +80,32 @@ export default function PerfilVoluntario() {
         <div className="titulo-faixa-f">
           <h2>Fichas de atendimento</h2>
         </div>
-        <div className="fichas">
-          <div className="ficha-1">
-            <div className="info-fichas">
-              <div className="infos2">
-                <h3>Nome</h3>
-                <p>Bruno Virgilio da Silva</p>
-              </div>
-              <div className="infos2">
-                <h3>Telefone</h3>
-                <p>11987493745</p>
-              </div>
-              <div className="infos2">
-                <h3>Nascimento</h3>
-                <p>13/02/2006</p>
-              </div>
-            </div>
-              <div className="solicitacoes-ficha">
-                  <h3>Solicitação</h3>
-                  <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
-              </div>
-          </div>
-          <div className="ficha-1">
-            <div className="info-fichas">
-              <div className="infos2">
-                <h3>Nome</h3>
-                <p>Bruno Virgilio da Silva</p>
-              </div>
-              <div className="infos2">
-                <h3>Telefone</h3>
-                <p>11987493745</p>
-              </div>
-              <div className="infos2">
-                <h3>Nascimento</h3>
-                <p>13/02/2006</p>
-              </div>
-            </div>
-              <div className="solicitacoes-ficha">
-                  <h3>Solicitação</h3>
-                  <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
-              </div>
-          </div>
-        </div>
+        {solicitacaoPsi.map (item => 
+           <div className="fichas">
+           <div className="ficha-1">
+             <div className="info-fichas">
+               <div className="infos2">
+                 <h3>Nome</h3>
+                 <p>{item.nome}</p>
+               </div>
+               <div className="infos2">
+                 <h3>{item.telefone}</h3>
+                 <p>11987493745</p>
+               </div>
+               <div className="infos2">
+                 <h3>{item.DataDeNascimento}</h3>
+                 <p>13/02/2006</p>
+               </div>
+             </div>
+             <div className="solicitacoes-ficha">
+               <h3>Solicitação</h3>
+               <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
+             </div>
+           </div>
+          
+         </div>
+         )}
+       
       </div>
 
 
