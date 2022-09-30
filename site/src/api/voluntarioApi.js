@@ -45,3 +45,10 @@ export async function alterarVoluntario(id, nome, email, telefone) {
 
     return resposta.data;
 }
+
+
+export async function deletarVoluntario(id){
+    const resposta = await api.delete(`/voluntario/${id}`);
+
+    return resposta.data;
+}
