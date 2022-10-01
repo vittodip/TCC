@@ -59,7 +59,7 @@ export default function LoginDoVoluntario(){
 
     return(
         <main className='home-login'>
-            <LoadingBar color='#2E939C' ref={ref}/>
+            <LoadingBar color='#79458B' ref={ref}/>
             <section className='secao1'>
                 <img className="mocas-tocaq" width={350} src="/assets/images/MOCAS TOCAQ 1.png" alt="" />
                 <img className='moca-nuvem'src="/assets/images/moca nuvem.png" width={315} alt="" />
@@ -77,7 +77,7 @@ export default function LoginDoVoluntario(){
                 </div>
                 <div className='s2-label-inputs'>
                     <label>Senha</label>
-                    <input type="text" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)}/>
+                    <input type="password" placeholder='*********' value={senha} onChange={e => setSenha(e.target.value)}/>
                     <div className='s2-alinhamento-erro-senha'>
                       <div>
                         <p>{erro}</p>

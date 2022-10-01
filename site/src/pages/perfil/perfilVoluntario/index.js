@@ -1,19 +1,20 @@
 
-import { carregarVoluntario } from "../../../api/voluntarioApi";
+import { carregarVoluntario, alterarVoluntario } from "../../../api/voluntarioApi";
 import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
 import Storage from 'local-storage'
 import './index.scss'
-
+import Modal from 'react-modal'
+import AlterarInfos from "../../../components/editar-infos";
 
 
 export default function PerfilVoluntario() {
 
   const [voluntario, setVoluntario] = useState([])
   const [solicitacaoPsi, setSolicitacaoPsi] = useState([])
-
+  const [modalIsOpen, setIsOpen] = useState(false);
   
 
   async function carregarPsicologo() {
@@ -38,6 +39,32 @@ export default function PerfilVoluntario() {
   }, []);
 
 
+  Modal.setAppElement('#root');
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
+    const customStyles = {
+        content: {
+            display:'flex',
+            justifyContent:'center',
+            alignItens:'center',
+            border:'none',
+            margin:'none',
+            backgroundColor:'#00000000',
+            
+        },
+        overlay: {
+            backgroundColor: '#000000ce'
+        }
+    };
+
 
   return (
     <main className="voluntario-perfil">
@@ -47,7 +74,16 @@ export default function PerfilVoluntario() {
 
           <div className="header-infos">
             <h2>Informações Gerais</h2>
-            <img src="/assets/images/Edit.png" width={35} height={40} />
+            <img src="/assets/images/Edit.png" width={35} height={40} onClick={openModal}/>
+            <Modal 
+             
+             isOpen={modalIsOpen}
+             onRequestClose={closeModal}
+             style={customStyles}>
+              
+             <AlterarInfos onClick={closeModal} perfil='voluntario'  />                        
+           
+        </Modal>
           </div>
           {/* coluna 1 */}
           <div className="colunas-vol">

@@ -89,17 +89,9 @@ server.put('/alterar/usuario/:id', async (req, resp) => {
         const user = req.body;
         const usuario = await carregarUsuario(usuarioId);
         
-        if(user.nome === usuario.nome) {
-            throw new Error('Insira um nome diferente do anterior!')
-        }
-        if(user.email === usuario.email) {
-            throw new Error('Insira um email diferente do anterios!')
-        }
-        if(user.telefone === usuario.telefone) {
-            throw new Error('Insira um telefone diferente do anterior!')
-        }
+    
         if(!user.email) {
-            throw new Error('Insira um email!')
+            throw new Error('Insira um e-mail!')
         }
         if(!user.nome) { 
             throw new Error('Insira um nome!')

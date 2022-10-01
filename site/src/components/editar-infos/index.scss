@@ -1,0 +1,46 @@
+.pop-alterar {
+    margin-top: 6em;
+    
+    background: #FFFFFF;
+    border-radius: 36px;
+    width: 516px;
+    height: 488px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mulish";
+
+
+    button {
+        color:#fff;
+        border: none;
+        background: #79458B;
+        border-radius: 24px;
+        padding: 0.7em 2em;
+        font-family: "Mulish";
+        font-size: 16px;
+    }
+
+    .input-label {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2em;
+            
+            label {
+                font-weight: 800;
+                padding-bottom: 0.7em;
+            }
+
+            input {
+                padding: 1em;
+                border: none;
+                outline-color: #8d8d8d;
+                background: #DEDEDE;
+                border-radius: 18.5px;
+                width:50vh;
+                max-width: 50vh;
+            }
+    }
+    
+}

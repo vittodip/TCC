@@ -33,7 +33,7 @@ export async function carregarUsuario(id) {
     return resposta.data;
 }
 
-export async function alterarUsuario(id, email, nome, telefone){
+export async function alterarUsuario(id, nome, email, telefone){
     const resposta = await api.put(`/alterar/usuario/${id}`, {
         nome: nome,
         email: email,

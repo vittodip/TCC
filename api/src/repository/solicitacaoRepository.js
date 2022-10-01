@@ -21,7 +21,7 @@ export async function listarSolicitacao(id){
            id_usuario 	  usuario,
            ds_solicitacao texto,
            ds_situacao    situacao,
-           date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
+           date_format(dt_situacao, '%d/%m/%Y %H:%i') as horario
           
     from tb_solicitacao
     where id_usuario = ?`
@@ -35,11 +35,11 @@ export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
                             nm_usuario 	  	usuario,
                             nr_telefone     telefone,
-                            dt_nascimento   DataDeNascimento,
+                            date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento,
                             id_psicologo   	psicologo,
                             ds_solicitacao 	texto,
                             ds_situacao		situacao,
-                            date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
+                            date_format(dt_situacao, '%d/%m/%Y %H:%i') as horario
                     from tb_solicitacao 
                     inner join tb_usuario  on tb_usuario.id_usuario = tb_solicitacao.id_usuario
                     where id_psicologo  = ?
@@ -54,7 +54,7 @@ export async function alterarSolicitacao(solicitacao, id) {
                         set ds_solicitacao = ?,
                             ds_situacao = null, 
                             dt_situacao = now()
-                        where id_solicitacao = ?`
+                      where id_solicitacao = ?`
                     
     const [resposta] = await con.query(comando, [solicitacao.assunto, id]);
     return resposta.affectedRows;

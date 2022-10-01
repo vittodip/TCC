@@ -33,7 +33,7 @@ export async function carregarUsuario(id) {
             ds_email             email,
             nr_telefone          telefone,
             ds_cpf               cpf,
-            dt_nascimento        DataDeNascimento
+            date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
     from tb_usuario
     where id_usuario = ?`
 
