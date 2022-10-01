@@ -1,8 +1,12 @@
 import './index.scss'
+import { useState } from 'react'
 
 
 
 export default function SolicitacoesPsic() {
+
+    const [solicitacoes, setSolicitacoes] = useState([]);
+
 
     return (
         <main className="solicitacoes-principal">
@@ -24,6 +28,7 @@ export default function SolicitacoesPsic() {
                 </div>
             </header>
             <section className="secao-solicitacao">
+
                 <div className="container-principal">
                     <div className="cp-info-date">
                         <img src="/assets/images/perfil-anonimo-icon.svg" alt="" />
