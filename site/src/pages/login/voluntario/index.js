@@ -39,7 +39,7 @@ export default function LoginDoVoluntario(){
           Storage('usuario-logado', r);
           localStorage.setItem("id", id)
           setTimeout(() => {
-            navigate(`/perfil/voluntario/${id}`);
+            navigate(`/perfil/voluntario/`);
           }, 3000)
           setConta(id)
           

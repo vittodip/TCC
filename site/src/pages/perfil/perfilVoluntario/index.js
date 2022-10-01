@@ -2,7 +2,7 @@
 import { carregarVoluntario } from "../../../api/voluntarioApi";
 import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
-import { useParams } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import Storage from 'local-storage'
 import './index.scss'
