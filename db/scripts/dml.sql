@@ -37,7 +37,7 @@ select nm_usuario 	 nome,
 	   ds_email      email,
        nr_telefone   telefone,
        ds_cpf        cpf,
-       dt_nascimento DataDeNascimento
+       date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
   from tb_usuario
 where id_usuario = 1;
 
@@ -70,7 +70,7 @@ select id_solicitacao solicitacao,
 	   id_usuario 	  usuario,
 	   id_psicologo   psicologo,
        ds_solicitacao texto,
-       date_format (dt_situacao, '%d/%m/%Y %H:%i') as horario
+       DATE_FORMAT(dt_situacao, '%d/%m/%Y %H:%i') as horario
 from tb_solicitacao
 where id_solicitacao = 11;
 

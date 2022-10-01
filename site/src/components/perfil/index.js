@@ -8,10 +8,14 @@ export default function Perfil(props) {
 
     const navigate = useNavigate();
 
-    function sairClick () {
+    function sairClickUsuario () {
         Storage.remove('usuario-logado');
-        navigate('/home/login')
+        navigate('/login/paciente')
     }  
+    function sairClickVoluntario () {
+        Storage.remove('usuario-logado');
+        navigate('/login/voluntario')
+    }
 
     return (
 
@@ -30,7 +34,13 @@ export default function Perfil(props) {
                     {props.perfil === 'voluntario' &&
                         <button>Solicitações</button>
                     }
-                    <button onClick={sairClick} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                     {props.perfil === 'usuario' &&
+                       <button onClick={sairClickUsuario} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    }
+                    {props.perfil === 'voluntario' &&
+                       <button onClick={sairClickVoluntario} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    }
+                    
                 </div>
             
                 <div className='pic-user'> 

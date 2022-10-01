@@ -11,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { carregarUsuario } from "../../../api/usuarioApi.js";
 import { listarSolicitacao } from "../../../api/solicitacaoApi.js";
 import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
+import Modal from 'react-modal'
+import AlterarInfos from "../../../components/editar-infos";
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
@@ -21,7 +23,7 @@ export default function PerfilUsuario() {
 
   const [assunto, setAssunto] = useState("");
   const [situacaoSol, setSituacaoSol] = useState(false);
-
+  const [modalIsOpen, setIsOpen] = useState(false);
  
 
   async function carregarUser() {
@@ -39,7 +41,7 @@ export default function PerfilUsuario() {
   async function cadastrarSolicitacao() {
     try {
       const resp = await inserirSolicitacao(usuarioParam, assunto, situacaoSol);
-      toast("Solicitacao cadastrada com sucesso");
+      toast("Solicitação feita com sucesso");
     } catch (err) {
       toast(err.response.data.erro);
     }
@@ -51,6 +53,32 @@ export default function PerfilUsuario() {
   }, []);
 
 
+  Modal.setAppElement('#root');
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
+    const customStyles = {
+        content: {
+            display:'flex',
+            justifyContent:'center',
+            alignItens:'center',
+            border:'none',
+            margin:'none',
+            backgroundColor:'#00000000',
+            
+        },
+        overlay: {
+            backgroundColor: '#000000ce'
+        }
+    };
+
   return (
     <main className="usuario-perfil">
       <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
@@ -59,7 +87,16 @@ export default function PerfilUsuario() {
         <div className="card-infos-gerais">
           <div className="card-titulo">
             <h2>Informações Gerais</h2>
-            <img src="/assets/images/Edit.png" />
+            <img src="/assets/images/Edit.png" onClick={openModal} />
+            <Modal 
+             
+                 isOpen={modalIsOpen}
+                 onRequestClose={closeModal}
+                 style={customStyles}>
+                  
+                 <AlterarInfos onClick={closeModal} perfil='usuario'  />                        
+               
+            </Modal>
           </div>
           <div>
             <h3>Nome</h3>

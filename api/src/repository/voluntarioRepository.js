@@ -33,7 +33,7 @@ export async function carregarVoluntario(id) {
            ds_cpf 			cpf,
            ds_crp			crp,
            ds_vagas 		vagas,
-           dt_nascimento	DataDeNascimento
+           date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
       from tb_psicologo
     where id_psicologo = ?`
 
