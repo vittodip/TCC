@@ -16,7 +16,7 @@ export async function inserirSolicitacao(idUsuario, assunto) {
 }
 
 export async function listarSolicitacao(id) {
-    const resposta = await api.get(`/mostrar/solicitacao/${id}`);
+    const resposta = await api.get(`/solicitacao/${id}`);
     
     return resposta.data;
 }
