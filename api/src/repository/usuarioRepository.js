@@ -19,7 +19,7 @@ export async function cadastroUsuario (user) {
                                         values(?, ?, ?, ?, ?, ?)`
 
 
-    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.nascimento, user.telefone]);
+    const [resposta] = await con.query(comando, [user.email.trim(), user.senha.trim(), user.nome.trim(), user.cpf.trim(), user.nascimento, user.telefone.trim()]);
     user.id = resposta.insertId;
 
     return user;
@@ -42,4 +42,25 @@ export async function carregarUsuario(id) {
 }
 
 
+export async function alterarUsuario (user, id) {
+    const comando = `update tb_usuario
+                            set nm_usuario      =  ?,
+                                ds_email        =  ?,
+                                nr_telefone     =  ?
+                            where id_usuario    =  ?`
 
+
+    const [resposta] = await con.query(comando, [user.nome.trim(), user.email.trim(), user.telefone.trim(), id]);
+    return resposta[0];
+    
+}
+
+
+
+export async function deletarUsuario(id) {
+    const comando = `delete from tb_usuario
+                        where id_usuario = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}

@@ -20,8 +20,9 @@ export async function cadastroAdmin(email, senha, nome, cpf, nascimento, telefon
 
 
 
-export async function loginAdmin(email, senha) {
-    const resposta = api.post('/login/adm', {
+export async function loginAdm(email, senha) {
+    console.log(email, senha)
+    const resposta = api.get('/login/adm', {
         email: email,
         senha: senha
     })

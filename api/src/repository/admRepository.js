@@ -18,7 +18,7 @@ export async function cadastroAdm(admin) {
     const comando = `insert into tb_adm (ds_email, ds_senha, nm_adm, ds_cpf, dt_nascimento, nr_telefone)
                                   values(?, ?, ?, ?, ?, ?)`
     
-    const [resposta] = await con.query(comando, [admin.email, admin.senha, admin.nome, admin.cpf, admin.nascimento, admin.telefone]);
+    const [resposta] = await con.query(comando, [admin.email.trim(), admin.senha.trim(), admin.nome.trim(), admin.cpf.trim(), admin.nascimento, admin.telefone.trim()]);
     admin.id = resposta.insertId;
 
     return admin;

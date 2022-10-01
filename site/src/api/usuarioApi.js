@@ -3,7 +3,9 @@ import { API_URL } from './config.js';
 
 const api = axios.create({
     baseURL: API_URL
+
 })
+
 
 export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telefone) {
     const resposta = await api.post('/cadastro/usuario', {
@@ -14,8 +16,7 @@ export async function cadastroUsuario(email, senha, nome, cpf, nascimento, telef
         nascimento: nascimento,
         telefone: telefone
     })
-
-    return resposta.data;
+    return resposta.data
 }
 
 export async function loginUsuario(email, senha) {
@@ -23,7 +24,6 @@ export async function loginUsuario(email, senha) {
         email: email,
         senha: senha
     })
-    console.log(resposta.data);
     return resposta.data;
 }
 
@@ -33,6 +33,22 @@ export async function carregarUsuario(id) {
     return resposta.data;
 }
 
+export async function alterarUsuario(id, email, nome, telefone){
+    const resposta = await api.put(`/alterar/usuario/${id}`, {
+        nome: nome,
+        email: email,
+        telefone: telefone
+    })
+
+    return resposta.data;
+}
+
+
+export async function deletarUsuario(id) {
+    const resposta = await api.delete(`/usuario/${id}`);
+
+    return resposta.data;
+}
 
 
 

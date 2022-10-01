@@ -10,7 +10,7 @@ export default function Perfil(props) {
 
     function sairClick () {
         Storage.remove('usuario-logado');
-        navigate('/login')
+        navigate('/home/login')
     }  
 
     return (
@@ -24,16 +24,21 @@ export default function Perfil(props) {
                     {props.perfil === 'usuario' && 
                         <button>Denunciar</button>
                     }
-                    <button>Conversas</button>
+                    {props.perfil === 'usuario' && 
+                        <button>Conversas</button>
+                    }
+                    {props.perfil === 'voluntario' &&
+                        <button>Solicitações</button>
+                    }
                     <button onClick={sairClick} > <img src='/assets/images/Logout (1).png'/> Sair</button>
                 </div>
             
                 <div className='pic-user'> 
-                    <span>{props.inicial}</span> 
+                    <span>{String(props.inicial).substr(0,1)}</span> 
                 </div>
                 
             </div>
-            <h1 className='nome-usuario'>Sejam bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
+            <h1 className='nome-usuario'>Seja bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
         </main>
     )
 }

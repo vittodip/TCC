@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const server = Router();
 
-server.post('/login/adm', async (req, resp) => {
+server.get('/login/adm', async (req, resp) => {
     try {
         const { email, senha } = req.body;
         const resposta = await loginAdm(email, senha);
@@ -25,13 +25,13 @@ server.post('/cadastro/admin', async (req, resp) => {
     try {
         const admin = req.body;
         
-        if(!admin.email.trim()) {
+        if(!admin.email) {
             throw new Error('Insira um email!')
         }
         if(!admin.senha) {
             throw new Error('Insira uma senha!')
         }
-        if(!admin.nome.trim()) {
+        if(!admin.nome) {
             throw new Error('Insira um nome!')
         }
         if(!admin.cpf) {
@@ -43,7 +43,7 @@ server.post('/cadastro/admin', async (req, resp) => {
         if(new Date(admin.nascimento) >= new Date()) {
             throw new Error('Insira uma data de Nascimento Válida!')
         }
-        if(!admin.telefone.trim()) {
+        if(!admin.telefone) {
             throw new Error('Insira um telefone!')
         }
         

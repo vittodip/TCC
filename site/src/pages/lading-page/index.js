@@ -14,7 +14,7 @@ export default function Home() {
                     <img className="logo-img" src="/assets/images/logonat.png" alt="logo" />
                     <div className="usuario">
                         <img src="/assets/images/do-utilizador (1) 1.png" alt="inscreva-se" />
-                        <Link to='/home/login' className="inscreva-se" > Entre ou cadastre-se </Link>
+                        <Link to='/login/paciente' className="inscreva-se" > Entre ou cadastre-se </Link>
                     </div>
                 </div>
                 <div className="texto-faixa-1">

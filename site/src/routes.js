@@ -9,6 +9,8 @@ import Cadastro1 from './pages/cadastro/cadastroUsuario/index.js';
 import HomeLogin from './pages/login/home/index.js';
 import LoginPaciente from './pages/login/paciente/index.js';
 import LoginDoVoluntario from './pages/login/voluntario/index.js';
+import LoginDoADM from './pages/login/Admin/index.js';
+import SolicitacoesPsic from './pages/solicitacoes/index.js';
 
 
 export default function Rotas() {
@@ -25,9 +27,12 @@ export default function Rotas() {
                 <Route path='/home/login' element={ <HomeLogin /> } />
                 <Route path='/login/paciente' element={ <LoginPaciente /> } />
                 <Route path='/login/voluntario' element={ <LoginDoVoluntario /> } />
+                <Route path='/login/ADM' element={ <LoginDoADM /> } />
                 {/* Perfis */}
-                <Route path='/perfil/usuario/:usuarioParam' element={ <PerfilUsuario/>} />
-                <Route path='/perfil/voluntario/:voluntarioParam' element={ <PerfilVoluntario /> } />
+                <Route path='/perfil/usuario/' element={ <PerfilUsuario/>} />
+                <Route path='/perfil/voluntario' element={ <PerfilVoluntario /> } />
+                {/* Solicitações */}
+                <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
 
                 
             </Routes>
