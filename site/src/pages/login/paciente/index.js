@@ -40,7 +40,7 @@ export default function LoginPaciente(){
           Storage('usuario-logado', r);
           localStorage.setItem("id", id)
           setTimeout(() => {
-            navigate(`/perfil/usuario/${id}`);
+            navigate(`/perfil/usuario/`);
           }, 3000)
           
           

@@ -29,7 +29,7 @@ export default function Rotas() {
                 <Route path='/login/voluntario' element={ <LoginDoVoluntario /> } />
                 <Route path='/login/ADM' element={ <LoginDoADM /> } />
                 {/* Perfis */}
-                <Route path='/perfil/usuario/:usuarioParam' element={ <PerfilUsuario/>} />
+                <Route path='/perfil/usuario/' element={ <PerfilUsuario/>} />
                 <Route path='/perfil/voluntario' element={ <PerfilVoluntario /> } />
                 {/* Solicitações */}
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />

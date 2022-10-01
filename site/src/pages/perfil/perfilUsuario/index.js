@@ -2,7 +2,7 @@ import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { storage } from "local-storage";
+import Storage  from 'local-storage';
 
 import "./index.scss";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,18 +22,17 @@ export default function PerfilUsuario() {
   const [assunto, setAssunto] = useState("");
   const [situacaoSol, setSituacaoSol] = useState(false);
 
-  useEffect(() => {
-    carregarUser();
-    carregarTodasSolicitacoes();
-  }, []);
+ 
 
   async function carregarUser() {
-    const resposta = await carregarUsuario(usuarioParam);
+    const idUser = Storage('usuario-logado').id
+    const resposta = await carregarUsuario(idUser);
     setUsuario(resposta);
   }
 
   async function carregarTodasSolicitacoes(){
-    const resp = await listarSolicitacao(usuarioParam)
+    const idUser = Storage('usuario-logado').id
+    const resp = await listarSolicitacao(idUser)
     setSolicitacao(resp)
   }
 
@@ -45,6 +44,12 @@ export default function PerfilUsuario() {
       toast(err.response.data.erro);
     }
   }
+
+  useEffect(() => {
+    carregarUser();
+    carregarTodasSolicitacoes();
+  }, []);
+
 
   return (
     <main className="usuario-perfil">
@@ -92,19 +97,19 @@ export default function PerfilUsuario() {
               {solicitacao.map (item =>  
                 <div className='box-solicitacao'>
                     <div className='top-solicitacao-2'>
-                        <p>{item.horario} - Solicitação em aberto </p>
+                        <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
                         <img src='/assets/images/black-edit.png'/>
                         <img src='/assets/images/trash.png'/>
                     </div>
                     <div className='text-solicitacao'>
-                        <hr/>
+                        <hr color="#DEDEDE"/>
                         <p>{item.texto}</p>
-                        <hr/>
+                        <hr color="#DEDEDE" />
 
                     </div>
                     <div className='categorias-solicitacao'>
                         <div><p>Categorias: Burnout, estresse, neurose</p></div>
-                        <div className='analise'><p>{item.situacao === 0 &&"Em análise"}</p> <img src='/assets/images/eye.png'/></div>
+                        
                     </div>
                 </div>
                 )}
