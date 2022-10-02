@@ -91,7 +91,7 @@ server.put('/solicitacao', async (req, resp) => {
 
         const resposta = await aceitarSolicitacao(psicologo, solicitacao);
         
-        if(resposta.changedRows != 1) {
+        if(!resposta) {
             throw new Error('Não foi possivel aceitar essa Solicitação!')
         }
 

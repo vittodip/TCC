@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap');
+
+
 .solicitacoes-principal{
         
-
+    font-family: "Mulish";
     .header{
         display: flex;
         flex-direction: column;
@@ -22,11 +25,13 @@
             .hd-alinhamento-buttons{
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: space-evenly;
                 width: 25%;
     
                 button{
-                    width: 10em;
+                    font-family: "Mulish";
+                    font-size: 16px;
+                    padding: 1em 2em;
                     min-height: 3em;
                     background-color: #ffff;
                     border: none;
@@ -50,6 +55,7 @@
             h1{
                 color: #ffff;
                 font-size: 30px;
+                font-family: 'Baloo Thambi 2';
             }
             p{
                 font-size: 20px;
@@ -68,7 +74,7 @@
            min-height: 100vh;
            width: 100%;
            padding-top: 2em;
-           
+           gap:3em;
      
            .container-principal{
                 display: flex;

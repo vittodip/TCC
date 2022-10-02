@@ -2,7 +2,7 @@ import './index.scss'
 import { useEffect, useState } from 'react'
 
 import { mostrarTodasSolicitações } from '../../api/solicitacaoApi'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -11,16 +11,24 @@ export default function SolicitacoesPsic() {
     const [solicitacoes, setSolicitacoes] = useState([]);
     const [situacao, setSituacao] = useState(false)
 
+    const navigate = useNavigate();
+
     async function carregarSolicitacao() {
         const resp = await mostrarTodasSolicitações();
         setSolicitacoes(resp)
+    }
+
+    async function aceitarSolicitacao() {
+        
     }
 
     useEffect(() => {
         carregarSolicitacao();
     }, []); 
 
-
+    function irPerfil () {
+        navigate('/perfil/voluntario')
+    }
 
     return (
         <main className="solicitacoes-principal">
@@ -29,7 +37,7 @@ export default function SolicitacoesPsic() {
                     <img src="/assets/images/logonat.png" alt="" />
                     <div className="hd-alinhamento-buttons">
                         <button>Conversas</button>
-                        <Link to='/perfil/voluntario'>Perfil</Link>
+                        <button onClick={irPerfil} >Perfil</button>
                     </div>
                 </div>
                 <div className='hd-alinhamento-2'>
