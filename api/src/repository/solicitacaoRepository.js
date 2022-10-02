@@ -79,3 +79,13 @@ export async function deletarSolicitacao(id) {
     const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
 }
+
+export async function mostrarTodasSolicitações(){
+    const comando = `select ds_solicitacao texto,
+                            dt_situacao    data
+                       from tb_solicitacao`
+
+    const [resposta] = await con.query(comando)
+    return resposta
+
+}

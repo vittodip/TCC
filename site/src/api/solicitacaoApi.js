@@ -47,3 +47,9 @@ export async function deletarSolicitacao(id) {
 
     return resposta.data;
 }
+
+export async function mostrarTodasSolicitações(){
+    const resposta = await api.get('/solicitacao');
+    return resposta.data;
+
+}

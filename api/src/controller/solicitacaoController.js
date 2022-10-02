@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -123,6 +123,16 @@ server.delete('/solicitacao/:id', async (req, resp) => {
     }
 })
 
+server.get('/solicitacao', async (req, resp) => {
+    try {
+        const resposta = await mostrarTodasSolicitações() 
+        resp.send(resposta)
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 export default server;

@@ -1,11 +1,25 @@
 import './index.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { mostrarTodasSolicitações } from '../../api/solicitacaoApi'
+import { Link, useParams } from 'react-router-dom';
 
 
 
 export default function SolicitacoesPsic() {
-
+    const { solicitacaoParam } = useParams();
     const [solicitacoes, setSolicitacoes] = useState([]);
+    const [situacao, setSituacao] = useState(false)
+
+    async function carregarSolicitacao() {
+        const resp = await mostrarTodasSolicitações();
+        setSolicitacoes(resp)
+    }
+
+    useEffect(() => {
+        carregarSolicitacao();
+    }, []); 
+
 
 
     return (
@@ -15,7 +29,7 @@ export default function SolicitacoesPsic() {
                     <img src="/assets/images/logonat.png" alt="" />
                     <div className="hd-alinhamento-buttons">
                         <button>Conversas</button>
-                        <button>Perfil</button>
+                        <Link to='/perfil/voluntario'>Perfil</Link>
                     </div>
                 </div>
                 <div className='hd-alinhamento-2'>
@@ -29,17 +43,17 @@ export default function SolicitacoesPsic() {
             </header>
             <section className="secao-solicitacao">
 
+                {solicitacoes.map(item => 
                 <div className="container-principal">
                     <div className="cp-info-date">
                         <img src="/assets/images/perfil-anonimo-icon.svg" alt="" />
-                        <p>Solicitação em aberto - 23/09/2022 às 13:00</p>
+                        <p>{item.data.substr(0,10)}</p>
                     </div>
                     <div className="cp-texto">
-                        <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-                        </p>
+                        <p>{item.texto}</p>
                     </div>
                     <div className="cp-funcionalidades">
-                        <p>Categorias: Burnout, estresse, neurose</p>
+                        <p></p>
 
                         <div className="alinhamento">
                             <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
@@ -47,6 +61,8 @@ export default function SolicitacoesPsic() {
                         </div>
                     </div>
                 </div>
+                )}
+
             </section>
         </main>
     )
