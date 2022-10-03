@@ -86,16 +86,16 @@ server.put('/solicitacao/:id' , async (req, resp) => {
 
 server.put('/solicitacao', async (req, resp) => {
     try {
-        const { psicologo, solicitacao } = req.query;
+        const ids = req.body;
 
 
-        const resposta = await aceitarSolicitacao(psicologo, solicitacao);
+        const resposta = await aceitarSolicitacao(ids);
         
         if(!resposta) {
             throw new Error('Não foi possivel aceitar essa Solicitação!')
         }
 
-        resp.status(202).send();
+        resp.status(202).send(resposta.affectedRows);
     } catch (err) {
         resp.status(404).send({
             erro: err.message

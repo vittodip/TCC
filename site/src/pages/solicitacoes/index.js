@@ -2,14 +2,15 @@ import './index.scss'
 import { useEffect, useState } from 'react'
 
 import { mostrarTodasSolicitações } from '../../api/solicitacaoApi'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { aceitarSolicitacao } from '../../api/solicitacaoApi';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
 export default function SolicitacoesPsic() {
-    const { solicitacaoParam } = useParams();
     const [solicitacoes, setSolicitacoes] = useState([]);
-    const [situacao, setSituacao] = useState(false)
 
     const navigate = useNavigate();
 
@@ -18,7 +19,19 @@ export default function SolicitacoesPsic() {
         setSolicitacoes(resp)
     }
 
-    async function aceitarSolicitacao() {
+    async function aceitarSolicitacaoClick(idSolicitacao) {
+        try{
+            const idSoli = idSolicitacao
+            const idPsic = Storage('usuario-logado').id
+
+            const r = await aceitarSolicitacao(idPsic, idSoli)
+            console.log(r)
+            toast("Atendimento oferecido!")
+        }
+        catch (err){
+            toast('erro')
+        }
+        
         
     }
 
@@ -32,6 +45,7 @@ export default function SolicitacoesPsic() {
 
     return (
         <main className="solicitacoes-principal">
+            <ToastContainer />
             <header className='header'>
                 <div className='hd-alinhamento-1'>
                     <img src="/assets/images/logonat.png" alt="" />
@@ -52,9 +66,9 @@ export default function SolicitacoesPsic() {
             <section className="secao-solicitacao">
 
                 {solicitacoes.map(item => 
-                <div className="container-principal">
+                <div key='Listagem' className="container-principal">
                     <div className="cp-info-date">
-                        <img src="/assets/images/perfil-anonimo-icon.svg" alt="" />
+                        <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
                         <p>{item.data.substr(0,10)}</p>
                     </div>
                     <div className="cp-texto">
@@ -65,7 +79,7 @@ export default function SolicitacoesPsic() {
 
                         <div className="alinhamento">
                             <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
-                            <button>Oferecer atendimento</button>
+                            <button onClick={() => aceitarSolicitacaoClick(item.id_solicitacao)}>Oferecer atendimento</button>
                         </div>
                     </div>
                 </div>

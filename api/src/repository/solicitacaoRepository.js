@@ -60,15 +60,14 @@ export async function alterarSolicitacao(solicitacao, id) {
     return resposta.affectedRows;
 }
 
-export async function aceitarSolicitacao(psicologo, solicitacao) {
+export async function aceitarSolicitacao(ids) {
     const comando = `update tb_solicitacao
                         set id_psicologo    = ?,
                             ds_situacao     = true
                     where id_solicitacao    = ?`
                 
-    const [resposta] = await con.query(comando, [psicologo, solicitacao]);
+    const [resposta] = await con.query(comando, [ids.idPsic, ids.idSoli]);
     return resposta.affectedRows;
-    
 }
 
 
@@ -81,10 +80,12 @@ export async function deletarSolicitacao(id) {
 }
 
 export async function mostrarTodasSolicitações(){
-    const comando = `select ds_solicitacao texto,
+    const comando = `select
+                     id_solicitacao , 
+                     ds_solicitacao texto,
                      date_format(dt_situacao, '%d/%m/%Y %H:%i') as data
-                       from tb_solicitacao
-                      where ds_situacao = false
+                     from tb_solicitacao
+                     where ds_situacao = false
                        `
 
     const [resposta] = await con.query(comando)

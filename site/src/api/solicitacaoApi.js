@@ -27,9 +27,11 @@ export async function solicitacaoPsicologo(id) {
     return resposta.data;
 }
 
-export async function aceitarSolicitacao() {
-    const resposta = await api.put(`/solicitacao`);
-    
+export async function aceitarSolicitacao(idPsicologo, idSolicitacao) {
+    const resposta = await api.put(`/solicitacao`, {
+        idPsic: idPsicologo,
+        idSoli: idSolicitacao
+    });
     return resposta.data;
 }
 
