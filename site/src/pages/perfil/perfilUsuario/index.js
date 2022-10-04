@@ -22,7 +22,6 @@ export default function PerfilUsuario() {
   const { usuarioParam } = useParams();
 
   const [assunto, setAssunto] = useState("");
-  const [situacaoSol, setSituacaoSol] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
  
 
@@ -40,7 +39,8 @@ export default function PerfilUsuario() {
 
   async function cadastrarSolicitacao() {
     try {
-      const resp = await inserirSolicitacao(usuarioParam, assunto, situacaoSol);
+      const idUser = Storage('usuario-logado').id
+      const resp = await inserirSolicitacao(idUser, assunto);
       toast("Solicitação feita com sucesso");
     } catch (err) {
       toast(err.response.data.erro);
@@ -93,8 +93,8 @@ export default function PerfilUsuario() {
                  isOpen={modalIsOpen}
                  onRequestClose={closeModal}
                  style={customStyles}>
-                  
-                 <AlterarInfos onClick={closeModal} perfil='usuario'  />                        
+                  <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
+                 <AlterarInfos perfil='usuario'  />                        
                
             </Modal>
           </div>

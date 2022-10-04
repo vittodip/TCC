@@ -7,6 +7,7 @@ import { aceitarSolicitacao } from '../../api/solicitacaoApi';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Storage from 'local-storage'
 
 
 export default function SolicitacoesPsic() {
@@ -20,6 +21,7 @@ export default function SolicitacoesPsic() {
     }
 
     async function aceitarSolicitacaoClick(idSolicitacao) {
+        console.log('oieee');
         try{
             const idSoli = idSolicitacao
             const idPsic = Storage('usuario-logado').id
@@ -29,6 +31,7 @@ export default function SolicitacoesPsic() {
             toast("Atendimento oferecido!")
         }
         catch (err){
+            console.log(err);
             toast('erro')
         }
         
