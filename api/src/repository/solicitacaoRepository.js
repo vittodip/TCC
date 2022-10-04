@@ -2,8 +2,8 @@ import { con } from './connection.js';
 
 
 export async function inserirSolicitacao(solicitacao) {
-    const comando = `insert into tb_solicitacao (id_usuario, id_psicologo, ds_solicitacao, ds_situacao, dt_situacao)
-    values (?, null, ?, true , sysdate())`
+    const comando = `insert into tb_solicitacao (id_usuario, ds_solicitacao, ds_situacao, dt_situacao)
+    values (?, ?, true , sysdate())`
 
     const [resp] = await con.query(comando, [solicitacao.usuario, solicitacao.assunto])
     solicitacao.idSolicitacao = resp.insertId;

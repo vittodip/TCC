@@ -1,7 +1,6 @@
 import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Storage  from 'local-storage';
 
 import "./index.scss";
@@ -11,16 +10,21 @@ import "react-toastify/dist/ReactToastify.css";
 import { carregarUsuario } from "../../../api/usuarioApi.js";
 import { listarSolicitacao } from "../../../api/solicitacaoApi.js";
 import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
+import { alterarSolicitacao } from "../../../api/solicitacaoApi.js";
+import { deletarSolicitacao } from "../../../api/solicitacaoApi.js";
 import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
+
+
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
 
   const [solicitacao, setSolicitacao] = useState([]);
 
-  const { usuarioParam } = useParams();
+  
 
+  const [novoAssunto, setNovoAssunto] = useState("");
   const [assunto, setAssunto] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
  
@@ -45,6 +49,17 @@ export default function PerfilUsuario() {
     } catch (err) {
       toast(err.response.data.erro);
     }
+  }
+
+  async function mudarSolicitacao(id) {
+    
+    const r = await alterarSolicitacao(id)
+    setNovoAssunto(assunto)
+  }
+
+  async function excluirSolicitacao(id) {
+
+    const r = await deletarSolicitacao(id)
   }
 
   useEffect(() => {
@@ -135,8 +150,8 @@ export default function PerfilUsuario() {
                 <div className='box-solicitacao'>
                     <div className='top-solicitacao-2'>
                         <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
-                        <img src='/assets/images/black-edit.png'/>
-                        <img src='/assets/images/trash.png'/>
+                        <img onClick={() => mudarSolicitacao(item.solicitacao)} src='/assets/images/black-edit.png'/>
+                        <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
                     </div>
                     <div className='text-solicitacao'>
                         <hr color="#DEDEDE"/>
