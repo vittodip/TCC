@@ -80,8 +80,8 @@ export default function PerfilVoluntario() {
              isOpen={modalIsOpen}
              onRequestClose={closeModal}
              style={customStyles}>
-              
-             <AlterarInfos onClick={closeModal} perfil='voluntario'  />                        
+              <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
+             <AlterarInfos  perfil='voluntario'  />                        
            
         </Modal>
           </div>

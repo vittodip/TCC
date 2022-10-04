@@ -31,7 +31,7 @@ server.get('/solicitacao/:id', async (req, resp) => {
         const mostrarTudo = Number(req.params.id);
 
         const resposta = await listarSolicitacao(mostrarTudo);
-        
+            
         resp.send(resposta);
         
     } catch (err) {
