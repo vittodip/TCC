@@ -21,17 +21,17 @@ export default function SolicitacoesPsic() {
     }
 
     async function aceitarSolicitacaoClick(idSolicitacao) {
-        console.log('oieee');
+      
         try{
             const idSoli = idSolicitacao
             const idPsic = Storage('usuario-logado').id
 
             const r = await aceitarSolicitacao(idPsic, idSoli)
-            console.log(r)
+            
             toast("Atendimento oferecido!")
         }
         catch (err){
-            console.log(err);
+            
             toast('erro')
         }
         

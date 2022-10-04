@@ -2,11 +2,18 @@ import { con } from './connection.js';
 
 
 export async function inserirSolicitacao(solicitacao) {
-    const comando = `insert into tb_solicitacao (id_usuario, ds_solicitacao, ds_situacao, dt_situacao)
-    values (?, ?, true , sysdate())`
+
+    const comando = `insert into tb_solicitacao (
+        id_usuario,
+        ds_solicitacao,
+        ds_situacao,
+        dt_situacao)
+
+        values (?, ?, false, sysdate())`
 
     const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto])
-    solicitacao.idSolicitacao = resp.insertId;
+    solicitacao.idSolicitacao = resp.insertId
+
     return solicitacao;
 }
 
@@ -21,7 +28,7 @@ export async function listarSolicitacao(id){
     from tb_solicitacao
     where id_usuario = ?`
 
-    const [linhas] = await con.query(comando, [id]);
+    const [linhas] = await con.query(comando, [id])
     return linhas;
 }
 
