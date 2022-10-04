@@ -5,7 +5,7 @@ export async function inserirSolicitacao(solicitacao) {
     const comando = `insert into tb_solicitacao (id_usuario, ds_solicitacao, ds_situacao, dt_situacao)
     values (?, ?, true , sysdate())`
 
-    const [resp] = await con.query(comando, [solicitacao.usuario, solicitacao.assunto])
+    const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto])
     solicitacao.idSolicitacao = resp.insertId;
     return solicitacao;
 }
