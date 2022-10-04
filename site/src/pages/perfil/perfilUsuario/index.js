@@ -18,6 +18,7 @@ export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
 
   const [solicitacao, setSolicitacao] = useState([]);
+  
 
   const { usuarioParam } = useParams();
 
@@ -40,8 +41,11 @@ export default function PerfilUsuario() {
 
   async function cadastrarSolicitacao() {
     try {
-      const resp = await inserirSolicitacao(usuarioParam, assunto, situacaoSol);
+      const idUser = Storage('usuario-logado').id
+      console.log("cavalo")
+      const resp = await inserirSolicitacao(idUser , assunto);
       toast("Solicitação feita com sucesso");
+      
     } catch (err) {
       toast(err.response.data.erro);
     }
