@@ -55,6 +55,12 @@ export default function LoginDoVoluntario(){
     
       }
 
+      document.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            const btn = document.querySelector("#send");
+            btn.click();
+        }
+      })
 
 
     return(
@@ -86,7 +92,7 @@ export default function LoginDoVoluntario(){
                     </div>
                 </div>
 
-            <button className="botao-entrar" onClick={entrarClick}>
+            <button id='send' className="botao-entrar" onClick={entrarClick}>
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>

@@ -44,7 +44,7 @@ export default function Cadastro1() {
           <div className="container-texto-botao">
             <p className="textao">
               Te escutando de onde estiver, quando puder.{" "}
-              <span>Seja bem vindo!</span>
+              <span>Seja bem-vindo!</span>
             </p>
 
             <Link to="/" className="botao-direito">
@@ -68,8 +68,8 @@ export default function Cadastro1() {
 
             <input
               className="input"
-              type="text"
-              placeholder="0000/00/00"
+              type="date"
+              
               value={nascimento}
               onChange={(e) => setNascimento(e.target.value)}
             />

@@ -64,7 +64,7 @@ export default function CadastroVoluntario() {
                 <InputsVoluntario info='Nome' placeholder='Nome e sobrenome' valor={nome} onchange={e => setNome(e.target.value)} />
                 <InputsVoluntario info='CRP' placeholder='XX/00000' valor={crp} onchange={e => setCrp(e.target.value)} />
                 <InputsVoluntario info='CPF' placeholder='000.000.000-00' valor={cpf} onchange={e => setCpf(e.target.value)} />
-                <InputsVoluntario info='Nascimento' placeholder='0000/00/00' valor={nascimento} onchange={e => setNascimento(e.target.value)} />
+                <InputsVoluntario info='Nascimento' type="date" valor={nascimento} onchange={e => setNascimento(e.target.value)} />
                 <InputsVoluntario info='E-mail' placeholder='email@email' valor={email} onchange={e => setEmail(e.target.value)} />
                 <InputsVoluntario info='Senha' placeholder='*************' valor={senha} onchange={e => setSenha(e.target.value)} />
                 <InputsVoluntario info='Telefone' placeholder='(11)99999-9999' valor={telefone} onchange={e => setTelefone(e.target.value)} />

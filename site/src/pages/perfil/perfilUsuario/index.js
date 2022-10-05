@@ -66,6 +66,8 @@ export default function PerfilUsuario() {
     const r = await deletarSolicitacao(id)
   }
 
+  
+
   useEffect(() => {
     carregarUser();
     carregarTodasSolicitacoes();
