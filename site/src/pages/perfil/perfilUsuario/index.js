@@ -7,24 +7,17 @@ import "./index.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { carregarUsuario } from "../../../api/usuarioApi.js";
-import { listarSolicitacao } from "../../../api/solicitacaoApi.js";
-import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
-import { alterarSolicitacao } from "../../../api/solicitacaoApi.js";
-import { deletarSolicitacao } from "../../../api/solicitacaoApi.js";
-import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
-
+import Modal from 'react-modal'
+import { carregarUsuario } from "../../../api/usuarioApi.js";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
 
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
-
   const [solicitacao, setSolicitacao] = useState([]);
-  
-
-  
-
   const [novoAssunto, setNovoAssunto] = useState("");
   const [assunto, setAssunto] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -61,9 +54,28 @@ export default function PerfilUsuario() {
     setNovoAssunto(assunto)
   }
 
-  async function excluirSolicitacao(id) {
 
-    const r = await deletarSolicitacao(id)
+  async function excluirSolicitacao(id) {
+    confirmAlert({
+      title:'Deletar solicitação',
+      message:`Tem certeza?`,
+      buttons:[
+          {
+              label:'Sim',
+              onClick: async () => {
+              const resposta = await deletarSolicitacao(id);
+              console.log(resposta)
+              
+              carregarTodasSolicitacoes();
+                toast.success('Solicitação deletada com sucesso')           
+              }
+              
+          },
+          {
+              label:'Não'
+          }
+      ]
+  })
   }
 
   
@@ -157,7 +169,7 @@ export default function PerfilUsuario() {
                     <div className='top-solicitacao-2'>
                         <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
                         <img onClick={() => mudarSolicitacao(item.solicitacao)} src='/assets/images/black-edit.png'/>
-                        <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
+                        <img onClick={() => excluirSolicitacao(item.id)} src='/assets/images/trash.png'/>
                     </div>
                     <div className='text-solicitacao'>
                         <hr color="#DEDEDE"/>
