@@ -40,6 +40,7 @@ export default function PerfilUsuario() {
       const idUser = Storage('usuario-logado').id
 
       const resp = await inserirSolicitacao(idUser , assunto);
+      carregarTodasSolicitacoes();
       
       toast("Solicitação feita com sucesso");
       
@@ -51,11 +52,12 @@ export default function PerfilUsuario() {
   async function mudarSolicitacao(id) {
     
     const r = await alterarSolicitacao(id)
-    setNovoAssunto(assunto)
+    setNovoAssunto(assunto);
+    carregarTodasSolicitacoes();
   }
 
 
-  async function excluirSolicitacao(id) {
+function excluirSolicitacao(id) {
     confirmAlert({
       title:'Deletar solicitação',
       message:`Tem certeza?`,
@@ -64,8 +66,6 @@ export default function PerfilUsuario() {
               label:'Sim',
               onClick: async () => {
               const resposta = await deletarSolicitacao(id);
-              console.log(resposta)
-              
               carregarTodasSolicitacoes();
                 toast.success('Solicitação deletada com sucesso')           
               }
@@ -169,7 +169,7 @@ export default function PerfilUsuario() {
                     <div className='top-solicitacao-2'>
                         <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
                         <img onClick={() => mudarSolicitacao(item.solicitacao)} src='/assets/images/black-edit.png'/>
-                        <img onClick={() => excluirSolicitacao(item.id)} src='/assets/images/trash.png'/>
+                        <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
                     </div>
                     <div className='text-solicitacao'>
                         <hr color="#DEDEDE"/>

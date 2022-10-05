@@ -10,7 +10,10 @@ server.post('/solicitacao', async (req, resp) => {
     try {
         const novaSolicitacao = req.body;
 
-        if (!novaSolicitacao.trim()){
+        if (!novaSolicitacao){
+            throw new Error("Não foi possível inserir Solicitação.")
+        }
+        if (!novaSolicitacao.assunto.trim()){
             throw new Error("Não foi possível inserir Solicitação.")
         }
 
@@ -71,6 +74,9 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         if (!solicitacao){
             throw new Error("Não foi possível alterar Solicitação.")
         }
+        if (!solicitacao.assunto.trim()){
+            throw new Error("Não foi possível alterar Solicitação.")
+        }
         if (resposta != 1) {
             throw new Error("Não foi possível alterar Solicitação.")
         }
@@ -113,7 +119,6 @@ server.delete('/solicitacao/:id', async (req, resp) => {
         if (resposta != 1) {
             throw new Error("Solicitação não pode ser removida")
         }
-
         resp.status(204).send();
         
     } catch (err) {

@@ -11,7 +11,7 @@ export async function inserirSolicitacao(solicitacao) {
 
         values (?, ?, false, sysdate())`
 
-    const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto])
+    const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto.trim()])
     solicitacao.idSolicitacao = resp.insertId
 
     return solicitacao;
@@ -58,7 +58,7 @@ export async function alterarSolicitacao(solicitacao, id) {
                             dt_situacao = now()
                       where id_solicitacao = ?`
                     
-    const [resposta] = await con.query(comando, [solicitacao.assunto, id]);
+    const [resposta] = await con.query(comando, [solicitacao.assunto.trim(), id]);
     return resposta.affectedRows;
 }
 
