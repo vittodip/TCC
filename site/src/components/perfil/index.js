@@ -17,6 +17,10 @@ export default function Perfil(props) {
         navigate('/login/voluntario')
     }
 
+    function paginaSolicitacoes () {
+        navigate('/solicitacoes')
+    }
+
     return (
 
         <main className='perfil-usuario-main'>
@@ -32,7 +36,7 @@ export default function Perfil(props) {
                         <button>Conversas</button>
                     }
                     {props.perfil === 'voluntario' &&
-                        <button>Solicitações</button>
+                        <button onClick={paginaSolicitacoes}>Solicitações</button>
                     }
                      {props.perfil === 'usuario' &&
                        <button onClick={sairClickUsuario} > <img src='/assets/images/Logout (1).png'/> Sair</button>

@@ -2,6 +2,7 @@ import { con } from './connection.js';
 
 
 export async function inserirSolicitacao(solicitacao) {
+
     const comando = `insert into tb_solicitacao (
         id_usuario,
         ds_solicitacao,
@@ -12,6 +13,7 @@ export async function inserirSolicitacao(solicitacao) {
 
     const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto])
     solicitacao.idSolicitacao = resp.insertId
+
     return solicitacao;
 }
 
@@ -60,15 +62,14 @@ export async function alterarSolicitacao(solicitacao, id) {
     return resposta.affectedRows;
 }
 
-export async function aceitarSolicitacao(psicologo, solicitacao) {
+export async function aceitarSolicitacao(ids) {
     const comando = `update tb_solicitacao
                         set id_psicologo    = ?,
                             ds_situacao     = true
                     where id_solicitacao    = ?`
                 
-    const [resposta] = await con.query(comando, [psicologo, solicitacao]);
+    const [resposta] = await con.query(comando, [ids.idPsic, ids.idSoli]);
     return resposta.affectedRows;
-    
 }
 
 
@@ -78,4 +79,18 @@ export async function deletarSolicitacao(id) {
 
     const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
+}
+
+export async function mostrarTodasSolicitações(){
+    const comando = `select
+                     id_solicitacao , 
+                     ds_solicitacao texto,
+                     date_format(dt_situacao, '%d/%m/%Y %H:%i') as data
+                     from tb_solicitacao
+                     where ds_situacao = false
+                       `
+
+    const [resposta] = await con.query(comando)
+    return resposta
+
 }

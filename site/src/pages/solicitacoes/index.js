@@ -1,21 +1,60 @@
 import './index.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+import { mostrarTodasSolicitações } from '../../api/solicitacaoApi'
+import { useNavigate } from 'react-router-dom';
+import { aceitarSolicitacao } from '../../api/solicitacaoApi';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import Storage from 'local-storage'
 
 
 export default function SolicitacoesPsic() {
-
     const [solicitacoes, setSolicitacoes] = useState([]);
 
+    const navigate = useNavigate();
+
+    async function carregarSolicitacao() {
+        const resp = await mostrarTodasSolicitações();
+        setSolicitacoes(resp)
+    }
+
+    async function aceitarSolicitacaoClick(idSolicitacao) {
+      
+        try{
+            const idSoli = idSolicitacao
+            const idPsic = Storage('usuario-logado').id
+
+            const r = await aceitarSolicitacao(idPsic, idSoli)
+            
+            toast("Atendimento oferecido!")
+        }
+        catch (err){
+            
+            toast('erro')
+        }
+        
+        
+    }
+
+    useEffect(() => {
+        carregarSolicitacao();
+    }, []); 
+
+    function irPerfil () {
+        navigate('/perfil/voluntario')
+    }
 
     return (
         <main className="solicitacoes-principal">
+            <ToastContainer />
             <header className='header'>
                 <div className='hd-alinhamento-1'>
                     <img src="/assets/images/logonat.png" alt="" />
                     <div className="hd-alinhamento-buttons">
                         <button>Conversas</button>
-                        <button>Perfil</button>
+                        <button onClick={irPerfil} >Perfil</button>
                     </div>
                 </div>
                 <div className='hd-alinhamento-2'>
@@ -29,24 +68,26 @@ export default function SolicitacoesPsic() {
             </header>
             <section className="secao-solicitacao">
 
-                <div className="container-principal">
+                {solicitacoes.map(item => 
+                <div key='Listagem' className="container-principal">
                     <div className="cp-info-date">
-                        <img src="/assets/images/perfil-anonimo-icon.svg" alt="" />
-                        <p>Solicitação em aberto - 23/09/2022 às 13:00</p>
+                        <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
+                        <p>{item.data.substr(0,10)}</p>
                     </div>
                     <div className="cp-texto">
-                        <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-                        </p>
+                        <p>{item.texto}</p>
                     </div>
                     <div className="cp-funcionalidades">
-                        <p>Categorias: Burnout, estresse, neurose</p>
+                        <p></p>
 
                         <div className="alinhamento">
                             <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
-                            <button>Oferecer atendimento</button>
+                            <button onClick={() => aceitarSolicitacaoClick(item.id_solicitacao)}>Oferecer atendimento</button>
                         </div>
                     </div>
                 </div>
+                )}
+
             </section>
         </main>
     )

@@ -27,9 +27,11 @@ export async function solicitacaoPsicologo(id) {
     return resposta.data;
 }
 
-export async function aceitarSolicitacao() {
-    const resposta = await api.put(`/solicitacao`);
-    
+export async function aceitarSolicitacao(idPsicologo, idSolicitacao) {
+    const resposta = await api.put(`/solicitacao`, {
+        idPsic: idPsicologo,
+        idSoli: idSolicitacao
+    });
     return resposta.data;
 }
 
@@ -46,4 +48,10 @@ export async function deletarSolicitacao(id) {
     const resposta = await api.delete(`/solicitacao/${id}`);
 
     return resposta.data;
+}
+
+export async function mostrarTodasSolicitações(){
+    const resposta = await api.get('/solicitacao');
+    return resposta.data;
+
 }

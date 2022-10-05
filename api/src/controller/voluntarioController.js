@@ -90,9 +90,10 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
     try {
         const voluntarioId = req.params.id;
         const volunt = req.body;
-        const voluntario = await alterarVoluntario(voluntarioId);
-        
 
+        const voluntario = await carregarVoluntario(voluntarioId);
+
+        
         if(volunt.nome === voluntario.nome) {
             throw new Error('Insira um nome diferente do anterior!')
         }
@@ -111,11 +112,13 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
         if(!volunt.telefone) {
             throw new Error('Insira um telefone!')
         }
-        const resposta = await cadastroVoluntario(volunt, voluntarioId);
 
-        resp.send(resposta);
+        
+        const r = await alterarVoluntario(volunt, voluntarioId);
+        resp.send(r);
 
     } catch (err) {
+
         resp.status(404).send({
             erro: err.message
         })

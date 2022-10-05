@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -31,7 +31,7 @@ server.get('/solicitacao/:id', async (req, resp) => {
         const mostrarTudo = Number(req.params.id);
 
         const resposta = await listarSolicitacao(mostrarTudo);
-        
+            
         resp.send(resposta);
         
     } catch (err) {
@@ -86,16 +86,16 @@ server.put('/solicitacao/:id' , async (req, resp) => {
 
 server.put('/solicitacao', async (req, resp) => {
     try {
-        const { psicologo, solicitacao } = req.query;
+        const ids = req.body;
 
 
-        const resposta = await aceitarSolicitacao(psicologo, solicitacao);
+        const resposta = await aceitarSolicitacao(ids);
         
-        if(resposta.changedRows != 1) {
+        if(!resposta) {
             throw new Error('Não foi possivel aceitar essa Solicitação!')
         }
 
-        resp.status(202).send();
+        resp.status(202).send(resposta.affectedRows);
     } catch (err) {
         resp.status(404).send({
             erro: err.message
@@ -123,6 +123,16 @@ server.delete('/solicitacao/:id', async (req, resp) => {
     }
 })
 
+server.get('/solicitacao', async (req, resp) => {
+    try {
+        const resposta = await mostrarTodasSolicitações() 
+        resp.send(resposta)
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 export default server;
