@@ -31,10 +31,10 @@ export default function Home() {
             </section>
 
             <section className="faixa-2">
-   
+
                 <img className="bola-cinza" src="assets/images/Ellipse 7.png" alt="bola-cinza" />
                 <img className="bola-roxa" src="assets/images/Ellipse 8.png" alt="bola-roxa" />
-                
+
 
                 <div className="faixa-2-textos">
                     <Roxinho roxinho="secao-padrao" titulo='A conversa' texto='Desenvolvemos nosso site com a proposta de que os usuários irão expor seus problemas, assim,  o psicólogo pode visualizar e ter acesso a informações restritas e a uma conversa com o usuário. 
@@ -57,8 +57,8 @@ export default function Home() {
             <section className="faixa-3">
                 <h3>Profissionais que ajudam nossa causa</h3>
 
-                <Pscologos psicologo='/assets/images/image 5.png' nome='Psicóloga Amanda Fitas' descricao='Psicóloga e escritora, com cinco livros publicados, encoraja seus pacientes
-a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguidores no instagram, ela faz vídeos curtos com conselhos e também tem um podcast.' fala='Quero ajudar aqueles que não podem chegar até nós, seja por questões financeiras ou falta de acesso, pois saúde mental e autoestima deveriam ser acessíveis para todos.' rede='@amandafitas' />
+                    <Pscologos psicologo='/assets/images/image 5.png' nome='Psicóloga Amanda Fitas' descricao='Psicóloga e escritora, com cinco livros publicados, encoraja seus pacientes
+                a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguidores no instagram, ela faz vídeos curtos com conselhos e também tem um podcast.' fala='Quero ajudar aqueles que não podem chegar até nós, seja por questões financeiras ou falta de acesso, pois saúde mental e autoestima deveriam ser acessíveis para todos.' rede='@amandafitas' />
 
             </section>
 
