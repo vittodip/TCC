@@ -11,7 +11,7 @@ export async function inserirSolicitacao(solicitacao) {
 
         values (?, ?, false, sysdate())`
 
-    const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto])
+    const [resp] = await con.query(comando, [solicitacao.idUsuario, solicitacao.assunto.trim()])
     solicitacao.idSolicitacao = resp.insertId
 
     return solicitacao;

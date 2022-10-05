@@ -13,7 +13,7 @@ server.post('/solicitacao', async (req, resp) => {
         if (!novaSolicitacao){
             throw new Error("Não foi possível inserir Solicitação.")
         }
-        if (!novaSolicitacao.assunto){
+        if (!novaSolicitacao.assunto.trim()){
             throw new Error("Não foi possível inserir Solicitação.")
         }
 
