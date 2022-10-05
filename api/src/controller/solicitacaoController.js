@@ -13,7 +13,7 @@ server.post('/solicitacao', async (req, resp) => {
         if (!novaSolicitacao){
             throw new Error("Não foi possível inserir Solicitação.")
         }
-        if (!novaSolicitacao.assunto){
+        if (!novaSolicitacao.assunto.trim()){
             throw new Error("Não foi possível inserir Solicitação.")
         }
 
@@ -72,6 +72,9 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         }*/
         
         if (!solicitacao){
+            throw new Error("Não foi possível alterar Solicitação.")
+        }
+        if (!solicitacao.assunto.trim()){
             throw new Error("Não foi possível alterar Solicitação.")
         }
         if (resposta != 1) {

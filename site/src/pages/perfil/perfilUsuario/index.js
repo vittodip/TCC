@@ -40,6 +40,7 @@ export default function PerfilUsuario() {
       const idUser = Storage('usuario-logado').id
 
       const resp = await inserirSolicitacao(idUser , assunto);
+      carregarTodasSolicitacoes();
       
       toast("Solicitação feita com sucesso");
       
@@ -51,7 +52,8 @@ export default function PerfilUsuario() {
   async function mudarSolicitacao(id) {
     
     const r = await alterarSolicitacao(id)
-    setNovoAssunto(assunto)
+    setNovoAssunto(assunto);
+    carregarTodasSolicitacoes();
   }
 
 
@@ -64,6 +66,7 @@ function excluirSolicitacao(id) {
               label:'Sim',
               onClick: async () => {
               const resposta = await deletarSolicitacao(id);
+              carregarTodasSolicitacoes();
                 toast.success('Solicitação deletada com sucesso')           
               }
               
