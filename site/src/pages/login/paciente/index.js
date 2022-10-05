@@ -57,6 +57,12 @@ export default function LoginPaciente(){
     
       }
 
+      document.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            const btn = document.querySelector("#send");
+            btn.click();
+        }
+      })
 
       
 
@@ -91,7 +97,7 @@ export default function LoginPaciente(){
                     
                 </div> 
 
-            <button className="botao-entrar" onClick={entrarClick} >
+            <button className="botao-entrar" id='send' onClick={entrarClick} >
                     <img src="/assets/images/entrar.png" alt="" />
                 </button>
                 <div className='s2-alinhamento-opcoes'>

@@ -11,6 +11,7 @@ import LoginPaciente from './pages/login/paciente/index.js';
 import LoginDoVoluntario from './pages/login/voluntario/index.js';
 import LoginDoADM from './pages/login/Admin/index.js';
 import SolicitacoesPsic from './pages/solicitacoes/index.js';
+import PoliticaPrivacidade from './pages/termos/index.js';
 
 
 export default function Rotas() {
@@ -33,6 +34,8 @@ export default function Rotas() {
                 <Route path='/perfil/voluntario' element={ <PerfilVoluntario /> } />
                 {/* Solicitações */}
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
+                {/* Termos */}
+                <Route path='/politica-privacidade' element={ <PoliticaPrivacidade />} />
 
                 
             </Routes>

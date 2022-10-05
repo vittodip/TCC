@@ -1,10 +1,10 @@
 import './index.scss'
 
 //endpoint
-import { alterarUsuario } from '../../api/usuarioApi'
-import { alterarVoluntario } from '../../api/voluntarioApi';
+import { alterarUsuario, carregarUsuario } from '../../api/usuarioApi'
+import { alterarVoluntario, carregarVoluntario } from '../../api/voluntarioApi';
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // npm
 
@@ -18,10 +18,32 @@ export default function AlterarInfos(props) {
     const [email, setEmail] = useState('')
     const [telefone, setTelefone] = useState('')
 
-
-
-
     const id = Storage('usuario-logado').id;
+
+    
+
+    async function carregarInfoUsuario() {
+        const r = await carregarUsuario(id)
+        setNome(r.nome)
+        setEmail(r.email)
+        setTelefone(r.telefone)
+    }
+
+    async function carregarInfoPsicologo() {
+        const r = await carregarVoluntario(id)
+        setNome(r.nome)
+        setEmail(r.email)
+        setTelefone(r.telefone)
+    }
+
+    useEffect(() =>{
+        if(props.perfil === "voluntario") {
+            carregarInfoPsicologo()
+        }
+        else{
+            carregarInfoUsuario()
+        }
+    }, [])
 
     async function salvarInfoUsuario() {
         try {

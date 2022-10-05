@@ -7,24 +7,17 @@ import "./index.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { carregarUsuario } from "../../../api/usuarioApi.js";
-import { listarSolicitacao } from "../../../api/solicitacaoApi.js";
-import { inserirSolicitacao } from "../../../api/solicitacaoApi.js";
-import { alterarSolicitacao } from "../../../api/solicitacaoApi.js";
-import { deletarSolicitacao } from "../../../api/solicitacaoApi.js";
-import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
-
+import Modal from 'react-modal'
+import { carregarUsuario } from "../../../api/usuarioApi.js";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
 
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
-
   const [solicitacao, setSolicitacao] = useState([]);
-  
-
-  
-
   const [novoAssunto, setNovoAssunto] = useState("");
   const [assunto, setAssunto] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -47,6 +40,7 @@ export default function PerfilUsuario() {
       const idUser = Storage('usuario-logado').id
 
       const resp = await inserirSolicitacao(idUser , assunto);
+      carregarTodasSolicitacoes();
       
       toast("Solicitação feita com sucesso");
       
@@ -58,13 +52,33 @@ export default function PerfilUsuario() {
   async function mudarSolicitacao(id) {
     
     const r = await alterarSolicitacao(id)
-    setNovoAssunto(assunto)
+    setNovoAssunto(assunto);
+    carregarTodasSolicitacoes();
   }
 
-  async function excluirSolicitacao(id) {
 
-    const r = await deletarSolicitacao(id)
+function excluirSolicitacao(id) {
+    confirmAlert({
+      title:'Deletar solicitação',
+      message:`Tem certeza?`,
+      buttons:[
+          {
+              label:'Sim',
+              onClick: async () => {
+              const resposta = await deletarSolicitacao(id);
+              carregarTodasSolicitacoes();
+                toast.success('Solicitação deletada com sucesso')           
+              }
+              
+          },
+          {
+              label:'Não'
+          }
+      ]
+  })
   }
+
+  
 
   useEffect(() => {
     carregarUser();

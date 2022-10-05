@@ -1,5 +1,5 @@
 
-import { carregarVoluntario, alterarVoluntario } from "../../../api/voluntarioApi";
+import { carregarVoluntario } from "../../../api/voluntarioApi";
 import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 
@@ -30,6 +30,8 @@ export default function PerfilVoluntario() {
     setSolicitacaoPsi(resp);
 
   }
+
+
 
 
 

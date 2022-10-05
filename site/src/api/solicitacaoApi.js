@@ -47,7 +47,7 @@ export async function alterarSolicitacao(id, assunto) {
 export async function deletarSolicitacao(id) {
     const resposta = await api.delete(`/solicitacao/${id}`);
 
-    return resposta.data;
+    return resposta.status;
 }
 
 export async function mostrarTodasSolicitações(){
