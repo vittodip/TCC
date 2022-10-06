@@ -52,3 +52,15 @@ export async function deletarVoluntario(id){
 
     return resposta.data;
 }
+
+export async function colocarImagemVolunt(id, imagem){
+    const formData = new formData();
+    formData.append('Foto', imagem);
+
+    const resposta = await api.put(`/voluntario/${id}/foto`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+
+}

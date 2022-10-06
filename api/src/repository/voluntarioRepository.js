@@ -54,11 +54,22 @@ export async function alterarVoluntario(volunt, id) {
 
 }
 
-
 export async function deletarVoluntario(id) {
     const comando = `delete from tb_psicologo
                          where id_psicologo = ?`
 
     const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
+}
+
+export async function alterarImagem(imagem, id){
+    
+    const comando = `
+            update tb_psicologo
+               set img_psicologo   = ?
+             where id_psicologo    = ?`
+    const  [resposta] = await con.query(comando, [imagem, id]);
+    return resposta.affectedRows
+        
+    
 }

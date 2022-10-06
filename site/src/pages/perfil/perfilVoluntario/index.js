@@ -1,5 +1,5 @@
 
-import { carregarVoluntario } from "../../../api/voluntarioApi";
+import { carregarVoluntario, colocarImagemVolunt } from "../../../api/voluntarioApi";
 import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 
@@ -15,11 +15,13 @@ export default function PerfilVoluntario() {
   const [voluntario, setVoluntario] = useState([])
   const [solicitacaoPsi, setSolicitacaoPsi] = useState([])
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [imagem, setImagem] = useState('');
   
 
   async function carregarPsicologo() {
     const idPsic = Storage('usuario-logado').id
     const resposta = await carregarVoluntario(idPsic);
+
     setVoluntario(resposta);
   }
 
@@ -67,6 +69,15 @@ export default function PerfilVoluntario() {
         }
     };
 
+  function colocarImagem(){
+      document.getElementById('fotoVolunt').click();
+  }
+
+  function mostarFoto(){
+    return URL.createObjectURL(imagem )
+  }
+
+
 
   return (
     <main className="voluntario-perfil">
@@ -108,7 +119,19 @@ export default function PerfilVoluntario() {
               <p>{voluntario.crp}</p>
             </div>
             <div className="coluna3-vol">
-              <div className="background-imagem"><img src="/assets/images/carregar 1.png" /></div>
+              <div className="background-imagem" onClick={colocarImagem}>
+
+                {!imagem && 
+                    <img src="/assets/images/carregar 1.png" />
+                }
+
+                {imagem && 
+                    <img className="fotoVoluntario" src={mostarFoto()} alt=''/>
+                }
+
+                <input type='file' id="fotoVolunt" onChange={e => setImagem(e.target.files[0])}/>
+              </div>
+              
             </div>
           </div>
 

@@ -43,6 +43,17 @@
                 border-radius: 16.415px;
                 width: 222.03px;
                 height: 254px;
+            
+                #fotoVolunt{
+                    visibility: hidden;
+                    position: absolute;
+                }
+
+                .fotoVoluntario{
+                    width: 250px;
+                    height: 260px;
+                    border-radius: 1.2em;
+                }
             }
         }  
 
@@ -83,4 +94,6 @@
             }
         }
     }
+
+    
 }

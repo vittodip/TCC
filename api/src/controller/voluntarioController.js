@@ -1,10 +1,11 @@
 
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem } from "../repository/voluntarioRepository.js";
 
-
+import multer from 'multer'
 import { Router } from "express";
 
 const server = Router();
+const upload = multer({ dest: 'storage/fotosVoluntarios' })
 
 server.post('/login/voluntario', async (req, resp) => {
     try {
@@ -125,8 +126,21 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
     }
 })
 
+server.put('/voluntario/:id/foto', upload.single('Foto') ,async (req, resp) => {
+    try {
+        const { id } = req.params;
+        const imagem = req.file.path;
 
+        const resposta = await alterarImagem(imagem,id);
+        if(resposta != 1 )
+            throw new Error('A imagem não pode ser inserida')
 
-
+        resp.status(204).send();
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 export default server;
