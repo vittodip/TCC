@@ -1,0 +1,21 @@
+.page-home {
+    display: flex;
+    height: 100vh;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .conteudo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+       
+        flex-grow: 1;
+    }
+
+   
+}

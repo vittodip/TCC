@@ -12,6 +12,7 @@ import LoginDoVoluntario from './pages/login/voluntario/index.js';
 import LoginDoADM from './pages/login/Admin/index.js';
 import SolicitacoesPsic from './pages/solicitacoes/index.js';
 import PoliticaPrivacidade from './pages/termos/index.js';
+import Home from './pages/adm/home/index.js';
 
 
 export default function Rotas() {
@@ -36,6 +37,8 @@ export default function Rotas() {
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
                 {/* Termos */}
                 <Route path='/politica-privacidade' element={ <PoliticaPrivacidade />} />
+                {/* !!!Home Teste!!! */}
+                <Route path='/admin' element={<Home />} />
 
                 
             </Routes>
