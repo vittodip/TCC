@@ -17,4 +17,3 @@ export default function Index() {
     )
 }
 
-//alt='logo estilizado'
