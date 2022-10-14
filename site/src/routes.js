@@ -15,6 +15,7 @@ import PoliticaPrivacidade from './pages/termos/index.js';
 import Home from './pages/adm/home/index.js';
 
 
+
 export default function Rotas() {
     
     return(

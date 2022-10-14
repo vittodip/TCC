@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const server = Router();
 
-server.get('/login/adm', async (req, resp) => {
+server.post('/login/adm', async (req, resp) => {
     try {
         const { email, senha } = req.body;
         const resposta = await loginAdm(email, senha);

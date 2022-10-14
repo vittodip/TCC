@@ -21,11 +21,11 @@ export async function cadastroAdmin(email, senha, nome, cpf, nascimento, telefon
 
 
 export async function loginAdm(email, senha) {
-    console.log(email, senha)
-    const resposta = api.get('/login/adm', {
+    
+    const r = await api.post('/login/adm', {
         email: email,
         senha: senha
     })
-
-    return resposta.data;
+    return r.data;
+    
 }

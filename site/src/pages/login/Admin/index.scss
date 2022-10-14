@@ -1,0 +1,88 @@
+
+
+.pagADMlog{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: linear-gradient(180deg, #CFA7CA 2.08%, #9C75C8 80.21%);
+    height: 100vh;
+    position: relative;
+
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        width: 385px;
+        align-items: center;
+        background-color: white;
+        padding: 57px;
+        box-shadow: 0px 0px 7.31527px rgba(85, 79, 90, 0.47);
+        border-radius: 32.9187px;
+        z-index: 1;
+        font-family: mulish;
+
+        div{
+            padding: 10px;
+        }
+
+        label{
+            font-weight: bolder;
+        }
+
+        button{
+            margin-top: 20px;
+            border: none;
+            background-color: white;
+            outline: none;
+        }
+    }
+
+
+    .botaozin{
+        background-color: white;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 20px;
+        position: absolute;
+        top: 1em;
+        right: 2em;
+        z-index: 2;
+    }
+
+    .logoNat{
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 200px;
+    }
+
+    .img{
+        position: absolute;
+        top:50%;
+        left:0%;
+        z-index:0;
+    }
+    .img2{
+        position: absolute;
+        right: 2%;
+        top:10%;
+        z-index:0;
+    }
+
+    .credenciais{
+        display: flex;
+        flex-direction: column;
+
+        input{
+            width: 23em;
+            background-color: #DEDEDE;
+            border-radius: 18.5px;
+            padding: 12px;
+            font-size: 15px;
+            border-style: none;
+            outline: none;
+
+        }
+    }
+
+}
