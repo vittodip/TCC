@@ -13,7 +13,7 @@ export default function Perfil(props) {
         navigate('/login/paciente')
     }  
     function sairClickVoluntario () {
-        Storage.remove('usuario-logado');
+        Storage.remove('voluntario-logado');
         navigate('/login/voluntario')
     }
 

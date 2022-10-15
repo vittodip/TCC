@@ -18,22 +18,29 @@ export default function AlterarInfos(props) {
     const [email, setEmail] = useState('')
     const [telefone, setTelefone] = useState('')
 
-    const id = Storage('usuario-logado').id;
+    
 
+    
     
 
     async function carregarInfoUsuario() {
-        const r = await carregarUsuario(id)
-        setNome(r.nome)
-        setEmail(r.email)
-        setTelefone(r.telefone)
+        if(Storage('usuario-logado')) {
+            const idUser = Storage('usuario-logado').id;
+            const r = await carregarUsuario(idUser)
+            setNome(r.nome)
+            setEmail(r.email)
+            setTelefone(r.telefone)
+        }    
     }
 
     async function carregarInfoPsicologo() {
-        const r = await carregarVoluntario(id)
-        setNome(r.nome)
-        setEmail(r.email)
-        setTelefone(r.telefone)
+        if(Storage('voluntario-logado')) {
+            const idPsic = Storage('voluntario-logado').id;
+            const r = await carregarVoluntario(idPsic)
+            setNome(r.nome)
+            setEmail(r.email)
+            setTelefone(r.telefone)
+        } 
     }
 
     useEffect(() =>{
@@ -47,8 +54,12 @@ export default function AlterarInfos(props) {
 
     async function salvarInfoUsuario() {
         try {
-            await alterarUsuario(id, nome, email, telefone)
-            toast.success('Informações alteradas com sucesso.')
+            if(Storage('usuario-logado')) {
+                const idUser = Storage('usuario-logado').id;
+                
+                await alterarUsuario(idUser, nome, email, telefone)
+                toast.success('Informações alteradas com sucesso.')
+            }
         } catch (err) {
             if (err.response)
                 toast.error(err.response.data.erro);
@@ -60,8 +71,12 @@ export default function AlterarInfos(props) {
 
     async function salvarInfoPsic() {
         try {
-            await alterarVoluntario(id, nome, email, telefone)
-            toast.success('Informações alteradas com sucesso.')
+            if(Storage('voluntario-logado')) {
+                const idPsic = Storage('voluntario-logado').id;
+                
+                await alterarUsuario(idPsic, nome, email, telefone)
+                toast.success('Informações alteradas com sucesso.')
+            }
         } catch (err) {
             if (err.response)
                 toast.error(err.response.data.erro);

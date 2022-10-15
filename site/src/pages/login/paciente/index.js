@@ -21,7 +21,7 @@ export default function LoginPaciente(){
     const navigate = useNavigate();
     const ref = useRef();
 
-    const localidinfo = localStorage.getItem("id");
+    const localidinfo = localStorage.getItem("id-usuario");
 
     useEffect(() => {
         if(Storage('usuario-logado')) {

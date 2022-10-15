@@ -23,7 +23,7 @@ export default function LoginADM(){
     const idadmin = localStorage.getItem("id");
 
     useEffect(() => {
-        if(Storage('usuario-logado')) {
+        if(Storage('admin-logado')) {
           navigate(`/admin`);
         }
       }, [])
@@ -36,7 +36,7 @@ export default function LoginADM(){
             const r = await loginAdm(email, senha);
             console.log(r)
             const id = r.id;
-            Storage('usuario-logado', r);
+            Storage('admin-logado', r);
             localStorage.setItem("id", id)
             setTimeout(() => {
                 navigate(`/admin`);

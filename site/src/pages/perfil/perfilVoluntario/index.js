@@ -19,7 +19,7 @@ export default function PerfilVoluntario() {
   
 
   async function carregarPsicologo() {
-    const idPsic = Storage('usuario-logado').id
+    const idPsic = Storage('voluntario-logado').id
     const resposta = await carregarVoluntario(idPsic);
 
     setVoluntario(resposta);
@@ -27,7 +27,7 @@ export default function PerfilVoluntario() {
 
 
   async function carregarSolicitacoesAceitas() {
-    const idPsic = Storage('usuario-logado').id
+    const idPsic = Storage('voluntario-logado').id
     const resp = await solicitacaoPsicologo(idPsic);
     setSolicitacaoPsi(resp);
 

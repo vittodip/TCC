@@ -22,8 +22,8 @@ export default function LoginDoVoluntario(){
     const localidinfo = localStorage.getItem("id");
 
     useEffect(() => {
-        if(Storage('usuario-logado')) {
-          navigate(`/perfil/voluntario/${localidinfo}`);
+        if(Storage('voluntario-logado')) {
+          navigate(`/perfil/voluntario`);
         }
       }, [])
 
@@ -36,7 +36,7 @@ export default function LoginDoVoluntario(){
         try {
           const r = await loginVoluntario(email, senha);
           const id = r.id;
-          Storage('usuario-logado', r);
+          Storage('voluntario-logado', r);
           localStorage.setItem("id", id)
           setTimeout(() => {
             navigate(`/perfil/voluntario/`);
