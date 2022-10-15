@@ -24,7 +24,7 @@ export default function SolicitacoesPsic() {
       
         try{
             const idSoli = idSolicitacao
-            const idPsic = Storage('usuario-logado').id
+            const idPsic = Storage('voluntario-logado').id
 
             const r = await aceitarSolicitacao(idPsic, idSoli)
             
