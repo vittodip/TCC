@@ -34,3 +34,16 @@ export async function carregarAdmin(id) {
     const resposta = await api.get(`/admin/${id}`);
     return resposta.data;
 }
+
+export async function PsicologosParaAprovar(){
+    const resposta = await api.get('/admin/voluntario');
+    return resposta.data;
+
+}
+
+export async function aprovarPsicologo(idPsico) {
+    const resposta = await api.put(`/solicitacao`, {
+        idPsicologo: idPsico
+    });
+    return resposta.data;
+}

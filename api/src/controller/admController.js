@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -57,6 +57,41 @@ server.post('/cadastro/admin', async (req, resp) => {
     }
 })
 
+
+// aceitar psicólogo
+
+server.put('/admin/aprovacao', async (req, resp) => {
+    try {
+        const id = req.body;
+
+
+        const resposta = await aprovarPsicologo(id);
+        
+        if(!resposta) {
+            throw new Error('Não foi possivel aprovar este voluntário!')
+        }
+
+        resp.status(202).send(resposta.affectedRows);
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+// mostrar psicólogos a serem aprovados
+
+server.get('/admin/voluntario', async (req, resp) => {
+    try {
+        const resposta = await PsicologosParaAprovar() 
+        resp.send(resposta)
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 server.get('/admin/:id', async (req, resp) => {

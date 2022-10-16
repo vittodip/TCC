@@ -69,3 +69,25 @@ inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_psicologo.id_usuari
 
 }
 
+export async function PsicologosParaAprovar() {
+    const comando = `select nm_psicologo 	    nome,
+                            ds_email 		    email,
+                            nr_telefone 		telefone,
+                            dt_nascimento	    DataDeNascimento,
+                            ds_cpf 			    cpf,
+                            ds_crp			    crp
+                       from tb_psicologo
+                      where ds_situacao         is null`
+    const [resposta] = await con.query(comando);
+    return resposta;
+}
+
+export async function aprovarPsicologo(id) {
+    const comando = `update tb_psicologo
+                        set ds_situacao  = true
+                      where id_psicologo = ?;`
+                
+    const [resposta] = await con.query(comando, [id.idPsicologo]);
+    return resposta.affectedRows;
+}
+

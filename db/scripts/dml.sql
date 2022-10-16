@@ -14,7 +14,7 @@ where ds_email = 'email.adm123@gmail.com'
 
 -- CADASTRO PSICOLOGO
 insert into tb_psicologo (ds_email, ds_senha, nm_psicologo, ds_cpf, dt_nascimento, nr_telefone, ds_vagas, ds_situacao, ds_crp)
-	   values('email.psi1234@gmail.com', '1234', 'Amanda Fitas','123.456.789-02', '1996-07-19', '(11)912345678', null, null, 'xx/321/123');
+	   values('email@psi', '1234', 'Jen','123.456.789-02', '1996-07-19', '(11)912345678', null, null, 'xx/321/123');
 
 -- COLOCAR IMAGEM PSICOLOGO
 update tb_psicologo
@@ -45,9 +45,9 @@ select nm_adm 	 nome,
        ds_cpf        cpf,
        date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
   from tb_adm
-where id_adm = 1;
-
-
+where id_adm = 1;  
+  
+  
 -- INFO PERFIL USUARIO
 select nm_usuario 	 nome,
 	   ds_email      email,
@@ -63,10 +63,32 @@ select nm_psicologo 	nome,
        nr_telefone 		telefone,
        ds_cpf 			cpf,
        ds_crp			crp,
-       ds_vagas 		vagas,
-       dt_nascimento	DataDeNascimento
+       dt_nascimento	DataDeNascimento,
+       ds_vagas 		vagas
   from tb_psicologo
  where id_psicologo = 1;
+
+select * from tb_psicologo;
+
+-- ACEITAR PSICÓLOGO
+
+update tb_psicologo
+   set ds_situacao = true
+ where id_psicologo = 4;  
+
+-- LISTAR PSICÓLOGOS A SEREM APROVADOS
+
+select nm_psicologo 	nome,
+	   ds_email 		email,
+       nr_telefone 		telefone,
+       dt_nascimento	DataDeNascimento,
+       ds_cpf 			cpf,
+       ds_crp			crp,
+       ds_situacao      situação
+ from tb_psicologo
+where ds_situacao  is null;
+        
+	   
 
 -- EDITAR PERFIL USUARIO
 update tb_usuario
@@ -77,9 +99,8 @@ update tb_usuario
  
   
 -- ENVIAR SOLICITACAO  
-insert into tb_solicitacao (id_usuario, id_psicologo, ds_solicitacao, ds_situacao, dt_situacao)
-	 values (1, nullif( '1', ds_situacao = 1), 'Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.
-			 ',false , sysdate());
+insert into tb_solicitacao (id_usuario, ds_solicitacao, ds_situacao, dt_situacao)
+                    values (1, 'site de broxakkkkk' , false, sysdate());
              
 -- MOSTRAR SOLICITACAO             
 select id_solicitacao solicitacao,
@@ -104,6 +125,8 @@ select id_solicitacao 	solicitacao,
    and ds_situacao     = true;
 
 select * from tb_solicitacao;
+
+
 
 
 -- aceitar solicitação
@@ -146,17 +169,19 @@ update tb_psicologo
  where id_psicologo = 1;
 
 -- DENUNCIAR USUÁRIO (SOLICITAÇÃO)
-insert tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia, id_solicitacao)
- value(1, 1, 'denuncia blabalbal', 3);
+insert tb_denuncia_usuario(id_usuario, id_psicologo, id_solicitacao)
+ value(1, 1, 16);
 
 
 -- LISTAR DENUNCIA USUÁRIO - ADMINISTRADOR
-select id_denuncia denuncia,
-	   nm_usuario  nome,
-	   ds_email    email,
-       ds_denuncia depoimento
+select id_denuncia     denuncia,
+	   nm_usuario      nome,
+	   ds_email        email,
+       ds_solicitacao  solicitação
   from tb_denuncia_usuario
-inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario;
+
+inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario
+inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario.id_solicitacao;
 
 
 -- ACEITAR DENÚNCIA - DELETAR USUÁRIO
