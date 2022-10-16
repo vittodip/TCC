@@ -8,6 +8,7 @@ import Storage from 'local-storage'
 import './index.scss'
 import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
+import { useNavigate } from "react-router-dom";
 
 
 export default function PerfilVoluntario() {
@@ -34,11 +35,14 @@ export default function PerfilVoluntario() {
   }
 
 
-
+  const navigate = useNavigate();
 
 
   useEffect(() => {
     carregarPsicologo();
+    if(!Storage('voluntario-logado')) {
+      navigate('/login/voluntario')
+    }
     carregarSolicitacoesAceitas();
   }, []);
 

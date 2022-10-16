@@ -2,6 +2,7 @@ import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
 import Storage  from 'local-storage';
+import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
 import { ToastContainer, toast } from "react-toastify";
@@ -78,10 +79,13 @@ function excluirSolicitacao(id) {
   })
   }
 
-  
+    const navigate = useNavigate();
 
   useEffect(() => {
     carregarUser();
+    if(!Storage('usuario-logado')) {
+      navigate('/login/paciente')
+    }
     carregarTodasSolicitacoes();
   }, []);
 
