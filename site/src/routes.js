@@ -13,6 +13,7 @@ import LoginDoADM from './pages/login/Admin/index.js';
 import SolicitacoesPsic from './pages/solicitacoes/index.js';
 import PoliticaPrivacidade from './pages/termos/index.js';
 import Home from './pages/adm/home/index.js';
+import CadastrosPendentes from './pages/adm/cadastros/index.js';
 
 
 
@@ -38,8 +39,10 @@ export default function Rotas() {
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
                 {/* Termos */}
                 <Route path='/politica-privacidade' element={ <PoliticaPrivacidade />} />
-                {/* !!!Home Teste!!! */}
+                {/* Admin */}
                 <Route path='/admin' element={<Home />} />
+                <Route path='/admin/cadastros' element={<CadastrosPendentes />} />
+
 
                 
             </Routes>
