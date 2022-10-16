@@ -79,6 +79,19 @@ select id_solicitacao solicitacao,
 from tb_solicitacao
 where id_solicitacao = 11;
 
+select id_solicitacao 	solicitacao,
+	   nm_usuario 	  	usuario,
+       nr_telefone      telefone,
+       date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento,
+       id_psicologo   	psicologo,
+       ds_solicitacao 	texto,
+       ds_situacao		situacao,	
+       date_format(dt_situacao, '%d/%m/%Y %H:%i') as horario
+  from tb_solicitacao 
+ inner join tb_usuario on tb_usuario.id_usuario = tb_solicitacao.id_usuario
+ where id_psicologo  = 1
+   and ds_situacao     = true;
+
 select * from tb_solicitacao;
 
 
@@ -120,3 +133,69 @@ select * from tb_solicitacao_categoria;
 update tb_psicologo
    set ds_situacao = true
  where id_psicologo = 1;
+
+-- DENUNCIAR USUÁRIO (SOLICITAÇÃO)
+insert tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia, id_solicitacao)
+ value(1, 1, 'denuncia blabalbal', 3);
+
+
+-- LISTAR DENUNCIA USUÁRIO - ADMINISTRADOR
+select id_denuncia denuncia,
+	   nm_usuario  nome,
+	   ds_email    email,
+       ds_denuncia depoimento
+  from tb_denuncia_usuario
+inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario;
+
+
+-- ACEITAR DENÚNCIA - DELETAR USUÁRIO
+
+delete 
+  from tb_usuario 
+ where id_usuario = 1;
+
+delete 
+  from tb_denuncia_usuario
+ where id_usuario = 1;
+
+-- RECUSAR DENÚNCIA	  
+
+delete 
+  from tb_denuncia_usuario
+ where id_denuncia = 1;
+      
+-- DENUNCIAR PSICÓLOGO 
+insert tb_denuncia_psicologo(id_usuario, id_psicologo, ds_denuncia)
+ value(1, 1, 'xingou minha família');
+
+-- LISTAR DENUNCIA PSICÓLOGO - ADMINISTRADOR
+select   id_denuncia               denuncia,
+         tb_psicologo.nm_psicologo nomepsi,
+		 tb_psicologo.ds_email     emailpsicologo,
+		 tb_usuario.nm_usuario     nome,
+	     tb_usuario.ds_email       email,
+         ds_denuncia               depoimento
+  from   tb_denuncia_psicologo
+inner join tb_psicologo on tb_psicologo.id_psicologo = tb_denuncia_psicologo.id_psicologo
+inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_psicologo.id_usuario;
+
+select * from tb_denuncia_psicologo;
+
+-- ACEITAR DENÚNCIA - DELETAR PSICÓLOGO
+
+delete 
+  from tb_psicologo 
+ where id_psicologo = 1;
+
+delete 
+  from tb_denuncia_psicologo
+ where id_psicologo = 1;
+
+-- RECUSAR DENÚNCIA	- psicólogo  
+
+delete 
+  from tb_denuncia_psicologo
+ where id_denuncia = 1;
+
+
+

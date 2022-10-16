@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -56,5 +56,31 @@ server.post('/cadastro/admin', async (req, resp) => {
         })
     }
 })
+
+
+server.get('/denuncia/usuario', async (req, resp) => {
+    try {
+        const resposta = await listarDenunciasUsuario();
+        resp.send(resposta);
+    }
+    catch(err) {
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/denuncia/psicologo', async (req, resp) => {
+    try {
+        const resposta = await listarDenunciasPsicologo();
+        resp.send(resposta);
+    }
+    catch(err) {
+        resp.status(401).send({
+            erro: err.message
+        })
+    }
+})
+
 
 export default server;

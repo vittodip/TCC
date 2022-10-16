@@ -133,4 +133,6 @@ server.delete('/usuario/:id', async (req, resp) => {
 })
 
 
+
+
 export default server;
