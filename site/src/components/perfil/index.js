@@ -35,6 +35,7 @@ export default function Perfil(props) {
                     {props.perfil === 'usuario' && 
                         <button>Conversas</button>
                     }
+                    
                     {props.perfil === 'voluntario' &&
                         <button onClick={paginaSolicitacoes}>Solicitações</button>
                     }

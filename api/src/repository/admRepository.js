@@ -73,7 +73,7 @@ export async function PsicologosParaAprovar() {
     const comando = `select nm_psicologo 	    nome,
                             ds_email 		    email,
                             nr_telefone 		telefone,
-                            dt_nascimento	    DataDeNascimento,
+                            date_format(dt_nascimento, '%d/%m/%Y %H:%i') as data,
                             ds_cpf 			    cpf,
                             ds_crp			    crp
                        from tb_psicologo
