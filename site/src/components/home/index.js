@@ -2,7 +2,7 @@
 
 import './index.scss'
 
-export default function Index(props) {
+export default function Menu(props) {
 
    
 
@@ -42,17 +42,14 @@ export default function Index(props) {
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Psicólogos cadastrados" />
                         <div>Psicólogos cadastrados</div>
                     </div>
-                    <div>
+                    <div className={verificarMenuSelecionado('Pacientes cadastrados')}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Pacientes cadastrados" />
                         <div>Pacientes cadastrados</div>
                     </div>
-                </div>
-            </div>
-
-            <div >
-                <div className='menu-sair'>
-                    <img  src="/assets/images/Logout.png" alt="Sair" />
-                    <div>Sair</div>
+                    <div className='menu-sair'>
+                        <img className="img-sair" src="/assets/images/Logout.png" alt="Sair" />
+                        <span>Sair</span>
+                    </div>
                 </div>
             </div>
         </nav>

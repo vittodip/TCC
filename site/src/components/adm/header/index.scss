@@ -1,0 +1,35 @@
+.Header-admin{
+    padding: 0.5em 1em 0.5em 0.5em;
+    background-color: #F0F0F0;
+
+    .section-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #F0F0F0;
+        width: 100%;
+
+        p{
+            font-size: 16px;
+            font-weight: 600;
+        }
+    
+        
+        .header-circulo{
+            width: 1.5em;
+            height: 1.5em;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            border-radius: 50%;
+            background-color: #79458B;
+    
+            h3{
+                color: #ffff;
+                margin: 0px;
+            }
+        }
+    }
+}
