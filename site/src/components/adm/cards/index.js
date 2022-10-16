@@ -15,8 +15,8 @@ export default function CardsAdmin(props) {
     <div>
         {props.tipo === "A ser aprovado" && (
            
-
-          <div className="section-cad-container">
+            //"section-cad-container"
+          <div className={props.css}>
             <div className="container-colunas">
               <div className="colunas-alinhamento">
                 <label>Nome</label>

@@ -27,7 +27,7 @@ export default function CadastrosPendentes() {
         <HeaderAdmin />
         {voluntario.map(item =>
         <div className="section-cadastros">
-            <CardsAdmin tipo='A ser aprovado' nome={item.nome}
+            <CardsAdmin css="section-cad-container" tipo='A ser aprovado' nome={item.nome}
             telefone={item.telefone} cpf={item.cpf} email={item.email} data={item.data} crp={item.crp}/>
             
         </div>
