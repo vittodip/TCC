@@ -24,6 +24,21 @@ export async function cadastroAdm(admin) {
     return admin;
 }
 
+export async function carregarAdmin(id) {
+    
+    const comando = `select nm_adm 	      nome,
+                            ds_email      email,
+                            nr_telefone   telefone,
+                            ds_cpf        cpf,
+    date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
+                       from tb_adm
+                      where id_adm = ? `
+
+    const [linhas] = await con.query(comando, id);
+    return linhas[0]
+}
+
+
 export async function listarDenunciasUsuario() {
     const comando = `select id_denuncia     denuncia,
                             nm_usuario      nome,

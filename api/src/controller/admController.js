@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -56,6 +56,23 @@ server.post('/cadastro/admin', async (req, resp) => {
         })
     }
 })
+
+
+
+server.get('/admin/:id', async (req, resp) => {
+    try {
+        const admin = Number(req.params.id);
+        const resposta = await carregarAdmin(admin);
+
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
 
 
 server.get('/denuncia/usuario', async (req, resp) => {

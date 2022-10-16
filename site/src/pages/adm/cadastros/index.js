@@ -14,11 +14,7 @@ export default function CadastrosPendentes() {
         <HeaderAdmin />
         <div className="section-cadastros">
             <CardsAdmin tipo='A ser aprovado' />
-            <CardsAdmin tipo='A ser aprovado' />
-            <CardsAdmin tipo='A ser aprovado' />
-            <CardsAdmin tipo='A ser aprovado' />
-            <CardsAdmin tipo='A ser aprovado' />
-            <CardsAdmin tipo='A ser aprovado' />
+            
         </div>
       </section>
     </main>

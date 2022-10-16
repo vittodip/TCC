@@ -29,3 +29,8 @@ export async function loginAdm(email, senha) {
     return r.data;
     
 }
+
+export async function carregarAdmin(id) {
+    const resposta = await api.get(`/admin/${id}`);
+    return resposta.data;
+}

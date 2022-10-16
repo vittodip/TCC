@@ -37,6 +37,17 @@ select *
 where ds_email = 'email.user1234@gmail.com'
   AND ds_senha = '1234';
   
+-- INFO PERFIL ADM
+
+select nm_adm 	 nome,
+	   ds_email      email,
+       nr_telefone   telefone,
+       ds_cpf        cpf,
+       date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
+  from tb_adm
+where id_adm = 1;
+
+
 -- INFO PERFIL USUARIO
 select nm_usuario 	 nome,
 	   ds_email      email,
