@@ -19,7 +19,7 @@ export async function cadastroUsuario (user) {
                                         values(?, ?, ?, ?, ?, ?)`
 
 
-    const [resposta] = await con.query(comando, [user.email, user.senha, user.nome, user.cpf, user.nascimento, user.telefone]);
+    const [resposta] = await con.query(comando, [user.email.trim(), user.senha.trim(), user.nome.trim(), user.cpf.trim(), user.nascimento, user.telefone.trim()]);
     user.id = resposta.insertId;
 
     return user;
@@ -33,15 +33,45 @@ export async function carregarUsuario(id) {
             ds_email             email,
             nr_telefone          telefone,
             ds_cpf               cpf,
-            dt_nascimento        DataDeNascimento
+            date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
     from tb_usuario
     where id_usuario = ?`
 
     const [linhas] = await con.query(comando, id);
-    console.log(linhas);
-
     return linhas[0]
 }
 
 
+export async function alterarUsuario (user, id) {
+    const comando = `update tb_usuario
+                            set nm_usuario      =  ?,
+                                ds_email        =  ?,
+                                nr_telefone     =  ?
+                            where id_usuario    =  ?`
+
+
+    const [resposta] = await con.query(comando, [user.nome.trim(), user.email.trim(), user.telefone.trim(), id]);
+    return resposta[0];
+    
+}
+
+
+
+export async function deletarUsuario(id) {
+    const comando = `delete from tb_usuario
+                        where id_usuario = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
+
+export async function denunciarPsicologo(denunciaPsi) {
+    const comando = `insert tb_denuncia_psicologo(id_usuario, id_psicologo, ds_denuncia)
+                                            value(?, ?, ?)`
+    const [resposta] = await con.query(comando, [denunciaPsi.paciente.trim(), denunciaPsi.voluntario.trim(), denunciaPsi.depoimento.trim()]);
+    denunciaPsi.id = resposta.insertId;
+    
+    return denunciaPsi;
+    ;
+}
 

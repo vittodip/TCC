@@ -1,8 +1,11 @@
-import { loginVoluntario, cadastroVoluntario } from "../repository/voluntarioRepository.js";
 
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem } from "../repository/voluntarioRepository.js";
+
+import multer from 'multer'
 import { Router } from "express";
 
 const server = Router();
+const upload = multer({ dest: 'storage/fotosVoluntarios' })
 
 server.post('/login/voluntario', async (req, resp) => {
     try {
@@ -13,10 +16,13 @@ server.post('/login/voluntario', async (req, resp) => {
         if(!resposta)
             throw new Error('Credenciais inválidas!')
 
+        if(resposta.situacao === null)
+            throw new Error('Cadastro em análise!')
+
         resp.send(resposta);
         
     } catch (err) {
-        resp.status(404).send({
+        resp.status(401).send({
             erro: err.message
         })
     }
@@ -27,7 +33,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     try {
         const volunt = req.body;
 
-        if(!volunt.email.trim()) {
+        if(!volunt.email) {
             throw new Error('Insira um email!')
         }
         if(!volunt.senha) {
@@ -48,7 +54,7 @@ server.post('/cadastro/voluntario', async (req, resp) => {
         if(!volunt.telefone) {
             throw new Error('Insira um telefone!')
         }
-        if(!volunt.vagas_disponivel) {
+        if(!volunt.vagas) {
             throw new Error('Insira a quantidade de vagas que você poderá atender!')
         }
         if(!volunt.crp) {
@@ -60,6 +66,78 @@ server.post('/cadastro/voluntario', async (req, resp) => {
 
     } catch (err) {
         resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.get('/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntario = Number(req.params.id);
+
+        const resposta = await carregarVoluntario(voluntario);
+        resp.send(resposta);
+    }
+    catch(err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }})
+
+
+    
+server.put('/alterar/voluntario/:id', async (req, resp) => {
+    try {
+        const voluntarioId = req.params.id;
+        const volunt = req.body;
+
+        const voluntario = await carregarVoluntario(voluntarioId);
+
+        
+        if(volunt.nome === voluntario.nome) {
+            throw new Error('Insira um nome diferente do anterior!')
+        }
+        if(volunt.email == voluntario.email) {
+            throw new Error('Insira um email diferente do anterios!')
+        }
+        if(volunt.telefone === voluntario.telefone) {
+            throw new Error('Insira um telefone diferente do anterior!')
+        }
+        if(!volunt.email.trim()) {
+            throw new Error('Insira um email!')
+        }
+        if(!volunt.nome.trim()) {
+            throw new Error('Insira um nome!')
+        }
+        if(!volunt.telefone) {
+            throw new Error('Insira um telefone!')
+        }
+
+        
+        const r = await alterarVoluntario(volunt, voluntarioId);
+        resp.send(r);
+
+    } catch (err) {
+
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/voluntario/:id/foto', upload.single('Foto') ,async (req, resp) => {
+    try {
+        const { id } = req.params;
+        const imagem = req.file.path;
+
+        const resposta = await alterarImagem(imagem,id);
+        if(resposta != 1 )
+            throw new Error('A imagem não pode ser inserida')
+
+        resp.status(204).send();
+    } catch (err) {
+        resp.status(400).send({
             erro: err.message
         })
     }

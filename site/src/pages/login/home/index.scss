@@ -1,0 +1,103 @@
+.home-login{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    font-family: "Mulish";
+
+    .secao1{
+        width: 70%;
+        height: 100vh;
+
+        background-image: linear-gradient(#CFA7CA, #A791C0);
+        position: relative; 
+
+        .mocas-tocaq {
+            
+            position: absolute;
+            left: 2em;
+            top: 2em;
+        }
+
+        .moca-nuvem {
+            position: absolute;
+            left: 32em;
+            top: 13em;
+        }
+
+        .moco-nuvem {
+            position: absolute;
+            left: 4em;
+            bottom: 9em;
+        }
+    } 
+    
+    .botao-entrar{
+        margin-top:1.4em ;
+        background: #AB99BA;
+        border-radius: 13px;
+        display: flex;
+        padding: 0.8em;
+        outline: none;
+        border: none;
+        
+    }
+
+    .secao2{
+        width: 30%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .s2-logo{
+            width: 15em;
+        }
+        .s2-texto-logo{
+            position: relative;
+            bottom: 2.5em;
+            color: #3A1248;
+            font-weight: 600;
+        }
+
+        .opcoes{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 1em;
+            gap: 3em;
+            
+
+        .s2-opcoes{
+            display: flex;
+            flex-direction: column;
+            
+            button {
+                background: #DEDEDE;
+                border-radius: 73px;
+                border: none;
+                padding: 10px;
+                font-size: 17px;
+            }
+
+        }
+            p{
+                align-self: flex-end;
+                color: #3A1248;
+                font-size: 14px;
+            }
+        }
+        .s2-alinhamento-opcoes{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2em;
+
+            .a  {
+                color:#3A1248 ;
+                text-decoration: underline;
+            }
+        }
+    }
+}

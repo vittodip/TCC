@@ -1,11 +1,11 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
 
 const server = Router();
 
-server.get('/login/usuario', async (req, resp) => {
+server.post('/login/usuario', async (req, resp) => {
     try {
         const { email, senha } = req.body;
 
@@ -15,6 +15,7 @@ server.get('/login/usuario', async (req, resp) => {
             throw new Error('Credenciais inválidas!')
 
         resp.send(resposta);
+
         
     } catch (err) {
         resp.status(401).send({
@@ -27,16 +28,16 @@ server.post('/cadastro/usuario', async (req, resp) => {
     try {
         const user = req.body;
         
-        if(!user.email.trim()) {
+        if(!user.email) {
             throw new Error('Insira um email!')
         }
         if(!user.senha) {
             throw new Error('Insira uma senha!')
         }
-        if(!user.nome.trim()) {
+        if(!user.nome) {
             throw new Error('Insira um nome!')
         }
-        if(!user.cpf.trim()) {
+        if(!user.cpf) {
             throw new Error('Insira um cpf!')
         }
         if(!user.nascimento) {
@@ -77,6 +78,58 @@ server.get('/usuario/:id', async (req, resp) => {
         })
     }
 })
+
+
+server.put('/alterar/usuario/:id', async (req, resp) => {
+    try {
+        const usuarioId = req.params.id;
+        const user = req.body;
+        const usuario = await carregarUsuario(usuarioId);
+        
+    
+        if(!user.email) {
+            throw new Error('Insira um e-mail!')
+        }
+        if(!user.nome) { 
+            throw new Error('Insira um nome!')
+        }
+        if(!user.telefone) {
+            throw new Error('Insira um telefone!')
+        }
+        
+        const resposta = await alterarUsuario(user, usuarioId);
+        
+        resp.send(resposta)
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.delete('/usuario/:id', async (req, resp) => {
+    try {
+        const usuario = Number(req.params.id);
+
+        const resposta = await deletarUsuario(usuario);
+
+        if (resposta != 1) {
+            throw new Error('Não foi possivel remover este Usuario!')
+        }
+
+        resp.status(202).send();
+
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
 
 
 export default server;

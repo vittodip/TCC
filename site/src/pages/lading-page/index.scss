@@ -15,11 +15,11 @@
         display: flex;
         justify-content: space-between;
 
-        margin: 20px 4em;
+        margin: 2% 1%;
     }
 
     .logo-img {
-        width: 13em;
+        width: 18%;
     }
 
     .usuario {
@@ -92,18 +92,21 @@
     .bola-cinza {
         z-index: -1;
         position: absolute;
+        width: 40%;
+        max-width: 1400px;
 
         left: 0px;
-        top: 34em;
+        top: -8em;
     }
 
     .bola-roxa {
         z-index: -1;
         position: absolute;
         width: 100%;
+        max-width: 1400px;
 
 
-        top: 62.5em;
+        top: 20em;
 
     }
 
@@ -111,10 +114,11 @@
         z-index: 0;
         position: absolute;
 
-        width: 18em;
+        width: 22.5%;
+        max-width: 500px;
 
-        top: 45.5em;
-        left: 57em;
+        top: 3.5em;
+        left: 73%;
     }
 
     .faixa-2 {
@@ -124,6 +128,8 @@
         display: inline-block;
 
         height: 700px;
+
+        position: relative;
     }
 
     .faixa-2-textos {

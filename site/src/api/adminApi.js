@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_URL } from './config.js'
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: API_URL
 })
 
 export async function cadastroAdmin(email, senha, nome, cpf, nascimento, telefone) {
@@ -19,11 +20,30 @@ export async function cadastroAdmin(email, senha, nome, cpf, nascimento, telefon
 
 
 
-export async function loginAdmin(email, senha) {
-    const resposta = api.post('/login/adm', {
+export async function loginAdm(email, senha) {
+    
+    const r = await api.post('/login/adm', {
         email: email,
         senha: senha
     })
+    return r.data;
+    
+}
 
+export async function carregarAdmin(id) {
+    const resposta = await api.get(`/admin/${id}`);
+    return resposta.data;
+}
+
+export async function PsicologosParaAprovar(){
+    const resposta = await api.get('/admin/voluntario');
+    return resposta.data;
+
+}
+
+export async function aprovarPsicologo(idPsico) {
+    const resposta = await api.put(`/solicitacao`, {
+        idPsicologo: idPsico
+    });
     return resposta.data;
 }

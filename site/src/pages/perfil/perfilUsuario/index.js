@@ -1,101 +1,196 @@
+import Perfil from "../../../components/perfil";
 
-import Perfil from "../../../components/perfil"
+import { useEffect, useState } from "react";
+import Storage  from 'local-storage';
+import { useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react"
-import { useParams } from 'react-router-dom'
+import "./index.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-import './index.scss'
-
-
+import AlterarInfos from "../../../components/editar-infos";
+import Modal from 'react-modal'
 import { carregarUsuario } from "../../../api/usuarioApi.js";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
+
 
 export default function PerfilUsuario() {
-    const [usuario, setUsuario] = useState([]);
+  const [usuario, setUsuario] = useState([]);
+  const [solicitacao, setSolicitacao] = useState([]);
+  const [novoAssunto, setNovoAssunto] = useState("");
+  const [assunto, setAssunto] = useState("");
+  const [modalIsOpen, setIsOpen] = useState(false);
+ 
+
+  async function carregarUser() {
+    const idUser = Storage('usuario-logado').id
+    const resposta = await carregarUsuario(idUser);
+    setUsuario(resposta);
+  }
+
+  async function carregarTodasSolicitacoes(){
+    const idUser = Storage('usuario-logado').id
+    const resp = await listarSolicitacao(idUser)
+    setSolicitacao(resp)
+  }
+
+  async function cadastrarSolicitacao() {
+    try {
+      const idUser = Storage('usuario-logado').id
+
+      const resp = await inserirSolicitacao(idUser , assunto);
+      carregarTodasSolicitacoes();
+      
+      toast("Solicitação feita com sucesso");
+      
+    } catch (err) {
+      toast(err.response.data.erro);
+    }
+  }
+
+  async function mudarSolicitacao(id) {
     
-    const { usuarioParam } = useParams();
+    const r = await alterarSolicitacao(id)
+    setNovoAssunto(assunto);
+    carregarTodasSolicitacoes();
+  }
 
-    useEffect(() => {
-        carregarUser(); 
-    }, []);
+
+function excluirSolicitacao(id) {
+    confirmAlert({
+      title:'Deletar solicitação',
+      message:`Tem certeza?`,
+      buttons:[
+          {
+              label:'Sim',
+              onClick: async () => {
+              const resposta = await deletarSolicitacao(id);
+              carregarTodasSolicitacoes();
+                toast.success('Solicitação deletada com sucesso')           
+              }
+              
+          },
+          {
+              label:'Não'
+          }
+      ]
+  })
+  }
+
+    const navigate = useNavigate();
+
+  useEffect(() => {
+    carregarUser();
+    if(!Storage('usuario-logado')) {
+      navigate('/login/paciente')
+    }
+    carregarTodasSolicitacoes();
+  }, []);
 
 
-    async function carregarUser() {
-        const resposta = await carregarUsuario(usuarioParam);
+  Modal.setAppElement('#root');
 
-    
-        setUsuario(resposta);
+    function openModal() {
+        setIsOpen(true);
     }
 
-    console.log(usuario);
-    return (
-        <main className='usuario-perfil'>
-            <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil='usuario' />
-            <div className='infos'>
-                <div className='card-infos-gerais'>
-                    <div className='card-titulo'>
-                        <h2>Informações Gerais</h2>
-                        <img src='/assets/images/Edit.png' />
-                    </div>
-                    <div>
-                        <h3>
-                            Nome
-                        </h3>
-                        <p>{usuario.nome}</p>
-                        <h3>
-                            E-mail
-                        </h3>
-                        <p>{usuario.email}</p>
-                        <h3>
-                            Telefone
-                        </h3>
-                        <p>{usuario.telefone}</p>
-                        <h3>
-                            CPF
-                        </h3>
-                        <p>{usuario.cpf}</p>
-                        <h3>
-                            Data de nascimento
-                        </h3>
-                        <p>{String(usuario.DataDeNascimento).substr(0,10)}</p>
+    function closeModal() {
+        setIsOpen(false);
+    }
 
-                    </div>
-                </div>
-            </div>
 
-            <div className='faixa-solicitar'>
-                <h2>Suas Solicitações</h2>
-                <div className='box-solicitacao'>
-                    <div className='top-solicitacao'>
-                        <p>Categorias:</p> <span>+</span>
-                    </div>
-                    <div className='text-solicitacao'>
-                        <textarea type='text' placeholder='Digite sua solicitação'></textarea>    
-                    </div>
-                </div>
-                <button>Enviar solicitação</button>
-            </div>
+    const customStyles = {
+        content: {
+            display:'flex',
+            justifyContent:'center',
+            alignItens:'center',
+            border:'none',
+            margin:'none',
+            backgroundColor:'#00000000',
+            
+        },
+        overlay: {
+            backgroundColor: '#000000ce'
+        }
+    };
 
-            <div className='faixa-solicitacoes'>
+  return (
+    <main className="usuario-perfil">
+      <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
+      <div className="infos">
+        <ToastContainer />
+        <div className="card-infos-gerais">
+          <div className="card-titulo">
+            <h2>Informações Gerais</h2>
+            <img src="/assets/images/Edit.png" onClick={openModal} />
+            <Modal 
+             
+                 isOpen={modalIsOpen}
+                 onRequestClose={closeModal}
+                 style={customStyles}>
+                  <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
+                 <AlterarInfos perfil='usuario'  />                        
+               
+            </Modal>
+          </div>
+          <div>
+            <h3>Nome</h3>
+            <p>{usuario.nome}</p>
+            <h3>E-mail</h3>
+            <p>{usuario.email}</p>
+            <h3>Telefone</h3>
+            <p>{usuario.telefone}</p>
+            <h3>CPF</h3>
+            <p>{usuario.cpf}</p>
+            <h3>Data de nascimento</h3>
+            <p>{String(usuario.DataDeNascimento).substr(0, 10)}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="faixa-solicitar">
+        <h2>Suas Solicitações</h2>
+        <div className="box-solicitacao">
+          <div className="top-solicitacao">
+            <p>Categorias:</p> <span>+</span>
+          </div>
+          <div className="text-solicitacao">
+            <textarea
+              onChange={(e) => setAssunto(e.target.value)}
+              type="text"
+              placeholder="Digite sua solicitação"
+            ></textarea>
+          </div>
+        </div>
+        <button onClick={cadastrarSolicitacao}>Enviar solicitação</button>
+      </div>
+
+      <div className='faixa-solicitacoes'>
+              {solicitacao.map (item =>  
                 <div className='box-solicitacao'>
                     <div className='top-solicitacao-2'>
-                        <p>20/09/2022 às 23:11 - Solicitação em aberto </p>
-                        <img src='/assets/images/black-edit.png'/>
-                        <img src='/assets/images/trash.png'/>
+                        <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
+                        <img onClick={() => mudarSolicitacao(item.solicitacao)} src='/assets/images/black-edit.png'/>
+                        <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
                     </div>
                     <div className='text-solicitacao'>
-                        <hr/>
-                        <p>Estudei, trabalhei, me sacrifiquei, mas acabei no fracasso. A vida de fato não tem a obrigação de ser justa e eu devo ser um azarado ou pode ser apenas o acaso. Nesse ponto da minha vida a unica certeza que tenho é que eu não sou minimamente feliz. Me sinto em uma prisão interna e externa da qual não consigo escapar. Tenho entrado em contato com coachs, todos dizem que eu devo seguir o caminho do qual eu me sinta feliz, e que por consequência, isso vai me trazer felicidade, entretanto, não consigo ver nenhum caminho que me faça feliz apesar de todo o esforço.</p>
-                        <hr/>
+                        <hr color="#DEDEDE"/>
+                        <p>{item.texto}</p>
+                        <hr color="#DEDEDE" />
 
                     </div>
                     <div className='categorias-solicitacao'>
                         <div><p>Categorias: Burnout, estresse, neurose</p></div>
-                        <div className='analise'><p>Em análise</p> <img src='/assets/images/eye.png'/></div>
+                        
                     </div>
                 </div>
-                
+                )}
             </div>
-        </main>
-    )
+
+
+      
+    </main>
+  );
 }

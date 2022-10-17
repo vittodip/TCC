@@ -8,10 +8,18 @@ export default function Perfil(props) {
 
     const navigate = useNavigate();
 
-    function sairClick () {
+    function sairClickUsuario () {
         Storage.remove('usuario-logado');
-        navigate('/login')
+        navigate('/login/paciente')
     }  
+    function sairClickVoluntario () {
+        Storage.remove('voluntario-logado');
+        navigate('/login/voluntario')
+    }
+
+    function paginaSolicitacoes () {
+        navigate('/solicitacoes')
+    }
 
     return (
 
@@ -24,16 +32,28 @@ export default function Perfil(props) {
                     {props.perfil === 'usuario' && 
                         <button>Denunciar</button>
                     }
-                    <button>Conversas</button>
-                    <button onClick={sairClick} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    {props.perfil === 'usuario' && 
+                        <button>Conversas</button>
+                    }
+                    
+                    {props.perfil === 'voluntario' &&
+                        <button onClick={paginaSolicitacoes}>Solicitações</button>
+                    }
+                     {props.perfil === 'usuario' &&
+                       <button onClick={sairClickUsuario} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    }
+                    {props.perfil === 'voluntario' &&
+                       <button onClick={sairClickVoluntario} > <img src='/assets/images/Logout (1).png'/> Sair</button>
+                    }
+                    
                 </div>
             
                 <div className='pic-user'> 
-                    <span>{props.inicial}</span> 
+                    <span>{String(props.inicial).substr(0,1)}</span> 
                 </div>
                 
             </div>
-            <h1 className='nome-usuario'>Sejam bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
+            <h1 className='nome-usuario'>Seja bem-vindo, {props.usuario}! <img src='/assets/images/Heart.png'/></h1>
         </main>
     )
 }
