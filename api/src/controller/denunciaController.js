@@ -1,13 +1,17 @@
+import { Router } from "express";
 import { denunciarUsuario } from "../repository/denunciaRepository.js";
+
+
+const server = Router();
 
 server.post('/denuncia/usuario', async (req, resp) => {
     try {
         const denuncia = req.body;
 
-        if (!denuncia) {
+        if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
             throw new Error('Insira algum depoimento!')
         }
-
+        
         const resposta =  await denunciarUsuario(denuncia);
 
         resp.send(resposta);
@@ -18,3 +22,5 @@ server.post('/denuncia/usuario', async (req, resp) => {
         })
     }
 })
+
+export default server;
