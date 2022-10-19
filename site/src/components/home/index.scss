@@ -1,69 +1,74 @@
 .comp-menu {
-    height: 100vh;
-    width: 20%;
     
-    background-color: #AF89BB;
+    min-height: 100vh;
+    width: 100%;
+  .comp-menu1 {
     
+    min-height: 100vh;
+
+    background-color: #af89bb;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    
     .logo {
-        display: flex;
-        justify-content: center;
-        padding: 30px;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+      img{
+        width: 11em;
+      }
     }
-   
-    .item{
-        padding-right: 30px;
+
+    .item {
+      padding-right: 30px;
     }
 
     .menu-items {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        
-       
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
     }
     .menu-items > div {
-        display: flex;
-        align-items: center;
-        background-color: #AF89BB;
-        
-        padding: 1.2em 1.5em;
-       
-        color: #fff;
+      display: flex;
+      align-items: center;
+      background-color: #af89bb;
 
-        transition: .3s;
-        cursor: pointer;
-        
-        img{
-            margin-right: 1em;
-        }
+      padding: 1.2em 1.5em;
+
+      color: #fff;
+
+      transition: 0.3s;
+      cursor: pointer;
+
+      img {
+        margin-right: 1em;
+      }
     }
     .menu-items > div:hover {
-        background-color: #986BA7;
-    }    
-    .menu-sair{
-        display: flex;
-        justify-content: center;
-        font-size: 2em;
-        color: #7A4489;
-        background-color: #AF89BB;
-        span{
-            color: #7A4489;
-            margin: 0px;
-        }
-        .img-sair{
-            margin-right: 0em;
-        }
+      background-color: #986ba7;
+    }
+    .menu-sair {
+      display: flex;
+      justify-content: center;
+      font-size: 2em;
+      color: #7a4489;
+      background-color: #af89bb;
+      padding: 0em;
+      span {
+        color: #7a4489;
+        margin: 0px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .img-sair {
+        margin-right: 0em;
+      }
     }
 
-    
-
-    .selecionado{
-        background-color: #986BA7;
+    .selecionado {
+      background-color: #986ba7;
     }
-
+  }
 }

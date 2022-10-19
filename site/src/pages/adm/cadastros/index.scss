@@ -2,22 +2,24 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
+    overflow-y:hidden;
 
     .menu{
-        height: 100vh;
         width: 20%;
     }
 
     .adm-cad-section{
         width: 80%;
-        height: 100vh;
 
         .section-cadastros{
+            overflow: auto;
+            height: 100vh;
             padding: 2em 0em;
             display: grid;
+            grid-template-columns: auto auto;
             align-items: center;
             justify-content: center;
-            grid-template-columns: auto auto;
+            
             column-gap: 7em;
             row-gap: 2em;
             
