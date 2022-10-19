@@ -64,12 +64,6 @@ server.put('/solicitacao/:id' , async (req, resp) => {
     try {
         const solicitacaoId = Number(req.params.id);
         const solicitacao = req.body;
-
-        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
-
-        /*if (solicitacaoId.id != undefined) {
-            throw new Error("Não existe Solicitação para ser alterada.")
-        }*/
         
         if (!solicitacao){
             throw new Error("Não foi possível alterar Solicitação.")
@@ -80,7 +74,8 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         if (resposta != 1) {
             throw new Error("Não foi possível alterar Solicitação.")
         }
-
+        
+        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
         resp.status(202).send()
     } catch (err) {
         resp.status(404).send({
@@ -93,15 +88,15 @@ server.put('/solicitacao/:id' , async (req, resp) => {
 server.put('/solicitacao', async (req, resp) => {
     try {
         const ids = req.body;
-
-
-        const resposta = await aceitarSolicitacao(ids);
         
+        const resposta = await aceitarSolicitacao(ids);
+
         if(!resposta) {
             throw new Error('Não foi possivel aceitar essa Solicitação!')
         }
+        
+        resp.status(202).send();
 
-        resp.status(202).send(resposta.affectedRows);
     } catch (err) {
         resp.status(404).send({
             erro: err.message
@@ -115,10 +110,11 @@ server.delete('/solicitacao/:id', async (req, resp) => {
         const id = Number(req.params.id);
         
         const resposta = await deletarSolicitacao(id);
-
+        
         if (resposta != 1) {
             throw new Error("Solicitação não pode ser removida")
         }
+        
         resp.status(204).send();
         
     } catch (err) {
@@ -130,8 +126,10 @@ server.delete('/solicitacao/:id', async (req, resp) => {
 
 server.get('/solicitacao', async (req, resp) => {
     try {
+        
         const resposta = await mostrarTodasSolicitações() 
         resp.send(resposta)
+
     } catch (err) {
         resp.status(404).send({
             erro: err.message

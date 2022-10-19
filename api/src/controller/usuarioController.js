@@ -68,9 +68,6 @@ server.get('/usuario/:id', async (req, resp) => {
         const usuario = Number(req.params.id);
 
 
-        //let horaConsulta = new Date(agendamento.data + 'T' + agendamento.horario);
-        //horaConsulta.setHours(horaConsulta.getHours() - horaConsulta.getTimezoneOffset()/60);
-
         const resposta = await carregarUsuario(usuario);
 
         resp.send(resposta);
