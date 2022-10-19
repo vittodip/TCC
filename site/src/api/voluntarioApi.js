@@ -63,4 +63,6 @@ export async function colocarImagemVolunt(id, imagem){
         }
     });
 
+    return resposta.status;
+
 }

@@ -9,6 +9,7 @@ import './index.scss'
 import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export default function PerfilVoluntario() {
@@ -19,9 +20,22 @@ export default function PerfilVoluntario() {
   const [imagem, setImagem] = useState('');
   
 
+  async function salvarImagemClick(){
+    try {
+      await colocarImagemVolunt(imagem);
+    } catch (err) {
+      toast.error(err.message)
+    }
+  }
+
+
+
   async function carregarPsicologo() {
     const idPsic = Storage('voluntario-logado').id
     const resposta = await carregarVoluntario(idPsic);
+    console.log(resposta)
+
+
 
     setVoluntario(resposta);
   }
@@ -78,8 +92,10 @@ export default function PerfilVoluntario() {
   }
 
   function mostarFoto(){
-    return URL.createObjectURL(imagem )
+    return URL.createObjectURL(imagem)
+    
   }
+
 
 
 
@@ -124,6 +140,7 @@ export default function PerfilVoluntario() {
             </div>
             <div className="coluna3-vol">
               <div className="background-imagem" onClick={colocarImagem}>
+              {voluntario.imagem}
 
                 {!imagem && 
                     <img src="/assets/images/carregar 1.png" />
@@ -131,11 +148,13 @@ export default function PerfilVoluntario() {
 
                 {imagem && 
                     <img className="fotoVoluntario" src={mostarFoto()} alt=''/>
+                    
                 }
 
-                <input type='file' id="fotoVolunt" onChange={e => setImagem(e.target.files[0])}/>
+                <input type='file' id="fotoVolunt"  onChange={e => setImagem(e.target.files[0])}/>
+
               </div>
-              
+              <button onClick={salvarImagemClick}>Salvar Imagem</button>
             </div>
           </div>
 
