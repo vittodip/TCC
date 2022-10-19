@@ -29,10 +29,17 @@
         margin-bottom: 1em;
     }
 
-
+    .botoes {
+        button {
+        background-color: none;
+        background: none;
+        border: none;
+        outline: none;
+    }
+    }
 
 }
-
+}
 .card-denuncia-psicologo{
     display: flex;
     flex-direction: column;
@@ -62,7 +69,13 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        
+            button {
+            background-color: none;
+            background: none;
+            border: none;
+            outline: none;
+        }
     }
 }
 
-}

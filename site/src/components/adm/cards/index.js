@@ -16,7 +16,9 @@ export default function CardsAdmin(props) {
         {props.tipo === "A ser aprovado" && (
            
             //"section-cad-container"
+          
           <div className={props.css}>
+            
             <div className="container-colunas">
               <div >
                 <label>Nome</label>
@@ -45,6 +47,10 @@ export default function CardsAdmin(props) {
                 <p>{props.crp}</p>
               </div>
             </div>
+            <div className="botoes">
+            <button><img src="/assets/images/botao-aprovar.svg"/></button>
+            <button><img src="/assets/images/botao-reprovar.svg"/></button>
+            </div>
           </div>
           )}
 
@@ -69,8 +75,8 @@ export default function CardsAdmin(props) {
                   <p>{props.depoimento}</p>
               </div>
               <div className="botoes">
-                    <button>C</button>
-                    <button>N</button>
+                <button><img src="/assets/images/botao-aprovar.svg"/></button>
+                <button><img src="/assets/images/botao-reprovar.svg"/></button>
               </div>
 
             </div>
