@@ -47,3 +47,9 @@ export async function aprovarPsicologo(idPsico) {
     });
     return resposta.data;
 }
+
+export async function carregarDenunciasPsicologo(){
+    const resposta = await api.get('/denuncia/psicologo');
+    return resposta.data;
+
+}
