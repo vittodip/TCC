@@ -91,3 +91,17 @@ export async function aprovarPsicologo(id) {
     return resposta.affectedRows;
 }
 
+
+export async function carregarTodosVoluntarios () {
+    const comando = `select nm_psicologo 	nome,
+                            ds_email 		email,
+                            date_format(dt_nascimento, '%d/%m/%Y %H:%i') as data,
+                            nr_telefone		telefone,
+                            ds_cpf			cpf,
+                            ds_crp			crp
+                            
+                        from tb_psicologo`
+                        
+    const [resposta] = await con.query(comando);
+    return resposta;
+}

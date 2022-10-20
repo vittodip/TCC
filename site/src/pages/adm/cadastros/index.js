@@ -6,32 +6,41 @@ import { PsicologosParaAprovar } from "../../../api/adminApi";
 import { useEffect, useState } from "react";
 
 export default function CadastrosPendentes() {
-  const [voluntario, setVoluntario] = useState([])
+  const [voluntario, setVoluntario] = useState([]);
 
   async function carregarPsicosAprovar() {
     const resp = await PsicologosParaAprovar();
-    setVoluntario(resp)
-}
+    setVoluntario(resp);
+  }
 
-    useEffect(() => {
-      carregarPsicosAprovar();
-    }, []); 
+  useEffect(() => {
+    carregarPsicosAprovar();
+  }, []);
 
   return (
     <main className="adm-cadastros-principal">
-        
+      <div className="menu">
         <Menu selecionado="a ser aprovado" />
-        
+      </div>
       
-      <section className='adm-cad-section'>
+
+      <section className="adm-cad-section">
         <HeaderAdmin />
-        {voluntario.map(item =>
+        
         <div className="section-cadastros">
-            <CardsAdmin css="section-cad-container" tipo='A ser aprovado' nome={item.nome}
-            telefone={item.telefone} cpf={item.cpf} email={item.email} data={item.data} crp={item.crp}/>
-            
+          {voluntario.map((item) => (
+            <CardsAdmin
+              css="section-cad-container"
+              tipo="A ser aprovado"
+              nome={item.nome}
+              telefone={item.telefone}
+              cpf={item.cpf}
+              email={item.email}
+              data={item.data}
+              crp={item.crp}
+            />
+          ))}
         </div>
-          )}
       </section>
     </main>
   );

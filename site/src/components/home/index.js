@@ -37,7 +37,7 @@ export default function Menu(props) {
 
     return (
         <nav className="comp-menu">
-            <div>
+            <div className='comp-menu1'>
                 <div className='logo'>
                     <img src="/assets/images/imagem_2022-07-30_124517537-removebg-preview 2.png" alt="logo" />
                 </div>
