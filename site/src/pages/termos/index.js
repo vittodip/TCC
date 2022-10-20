@@ -31,7 +31,7 @@ export default function PoliticaPrivacidade(){
                 </div>
             </header>
             <section className="secao-termos">
-                <p className="texto-alteracao">Última alteração: 21 de Agosto de 2022</p>
+                <p className="texto-alteracao">Última alteração: 21 de agosto de 2022</p>
                 <p>Bem-vindo ao Need a Talk! Nossa política de privacidade explica quais informações o Need a Talk coleta quando você visita ou usa os Serviços, bem como as formas como podemos usá-las ou compartilhá-las.</p>
 
                 <h2>SEÇÃO 1 - INFORMAÇÕES GERAIS</h2>
