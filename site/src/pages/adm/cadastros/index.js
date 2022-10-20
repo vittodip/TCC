@@ -13,6 +13,8 @@ export default function CadastrosPendentes() {
     setVoluntario(resp);
   }
 
+  
+
   useEffect(() => {
     carregarPsicosAprovar();
   }, []);

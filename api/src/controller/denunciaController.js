@@ -1,22 +1,41 @@
 import { Router } from "express";
-import { denunciarUsuario } from "../repository/denunciaRepository.js";
+import { denunciarUsuario, denunciarPsicologo } from "../repository/denunciaRepository.js";
 
 
 const server = Router();
 
 server.post('/denuncia/usuario', async (req, resp) => {
     try {
-        const denuncia = req.body;
+        const denunciaUser = req.body;
 
-        if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
+        if (!denunciaUser.depoimento || !denunciaUser.depoimento.trim()) {
             throw new Error('Insira algum depoimento!')
         }
-        
-        const resposta =  await denunciarUsuario(denuncia);
+
+        const resposta = await denunciarUsuario(denunciaUser);
 
         resp.send(resposta);
     }
     catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.post('/denuncia/psicologo', async (req, resp) => {
+    try {
+        const denunciaPsi = req.body;
+
+        if (!denunciaPsi.depoimento || !denunciaPsi.depoimento.trim()) {
+            throw new Error('Insira algum depoimento!')
+        }
+
+        const resposta = denunciarPsicologo(denunciaPsi);
+
+        resp.send(resposta);
+
+    } catch (err) {
         resp.status(404).send({
             erro: err.message
         })

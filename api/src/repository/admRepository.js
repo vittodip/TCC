@@ -79,15 +79,16 @@ export async function PsicologosParaAprovar() {
                        from tb_psicologo
                       where ds_situacao         is null`
     const [resposta] = await con.query(comando);
+    
     return resposta;
 }
 
 export async function aprovarPsicologo(id) {
     const comando = `update tb_psicologo
                         set ds_situacao  = true
-                      where id_psicologo = ?;`
+                      where id_psicologo = ?`
                 
-    const [resposta] = await con.query(comando, [id.idPsicologo]);
+    const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
 }
 
@@ -105,3 +106,4 @@ export async function carregarTodosVoluntarios () {
     const [resposta] = await con.query(comando);
     return resposta;
 }
+

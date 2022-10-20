@@ -42,7 +42,7 @@ export async function PsicologosParaAprovar(){
 }
 
 export async function aprovarPsicologo(idPsico) {
-    const resposta = await api.put(`/solicitacao`, {
+    const resposta = await api.put(`/admin/aprovacao/:id`, {
         idPsicologo: idPsico
     });
     return resposta.data;
