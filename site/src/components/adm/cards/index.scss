@@ -2,7 +2,7 @@
 
 .section-cad-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     
     width: 100%;
@@ -11,11 +11,15 @@
     box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
     border-radius: 27px;
 
-
+    .container-colunas-alinhamento{
+        display: flex;
+        flex-direction: row;
+    }
     .container-colunas{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin: 0px 1.5em;
 
         p{
             margin: 0px;
@@ -30,6 +34,7 @@
     }
 
     .botoes {
+        align-self: flex-end;
         button {
         background-color: none;
         background: none;
