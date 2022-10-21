@@ -18,3 +18,4 @@ export async function denunciarPsicologo(denunciaPsi) {
     
     return denunciaPsi;
 }
+

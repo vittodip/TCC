@@ -55,6 +55,7 @@ inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario
 
 export async function listarDenunciasPsicologo() {
     const comando = `select  id_denuncia               denuncia,
+                             tb_psicologo.id_psicologo psicologo,
                              tb_psicologo.nm_psicologo nomepsi,
                              tb_psicologo.ds_email     emailpsicologo,
                              tb_usuario.nm_usuario     nome,
@@ -103,7 +104,7 @@ export async function reprovarPsicologo(id) {
     return resposta.affectedRows;
 }
 
-export async function carregarTodosVoluntarios () {
+export async function carregarTodosVoluntarios() {
     const comando = `select nm_psicologo 	nome,
                             ds_email 		email,
                             date_format(dt_nascimento, '%d/%m/%Y %H:%i') as data,
@@ -118,3 +119,83 @@ export async function carregarTodosVoluntarios () {
 }
 
 
+export async function deletarDenuncia(id) {
+    const comando = `delete from tb_denuncia_psicologo
+                     where id_denuncia = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export async function aceitarDenunciaUser(id) {
+    const comando = `delete 
+                        from tb_usuario 
+                    where id_usuario = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
+
+export async function recusarDenunciaUser(id) {
+    const comando = `delete 
+                        from tb_denuncia_usuario
+                    where id_denuncia = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
+
+export async function aceitarDenunciaPsi(id) {
+    const comando = `delete 
+                        from tb_psicologo 
+                    where id_psicologo = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
+
+export async function recusarDenunciaPsi(id) {
+    const comando = `delete 
+                        from tb_denuncia_psicologo
+                    where id_denuncia = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}

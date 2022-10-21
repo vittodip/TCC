@@ -58,3 +58,27 @@ export async function denunciaPsico(){
     return resposta.data;
 
 }
+
+
+export async function aceitarDenunciaUser(id) {
+    const resposta = await api.delete(`/positivo/denuncia/usuario/${id}`);
+    return resposta.data;
+}
+
+export async function recusarDenunciaUser(id) {
+    const resposta = await api.delete(`/negativo/denuncia/usuario/${id}`);
+    return resposta.data;
+}
+
+export async function aceitarDenunciaPsi(psicologoId, denunciaId) {
+    const resposta = await api.delete(`/positivo/denuncia/psicologo`, {
+        psicologoId: psicologoId,
+        denunciaId: denunciaId
+    });
+    return resposta.data;
+}
+
+export async function recusarDenunciaPsi(id) {
+    const resposta = await api.delete(`/negativo/denuncia/psicologo/${id}`);
+    return resposta.data;
+}

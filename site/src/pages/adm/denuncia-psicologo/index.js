@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function DenunciasPsicologos() {
   const [denuncia, setDenuncia] = useState([]);
-
+  console.log(denuncia)
   async function carregarDenunciasPsicologo() {
     const resp = await denunciaPsico();
     setDenuncia(resp);
@@ -33,7 +33,8 @@ export default function DenunciasPsicologos() {
         <div className="section-cadastros">
           {denuncia.map(item => 
             <CardsAdmin 
-            
+            DenunciaId={item.denuncia}
+            PsicologoDenuncia={item.psicologo}
             css="card-denuncia-psicologo"
             tipo= "denuncia-psicologo"
             nomePsi={item.nomepsi}

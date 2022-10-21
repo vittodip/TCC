@@ -1,21 +1,21 @@
-import { aprovarPsicologo, reprovarPsicologo } from "../../../api/adminApi";
+import { aprovarPsicologo, reprovarPsicologo, aceitarDenunciaPsi, aceitarDenunciaUser, recusarDenunciaUser, recusarDenunciaPsi } from "../../../api/adminApi";
 import "./index.scss";
+import { useEffect } from "react";
 
 export default function CardsAdmin(props) {
 
+  
+  
   async function aprovarPsic(idPsicologo) {
 
     try {
-      console.log()
       const resp = await aprovarPsicologo(idPsicologo);
 
       alert('Voluntário aprovado com sucesso!')
     } catch (err) {
       alert('Não foi possível aprovar.')
     }
-
   }
-
 
   async function reprovarPsic(idPsicologo) {
 
@@ -26,8 +26,52 @@ export default function CardsAdmin(props) {
     } catch (err) {
       alert('não funfou')
     }
-
   }
+
+
+
+  async function aceitarDenunciaUsuario(idUsuario) {
+    try {
+
+      const resp = await aceitarDenunciaUser(idUsuario);
+
+      alert('funfou')
+    } catch (err) {
+      alert('não funfou')
+    }
+  }
+
+  async function recusarDenunciaUsuario(idUsuario) {
+    try {
+      const resp = await recusarDenunciaUser(idUsuario);
+
+      alert('funfou')
+    } catch (err) {
+      alert('não funfou')     
+    }
+  }
+
+  async function aceitarDenunciaPsicologo(idUsuario, denunciaId) {
+    try {
+      const resp = await aceitarDenunciaPsi(idUsuario, denunciaId);
+      console.log(resp.data.status)
+      alert('funfou')
+    } catch (err) {
+      alert('não funfou')
+    }
+  }
+
+  async function recusarDenunciaPsicologo(idUsuario) {
+    try {
+      const resp = await recusarDenunciaPsi(idUsuario);
+
+      alert('funfou')
+    } catch (err) {
+      alert('não funfou')     
+    }
+  }
+
+  
 
   return (
     <div className="card">
@@ -77,37 +121,6 @@ export default function CardsAdmin(props) {
             </div>
 
           )}
-          {props.tipo2 === "denuncia-psicologo" && (
-            <div className={props.css}>
-              <div className="infos-usuarios">
-                <div className="usuarios">
-                  <label>Psicólogo</label>
-                  <p>{props.nomePsi}</p>
-                  <label>Usuário</label>
-                  <p>{props.nomeUsuario}</p>
-                </div>
-                <div className="emails">
-                  <label>E-mail</label>
-                  <p>{props.emailPsi}</p>
-                  <label>E-mail</label>
-                  <p>{props.emailUsuario}</p>
-                </div>
-              </div>
-              <div className="depoimento">
-                <label>Depoimento</label>
-                <p>{props.depoimento}</p>
-              </div>
-
-              <div className="botoes">
-                <button>
-                  <img src="/assets/images/botao-aprovar.svg" />
-                </button>
-                <button>
-                  <img src="/assets/images/botao-reprovar.svg" />
-                </button>
-              </div>
-            </div>
-          )}
 
 
 
@@ -135,10 +148,10 @@ export default function CardsAdmin(props) {
           </div>
 
           <div className="botoes">
-            <button>
+            <button onClick={() => aceitarDenunciaPsicologo(props.PsicologoDenuncia, props.DenunciaId)}>
               <img src="/assets/images/botao-aprovar.svg" />
             </button>
-            <button>
+            <button onClick={() => recusarDenunciaPsicologo(props.PsicologoDenuncia)}>
               <img src="/assets/images/botao-reprovar.svg" />
             </button>
           </div>

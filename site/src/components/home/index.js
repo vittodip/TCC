@@ -17,13 +17,6 @@ export default function Menu(props) {
         navigate('/login/adm')
     } 
 
-    function irAprovar(){
-        navigate('/admin/cadastros')
-    }
-    
-    function irListarVolunts(){
-        navigate('/admin/volunts')
-    }
 
 
 
@@ -60,9 +53,9 @@ export default function Menu(props) {
                         <img src="/assets/images/Spam.png" alt="Denúncia Pacientes" />
                         <div>Denúncia Pacientes</div>
                     </div>
-                    <div className={verificarMenuSelecionado('Psicólogos cadastrados')}>
+                    <div className={verificarMenuSelecionado('Psicólogos cadastrados')} onClick={() => [navigate('/admin/volunts')]}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Psicólogos cadastrados" />
-                        <div onClick={irListarVolunts}>Psicólogos cadastrados</div>
+                        <div>Psicólogos cadastrados</div>
                     </div>
                     <div className={verificarMenuSelecionado('Pacientes cadastrados')}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Pacientes cadastrados" />
