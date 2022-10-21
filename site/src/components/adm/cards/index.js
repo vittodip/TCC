@@ -53,14 +53,37 @@ export default function CardsAdmin(props) {
               </div>
             </div>
           </div>
-          <div className="botoes">
-              <button onClick={() => aprovarPsic(props.psicologo)}>
-                <img src="/assets/images/botao-aprovar.svg" />
-              </button>
-              <button>
-                <img src="/assets/images/botao-reprovar.svg" />
-              </button>
-            </div>
+          {props.tipo2 === "aprovar-psicologo" && (
+            <div className="botoes">
+            <button onClick={() => aprovarPsic(props.psicologo)}>
+              <img src="/assets/images/botao-aprovar.svg" />
+            </button>
+            <button>
+              <img src="/assets/images/botao-reprovar.svg" />
+            </button>
+          </div>
+          )}
+          {props.tipo2 === "denunciar-psicologo" && (
+            <div className="botoes">
+            <button>
+              <img src="/assets/images/botao-aprovar.svg" />
+            </button>
+            <button>
+              <img src="/assets/images/botao-reprovar.svg" />
+            </button>
+          </div>
+          )}
+          {props.tipo2 === "denunciar-paciente" && (
+            <div className="botoes">
+            <button>
+              <img src="/assets/images/botao-aprovar.svg" />
+            </button>
+            <button>
+              <img src="/assets/images/botao-reprovar.svg" />
+            </button>
+          </div>
+          )}
+          
         </div>
       )}
 
