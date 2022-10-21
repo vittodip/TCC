@@ -65,5 +65,18 @@ export async function deletarUsuario(id) {
     return resposta.affectedRows;
 }
 
+export async function mostrarUsuarios(){
+    const comando =`select	nm_usuario	nome,
+                            ds_email	email,
+                            nr_telefone telefone,
+                            ds_cpf		cpf,
+                            date_format (dt_nascimento, '%d/%m/%Y %H:%i') as data
+
+                    from tb_usuario`
+
+         const [resposta] = await con.query(comando)
+         return resposta;
+}
+
 
 

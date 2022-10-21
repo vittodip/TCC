@@ -50,5 +50,10 @@ export async function deletarUsuario(id) {
     return resposta.data;
 }
 
+export async function mostrarUsuarios(){
+    const resposta = await api.get('/listar/usuario');
+    return resposta.data
+}
+
 
 
