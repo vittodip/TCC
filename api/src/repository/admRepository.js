@@ -71,6 +71,7 @@ inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_psicologo.id_usuari
 
 export async function PsicologosParaAprovar() {
     const comando = `select nm_psicologo 	    nome,
+                            id_psicologo        psicologo,
                             ds_email 		    email,
                             nr_telefone 		telefone,
                             date_format(dt_nascimento, '%d/%m/%Y %H:%i') as data,
