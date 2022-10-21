@@ -11,11 +11,12 @@ export default function DenunciasPsicologos() {
   async function carregarDenunciasPsicologo() {
     const resp = await denunciaPsico();
     setDenuncia(resp);
+    console.log(resp)
   }
 
   useEffect(() => {
     carregarDenunciasPsicologo()
-  })
+  }, [])
 
   
 
@@ -32,19 +33,18 @@ export default function DenunciasPsicologos() {
         <div className="section-cadastros">
           {denuncia.map(item => 
             <CardsAdmin 
+            
             css="card-denuncia-psicologo"
-            tipo2 = "denuncia-psicologo"
+            tipo= "denuncia-psicologo"
             nomePsi={item.nomepsi}
             nomeUsuario={item.nome}
             emailPsi={item.emailpsicologo}
             emailUsuario={item.email}
             depoimento={item.depoimento}
-
             />
             
             )}
 
-          
         </div>
       </section>
     </main>
