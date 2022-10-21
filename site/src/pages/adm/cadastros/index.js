@@ -23,7 +23,7 @@ export default function CadastrosPendentes() {
   return (
     <main className="adm-cadastros-principal">
       <div className="menu">
-        <Menu selecionado="a ser aprovado" />
+        <Menu selecionado="A Ser Aprovado" Menu="A Ser Aprovado" />
       </div>
       
 

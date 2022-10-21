@@ -11,7 +11,7 @@ export default function DenunciasPsicologos() {
   async function carregarDenunciasPsicologo() {
     const resp = await denunciaPsico();
     setDenuncia(resp);
-    console.log(resp)
+    
   }
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function DenunciasPsicologos() {
   return (
     <main className="adm-cadastros-principal">
       <div className="menu">
-        <Menu selecionado="Denúncia Psicólogo" />
+        <Menu selecionado="Denúncia Psicólogo" Menu="Denúncia Psicólogo" />
       </div>
       
 

@@ -54,7 +54,7 @@ export async function deletarVoluntario(id){
 }
 
 export async function colocarImagemVolunt(id, imagem){
-    const formData = new formData();
+    const formData = new FormData();
     formData.append('Foto', imagem);
 
     const resposta = await api.put(`/voluntario/${id}/foto`, formData, {
