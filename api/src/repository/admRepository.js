@@ -17,7 +17,7 @@ export async function loginAdm(email, senha) {
 export async function cadastroAdm(admin) {
     const comando = `insert into tb_adm (ds_email, ds_senha, nm_adm, ds_cpf, dt_nascimento, nr_telefone)
                                   values(?, ?, ?, ?, ?, ?)`
-    
+
     const [resposta] = await con.query(comando, [admin.email.trim(), admin.senha.trim(), admin.nome.trim(), admin.cpf.trim(), admin.nascimento, admin.telefone.trim()]);
     admin.id = resposta.insertId;
 
@@ -25,7 +25,7 @@ export async function cadastroAdm(admin) {
 }
 
 export async function carregarAdmin(id) {
-    
+
     const comando = `select nm_adm 	      nome,
                             ds_email      email,
                             nr_telefone   telefone,
@@ -80,7 +80,7 @@ export async function PsicologosParaAprovar() {
                        from tb_psicologo
                       where ds_situacao         is null`
     const [resposta] = await con.query(comando);
-    
+
     return resposta;
 }
 
@@ -88,13 +88,19 @@ export async function aprovarPsicologo(id) {
     const comando = `update tb_psicologo
                         set ds_situacao  = true
                       where id_psicologo = ?`
-                
+
     const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
 }
 
+export async function reprovarPsicologo(id) {
+    const comando = `delete from tb_psicologo
+                            where id_psicologo = ?
+                        and ds_situacao is null`
 
-
+    const [resposta] = await con.query(comando, [id]);
+    return resposta.affectedRows;
+}
 
 export async function carregarTodosVoluntarios () {
     const comando = `select nm_psicologo 	nome,
@@ -105,8 +111,9 @@ export async function carregarTodosVoluntarios () {
                             ds_crp			crp
                             
                         from tb_psicologo`
-                        
+
     const [resposta] = await con.query(comando);
     return resposta;
 }
+
 
