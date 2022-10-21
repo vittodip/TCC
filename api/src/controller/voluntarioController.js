@@ -1,5 +1,5 @@
 
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem, mostrarPsicologos } from "../repository/voluntarioRepository.js";
 
 import multer from 'multer'
 import { Router } from "express";
@@ -138,6 +138,19 @@ server.put('/voluntario/:id/foto', upload.single('Foto') ,async (req, resp) => {
         resp.status(204).send();
     } catch (err) {
         resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('voluntario/todos', async (req, resp) => {
+    try {
+
+        const resposta = await mostrarPsicologos();
+        resp.send(resposta)
+        
+    } catch (err) {
+        resp.status(404).send({
             erro: err.message
         })
     }

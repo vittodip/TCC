@@ -14,6 +14,7 @@ import SolicitacoesPsic from './pages/solicitacoes/index.js';
 import PoliticaPrivacidade from './pages/termos/index.js';
 import Home from './pages/adm/home/index.js';
 import CadastrosPendentes from './pages/adm/cadastros/index.js';
+import Index from './pages/adm/tdsPsiEusers/index.js';
 
 
 
@@ -42,6 +43,7 @@ export default function Rotas() {
                 {/* Admin */}
                 <Route path='/admin' element={<Home />} />
                 <Route path='/admin/cadastros' element={<CadastrosPendentes />} />
+                <Route path='/admin/volunts' element={<Index />} />
 
 
                 
