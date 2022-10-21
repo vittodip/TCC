@@ -1,38 +1,33 @@
-import { useEffect, useState } from "react";
-import { carregarVoluntario } from "../../../api/voluntarioApi";
-import { mostrarPsicologos } from "../../../api/voluntarioApi";
-import Menu from "../../../components/home";
-import Storage from 'local-storage'
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ListarTudo from "../../../components/adm/tdsPsiEusers";
-import "./index.scss";
 import HeaderAdmin from "../../../components/adm/header";
-
-export default function ListaVolunts() {
-
-  const [voluntario, setVoluntario] = useState([]);
-
-  async function carregarPsicologo() {
-    const resposta = await mostrarPsicologos();
-    console.log(resposta)
-
-    setVoluntario(resposta);
-  }
-
-  const navigate = useNavigate();
+import Storage from 'local-storage'
+import Menu from "../../../components/home";
+import { mostrarUsuarios } from "../../../api/usuarioApi";
 
 
-  useEffect(() => {
-    carregarPsicologo();
-    if(!Storage('admin-logado')) {
-      navigate('admin/login')
-    }
-  }, []);
+export default function ListarUsers(){
 
+    const [usuario, setUsuario] = useState([]);
 
-  return (
+    async function carregarUsuario() {
+        const resposta = await mostrarUsuarios();
+    
+        setUsuario(resposta);
+      }
 
-    <main className="pagListar">
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        carregarUsuario();
+        if(!Storage('admin-logado')) {
+            navigate('admin/login')
+          }
+        }, []);
+      
+      return (
+
+        <main className="pagListar">
       <div>
         <Menu />
       </div>
@@ -47,14 +42,14 @@ export default function ListaVolunts() {
         <div className="listagemPsics">
           <div className="search">
             <div>
-              <input type='search' placeholder="Pesquisar Voluntario" />
+              <input type='search' placeholder="Pesquisar Usuario" />
             </div>
             <img src="/assets/images/lupa.png" />
           </div>
 
           {/* Listagem */}
           <div>
-            {voluntario.map(item =>
+            {usuario.map(item =>
               <main className="listaBG">
 
                 <div className="listaBlock">
@@ -93,6 +88,6 @@ export default function ListaVolunts() {
 
       </section>
     </main>
-
-  )
-}
+    
+      )
+    }

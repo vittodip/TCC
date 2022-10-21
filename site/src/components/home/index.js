@@ -3,9 +3,16 @@
 import './index.scss'
 import { useNavigate } from "react-router-dom";
 import Storage from 'local-storage'
+import { useState } from 'react';
 
 export default function Menu(props) {
 
+    const [menuSelecionado, setMenuSelecionado] = useState('home')
+
+    function selecionarMenu(menu) {
+        setMenuSelecionado(menu);
+      }
+    
     
    
     const navigate = useNavigate();
@@ -17,6 +24,10 @@ export default function Menu(props) {
         navigate('/login/adm')
     } 
 
+
+    function irListarUser(){
+        navigate('/admin/usuario')
+    }
 
 
 
@@ -59,7 +70,7 @@ export default function Menu(props) {
                     </div>
                     <div className={verificarMenuSelecionado('Pacientes cadastrados')}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Pacientes cadastrados" />
-                        <div>Pacientes cadastrados</div>
+                        <div onClick={irListarUser}>Pacientes cadastrados</div>
                     </div>
                     <div className='menu-sair'>
                         <img className="img-sair" src="/assets/images/Logout.png" alt="Sair" />

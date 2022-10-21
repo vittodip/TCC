@@ -1,4 +1,4 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -121,6 +121,18 @@ server.delete('/usuario/:id', async (req, resp) => {
 
         resp.status(202).send();
 
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/listar/usuario', async (req, resp) => {
+    try {
+        const resposta = await mostrarUsuarios()
+        resp.send(resposta)
 
     } catch (err) {
         resp.status(404).send({

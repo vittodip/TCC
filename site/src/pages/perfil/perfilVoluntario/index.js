@@ -10,6 +10,7 @@ import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API_URL } from "../../../api/config";
 
 
 export default function PerfilVoluntario() {
@@ -20,24 +21,14 @@ export default function PerfilVoluntario() {
   const [imagem, setImagem] = useState('');
   
 
-  async function salvarImagemClick(){
-    try {
-      await colocarImagemVolunt(imagem);
-    } catch (err) {
-      toast.error(err.message)
-    }
-  }
-
-
 
   async function carregarPsicologo() {
     const idPsic = Storage('voluntario-logado').id
     const resposta = await carregarVoluntario(idPsic);
     console.log(resposta)
 
-
-
     setVoluntario(resposta);
+    setImagem(resposta.imagem);
   }
 
 
@@ -45,7 +36,7 @@ export default function PerfilVoluntario() {
     const idPsic = Storage('voluntario-logado').id
     const resp = await solicitacaoPsicologo(idPsic);
     setSolicitacaoPsi(resp);
-
+    
   }
 
 
@@ -59,6 +50,14 @@ export default function PerfilVoluntario() {
     }
     carregarSolicitacoesAceitas();
   }, []);
+
+
+  useEffect(() => {
+    if (typeof(imagem) === 'object') {
+      let id = Storage('voluntario-logado').id;
+      colocarImagemVolunt(id, imagem)
+    }
+  }, [imagem])
 
 
   Modal.setAppElement('#root');
@@ -92,7 +91,11 @@ export default function PerfilVoluntario() {
   }
 
   function mostarFoto(){
-    return URL.createObjectURL(imagem)
+    if (typeof(imagem) === 'string') {
+      return API_URL + '/' + imagem;
+    }
+    else 
+      return URL.createObjectURL(imagem)
     
   }
 
@@ -140,8 +143,7 @@ export default function PerfilVoluntario() {
             </div>
             <div className="coluna3-vol">
               <div className="background-imagem" onClick={colocarImagem}>
-              {voluntario.imagem}
-
+              
                 {!imagem && 
                     <img src="/assets/images/carregar 1.png" />
                 }
@@ -154,7 +156,6 @@ export default function PerfilVoluntario() {
                 <input type='file' id="fotoVolunt"  onChange={e => setImagem(e.target.files[0])}/>
 
               </div>
-              <button onClick={salvarImagemClick}>Salvar Imagem</button>
             </div>
           </div>
 
