@@ -66,3 +66,8 @@ export async function colocarImagemVolunt(id, imagem){
     return resposta.status;
 
 }
+
+export async function mostrarPsicologos(){
+    const resposta = await api.get('/listar/voluntario');
+    return resposta.data
+}

@@ -24,6 +24,10 @@ export default function Menu(props) {
     function irAprovar(){
         navigate('/admin/cadastros')
     }
+    
+    function irListarVolunts(){
+        navigate('/admin/volunts')
+    }
 
 
     function verificarMenuSelecionado(menu) {
@@ -61,7 +65,7 @@ export default function Menu(props) {
                     </div>
                     <div className={verificarMenuSelecionado('Psicólogos cadastrados')}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Psicólogos cadastrados" />
-                        <div>Psicólogos cadastrados</div>
+                        <div onClick={irListarVolunts}>Psicólogos cadastrados</div>
                     </div>
                     <div className={verificarMenuSelecionado('Pacientes cadastrados')}>
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Pacientes cadastrados" />

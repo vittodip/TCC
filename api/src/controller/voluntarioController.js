@@ -143,12 +143,11 @@ server.put('/voluntario/:id/foto', upload.single('Foto') ,async (req, resp) => {
     }
 })
 
-server.get('voluntario/todos', async (req, resp) => {
+server.get('/listar/voluntario', async (req, resp) => {
     try {
-
-        const resposta = await mostrarPsicologos();
+        const resposta = await mostrarPsicologos()
         resp.send(resposta)
-        
+
     } catch (err) {
         resp.status(404).send({
             erro: err.message

@@ -76,16 +76,16 @@ export async function alterarImagem(imagem, id){
 }
 
 export async function mostrarPsicologos(){
-    const comando = 
-        `select nm_psicologo		nome,
-	            ds_email			email,
-                dt_nascimento	    data,
-                nr_telefone		    telefone,
-                ds_cpf			    cpf,
-                ds_crp			    crp
-         from tb_psicologo`
+    const comando =`select 
+                        nm_psicologo		nome,
+                        ds_email			email,
+                        date_format(dt_nascimento, '%d/%m/%Y') as data,
+                        nr_telefone		    telefone,
+                        ds_cpf			    cpf,
+                        ds_crp			    crp
+                    from tb_psicologo
+                    where ds_situacao = true`
 
-         const [linhas] = await con.query(comando)
-         
-         return linhas;
+         const [resposta] = await con.query(comando)
+         return resposta;
 }

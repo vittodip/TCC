@@ -51,9 +51,9 @@ export default function CardsAdmin(props) {
             </div>
           </div>
           <div className="botoes">
-              <button onClick={() => aprovarPsic(id_psicologo)}>
+              {/* <button onClick={() => aprovarPsic(id_psicologo)}> */}
                 <img src="/assets/images/botao-aprovar.svg" />
-              </button>
+              {/* </button> */}
               <button>
                 <img src="/assets/images/botao-reprovar.svg" />
               </button>
