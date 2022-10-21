@@ -14,7 +14,7 @@ import SolicitacoesPsic from './pages/solicitacoes/index.js';
 import PoliticaPrivacidade from './pages/termos/index.js';
 import Home from './pages/adm/home/index.js';
 import CadastrosPendentes from './pages/adm/cadastros/index.js';
-
+import DenunciasPsicologos from './pages/adm/denuncia-psicologo/index.js';
 
 
 export default function Rotas() {
@@ -42,7 +42,7 @@ export default function Rotas() {
                 {/* Admin */}
                 <Route path='/admin' element={<Home />} />
                 <Route path='/admin/cadastros' element={<CadastrosPendentes />} />
-
+                <Route path='/admin/denuncias/psicologo' element={<DenunciasPsicologos />} />
 
                 
             </Routes>
