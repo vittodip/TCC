@@ -41,9 +41,16 @@ export async function PsicologosParaAprovar(){
 
 }
 
-export async function aprovarPsicologo(idPsico) {
-    const resposta = await api.put(`/admin/aprovacao/:id`, {
-        idPsicologo: idPsico
+export async function aprovarPsicologo(id) {
+    const resposta = await api.put(`/admin/aprovacao/${id}`, {
+        idPsicologo: id
+    });
+    return resposta.data;
+}
+
+export async function reprovarPsicologo(id) {
+    const resposta = await api.delete(`/admin/reprovacao/${id}`, {
+        idPsicologo: id
     });
     return resposta.data;
 }

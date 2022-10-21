@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -72,6 +72,27 @@ server.put('/admin/aprovacao/:id', async (req, resp) => {
         }
 
         resp.status(202).send(resposta.affectedRows);
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+// reprovar psicólogo
+
+server.delete('/admin/reprovacao/:id', async (req, resp) => {
+    try {
+        const id = Number(req.params.id);
+
+        const resposta = await reprovarPsicologo(id);
+        
+        if (resposta != 1) {
+            throw new Error('Não foi possivel reprovar este voluntário!')
+        }
+
+        resp.status(202).send()
+
     } catch (err) {
         resp.status(404).send({
             erro: err.message

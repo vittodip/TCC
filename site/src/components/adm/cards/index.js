@@ -1,4 +1,4 @@
-import { aprovarPsicologo } from "../../../api/adminApi";
+import { aprovarPsicologo, reprovarPsicologo } from "../../../api/adminApi";
 import "./index.scss";
 
 export default function CardsAdmin(props) {
@@ -7,6 +7,18 @@ export default function CardsAdmin(props) {
     
     try {
       const resp = await aprovarPsicologo(idPsicologo);
+      
+      alert('funfou')
+    } catch (err) {
+      alert('não funfou')
+    }
+    
+  }
+
+  async function reprovarPsic(idPsicologo) {
+    
+    try {
+      const resp = await reprovarPsicologo(idPsicologo);
       
       alert('funfou')
     } catch (err) {
@@ -58,7 +70,7 @@ export default function CardsAdmin(props) {
             <button onClick={() => aprovarPsic(props.psicologo)}>
               <img src="/assets/images/botao-aprovar.svg" />
             </button>
-            <button>
+            <button onClick={() => reprovarPsic(props.psicologo)} >
               <img src="/assets/images/botao-reprovar.svg" />
             </button>
           </div>
