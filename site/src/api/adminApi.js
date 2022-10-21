@@ -36,15 +36,13 @@ export async function carregarAdmin(id) {
 }
 
 export async function PsicologosParaAprovar(){
-    const resposta = await api.get('/admin/voluntario');
+    const resposta = await api.get('/admin/voluntario/analise');
     return resposta.data;
 
 }
 
-export async function aprovarPsicologo(id) {
-    const resposta = await api.put(`/admin/aprovacao/${id}`, {
-        idPsicologo: id
-    });
+export async function aprovarPsicologo(psicologo) {
+    const resposta = await api.put(`/admin/aprovacao/${psicologo}`);
     return resposta.data;
 }
 

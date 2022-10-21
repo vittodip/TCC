@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function CadastrosPendentes() {
   const [voluntario, setVoluntario] = useState([]);
+  
 
   async function carregarPsicosAprovar() {
     const resp = await PsicologosParaAprovar();
@@ -17,7 +18,7 @@ export default function CadastrosPendentes() {
 
   useEffect(() => {
     carregarPsicosAprovar();
-  }, []);
+  }, [voluntario]);
 
   return (
     <main className="adm-cadastros-principal">
@@ -33,7 +34,7 @@ export default function CadastrosPendentes() {
           {voluntario.map((item) => (
             <CardsAdmin
               css="section-cad-container"
-              psicologo={item.psicologo}
+              idPsicologo={item.psicologo}
               tipo="A ser aprovado"
               nome={item.nome}
               telefone={item.telefone}
@@ -41,6 +42,7 @@ export default function CadastrosPendentes() {
               email={item.email}
               data={item.data}
               crp={item.crp}
+              tipo2 = "aprovar-psicologo"
             />
           ))}
         </div>

@@ -11,7 +11,7 @@ import HeaderAdmin from "../../../components/adm/header";
 export default function ListaVolunts() {
 
   const [voluntario, setVoluntario] = useState([]);
-  
+
   async function carregarPsicologo() {
     const resposta = await mostrarPsicologos();
     console.log(resposta)

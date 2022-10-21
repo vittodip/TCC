@@ -1,35 +1,37 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
 
 .pagListar{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     font-family: mulish;
 
     .pagResto{
-        margin-top: 4em;
+        width: 87%;
+    }
+
+    .listagemPsics{
+        padding: 2em;
     }
 
     .search{
         display: flex;
         background-color: #79458B;
-        width: 102.5em;
+        width: 94%;
         height: 5em;
         align-items: center;
-        margin-left: 8em;
         border-radius: 20px 20px 0px 0px;
-        justify-content: space-around;
+        justify-content: space-between;
 
         img{
-            padding-right: 5em;
+            padding-right: 2em;
+
+        }
+        img:hover{
+            cursor: pointer;
 
         }
         
         input{
-            width: 70em;
+            width: 100%;
             padding: 10px;
             height: 3.2em;
             background-color: #79458B;
@@ -37,7 +39,7 @@
             color: white;
             border: none;
             font-size: 20px;
-            
+            outline: none;
         }
         input::placeholder{
             font-family: mulish;
@@ -49,26 +51,25 @@
 .listaBG{
     background-color: #D1B7DA;
     padding: 20px;
-    width: 100em;
-    margin-left: 8em;
+    width: 90%;
 
     .listaBlock{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
 
     
     .listaItens{
         display: flex;
         flex-direction: column;
-        width: 20em;
+        justify-content: space-between;
+        width:  100%;
         align-items: flex-start;
-        padding: 20px 30px;
 
 
         p{
-            font-size: 21px;
+            font-size: 14px;
             font-weight: 700;
         }
     }
