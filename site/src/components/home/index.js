@@ -17,10 +17,6 @@ export default function Menu(props) {
         navigate('/login/adm')
     } 
 
-    function irHome(){
-        navigate('/admin')
-    }
-
     function irAprovar(){
         navigate('/admin/cadastros')
     }
@@ -28,6 +24,7 @@ export default function Menu(props) {
     function irListarVolunts(){
         navigate('/admin/volunts')
     }
+
 
 
     function verificarMenuSelecionado(menu) {
@@ -47,15 +44,15 @@ export default function Menu(props) {
                 </div>
 
                 <div className='menu-items'>
-                    <div className={verificarMenuSelecionado('home')}>
+                    <div className={verificarMenuSelecionado('home')} onClick={() => [navigate('/admin')]}>
                         <img src="/assets/images/Home (1).png" alt="home" />
-                        <div onClick={irHome} className='item'>Home</div>
+                        <div  className='item'>Home</div>
                     </div>
-                    <div className={verificarMenuSelecionado('a ser aprovado')}>
+                    <div className={verificarMenuSelecionado('a ser aprovado')} onClick={() => [navigate('/admin/cadastros')]}>
                         <img src="/assets/images/icons8-selecionado-128 2.png" alt="A ser aprovado" />
-                        <div onClick={irAprovar}>A ser aprovado</div>
+                        <div>A ser aprovado</div>
                     </div>
-                    <div className={verificarMenuSelecionado('denúncia Psicólogos')}>
+                    <div className={verificarMenuSelecionado('denúncia Psicólogos')} onClick={() => [navigate('/admin/denuncias/psicologo')]}>
                         <img src="/assets/images/Spam.png" alt="Denúncia Psicólogos" />
                         <div>Denúncia Psicólogos</div>
                     </div>

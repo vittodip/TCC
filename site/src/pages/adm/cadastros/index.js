@@ -33,6 +33,7 @@ export default function CadastrosPendentes() {
           {voluntario.map((item) => (
             <CardsAdmin
               css="section-cad-container"
+              psicologo={item.psicologo}
               tipo="A ser aprovado"
               nome={item.nome}
               telefone={item.telefone}

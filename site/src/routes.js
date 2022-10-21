@@ -15,6 +15,7 @@ import PoliticaPrivacidade from './pages/termos/index.js';
 import Home from './pages/adm/home/index.js';
 import CadastrosPendentes from './pages/adm/cadastros/index.js';
 import Index from './pages/adm/tdsPsiEusers/index.js';
+import DenunciasPsicologos from './pages/adm/denuncia-psicologo/index.js';
 
 
 
@@ -44,7 +45,7 @@ export default function Rotas() {
                 <Route path='/admin' element={<Home />} />
                 <Route path='/admin/cadastros' element={<CadastrosPendentes />} />
                 <Route path='/admin/volunts' element={<Index />} />
-
+                <Route path='/admin/denuncias/psicologo' element={<DenunciasPsicologos />} />
 
                 
             </Routes>
