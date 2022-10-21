@@ -54,3 +54,9 @@ export async function reprovarPsicologo(id) {
     });
     return resposta.data;
 }
+
+export async function denunciaPsico(){
+    const resposta = await api.get('/denuncia/psicologo');
+    return resposta.data;
+
+}

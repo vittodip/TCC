@@ -102,8 +102,7 @@ export async function reprovarPsicologo(id) {
     return resposta.affectedRows;
 }
 
-
-export async function carregarTodosVoluntarios() {
+export async function carregarTodosVoluntarios () {
     const comando = `select nm_psicologo 	nome,
                             ds_email 		email,
                             date_format(dt_nascimento, '%d/%m/%Y %H:%i') as data,
