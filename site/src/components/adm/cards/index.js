@@ -60,9 +60,9 @@ export default function CardsAdmin(props) {
     }
   }
 
-  async function recusarDenunciaPsicologo(idUsuario) {
+  async function recusarDenunciaPsicologo(DenunciaId) {
     try {
-      const resp = await recusarDenunciaPsi(idUsuario);
+      const resp = await recusarDenunciaPsi(DenunciaId);
 
       alert('funfou')
     } catch (err) {
@@ -150,7 +150,7 @@ export default function CardsAdmin(props) {
             <button onClick={() => aceitarDenunciaPsicologo(props.PsicologoDenuncia)}>
               <img src="/assets/images/botao-aprovar.svg" />
             </button>
-            <button onClick={() => recusarDenunciaPsicologo(props.PsicologoDenuncia)}>
+            <button onClick={() => recusarDenunciaPsicologo(props.DenunciaId)}>
               <img src="/assets/images/botao-reprovar.svg" />
             </button>
           </div>
