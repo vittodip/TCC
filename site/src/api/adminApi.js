@@ -70,11 +70,8 @@ export async function recusarDenunciaUser(id) {
     return resposta.data;
 }
 
-export async function aceitarDenunciaPsi(psicologoId, denunciaId) {
-    const resposta = await api.delete(`/positivo/denuncia/psicologo`, {
-        psicologoId: psicologoId,
-        denunciaId: denunciaId
-    });
+export async function aceitarDenunciaPsi(psicologoId) {
+    const resposta = await api.delete(`/positivo/denuncia/psicologo/${psicologoId}`);
     return resposta.data;
 }
 
