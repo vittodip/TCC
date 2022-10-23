@@ -1,6 +1,6 @@
 import "./index.scss";
 import { cadastroUsuario } from "../../../api/usuarioApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoHorizontal from "../../../components/logos";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,13 +15,22 @@ export default function Cadastro1() {
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
   const [termos, setTermos] = useState(false);
+  const [erro, setErro] = useState('')
 
+  const navigate = useNavigate();
+ 
   async function Cadastro() {
 
     try {
+      if(termos === true){
         const resp = await cadastroUsuario(email, senha, nome, cpf, nascimento, telefone);
-        console.log(resp)
+        setErro('')
         toast("Usuario cadastrado com sucesso")
+        navigate('/login/paciente')
+      }
+      else{
+        setErro('É necessário ler e concordar com a política de privacidade para continuar.')
+      }
     } catch (err) {
         toast(err.response.data.erro)
     }
@@ -29,7 +38,7 @@ export default function Cadastro1() {
   }
 
   return (
-    <main className="Main">
+    <main className="Main-cadastro-paciente">
         <ToastContainer/>
       <section className="global">
         <div className="lado-esquerdo">
@@ -129,6 +138,7 @@ export default function Cadastro1() {
           </div>
           <div className="botao-ladodireito">
             <button onClick={Cadastro}>Cadastro</button>
+            <span>{erro}</span>
           </div>
         </div>
       </section>

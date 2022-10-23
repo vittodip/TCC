@@ -72,13 +72,22 @@
         .s2-opcoes{
             display: flex;
             flex-direction: column;
+            align-items: center;
             
             button {
                 background: #DEDEDE;
                 border-radius: 73px;
                 border: none;
-                padding: 10px;
+                padding: 18px;
+                width: 12em;
                 font-size: 17px;
+                font-family: 'Mulish';
+            }
+            button:hover {
+                cursor: pointer;
+    
+                transform: scale(105%);
+                transition: all 0.5s;
             }
 
         }
@@ -86,6 +95,7 @@
                 align-self: flex-end;
                 color: #3A1248;
                 font-size: 14px;
+                font-family: 'Mulish';
             }
         }
         .s2-alinhamento-opcoes{
