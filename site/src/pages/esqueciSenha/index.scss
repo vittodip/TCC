@@ -1,0 +1,100 @@
+.ESenha{
+    justify-content: center;
+    font-family: mulish;
+    background-image: linear-gradient(180deg, #CFA7CA 29.17%, #A791C0 96.87%);
+    height: 100vh;
+    
+
+    .header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        a{
+            font-weight: 400;
+            text-decoration: none;
+            padding: 20px 30px;
+            color: #79458B;
+            background: #FFFFFF;
+            border-radius: 100px;
+            margin-right: 5em;
+        }
+
+    }
+
+    .painel{
+        display: flex;
+        flex-direction: column;
+        align-items: center!important;
+        justify-content: center;
+        background-color: white;
+        width:30em;
+        padding: 40px 20px;
+        box-shadow: 0px 0px 7.31527px rgba(85, 79, 90, 0.47);
+        border-radius: 32.9187px;
+        text-align: center;
+        margin: 6em 43em;
+        height: 47vh;
+        z-index: 2;
+        position: relative;
+        
+        p{
+            width: 27em;
+        }
+        
+        .infoEmail{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 2em;
+            line-height: 40px;
+
+        }
+
+        label{
+            font-weight: 700;
+            padding-left: 15px;
+        }
+
+
+        input{
+            background-color: #DEDEDE;
+            padding: 15px;
+            border-radius: 20px;
+            color: black;
+            border: none;
+            outline: none;
+            width: 25em;
+        }
+
+        button{
+            background: #79458B;
+            border-radius: 45px;
+            font-weight: 400;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+        }
+
+    }
+
+    .img{
+        position: absolute;
+        top: 7em;
+        right: 4em;
+        width: 46em;
+        z-index: 1;
+        
+    }
+
+    .img2{
+        position: absolute;
+        top: 13em;
+        left: 9em;
+        width: 42em;
+        z-index: 3;
+    }
+
+
+}
