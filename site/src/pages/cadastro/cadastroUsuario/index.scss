@@ -1,66 +1,43 @@
-.Main {
+.Main-cadastro-paciente {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1em;
     background-color: #ffffff;
-
-
     height: 100vh;
 
-
-
     .div-logo {
-
-
-
         display: flex;
         flex-direction: column;
         justify-self: flex-start;
         align-self: flex-start;
-
-
-
     }
-
-
 
     .global {
         display: flex;
         flex-direction: row;
         height: 100vh;
-
     }
 
     .lado-esquerdo {
-
-
         display: flex;
         flex-direction: column;
         gap: 1em;
         align-items: center;
         width: 65%;
-
-
-
     }
 
     .computadozinho {
         width: 40em;
-        
     }
 
     .botao-direito {
-
             background-color: #79458B;
             color: white;
             border-radius: 50px;
             border: 10px;
             padding: 20px;
-            
             text-decoration: none;
-        
-
     }
 
     .container-texto-botao{
@@ -73,7 +50,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
         height: fit-content;
         font-size: 20px;
     }
@@ -81,21 +57,15 @@
     .textinho {
         display: flex;
         flex-direction: column;
-
-
         padding: 8px;
-
         width: 100%;
     }
 
     .lado-direito {
         display: flex;
-        justify-content: center;
         flex-direction: column;
         width: 35%;
         align-items: flex-start;
-
-        
     }
 
     label{
@@ -132,7 +102,7 @@
         border: none;
         font-size: 16px;
         padding-left: 12px;
-
+        font-family: 'Mulish';
         background: #DEDEDE;
         border-radius: 18.5px;
     }
@@ -144,25 +114,30 @@
     }
 
 
-
-    button {
-        
-        width: 15em;
-        padding: 15px;
-        color: #ffffff;
-
-        background-color: #79458B;
-        border: none;
-        border-radius: 25px;
-    }
-    button:hover {
-        cursor: pointer;
-    }
-
     .botao-ladodireito{
         display: flex;
+        align-items: center;
+        flex-direction: column;
         align-self: center;
         margin-right: 1em;
+
+        span{
+            font-size: 12px;
+            color: red;
+        }
+        button {
+        
+            width: 15em;
+            padding: 15px;
+            color: #ffffff;
+    
+            background-color: #79458B;
+            border: none;
+            border-radius: 25px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
     }
 
     .botao {
@@ -172,8 +147,29 @@
 
 }
 
+@media (max-width: 1024px) {
+    .Main-cadastro-paciente{
+        flex-direction: row;
+
+        .input{
+            width: 90%;
+        }
+
+        .computadozinho{
+            width: 30em;
+        }
+    }
+}
+
+@media (max-width: 700px){
+    .Main-cadastro-paciente{
+      
+    }
+}
+
+
 @media (max-width: 414px) {
-    .Main {
+    .Main-cadastro-paciente {
         display: flex;
         flex-direction: column;
 

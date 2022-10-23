@@ -1,9 +1,20 @@
 import './index.scss'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 export default function HomeLogin() {
+
+    const navigate = useNavigate();
+
+    function navegarPacienteClick(){
+        navigate('/cadastro/paciente')
+    }
+    function navegarPsicologoClick(){
+        navigate('/cadastro/voluntario')
+    }
+
     return (
         <main className='home-login'>
             <section className='secao1'>
@@ -19,16 +30,16 @@ export default function HomeLogin() {
                 <div className="opcoes">
                     <div className='s2-opcoes'>
 
-                        <button>Voluntário</button>
+                        <button onClick={navegarPsicologoClick}>Voluntário</button>
                         <a href="/cadastro/voluntario">Clique para saber mais</a>
                     </div>
                     <div className='s2-opcoes'>
-                        <button>Paciente</button>
+                        <button onClick={navegarPacienteClick}>Paciente</button>
                         <a href="/cadastro/paciente">Clique para continuar</a>
                     </div>
                 </div>
                 <div className='s2-alinhamento-opcoes'>
-                    <p>Já tem um cadastro?Conecte-se <Link to='/login/paciente' className='a'>aqui</Link></p>
+                    <p>Já tem um cadastro? Conecte-se <Link to='/login/paciente' className='a'>aqui</Link></p>
 
                 </div>
             </section>

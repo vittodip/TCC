@@ -1,7 +1,7 @@
 .cadastro-voluntario{
     display: flex;
     flex-direction: row;
-    padding: 1em;
+    padding-bottom: 2em;
 
     width: 100%;
     min-height: 100vh;
@@ -85,6 +85,7 @@
 
             label{
                 margin-left: 5px;
+                font-family: 'Mulish';
             }
             input{
                 width: 75%;
@@ -93,7 +94,7 @@
                 border: none;
                 outline: 0;
                 padding: 0px 1px 0px 15px;
-
+                font-family: 'Mulish';
                 background-color: #DEDEDE;
             }
             select{
@@ -142,6 +143,17 @@
                 cursor: pointer;
             }
         }
+        
+    }
+    .button-cadastro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 3em;
+        width: 25em;
+        font-family: 'Mulish';
+
+
         button{
             width: 13em;
             height: 4em;
@@ -153,6 +165,11 @@
 
             margin-top: 2em;
             margin-right: 3em;
+        }
+        span{
+            font-size: 13px;
+            color: red;
+            
         }
     }
     
