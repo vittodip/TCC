@@ -5,6 +5,8 @@ import voluntarioController from './controller/voluntarioController.js'
 import admController from './controller/admController.js'
 import solicitacaoController from './controller/solicitacaoController.js'
 import denunciaController from './controller/denunciaController.js'
+import mensagemController from './controller/mensagemController.js'
+import prontuarioController from './controller/prontuarioController.js'
 
 import express from 'express';
 import cors from 'cors';
@@ -22,7 +24,9 @@ server.use(usuarioController);
 server.use(voluntarioController);
 server.use(admController);
 server.use(solicitacaoController);
-server.use(denunciaController)
+server.use(denunciaController);
+server.use(mensagemController);
+server.use(prontuarioController)
 
 
 server.listen(process.env.PORT,
