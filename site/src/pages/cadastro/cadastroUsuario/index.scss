@@ -163,162 +163,79 @@
 
 @media (max-width: 700px){
     .Main-cadastro-paciente{
+      .global{
+        flex-direction: column;
+        width: 100%;
+      }
+      .lado-esquerdo{
+        width: 100%;
+        align-items: center;
+        .botao-direito{
+            padding: 15px;
+            font-size: 15px;
+        }
+      }
       
+      .lado-direito{
+        width: 100%;
+        align-items: center;
+
+        .textinho{
+            width: 60%;
+            .input{
+                width: 100%;
+            }
+        }
+        
+      }
     }
 }
 
 
-@media (max-width: 414px) {
-    .Main-cadastro-paciente {
-        display: flex;
-        flex-direction: column;
-
-
-        background-color: #ffffff;
-
-
-        height: 100vh;
-
-
-
-        .div-logo {
-
-            img {
-                position: absolute;
-                top: 20px;
-            }
-
-
-
-            padding-top: 1em;
-
-
-
-            width: 1px;
-
-
+@media (max-width: 550px) {
+    .Main-cadastro-paciente{
+        .global{
+          flex-direction: column;
+          width: 100%;
         }
-
-
-
-        .global {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-
-
-
+        .lado-esquerdo{
+          width: 100%;
+          align-items: center;
+          .botao-direito{
+              padding: 15px;
+              font-size: 15px;
+          }
         }
-
-        .lado-esquerdo {
-
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            white-space: nowrap;
-            padding-bottom: 3em;
-
-
+        
+        .lado-direito{
+          width: 100%;
+          align-items: center;
+  
+          .textinho{
+              width: 80%;
+              .input{
+                  width: 100%;
+              }
+          }
+          
         }
+      }
+}
 
-        .texto-botao {
-            text-decoration: none;
-            position: absolute;
+@media (max-width: 440px){
+    .Main-cadastro-paciente{
+        padding: 0px;
+        .computadozinho{
+            width: 23em;
         }
-
-        .computadozinho {
-            display: none;
-            width: 0em;
-
-        }
-
-        .botao-direito {
-            margin-left: 8em;
-            text-decoration: none;
-        }
-
-        .textao {
-            display: flex;
-            flex-direction: column;
+        .textao{
+            font-weight: 600;
+            font-size: 20px;
             align-items: center;
-
-            font-size: 12px;
-            margin-left: 30px;
+            text-align: center;
         }
-
-        .textinho {
-            display: flex;
-            flex-direction: column;
-
-            padding: 2px;
-
-            margin-left: -5px;
-            width: 60%;
+        .textinho{
+            width: 95%;
         }
-
-        label {
-            margin-top: 4em;
-            margin-left: 10px;
-            white-space: nowrap;
-            font-size: 12px;
-        }
-
-        .termos {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 10em;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        .input {
-            width: 24em;
-            height: 10px;
-            border: none;
-
-            padding-left: 12px;
-            padding: 10px;
-
-            background: #DEDEDE;
-            border-radius: 18.5px;
-        }
-
-
-        .link {
-            color: #3A1248;
-
-        }
-
-        .lado-direito {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            width: 35%;
-            padding: 1em;
-        }
-
-        button {
-            width: 15em;
-            font-size: 10px;
-
-            padding: 15px;
-            color: #ffffff;
-
-            background-color: #79458B;
-            border: none;
-            border-radius: 25px;
-        }
-
-        .botao {
-            margin-top: 5em;
-            margin-left: 10em;
-            text-decoration: none;
-        }
-
     }
-
-
-
 }
