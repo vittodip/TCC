@@ -20,7 +20,7 @@ import LoginADM from './pages/login/Admin/index.js';
 import ListarUsers from './pages/adm/allUsers/index.js';
 import EsqueciSenha from './pages/esqueciSenha/index.js';
 import ConcluirSenha from './pages/concluirSenha/index.js';
-
+import Prontuario from './pages/prontuario/index.js';
 
 
 export default function Rotas() {
@@ -55,8 +55,8 @@ export default function Rotas() {
                 {/* Esqueci a Senha */}
                 <Route path='/login/esqueciSenha' element={<EsqueciSenha />} />
                 <Route path='/login/concluirSenha' element={<ConcluirSenha />} />
-
-                
+                {/* Prontuário */}
+                <Route path='/prontuario' element={<Prontuario />} />
             </Routes>
         </BrowserRouter>
     )

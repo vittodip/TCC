@@ -1,0 +1,134 @@
+.prontuario-principal{
+    min-height: 100vh;
+    background-image: linear-gradient(#CFA7CA, #A791C0);
+
+    p, button, h1, h4, textarea{
+        font-family: 'Mulish';
+    }
+    button:hover{
+        cursor: pointer;
+    }
+
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1.5em;
+        align-items: center;
+
+        .voltar-button{
+            padding: 5px;
+            width: 9em;
+            height: 3em;
+            border: none;
+            border-radius: 25px;
+            background-color: #7A4489;
+            color: #ffff;
+        }
+        
+    }
+    .botoes-juntos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 20%;
+        padding: 1em 1em 1em 3em;
+
+        button{
+            font-weight: 600;
+            padding: 5px;
+            width: 9em;
+            height: 3em;
+            border: none;
+            border-radius: 25px;
+            background-color: #ffff;
+            color: #7A4489;
+        }
+    }
+    .informacoes-importantes{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 2em;
+
+        .imagem-esquerda{
+            width: 15em;
+        }
+        .imagem-direita{
+            width: 9em;
+            padding: 1em;
+        }
+
+        .info-align{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 2em;
+            margin-left: 2em;
+            width: 40%;
+
+            h1{
+                margin: 0px;
+            }
+            p{
+                font-size: 18px;
+            }
+            .linha{
+                height: 2px;
+                border-radius: 25px;
+                width: 100%;
+
+                background-color: black;
+            }
+        }
+        .info-align > *{
+            margin: 0.5em 0em 0.5em 0em;
+        }
+    }
+    
+    .secao-anotacoes{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .sa-container-principal{
+            width: 70%;
+            margin-bottom: 2em;
+
+
+            .cp-titulo{
+                display: flex;
+                width: 100%;
+                border-radius: 5px 5px 0px 0px;
+                background-color: #D9D9D9;
+                min-height: 2em;
+                align-items: center;
+                justify-content: center;
+
+                h4{
+                    margin: 0px;
+                    width: fit-content;
+                }
+            }
+            .input{
+                padding: 1em;
+                width: 96.6%;
+                min-height: 5em;
+                border-radius: 0px 0px 5px 5px;
+                background-color: #ffff;
+
+                textarea{
+                    border: none;
+                    padding: 2px;
+                    outline: none;
+                    width: 100%;
+                    font-size: 16px;
+                    font-family: 'Mulish';
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
