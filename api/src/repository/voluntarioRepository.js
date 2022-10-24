@@ -38,7 +38,7 @@ export async function carregarVoluntario(id) {
       from tb_psicologo
     where id_psicologo = ?`
 
-    const [linhas] = await con.query(comando, id);
+    const [linhas] = await con.query(comando, [id]);
     return linhas[0]
 }
 

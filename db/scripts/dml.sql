@@ -11,7 +11,7 @@ insert into
     nr_telefone
   )
 values
-(
+  (
     'email.adm123@gmail.com',
     '1234',
     'Eduzada',
@@ -43,7 +43,7 @@ insert into
     ds_crp
   )
 values
-(
+  (
     'email@psi',
     '1234',
     'Jen',
@@ -83,7 +83,7 @@ insert into
     nr_telefone
   )
 values
-(
+  (
     'email.user1234@gmail.com',
     '1234',
     'JujuPistori',
@@ -378,7 +378,8 @@ set
   DS_GERAL = 'exame medico',
   DT_PRONTUARIO = now()
 where
-  ID_USUARIO = 1;
+  ID_USUARIO = 1
+  and ID_PSICOLOGO = 1;
 
 insert into
   tb_prontuario (
