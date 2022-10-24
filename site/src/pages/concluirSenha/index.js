@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { mudarSenhaUser } from '../../api/usuarioApi';
 import './index.scss';
 
 export default function ConcluirSenha(){
+    const [senha, setSenha] = useState('');
 
+    async function trocarSenha(){
+        const r = await mudarSenhaUser();
+
+        setSenha(r)
+    }
 
     return(
         <main className='CSenha'>
@@ -21,7 +29,7 @@ export default function ConcluirSenha(){
 
                 <div className='infoEmail'>
                     <label>Nova senha</label>
-                    <input type='text' placeholder='***********' />
+                    <input type='text' placeholder='***********' value={senha} onChange={e => setSenha(e.target.value)} />
                 </div>
                 <button>Concluir</button>
             </div>
