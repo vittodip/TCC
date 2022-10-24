@@ -89,3 +89,12 @@ export async function mostrarPsicologos(){
          const [resposta] = await con.query(comando)
          return resposta;
 }
+
+export async function mudarSenhaVolunt(volunt, id){
+    const comando = `update tb_psicologo
+                        set ds_senha = ?
+                      where id_psicologo = ? 
+                        and ds_email = ?`
+    const [resposta] = await con.query(comando, [volunt.senha, id, volunt.email])
+    return resposta.affectedRows
+}
