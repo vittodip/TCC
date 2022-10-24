@@ -1,4 +1,4 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -139,6 +139,30 @@ server.get('/listar/usuario', async (req, resp) => {
             erro: err.message
         })
     }
+})
+
+server.put('/senha/usuario/:id', async (req, resp) =>{
+
+    try {
+        const usuarioID = Number(req.params.id);
+        const user = req.body;
+        
+        const usuario = await carregarUsuario(usuarioID);
+
+        if(user.senha === usuario.senha){
+            throw new Error('Insira uma senha diferente da anterior')
+        }
+
+        const r = await mudarSenhaUser(user, usuarioID)
+        resp.status(204).send()
+
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+
+
 })
 
 
