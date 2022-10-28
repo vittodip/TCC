@@ -29,7 +29,7 @@ export async function mostrarCategoriasSol(id) {
                             from tb_solicitacao_categoria
                             inner join tb_solicitacao on tb_solicitacao_categoria.id_solicitacao = tb_solicitacao.id_solicitacao
                             inner join tb_categoria on tb_solicitacao_categoria.id_categoria = tb_categoria.id_categoria
-                            where tb_solicitacao.id_solicitacao = ?`
+                            where tb_solicitacao_categoria.id_solicitacao_categoria = ?`
 
     const [resposta] = await con.query(comando, [id]);
     return resposta;
