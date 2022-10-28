@@ -1,4 +1,4 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser, pegarEmailUser} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -139,6 +139,23 @@ server.get('/listar/usuario', async (req, resp) => {
             erro: err.message
         })
     }
+})
+
+server.get('/email/usuario', async (req, resp) =>{
+    try {
+        const {email} = req.body;
+        const r = await pegarEmailUser(email);
+        console.log(r)
+        resp.send(r);
+        
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+
+
+
 })
 
 server.put('/senha/usuario/:id', async (req, resp) =>{

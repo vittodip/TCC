@@ -10,18 +10,8 @@ import './index.scss';
 
 export default function EsqueciSenha(){
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('')
 
-    async function emailSenha(){
-        try {
-            const idUser = Storage('usuario-logado').id
-            const r = await mudarSenhaUser(idUser, email, senha)
-            console.log(r)
-            toast('eba parabens deu certo')
-            
-        } catch (err) {
-            toast('erro');
-        }
+    function emailEnviar(event){
         
     }
 
@@ -46,11 +36,7 @@ export default function EsqueciSenha(){
                     <label>E-mail</label>
                     <input type='text' placeholder='email@email.com' value={email}  onChange={e => setEmail(e.target.value)} />
                 </div>
-                <div className='infoEmail'>
-                    <label>Senha</label>
-                    <input type='text' placeholder='*******' value={senha}  onChange={e => setSenha(e.target.value)} />
-                </div>
-                <button onClick={emailSenha}>Enviar</button>
+                <button>Enviar</button>
             </div>
                 <img src='/assets/images/mocaFormas.png' className='img2' />
 

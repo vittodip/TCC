@@ -1,4 +1,6 @@
 import { con } from './connection.js';
+import mailer from 'nodemailer'
+
 
 
 export async function loginUsuario(email, senha) {
@@ -78,12 +80,62 @@ export async function mostrarUsuarios(){
          return resposta;
 }
 
-export async function mudarSenhaUser(user, id){
+export async function pegarEmailUser(email){
+    const comando = `select id_usuario	ID,
+                            nm_usuario nome,
+                            ds_senha   senha
+                       from tb_usuario
+                      where ds_email = ?`
+
+    
+    const [resposta] = await con.query(comando, [email])
+    enviarEmail(resposta, email)
+    return resposta[0]
+
+}
+
+async function enviarEmail(resposta, email){
+ 
+
+    const smtpTransport = mailer.createTransport({
+        host: 'smtp.gmail.com',
+        service:'smtp.gmail.com',
+        port: 587,
+        secure: false, //SSL/TLS
+        auth: {
+            user: "needatalk.contato2@gmail.com",
+            pass: 'crystalcastle@2'
+        }
+    })
+    
+    const mail = {
+        from: "needatalk.contato2@gmail.com",
+        to: email,
+        subject: 'Alterar senha',
+        text: `http://localhost:3000/login/concluirSenha/${resposta[0].id}`,
+        //html: "<b>Opcionalmente, pode enviar como HTML</b>"
+    }
+
+    return new Promise((resolve, reject) => {
+        smtpTransport.sendMail(mail)
+            .then(response => {
+                smtpTransport.close();
+                return resolve(response);
+            })
+            .catch(erro => {
+                smtpTransport.close();
+                return reject(erro);
+            });
+    })
+
+}
+
+export async function mudarSenhaUser(id){
     const comando = `update tb_usuario
                         set ds_senha = ?
                       where id_usuario = ? 
                         and ds_email = ?`
-    const [resposta] = await con.query(comando, [user.senha, id, user.email])
+    const [resposta] = await con.query(comando, [pegarEmailUser])
     console.log(resposta)
     return resposta.affectedRows
 }
