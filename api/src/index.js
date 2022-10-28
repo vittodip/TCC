@@ -7,6 +7,7 @@ import solicitacaoController from './controller/solicitacaoController.js'
 import denunciaController from './controller/denunciaController.js'
 import mensagemController from './controller/mensagemController.js'
 import prontuarioController from './controller/prontuarioController.js'
+import categoriaController from './controller/categoriaController.js'
 
 import express from 'express';
 import cors from 'cors';
@@ -26,7 +27,8 @@ server.use(admController);
 server.use(solicitacaoController);
 server.use(denunciaController);
 server.use(mensagemController);
-server.use(prontuarioController)
+server.use(prontuarioController);
+server.use(categoriaController);
 
 
 server.listen(process.env.PORT,

@@ -1,7 +1,8 @@
-import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser, pegarEmailUser} from '../repository/usuarioRepository.js'
+import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
+import nodemailer from 'nodemailer'
 
 const server = Router();
 
@@ -180,6 +181,37 @@ server.put('/senha/usuario/:id', async (req, resp) =>{
     }
 
 
+})
+
+server.post('/enviar-email', async (req, resp) =>{
+    let data = req.body;
+    const transport = nodemailer.createTransport({
+    host: process.env.HOST,
+    service: process.env.SERVICE,
+    secure:process.env.SECURE,
+    auth:{
+        user: process.env.EMAIL,
+        pass: process.env.SENHA
+    }
+    })
+    
+    const message = {
+    from: process.env.EMAIL,
+     to: data.email,
+     subject:'Nat',
+     html: `
+     <div>
+        <h2>Recuperar Senha</h2>
+    </div>
+     `
+     
+    }
+    transport.sendMail(message, (error, info)=> {
+        if (error) {
+            return resp.status(400).send('Erro, tente novamente')
+        }
+        return resp.status(200).send('Email enviado com sucesso!')
+    })
 })
 
 

@@ -94,41 +94,7 @@ export async function pegarEmailUser(email){
 
 }
 
-async function enviarEmail(resposta, email){
- 
 
-    const smtpTransport = mailer.createTransport({
-        host: 'smtp.gmail.com',
-        service:'smtp.gmail.com',
-        port: 587,
-        secure: false, //SSL/TLS
-        auth: {
-            user: "needatalk.contato2@gmail.com",
-            pass: 'crystalcastle@2'
-        }
-    })
-    
-    const mail = {
-        from: "needatalk.contato2@gmail.com",
-        to: email,
-        subject: 'Alterar senha',
-        text: `http://localhost:3000/login/concluirSenha/${resposta[0].id}`,
-        //html: "<b>Opcionalmente, pode enviar como HTML</b>"
-    }
-
-    return new Promise((resolve, reject) => {
-        smtpTransport.sendMail(mail)
-            .then(response => {
-                smtpTransport.close();
-                return resolve(response);
-            })
-            .catch(erro => {
-                smtpTransport.close();
-                return reject(erro);
-            });
-    })
-
-}
 
 export async function mudarSenhaUser(id){
     const comando = `update tb_usuario
