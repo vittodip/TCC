@@ -1,17 +1,17 @@
 .denunciar-psicologo-main {
+    font-family: "Mulish";
     .painel-linear {
         background: linear-gradient(180deg, #C297BD 0%, #A791C0 100%, #8E76A9 100%);
         min-height: 10vh;
         display: flex;
         flex-direction: column;
-        font-family: "Mulish";
         
 
         .header-painel {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 100%;
+            width: 99%;
             align-items: center;
             
             
@@ -30,7 +30,24 @@
                 align-items: center;
 
             }
+
+        }
+        .alinhamento-linear {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            .titulo-desc {
+                color: #fff;
+                width: 28%;
+            }
+
+            img {
+                padding-bottom: 1em;
+            }
         }
         
     }
+
+    .campos-denuncia-psic {}
 }
