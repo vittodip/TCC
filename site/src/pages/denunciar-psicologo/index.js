@@ -6,7 +6,7 @@ export default function DenunciarPsicologo() {
 
             <div className='painel-linear'>
                 <div className='header-painel'>
-                    <img src='/assets/images/logonat.png' />
+                    <img src='/assets/images/logonat.png' width={200} />
 
                     <button>Perfil</button>
                 </div>
@@ -22,29 +22,37 @@ export default function DenunciarPsicologo() {
 
             </div>
             <div className='campos-denuncia-psic'>
-                <div className='colunas'>
-                    <div>
-                        <label>Psicólogo</label>
-                        <input placeholder='Nome e sobrenome' />
-                        <label>
-                            E-mail Psicólogo
-                        </label>
-                        <input placeholder='example@example.com' />
-                    </div>
-                    <div>
-                        <label>
-                            Paciente
-                        </label>
-                        <input placeholder='Nome e sobrenome' />
-                        <label>
-                            E-mail Paciente
-                        </label>
-                        <input placeholder='example@example.com' />
-                    </div>
-                    <div>
-                    </div>
-                    <textarea></textarea>
-                    <button>Enviar</button>
+                <div className='campos-input'>
+                   
+                        <div className='linha'>
+                            <label>
+                                Psicólogo
+                                <input placeholder='Nome e sobrenome' />
+                            </label>
+                            
+                            <label>
+                                E-mail Psicólogo
+                                <input placeholder='example@example' />
+                            </label>
+                        </div>
+                        <div className='linha'>
+                            <label>
+                                Paciente
+                                <input placeholder='Nome e sobrenome' />
+                            </label>
+                            <label>
+                                E-mail Paciente
+                                <input placeholder='example@example' />
+                            </label>
+                        </div>  
+                        <div className='depoimento'>
+                            <label>
+                                Depoimento
+                                <textarea></textarea>
+                            </label>
+                            <button>Enviar denúncia</button>
+                        </div>                      
+                    
                 </div>
             </div>
         </main>
