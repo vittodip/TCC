@@ -36,11 +36,11 @@ export default function Rotas() {
                 {/* Logins */}
                 <Route path='/home/login' element={ <HomeLogin /> } />
                 <Route path='/login/paciente' element={ <LoginPaciente /> } />
-                <Route path='/login/psicologo' element={ <LoginDoVoluntario /> } />
+                <Route path='/login/voluntario' element={ <LoginDoVoluntario /> } />
                 <Route path='/login/ADM' element={ <LoginDoADM /> } />
                 {/* Perfis */}
-                <Route path='/perfil/paciente' element={ <PerfilUsuario/>} />
-                <Route path='/perfil/psicologo' element={ <PerfilVoluntario /> } />
+                <Route path='/perfil/usuario' element={ <PerfilUsuario/>} />
+                <Route path='/perfil/voluntario' element={ <PerfilVoluntario /> } />
                 {/* Solicitações */}
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
                 {/* Termos */}

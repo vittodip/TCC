@@ -122,32 +122,84 @@ function excluirSolicitacao(id) {
       <div className="infos">
         <ToastContainer />
         <div className="card-infos-gerais">
-          <div className="card-titulo">
-            <h2>Informações Gerais</h2>
-            <img src="/assets/images/Edit.png" onClick={openModal} />
-            <Modal 
-             
-                 isOpen={modalIsOpen}
-                 onRequestClose={closeModal}
-                 style={customStyles}>
-                  <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
-                 <AlterarInfos perfil='usuario'  />                        
-               
-            </Modal>
-          </div>
-          <div>
-            <h3>Nome</h3>
-            <p>{usuario.nome}</p>
-            <h3>E-mail</h3>
-            <p>{usuario.email}</p>
-            <h3>Telefone</h3>
-            <p>{usuario.telefone}</p>
-            <h3>CPF</h3>
-            <p>{usuario.cpf}</p>
-            <h3>Data de nascimento</h3>
-            <p>{String(usuario.DataDeNascimento).substr(0, 10)}</p>
-          </div>
+            <div className="card-titulo">
+              <h2>Informações Gerais</h2>
+              <img src="/assets/images/Edit.png" onClick={openModal} />
+              <Modal 
+              
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
+                  style={customStyles}>
+                    <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
+                  <AlterarInfos perfil='usuario'  />                        
+                
+              </Modal>
+            </div>
+            <div>
+              <h3>Nome</h3>
+              <p>{usuario.nome}</p>
+              <h3>E-mail</h3>
+              <p>{usuario.email}</p>
+              <h3>Telefone</h3>
+              <p>{usuario.telefone}</p>
+              <h3>CPF</h3>
+              <p>{usuario.cpf}</p>
+              <h3>Data de nascimento</h3>
+              <p>{String(usuario.DataDeNascimento).substr(0, 10)}</p>
+            </div>
+
         </div>
+        <div className="card-consultas">
+          <h2>Sessões marcadas</h2>
+
+          <div className="linha-consulta">
+            <label>
+              Profissional
+              <p>Amanda Fitas</p>
+            </label>
+            <label>
+              Data
+              <p>00/00/0000</p>
+            </label>
+            <label>
+              Hora
+              <p>00:00</p>
+            </label> 
+            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
+          </div>
+          <div className="linha-consulta">
+            <label>
+              Profissional
+              <p>Amanda Fitas</p>
+            </label>
+            <label>
+              Data
+              <p>00/00/0000</p>
+            </label>
+            <label>
+              Hora
+              <p>00:00</p>
+            </label> 
+            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
+          </div>
+          <div className="linha-consulta">
+            <label>
+              Profissional
+              <p>Amanda Fitas</p>
+            </label>
+            <label>
+              Data
+              <p>00/00/0000</p>
+            </label>
+            <label>
+              Hora
+              <p>00:00</p>
+            </label> 
+            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
+          </div>
+          
+        </div>
+
       </div>
 
       <div className="faixa-solicitar">
