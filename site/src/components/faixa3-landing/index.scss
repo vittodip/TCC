@@ -27,15 +27,7 @@
         background: none;
     }
 
-    .seta-esquerda {
-        z-index: 1;
-        margin-right: -35px;
-    }
-
-    .seta-direita {
-        z-index: 1;
-        margin-left: -35px;
-    }
+   
 
     .falas-aspas {
         display: flex;
@@ -63,6 +55,7 @@
     .foto-psicologos {
         width: 273px;
         height: 347px;
+        border-radius: 2em;
     }
 
     .redes-sociais {

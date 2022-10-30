@@ -3,7 +3,7 @@ import "./index.scss"
 export default function Pscologos(props) {
     return(
         <div className="psicologos">
-            <button  className="seta-esquerda" href=""> <img src="assets/images/Group 2.png" alt="seta-esquerda" /> </button>
+            
             <div className="sobre-psicologo">
                 <img className="foto-psicologos" src={props.psicologo} alt="psicologos" />
 
@@ -21,7 +21,7 @@ export default function Pscologos(props) {
                     
                 </div>
             </div>
-            <button className="seta-direita" href=""> <img src="assets/images/Group 1.png" alt="seta-direita" /> </button>
+            
         </div>
     )
 }

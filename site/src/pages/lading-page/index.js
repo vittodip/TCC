@@ -1,5 +1,6 @@
 import './index.scss';
 import { Link } from 'react-router-dom';
+import Carousel from 'react-elastic-carousel';
 
 import Roxinho from '../../components/faixa2-lading/index.js';
 import Pscologos from '../../components/faixa3-landing/index.js';
@@ -57,9 +58,14 @@ export default function Home() {
             <section className="faixa-3">
                 <h3>Profissionais que ajudam nossa causa</h3>
 
+                <Carousel>
                     <Pscologos psicologo='/assets/images/image 5.png' nome='Psicóloga Amanda Fitas' descricao='Psicóloga e escritora, com cinco livros publicados, encoraja seus pacientes
                 a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguidores no instagram, ela faz vídeos curtos com conselhos e também tem um podcast.' fala='Quero ajudar aqueles que não podem chegar até nós, seja por questões financeiras ou falta de acesso, pois saúde mental e autoestima deveriam ser acessíveis para todos.' rede='@amandafitas' />
-
+                <Pscologos psicologo='/assets/images/anili.jpg' nome='Anili Mancuzo' descricao='Psicóloga e escritora, com cinco livros publicados, encoraja seus pacientes
+                a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguidores no instagram, ela faz vídeos curtos com conselhos e também tem um podcast.' fala='Quero ajudar aqueles que não podem chegar até nós, seja por questões financeiras ou falta de acesso, pois saúde mental e autoestima deveriam ser acessíveis para todos.' rede='@amandafitas' />
+                <Pscologos psicologo='/assets/images/andre.jpeg' nome='André Barbosa' descricao='Psicóloga e escritora, com cinco livros publicados, encoraja seus pacientes
+                a se valorizarem mais.  Com 10 anos de profissão e mais de 2 milhões de seguidores no instagram, ela faz vídeos curtos com conselhos e também tem um podcast.' fala='Quero ajudar aqueles que não podem chegar até nós, seja por questões financeiras ou falta de acesso, pois saúde mental e autoestima deveriam ser acessíveis para todos.' rede='@amandafitas' />
+                </Carousel>
             </section>
 
             <section className="faixa-4">
@@ -105,7 +111,7 @@ export default function Home() {
                 <div className="integrantes">
                     <Equipe className='integrante-1' integrante='/assets/images/image 19.png' nome='Mateus Andrade' função='DBA' link='https://www.instagram.com/amandafitas/?hl=pt-br' />
                     <Equipe className='integrante-2' integrante='/assets/images/image 18.png' nome='Bruno Virgilio' função='DBA' />
-                    <Equipe className='integrante-3' integrante='/assets/images/image 17.png' nome='Jennifer Oliveira' função='Web Designer' />
+                    <Equipe className='integrante-3' integrante='/assets/images/image 17.png' nome='Jennifer Oliveira' função='Front-End' />
                     <Equipe className='integrante-4' integrante='/assets/images/image 21.png' nome='Eduardo César' função='Backend' />
                     <Equipe className='integrante-5' integrante='/assets/images/image 20.png' nome='Victor de Paula' função='Full-Stack' />
                 </div>
