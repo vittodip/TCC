@@ -36,7 +36,7 @@
         text-align: center;
         margin: 6em 43em;
         height: 47vh;
-        z-index: 2;
+        z-index: 4;
         position: relative;
         
         p{
@@ -83,16 +83,16 @@
         position: absolute;
         top: 7em;
         right: 4em;
-        width: 46em;
+        width: 30em;
         z-index: 1;
         
     }
 
     .img2{
         position: absolute;
-        top: 13em;
+        bottom: 3em;
         left: 9em;
-        width: 42em;
+        width: 30em;
         z-index: 3;
     }
 

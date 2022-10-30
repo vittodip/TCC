@@ -53,8 +53,8 @@ export default function Rotas() {
                 <Route path='/admin/usuario' element={<ListarUsers />} />
                 <Route path='/admin/denuncias/psicologo' element={<DenunciasPsicologos />} />
                 {/* Esqueci a Senha */}
-                <Route path='/login/esqueciSenha' element={<EsqueciSenha />} />
-                <Route path='/login/concluirSenha' element={<ConcluirSenha />} />
+                <Route path='/login/esqueci-senha' element={<EsqueciSenha />} />
+                <Route path='/login/concluir-senha' element={<ConcluirSenha />} />
                 {/* Prontuário */}
                 <Route path='/prontuario' element={<Prontuario />} />
             </Routes>

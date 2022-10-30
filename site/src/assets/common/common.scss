@@ -1,0 +1,18 @@
+
+@font-face {
+    font-family: "Mulish" ;
+    src: url('../../../public/assets/fonts/Mulish-Regular.ttf');
+}
+
+*::-webkit-scrollbar {
+    width: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+    background-color:#A791C0;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color:#796392;
+    border-radius: 10px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import './assets/common/common.scss';
 import './index.css';
 
 import Rotas from './routes.js'
