@@ -1,5 +1,7 @@
 import './index.scss'
 
+
+
 export default function DenunciarPsicologo() {
     return (
         <main className='denunciar-psicologo-main'>

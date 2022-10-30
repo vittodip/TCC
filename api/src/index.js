@@ -8,6 +8,7 @@ import denunciaController from './controller/denunciaController.js'
 import mensagemController from './controller/mensagemController.js'
 import prontuarioController from './controller/prontuarioController.js'
 import categoriaController from './controller/categoriaController.js'
+import senhaController from './controller/senhaController.js'
 
 import express from 'express';
 import cors from 'cors';
@@ -29,7 +30,7 @@ server.use(denunciaController);
 server.use(mensagemController);
 server.use(prontuarioController);
 server.use(categoriaController);
-
+server.use(senhaController);
 
 server.listen(process.env.PORT,
              () => console.log(`API online na porta ${process.env.PORT}`));

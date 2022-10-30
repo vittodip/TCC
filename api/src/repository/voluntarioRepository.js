@@ -42,6 +42,19 @@ export async function carregarVoluntario(id) {
     return linhas[0]
 }
 
+export async function carregarVoluntario2(id) {
+    const comando = `
+    select nm_psicologo 	nome,
+	       ds_email 		email,
+           ds_senha         senha
+      from tb_psicologo
+    where id_psicologo = ?`
+
+    const [linhas] = await con.query(comando, [id]);
+    return linhas[0]
+}
+
+
 export async function alterarVoluntario(volunt, id) {
     const comando = `update tb_psicologo
                         set nm_psicologo      =  ?,

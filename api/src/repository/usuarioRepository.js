@@ -43,6 +43,19 @@ export async function carregarUsuario(id) {
     return linhas[0]
 }
 
+export async function carregarUsuario2(id) {
+    
+    const comando = `
+    select  nm_usuario 	         nome,
+            ds_email             email,
+            ds_senha             senha
+    from tb_usuario
+    where id_usuario = ?`
+
+    const [linhas] = await con.query(comando, id);
+    return linhas[0]
+}
+
 
 export async function alterarUsuario (user, id) {
     const comando = `update tb_usuario
@@ -56,6 +69,7 @@ export async function alterarUsuario (user, id) {
     return resposta[0];
     
 }
+
 
 
 
