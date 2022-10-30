@@ -21,7 +21,7 @@ import ListarUsers from './pages/adm/allUsers/index.js';
 import EsqueciSenha from './pages/esqueciSenha/index.js';
 import ConcluirSenha from './pages/concluirSenha/index.js';
 import Prontuario from './pages/prontuario/index.js';
-
+import DenunciarPsicologo from './pages/denunciar-psicologo/index.js';
 
 export default function Rotas() {
     
@@ -36,11 +36,11 @@ export default function Rotas() {
                 {/* Logins */}
                 <Route path='/home/login' element={ <HomeLogin /> } />
                 <Route path='/login/paciente' element={ <LoginPaciente /> } />
-                <Route path='/login/voluntario' element={ <LoginDoVoluntario /> } />
+                <Route path='/login/psicologo' element={ <LoginDoVoluntario /> } />
                 <Route path='/login/ADM' element={ <LoginDoADM /> } />
                 {/* Perfis */}
-                <Route path='/perfil/usuario/' element={ <PerfilUsuario/>} />
-                <Route path='/perfil/voluntario' element={ <PerfilVoluntario /> } />
+                <Route path='/perfil/paciente' element={ <PerfilUsuario/>} />
+                <Route path='/perfil/psicologo' element={ <PerfilVoluntario /> } />
                 {/* Solicitações */}
                 <Route path='/solicitacoes' element={ <SolicitacoesPsic />} />
                 {/* Termos */}
@@ -57,6 +57,8 @@ export default function Rotas() {
                 <Route path='/login/concluir-senha' element={<ConcluirSenha />} />
                 {/* Prontuário */}
                 <Route path='/prontuario' element={<Prontuario />} />
+                {/*Denunciar*/} 
+                <Route path='/denunciar/psicologo' element={<DenunciarPsicologo />} />
             </Routes>
         </BrowserRouter>
     )

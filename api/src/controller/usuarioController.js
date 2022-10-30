@@ -217,7 +217,7 @@ server.post('/enviar-email', async (req, resp) =>{
                             <b style="color:#000000;">Para redefinir sua senha, basta seguir o link abaixo:</b> <br>
                             
                         </p>
-                        <a href="http://localhost:3000/login/esqueci-senha">
+                        <a href="http://localhost:3000/login/concluir-senha">
                             <button style="color: white; background-color:rgb(113, 50, 142); border: none; border-radius: 20px; padding: 1em; outline: none;"  >Clique aqui!</button>
                         </a>
                         <p style="color:#000">
