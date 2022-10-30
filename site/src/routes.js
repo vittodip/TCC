@@ -22,6 +22,7 @@ import EsqueciSenha from './pages/esqueciSenha/index.js';
 import ConcluirSenha from './pages/concluirSenha/index.js';
 import Prontuario from './pages/prontuario/index.js';
 import DenunciarPsicologo from './pages/denunciar-psicologo/index.js';
+import MensagensPage from './pages/mensagens/index.js';
 
 export default function Rotas() {
     
@@ -59,6 +60,9 @@ export default function Rotas() {
                 <Route path='/prontuario' element={<Prontuario />} />
                 {/*Denunciar*/} 
                 <Route path='/denunciar/psicologo' element={<DenunciarPsicologo />} />
+                {/*chat*/}
+                <Route path='/chat' element={<MensagensPage/>} />
+                
             </Routes>
         </BrowserRouter>
     )
