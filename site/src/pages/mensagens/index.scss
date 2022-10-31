@@ -1,0 +1,53 @@
+.chat-main {
+    display: flex;
+    flex-direction: row;
+    font-family: "Mulish";
+    .lateral-contatos {
+        background-color:#af89bb;
+        width: 30%;
+        height: 100vh;
+
+        .header-contatos {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            color: #fff;
+            margin-bottom: 2em;
+
+        }
+
+        .contatos {
+            padding: 1em;
+           .selecionado-conversa {
+            margin-bottom: 1em;
+            cursor:pointer;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            color: #fff;
+            width: 80%;
+
+           }
+
+           label {
+            font-weight: 600;
+            font-size: 16px;
+           }
+
+           label > p {
+            margin: 10px 0px 10px 0px;
+            font-weight: 500;
+           }
+
+           .selecionado-conversa > img {
+            width: 50px;
+            height: 50px;
+           }
+
+        }
+        .contatos:hover {
+         background-color: #986ba7;
+        }
+    }
+}
