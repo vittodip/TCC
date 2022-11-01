@@ -262,6 +262,18 @@ delete
   from tb_denuncia_usuario
  where id_denuncia = 1;
 
+ -- INSERIR CONSULTA
+insert into tb_consulta(ID_USUARIO, ID_PSICOLOGO, DT_CONSULTA, DS_LINK_MEET)
+	 values(1, 1, '2022-11-05', 'meet.com/psicologoConsulta' );
+     
+-- SELECIONAR CONSULTA
+     select id_consulta   CONSULTA,
+			id_usuario	  USUARIO,
+            id_psicologo  PSICOLOGO,
+            DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as HORARIO,
+            ds_link_meet  MEET
+     from tb_consulta
+
 
 
 
