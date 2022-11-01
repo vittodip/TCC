@@ -96,6 +96,7 @@ export async function mostrarTodasSolicitações(){
 
 }
 
+
 export async function deletarSolicitacaoPsic(id){
     const comando = `update tb_solicitacao 
                      set ds_situacao = 0
@@ -103,4 +104,15 @@ export async function deletarSolicitacaoPsic(id){
 
     const [resposta] = await con.query(comando, [id])
     return resposta.affectedRows;
+
+export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
+    console.log('aasdas')
+    const comando = `select ds_solicitacao solicitacao
+                       from tb_solicitacao
+                      where id_usuario = ?
+                        and id_solicitacao = ?`
+    
+                        console.log('aasdas')
+    const [linhas] = await con.query(comando, [usuario, solicitacao]);
+    return linhas[0]
 }
