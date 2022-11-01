@@ -74,7 +74,7 @@ export default function AlterarInfos(props) {
             if(Storage('voluntario-logado')) {
                 const idPsic = Storage('voluntario-logado').id;
                 
-                await alterarUsuario(idPsic, nome, email, telefone)
+                await alterarVoluntario(idPsic, nome, email, telefone)
                 toast.success('Informações alteradas com sucesso.')
             }
         } catch (err) {

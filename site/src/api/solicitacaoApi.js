@@ -55,3 +55,8 @@ export async function mostrarTodasSolicitações(){
     return resposta.data;
 
 }
+
+export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
+    const resposta = await api.get(`/solicitacao/usuario/busca/?usuario=${usuario}&solicitacao=${solicitacao}`)
+    return resposta.data;
+}

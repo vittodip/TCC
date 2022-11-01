@@ -94,3 +94,15 @@ export async function mostrarTodasSolicitações(){
     return resposta
 
 }
+
+export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
+    console.log('aasdas')
+    const comando = `select ds_solicitacao solicitacao
+                       from tb_solicitacao
+                      where id_usuario = ?
+                        and id_solicitacao = ?`
+    
+                        console.log('aasdas')
+    const [linhas] = await con.query(comando, [usuario, solicitacao]);
+    return linhas[0]
+}

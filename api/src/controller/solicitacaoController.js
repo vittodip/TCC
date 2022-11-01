@@ -1,5 +1,6 @@
 import { Router } from "express";   
-import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
+import { carregarUsuario } from "../repository/usuarioRepository.js";
 
 const server = Router();
 
@@ -130,6 +131,20 @@ server.get('/solicitacao', async (req, resp) => {
         const resposta = await mostrarTodasSolicitações() 
         resp.send(resposta)
 
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/usuario/solicitacao/busca', async (req, resp) => {
+    try {
+        
+        const { usuario, solicitacao } = req.query;
+        const resposta = await carregarSolicitacaoUsuario(usuario, solicitacao)
+        console.log(resposta)
+        resp.send(resposta);
     } catch (err) {
         resp.status(404).send({
             erro: err.message

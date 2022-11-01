@@ -25,7 +25,7 @@ export default function LoginPaciente(){
 
     useEffect(() => {
         if(Storage('usuario-logado')) {
-          navigate(`/perfil/paciente/`);
+          navigate(`/perfil/usuario/`);
         }
       }, [])
 
