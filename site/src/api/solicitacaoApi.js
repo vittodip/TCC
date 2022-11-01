@@ -55,3 +55,9 @@ export async function mostrarTodasSolicitações(){
     return resposta.data;
 
 }
+
+export async function deletarSolicitacaoPsic(id){
+    const resposta = await api.put(`/solicitacao/psic/${id}`)
+    console.log(id)
+    return resposta.data;
+}

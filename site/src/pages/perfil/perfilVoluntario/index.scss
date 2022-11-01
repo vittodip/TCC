@@ -1,5 +1,9 @@
 .voluntario-perfil {
     font-family: "Mulish";
+
+    button{
+        font-family: "Mulish";
+    }
     .info-voluntario {
         
        
@@ -95,6 +99,22 @@
                     width: 90%;
                     
                 }
+            }
+            .ficha-buttons{
+                display: flex;
+                flex-direction: row-reverse;
+                gap: 10px;
+            }
+            .ficha-buttons > button{
+                background-color: #7A4489;
+                color: #FFFFFF;
+                border-radius: 25px;
+                border: none;
+                font-size: 13px;
+                width: 7em;
+                min-height: 2.5em;
+                margin-top: 1em;
+                cursor: pointer;
             }
         }
     }

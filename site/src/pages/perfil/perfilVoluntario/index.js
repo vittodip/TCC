@@ -1,6 +1,6 @@
 
 import { carregarVoluntario, colocarImagemVolunt } from "../../../api/voluntarioApi";
-import { solicitacaoPsicologo } from "../../../api/solicitacaoApi";
+import { solicitacaoPsicologo, deletarSolicitacaoPsic } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
@@ -9,8 +9,9 @@ import './index.scss'
 import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { API_URL } from "../../../api/config";
+import { consultarProntuarioUsuario } from "../../../api/prontuarioApi";
 
 
 export default function PerfilVoluntario() {
@@ -19,8 +20,6 @@ export default function PerfilVoluntario() {
   const [solicitacaoPsi, setSolicitacaoPsi] = useState([])
   const [modalIsOpen, setIsOpen] = useState(false);
   const [imagem, setImagem] = useState('');
-  
-
 
   async function carregarPsicologo() {
     const idPsic = Storage('voluntario-logado').id
@@ -36,7 +35,6 @@ export default function PerfilVoluntario() {
     const idPsic = Storage('voluntario-logado').id
     const resp = await solicitacaoPsicologo(idPsic);
     setSolicitacaoPsi(resp);
-    
   }
 
 
@@ -45,81 +43,108 @@ export default function PerfilVoluntario() {
 
   useEffect(() => {
     carregarPsicologo();
-    if(!Storage('voluntario-logado')) {
+    if (!Storage('voluntario-logado')) {
       navigate('/login/voluntario')
     }
     carregarSolicitacoesAceitas();
   }, []);
 
+  useEffect(() => {
+    carregarSolicitacoesAceitas();
+  }, [solicitacaoPsi])
+
 
   useEffect(() => {
-    if (typeof(imagem) === 'object') {
+    if (typeof (imagem) === 'object') {
       let id = Storage('voluntario-logado').id;
       colocarImagemVolunt(id, imagem)
     }
   }, [imagem])
 
 
+
   Modal.setAppElement('#root');
 
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-
-    const customStyles = {
-        content: {
-            display:'flex',
-            justifyContent:'center',
-            alignItens:'center',
-            border:'none',
-            margin:'none',
-            backgroundColor:'#00000000',
-            
-        },
-        overlay: {
-            backgroundColor: '#000000ce'
-        }
-    };
-
-  function colocarImagem(){
-      document.getElementById('fotoVolunt').click();
+  function openModal() {
+    setIsOpen(true);
   }
 
-  function mostarFoto(){
-    if (typeof(imagem) === 'string') {
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+
+  const customStyles = {
+    content: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItens: 'center',
+      border: 'none',
+      margin: 'none',
+      backgroundColor: '#00000000',
+
+    },
+    overlay: {
+      backgroundColor: '#000000ce'
+    }
+  };
+
+  function colocarImagem() {
+    document.getElementById('fotoVolunt').click();
+  }
+
+  function mostarFoto() {
+    if (typeof (imagem) === 'string') {
       return API_URL + '/' + imagem;
     }
-    else 
+    else
       return URL.createObjectURL(imagem)
-    
+
   }
 
+  async function excluirSolicitacao(item){
+    try{
+      const x = await deletarSolicitacaoPsic(item)
+      toast('Solicitação Excluída!')
+    }
+    catch(err){
+      return(err.message)
+    }
+  }
+
+
+  async function prontuario(){
+    try{
+      
+      const resp = consultarProntuarioUsuario()
+    }
+    catch(err){
+
+    }
+  }
+ 
 
 
 
   return (
     <main className="voluntario-perfil">
+      <ToastContainer />
       <Perfil inicial={voluntario.nome} usuario={voluntario.nome} perfil="voluntario" />
       <div className="info-voluntario">
         <div className="infos-volunt">
 
           <div className="header-infos">
             <h2>Informações Gerais</h2>
-            <img src="/assets/images/Edit.png" width={35} height={40} onClick={openModal}/>
-            <Modal 
-             
-             isOpen={modalIsOpen}
-             onRequestClose={closeModal}
-             style={customStyles}>
+            <img src="/assets/images/Edit.png" width={35} height={40} onClick={openModal} />
+            <Modal
+
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}>
               <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
-             <AlterarInfos  perfil='voluntario'  />                        
-           
-        </Modal>
+              <AlterarInfos perfil='voluntario' />
+
+            </Modal>
           </div>
           {/* coluna 1 */}
           <div className="colunas-vol">
@@ -143,17 +168,17 @@ export default function PerfilVoluntario() {
             </div>
             <div className="coluna3-vol">
               <div className="background-imagem" onClick={colocarImagem}>
-              
-                {!imagem && 
-                    <img src="/assets/images/carregar 1.png" />
+
+                {!imagem &&
+                  <img src="/assets/images/carregar 1.png" />
                 }
 
-                {imagem && 
-                    <img className="fotoVoluntario" src={mostarFoto()} alt=''/>
-                    
+                {imagem &&
+                  <img className="fotoVoluntario" src={mostarFoto()} alt='' />
+
                 }
 
-                <input type='file' id="fotoVolunt"  onChange={e => setImagem(e.target.files[0])}/>
+                <input type='file' id="fotoVolunt" onChange={e => setImagem(e.target.files[0])} />
 
               </div>
             </div>
@@ -166,33 +191,39 @@ export default function PerfilVoluntario() {
         <div className="titulo-faixa-f">
           <h2>Fichas de atendimento</h2>
         </div>
-        
-           <div className="fichas">
-           {solicitacaoPsi.map (item => 
-           <div className="ficha-1">
-             <div className="info-fichas">
-               <div className="infos2">
-                 <h3>Nome</h3>
-                 <p>{item.usuario}</p>
-               </div>
-               <div className="infos2">
-                 <h3>Telefone</h3>
-                 <p>{item.telefone}</p>
-               </div>
-               <div className="infos2">
-                 <h3>Nascimento</h3>
-                 <p>{item.DataDeNascimento.substr(0,10)}</p>
-               </div>
-             </div>
-             <div className="solicitacoes-ficha">
-               <h3>Solicitação</h3>
-               <p>{item.texto}</p>
-             </div>
-           </div>
+
+        <div className="fichas">
+          {solicitacaoPsi.map(item =>
+            <div className="ficha-1">
+              <div className="info-fichas">
+                <div className="infos2">
+                  <h3>Nome</h3>
+                  <p>{item.usuario}</p>
+                </div>
+                <div className="infos2">
+                  <h3>Telefone</h3>
+                  <p>{item.telefone}</p>
+                </div>
+                <div className="infos2">
+                  <h3>Nascimento</h3>
+                  <p>{item.DataDeNascimento.substr(0, 10)}</p>
+                </div>
+              </div>
+              <div className="solicitacoes-ficha">
+                <h3>Solicitação</h3>
+                <p>{item.texto}</p>
+              </div>
+              <div className="ficha-buttons">
+                <button>Prontuário</button>
+                <button>Conversas</button>
+                <button onClick={() => excluirSolicitacao(item.solicitacao)}>Excluir</button>
+              </div>
+
+            </div>
           )}
-         </div>
-         
-       
+        </div>
+
+
       </div>
 
 

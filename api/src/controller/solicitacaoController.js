@@ -1,5 +1,5 @@
 import { Router } from "express";   
-import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações, deletarSolicitacaoPsic } from '../repository/solicitacaoRepository.js';
 
 const server = Router();
 
@@ -131,6 +131,20 @@ server.get('/solicitacao', async (req, resp) => {
         resp.send(resposta)
 
     } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.put('/solicitacao/psic/:id', async (req, resp) => {
+    try{
+        const id = Number(req.params.id)
+        const resposta = await deletarSolicitacaoPsic(id);
+
+        resp.status(202).send()
+    }
+    catch(err){
         resp.status(404).send({
             erro: err.message
         })

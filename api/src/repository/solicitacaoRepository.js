@@ -35,6 +35,7 @@ export async function listarSolicitacao(id){
 
 export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
+                            id_usuario      idUsuario,
                             nm_usuario 	  	usuario,
                             nr_telefone     telefone,
                             date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento,
@@ -93,4 +94,13 @@ export async function mostrarTodasSolicitações(){
     const [resposta] = await con.query(comando)
     return resposta
 
+}
+
+export async function deletarSolicitacaoPsic(id){
+    const comando = `update tb_solicitacao 
+                     set ds_situacao = 0
+                     where id_solicitacao = ?;`
+
+    const [resposta] = await con.query(comando, [id])
+    return resposta.affectedRows;
 }
