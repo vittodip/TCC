@@ -149,6 +149,9 @@ server.put('/solicitacao/psic/:id', async (req, resp) => {
         resp.status(202).send()
     }
     catch(err){
+        
+    }
+})
 
 server.get('/usuario/solicitacao/busca', async (req, resp) => {
     try {

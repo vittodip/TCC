@@ -104,6 +104,7 @@ export async function deletarSolicitacaoPsic(id){
 
     const [resposta] = await con.query(comando, [id])
     return resposta.affectedRows;
+}
 
 export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
     console.log('aasdas')
