@@ -37,7 +37,6 @@ export default function LoginDoVoluntario(){
           const r = await loginVoluntario(email, senha);
           const id = r.id;
           Storage('voluntario-logado', r);
-          localStorage.setItem("id", id)
           setTimeout(() => {
             navigate(`/perfil/voluntario/`);
           }, 3000)

@@ -172,6 +172,8 @@ export default function PerfilVoluntario() {
               <h3>CRP</h3>
               <p>{voluntario.crp}</p>
             </div>
+
+            {/* coluna 3 */}
             <div className="coluna3-vol">
               <div className="background-imagem" onClick={colocarImagem}>
 
