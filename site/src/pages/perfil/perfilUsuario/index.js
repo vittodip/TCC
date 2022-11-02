@@ -5,9 +5,11 @@ import Storage  from 'local-storage';
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
+import AlterarSolicitacao from "../../../components/alterarSolicitacao";
 import AlterarInfos from "../../../components/editar-infos";
 import Modal from 'react-modal'
 import { carregarUsuario } from "../../../api/usuarioApi.js";
@@ -16,13 +18,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
 
 
+
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
   const [solicitacao, setSolicitacao] = useState([]);
   const [novoAssunto, setNovoAssunto] = useState("");
   const [assunto, setAssunto] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
- 
+  const [modalIsOpen2, setIsOpen2] = useState(false);
 
   async function carregarUser() {
     const idUser = Storage('usuario-logado').id
@@ -43,19 +46,18 @@ export default function PerfilUsuario() {
       const resp = await inserirSolicitacao(idUser , assunto);
       carregarTodasSolicitacoes();
       
-      toast("Solicitação feita com sucesso");
+      toast.loading('Enviando...')
+      setTimeout(() => {
+        toast.dismiss()
+        toast.success('Solicitação enviada com sucesso!')
+      }, 600)
       
     } catch (err) {
       toast(err.response.data.erro);
     }
   }
 
-  async function mudarSolicitacao(id) {
-    
-    const r = await alterarSolicitacao(id)
-    setNovoAssunto(assunto);
-    carregarTodasSolicitacoes();
-  }
+
 
 
 function excluirSolicitacao(id) {
@@ -90,6 +92,35 @@ function excluirSolicitacao(id) {
   }, []);
 
 
+
+  Modal.setAppElement('#root');
+
+  function openModal2() {
+      setIsOpen2(true);
+  }
+
+  function closeModal2() {
+      setIsOpen2(false);
+  }
+
+
+  const customStyles2 = {
+      content: {
+          display:'flex',
+          justifyContent:'center',
+          alignItens:'center',
+          border:'none',
+          margin:'none',
+          backgroundColor:'#00000000',
+          
+      },
+      overlay: {
+          backgroundColor: '#000000ce'
+      }
+  };
+
+
+  ////
   Modal.setAppElement('#root');
 
     function openModal() {
@@ -118,9 +149,9 @@ function excluirSolicitacao(id) {
 
   return (
     <main className="usuario-perfil">
+      <ToastContainer/>
       <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
       <div className="infos">
-        <ToastContainer />
         <div className="card-infos-gerais">
             <div className="card-titulo">
               <h2>Informações Gerais</h2>
@@ -224,8 +255,19 @@ function excluirSolicitacao(id) {
                 <div className='box-solicitacao'>
                     <div className='top-solicitacao-2'>
                         <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
-                        <img onClick={() => mudarSolicitacao(item.solicitacao)} src='/assets/images/black-edit.png'/>
-                        <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
+                        {item.situacao === 0 && 
+                          <img onClick={openModal2} src='/assets/images/black-edit.png' />
+                        }
+                          <img onClick={() => excluirSolicitacao(solicitacao)} src='/assets/images/trash.png'/>
+                        <Modal 
+              
+                            isOpen={modalIsOpen2}
+                            onRequestClose={closeModal2}
+                            style={customStyles}>
+                              <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal2} />
+                          <AlterarSolicitacao solicitacaoId={item.solicitacao} />                        
+                      
+                        </Modal>
                     </div>
                     <div className='text-solicitacao'>
                         <hr color="#DEDEDE"/>

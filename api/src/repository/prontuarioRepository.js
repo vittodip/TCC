@@ -60,3 +60,25 @@ export async function consultarProntuario() {
     const [resposta] = await con.query(comando)
     return resposta
 }
+
+export async function consultarProntuarioUsuario(usuario) {
+    const comando = `select
+                        id_prontuario id,
+                        tb_usuario.nm_usuario usuario,
+                        tb_psicologo.nm_psicologo psicologo,
+                        tb_prontuario.ds_diagnostico diagnostico,
+                        tb_prontuario.ds_reacoes reacoes,
+                        tb_prontuario.ds_estado estado,
+                        tb_prontuario.ds_historia historia,
+                        tb_prontuario.ds_exame exame,
+                        tb_prontuario.ds_geral geral,
+                        tb_prontuario.dt_prontuario dataProntuario
+                    from
+                        tb_prontuario
+                        inner join tb_usuario on tb_prontuario.id_usuario = tb_usuario.id_usuario
+                        inner join tb_psicologo on tb_prontuario.id_psicologo = tb_psicologo.id_psicologo
+                        where tb_usuario.id_usuario = ?`
+
+    const [resposta] = await con.query(comando, [usuario])
+    return resposta
+}

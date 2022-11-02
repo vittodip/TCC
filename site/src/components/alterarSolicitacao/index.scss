@@ -1,0 +1,38 @@
+.alterar-sol-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;    
+    font-family: "Mulish";
+    padding: 1.5em;
+    margin-top: 10em;
+    background-color: #fff;
+    height: 50%;
+    width: 70%;
+    border-radius: 3em;
+
+    textarea {
+        font-family: "Mulish";
+        font-size: 16px;
+        padding: 1.5em;
+        resize: none;
+        width: 90%;
+        height: 60%;
+        background: #DEDEDE;
+        border-radius: 18.5px;
+        
+        border: none;
+        outline: none;
+    }
+    
+    button {
+        color:#fff;
+        border: none;
+        background: #79458B;
+        border-radius: 24px;
+        padding: 0.7em 2em;
+        font-family: "Mulish";
+        font-size: 16px;
+        margin: 1em 0em 0em;
+    }
+}

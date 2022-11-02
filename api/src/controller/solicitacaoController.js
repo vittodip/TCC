@@ -1,5 +1,8 @@
 import { Router } from "express";   
-import { aceitarSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações } from '../repository/solicitacaoRepository.js';
+
+import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações, deletarSolicitacaoPsic } from '../repository/solicitacaoRepository.js';
+import { carregarUsuario } from "../repository/usuarioRepository.js";
+
 
 const server = Router();
 
@@ -71,11 +74,11 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         if (!solicitacao.assunto.trim()){
             throw new Error("Não foi possível alterar Solicitação.")
         }
+        
+        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
         if (resposta != 1) {
             throw new Error("Não foi possível alterar Solicitação.")
         }
-        
-        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
         resp.status(202).send()
     } catch (err) {
         resp.status(404).send({
@@ -130,6 +133,33 @@ server.get('/solicitacao', async (req, resp) => {
         const resposta = await mostrarTodasSolicitações() 
         resp.send(resposta)
 
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+
+server.put('/solicitacao/psic/:id', async (req, resp) => {
+    try{
+        const id = Number(req.params.id)
+        const resposta = await deletarSolicitacaoPsic(id);
+
+        resp.status(202).send()
+    }
+    catch(err){
+        
+    }
+})
+
+server.get('/usuario/solicitacao/busca', async (req, resp) => {
+    try {
+        
+        const { usuario, solicitacao } = req.query;
+        const resposta = await carregarSolicitacaoUsuario(usuario, solicitacao)
+        console.log(resposta)
+        resp.send(resposta);
     } catch (err) {
         resp.status(404).send({
             erro: err.message

@@ -40,7 +40,6 @@ export default function HomeLogin() {
                 </div>
                 <div className='s2-alinhamento-opcoes'>
                     <p>Já tem um cadastro? Conecte-se <Link to='/login/paciente' className='a'>aqui</Link></p>
-
                 </div>
             </section>
         </main>

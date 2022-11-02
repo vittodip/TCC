@@ -55,3 +55,14 @@ export async function mostrarTodasSolicitações(){
     return resposta.data;
 
 }
+
+
+export async function deletarSolicitacaoPsic(id){
+    const resposta = await api.put(`/solicitacao/psic/${id}`)
+    return resposta.data;
+}
+
+export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
+    const resposta = await api.get(`/usuario/solicitacao/busca/?usuario=${usuario}&solicitacao=${solicitacao}`)
+    return resposta.data;
+}
