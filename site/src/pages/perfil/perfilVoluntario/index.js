@@ -1,5 +1,5 @@
 
-import { carregarVoluntario, colocarImagemVolunt } from "../../../api/voluntarioApi";
+import { buscarImagem, carregarVoluntario, colocarImagemVolunt } from "../../../api/voluntarioApi";
 import { solicitacaoPsicologo, deletarSolicitacaoPsic } from "../../../api/solicitacaoApi";
 import Perfil from "../../../components/perfil";
 
@@ -95,7 +95,7 @@ export default function PerfilVoluntario() {
 
   function mostarFoto() {
     if (typeof (imagem) === 'string') {
-      return API_URL + '/' + imagem;
+      return API_URL  + '/' + imagem;
     }
     else
       return URL.createObjectURL(imagem)
@@ -174,7 +174,7 @@ export default function PerfilVoluntario() {
                 }
 
                 {imagem &&
-                  <img className="fotoVoluntario" src={mostarFoto()} alt='' />
+                  <img className="fotoVoluntario" src={buscarImagem(voluntario.imagem)} alt='' />
 
                 }
 

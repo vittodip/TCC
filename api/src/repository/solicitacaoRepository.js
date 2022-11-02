@@ -35,7 +35,7 @@ export async function listarSolicitacao(id){
 
 export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
-                            id_usuario      idUsuario,
+                            tb_usuario.id_usuario      idUsuario,
                             nm_usuario 	  	usuario,
                             nr_telefone     telefone,
                             date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento,
@@ -55,7 +55,7 @@ export async function listarSoliciPsicologo(id) {
 export async function alterarSolicitacao(solicitacao, id) {
     const comando = `update tb_solicitacao 
                         set ds_solicitacao = ?,
-                            ds_situacao = false, 
+                            ds_situacao = null, 
                             dt_situacao = now()
                       where id_solicitacao = ?`
                     
