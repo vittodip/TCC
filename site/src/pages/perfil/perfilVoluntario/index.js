@@ -11,7 +11,7 @@ import AlterarInfos from "../../../components/editar-infos";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { API_URL } from "../../../api/config";
-import { consultarProntuarioUsuario } from "../../../api/prontuarioApi";
+import { consultarProntuarioUsuario, enviarProntuario } from "../../../api/prontuarioApi";
 
 
 export default function PerfilVoluntario() {
@@ -113,17 +113,23 @@ export default function PerfilVoluntario() {
   }
 
 
-  async function prontuario(){
+  async function prontuario(idUsuario){
     try{
+      const resp = await fetch(consultarProntuarioUsuario(idUsuario))
+      if(resp.status === 404){
+        let idPsic = Storage('voluntario-logado').id;
+        const x = await enviarProntuario(idUsuario, idPsic);
+        toast('Carregando prontuário...')
+      }
+      else{
+        navigate(`/prontuario/${idUsuario}`)
+      }
       
-      const resp = consultarProntuarioUsuario()
     }
     catch(err){
-
+      toast(err.message)
     }
   }
- 
-
 
 
   return (
@@ -214,7 +220,7 @@ export default function PerfilVoluntario() {
                 <p>{item.texto}</p>
               </div>
               <div className="ficha-buttons">
-                <button>Prontuário</button>
+                <button onClick={() => prontuario(item.idUsuario)}>Prontuário</button>
                 <button>Conversas</button>
                 <button onClick={() => excluirSolicitacao(item.solicitacao)}>Excluir</button>
               </div>

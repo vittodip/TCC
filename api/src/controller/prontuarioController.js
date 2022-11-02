@@ -26,7 +26,11 @@ server.put('/prontuario', async (req, resp) => {
         const { idUsuario, idPsicologo } = req.query;
         const prontuario = req.body;
 
-        const resposta = await novoProntuario(prontuario, idUsuario, idPsicologo)
+        if(!idUsuario || !idPsicologo){
+            throw new Error('Operação inválida')
+        }
+
+        const resposta = await novoProntuario(prontuario, idUsuario, idPsicologo);
 
         resp.status(202).send()
     } catch (err) {
@@ -51,8 +55,10 @@ server.get('/prontuario', async (req, resp) => {
 server.get('/prontuario/:id', async (req, resp) => {
     try {
         const usuario = Number(req.params.id)
-
         const resposta = await consultarProntuarioUsuario(usuario);
+        if(!resposta){
+            throw new Error('Prontuário não encontrado');
+        }
 
         resp.send(resposta);
     } catch (err) {

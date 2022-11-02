@@ -11,15 +11,14 @@ export async function enviarProntuario(idUsuario, idPsicologo) {
     return resposta.data
 }
 
-export async function novoProntuario(idUsuario, idPsicologo, prontuario) {
+export async function novoProntuario(idUsuario, idPsicologo, diagnostico, reacoes, estado, historia, exame, geral) {
     const resposta = await api.put(`/prontuario/?idUsuario=${idUsuario}&idPsicologo=${idPsicologo}`, {
-        DS_DIAGNOSTICO: prontuario,
-        DS_REACOES: prontuario,
-        DS_ESTADO: prontuario,
-        DS_HISTORIA: prontuario,
-        DS_EXAME: prontuario,
-        DS_GERAL: prontuario,
-        DT_PRONTUARIO: prontuario
+        diagnostico: diagnostico,
+        reacoes: reacoes,
+        estado: estado,
+        historia: historia,
+        exame: exame,
+        geral: geral
     });
     return resposta.data
 }
