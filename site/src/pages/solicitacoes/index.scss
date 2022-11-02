@@ -1,142 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500&display=swap");
 
+.solicitacoes-principal {
+  font-family: "Mulish";
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1em 2em 1em;
 
-.solicitacoes-principal{
-        
-    font-family: "Mulish";
-    .header{
+  background-image: linear-gradient(#e5bae1, #9d77bb);
+
+  .hd-alinhamento-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0em 2em 0em 1em;
+    align-items: center;
+
+    img {
+      width: 15em;
+    }
+
+    .hd-alinhamento-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 25%;
+
+      button {
+        font-family: "Mulish";
+        font-size: 16px;
+        padding: 1em 2em;
+        min-height: 3em;
+        background-color: #ffff;
+        border: none;
+        border-radius: 25px;
+        color: #7a4489;
+        cursor: pointer;
+      }
+    }
+  }
+  .hd-alinhamento-2 {
+    padding-left: 2em;
+    display: flex;
+    flex-direction: row;
+    padding-right: 3em;
+    justify-content: space-between;
+    margin-top: 2em;
+
+    img {
+      width: 18em;
+    }
+
+    h1 {
+      color: #ffff;
+      font-size: 30px;
+      font-family: "Baloo Thambi 2";
+    }
+    p {
+      font-size: 20px;
+      color: #ffff;
+      width: 40em;
+      margin: 0em 0em 0.5em 0em;
+    }
+  }
+}
+
+.secao-solicitacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 2em;
+  gap: 3em;
+
+  .container-principal {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: fit-content;
+    background-color: #f2ebf8;
+    border-radius: 25px;
+    border: 1px solid #c6c6c6;
+
+    .cp-info-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: #f2f2f2;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      padding: 0em 1em 0em 1em;
+      border-bottom: 1px solid #c6c6c6;
+
+      img {
+        width: 2em;
+      }
+    }
+    .cp-texto {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+    .cp-funcionalidades {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 94%;
+      align-self: center;
+
+      align-items: center;
+      border-top: 1px solid #d1c8d1;
+
+      p {
+        color: #8d8c8c;
+        font-family: "Mulish";
+      }
+
+      .alinhamento {
         display: flex;
-        flex-direction: column;
-        padding: 1em 1em 2em 1em;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+      }
+      img {
+        width: 2.5em;
+      }
 
-        background-image: linear-gradient(#E5BAE1, #9D77BB);
-
-        .hd-alinhamento-1{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 0em 2em 0em 1em;
-            align-items: center;
-    
-            img{
-                width: 15em;
-            }
-    
-            .hd-alinhamento-buttons{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
-                width: 25%;
-    
-                button{
-                    font-family: "Mulish";
-                    font-size: 16px;
-                    padding: 1em 2em;
-                    min-height: 3em;
-                    background-color: #ffff;
-                    border: none;
-                    border-radius: 25px;
-                    color: #7A4489;
-                }
-            }
-        }
-        .hd-alinhamento-2{
-            padding-left: 2em;
-            display: flex;
-            flex-direction: row;
-            padding-right: 3em;
-            justify-content: space-between;
-            margin-top: 2em;
-    
-            img{
-                width: 18em;
-            }
-            
-            h1{
-                color: #ffff;
-                font-size: 30px;
-                font-family: 'Baloo Thambi 2';
-            }
-            p{
-                font-size: 20px;
-                color: #ffff;
-                width: 40em;
-                margin: 0em 0em 0.5em 0em;
-            }
-        }
+      button {
+        height: 2.5em;
+        width: 13em;
+        border-radius: 25px;
+        border: none;
+        background-color: #8f6fb4;
+        color: #ffff;
+        cursor: pointer;
+      }
     }
-
-    
-    .secao-solicitacao{
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-           min-height: 100vh;
-           width: 100%;
-           padding-top: 2em;
-           gap:3em;
-     
-           .container-principal{
-                display: flex;
-                flex-direction: column;
-                width: 75%;
-                height: fit-content;
-                background-color: #F2EBF8;
-                border-radius: 25px;
-                border: 1px solid #C6C6C6;
-
-                .cp-info-date{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    background-color: #F2F2F2;
-                    border-top-left-radius:25px;
-                    border-top-right-radius: 25px;
-                    padding: 0em 1em 0em 1em;
-                    border-bottom: 1px solid #C6C6C6;
-
-                    img{
-                        width: 2em;
-                    }
-                }
-                .cp-texto{
-                    padding-left: 2em;
-                    padding-right: 2em;
-                }
-                .cp-funcionalidades{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    width: 94%;
-                    align-self: center;
-                    
-                    align-items: center;
-                    border-top: 1px solid #D1C8D1;
-
-                    p{
-                        color: #8d8c8c;
-                    }
-
-                    .alinhamento{
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 1em;
-                    }
-                    img{
-                        width: 2.5em;
-                    }
-
-                    button{
-                        height: 2.5em;
-                        width: 13em;
-                        border-radius: 25px;
-                        border: none;
-                        background-color: #8F6FB4;
-                        color: #ffff;
-                    }
-                }
-           }
-           
-    }
+  }
 }

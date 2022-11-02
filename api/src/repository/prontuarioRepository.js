@@ -51,7 +51,8 @@ export async function consultarProntuario() {
                         ds_historia historia,
                         ds_exame exame,
                         ds_geral geral,
-                        dt_prontuario dataProntuario
+                        dt_prontuario dataProntuario,
+                        date_format(dt_prontuario, '%d/%m/%Y') as dataProntuario
                     from
                         tb_prontuario
                         inner join tb_usuario on tb_prontuario.id_usuario = tb_usuario.id_usuario
@@ -72,7 +73,8 @@ export async function consultarProntuarioUsuario(usuario) {
                         tb_prontuario.ds_historia historia,
                         tb_prontuario.ds_exame exame,
                         tb_prontuario.ds_geral geral,
-                        tb_prontuario.dt_prontuario dataProntuario
+                        tb_prontuario.dt_prontuario dataProntuario,
+                        date_format(tb_prontuario.dt_prontuario, '%d/%m/%Y') as dataProntuario
                     from
                         tb_prontuario
                         inner join tb_usuario on tb_prontuario.id_usuario = tb_usuario.id_usuario
@@ -80,5 +82,5 @@ export async function consultarProntuarioUsuario(usuario) {
                         where tb_usuario.id_usuario = ?`
 
     const [resposta] = await con.query(comando, [usuario])
-    return resposta
+    return resposta[0]
 }
