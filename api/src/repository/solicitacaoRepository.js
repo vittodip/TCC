@@ -35,6 +35,7 @@ export async function listarSolicitacao(id){
 
 export async function listarSoliciPsicologo(id) {
     const comando = `select id_solicitacao 	solicitacao,
+                            tb_usuario.id_usuario      idUsuario,
                             nm_usuario 	  	usuario,
                             nr_telefone     telefone,
                             date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento,
@@ -53,8 +54,7 @@ export async function listarSoliciPsicologo(id) {
 
 export async function alterarSolicitacao(solicitacao, id) {
     const comando = `update tb_solicitacao 
-                        set ds_solicitacao = ?,
-                            ds_situacao = null, 
+                        set ds_solicitacao = ?, 
                             dt_situacao = now()
                       where id_solicitacao = ?`
                     
@@ -93,4 +93,25 @@ export async function mostrarTodasSolicitações(){
     const [resposta] = await con.query(comando)
     return resposta
 
+}
+
+
+export async function deletarSolicitacaoPsic(id){
+    const comando = `update tb_solicitacao 
+                     set ds_situacao = 0
+                     where id_solicitacao = ?`
+
+    const [resposta] = await con.query(comando, [id])
+    return resposta.affectedRows;
+}
+
+export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
+    
+    const comando = `select ds_solicitacao solicitacao
+                       from tb_solicitacao
+                      where id_usuario = ?
+                        and id_solicitacao = ?`
+    
+    const [linhas] = await con.query(comando, [usuario, solicitacao]);
+    return linhas[0]
 }

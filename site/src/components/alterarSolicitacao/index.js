@@ -9,23 +9,21 @@ import { toast, Toaster } from 'react-hot-toast'
 import Storage from 'local-storage'
 
 
-export default function AlterarSolicitacao(props) {
-
-
-    const [assunto, setAssunto] = useState('')
-    
-
+export default function AlterarSolicitacao({ item, acao, abrir }) {
+    const [assunto, setAssunto] = useState(item.texto)
+   
     async function carregarSolicitacao() {
         if(Storage('usuario-logado')) {
             const userId = Storage('usuario-logado').id;
-            const resposta = await carregarSolicitacaoUsuario(userId, props.solicitacaoId)
+            const resposta = await carregarSolicitacaoUsuario(userId, item.solicitacao)
+            
             setAssunto(resposta.solicitacao)
         }
     }
 
     async function salvarSolicitacao() {
         try {
-                await alterarSolicitacao(props.solicitacaoId, assunto)
+                await alterarSolicitacao(item.solicitacao, assunto)
                 toast.success('Solicitação alterada com sucesso.')
             
         } catch (err) {
@@ -40,20 +38,27 @@ export default function AlterarSolicitacao(props) {
 
 
     useEffect(() => {
-        carregarSolicitacao()
+        carregarSolicitacao();
     }, [])
 
     
 
 
-    return (
-        <main className='alterar-sol-main'>
-             <Toaster />
-            <h2>Alterar Solicitação</h2>
+    return ( 
+        <main className={`pop-up-main ${abrir}`} >
+            <div className='alterar-sol'>
+                
+                <Toaster />
 
-            <textarea value={assunto} onChange={e => setAssunto(e.target.value)}></textarea>
+                <img src="/assets/images/excluir.png" width={30} height={30} onClick={() => acao('fechado', null)} /> 
+            
+            
+                    <h2>Alterar Solicitação</h2>
+                    <textarea value={assunto} onChange={e => setAssunto(e.target.value)}></textarea>
 
-            <button onClick={salvarSolicitacao}>Salvar</button>
+                    <button onClick={salvarSolicitacao}>Salvar</button>
+            
+            </div>
         </main>
     )
 }
