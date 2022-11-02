@@ -54,8 +54,7 @@ export async function listarSoliciPsicologo(id) {
 
 export async function alterarSolicitacao(solicitacao, id) {
     const comando = `update tb_solicitacao 
-                        set ds_solicitacao = ?,
-                            ds_situacao = null, 
+                        set ds_solicitacao = ?, 
                             dt_situacao = now()
                       where id_solicitacao = ?`
                     
@@ -100,20 +99,19 @@ export async function mostrarTodasSolicitações(){
 export async function deletarSolicitacaoPsic(id){
     const comando = `update tb_solicitacao 
                      set ds_situacao = 0
-                     where id_solicitacao = ?;`
+                     where id_solicitacao = ?`
 
     const [resposta] = await con.query(comando, [id])
     return resposta.affectedRows;
 }
 
 export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
-    console.log('aasdas')
+    
     const comando = `select ds_solicitacao solicitacao
                        from tb_solicitacao
                       where id_usuario = ?
                         and id_solicitacao = ?`
     
-                        console.log('aasdas')
     const [linhas] = await con.query(comando, [usuario, solicitacao]);
     return linhas[0]
 }
