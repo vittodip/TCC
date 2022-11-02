@@ -11,8 +11,8 @@
 
 .pop-up-main {
     z-index: 2;
-    background-color: #79458B;
-
+    background: rgba(0, 0, 0, 0.4);;
+    flex-direction: column;
     
     justify-content: center;
     align-items: center;
@@ -60,6 +60,10 @@
             font-size: 16px;
             margin: 1em 0em 0em;
         }
+
+    }
+    img {
+        margin: 2em;
     }
 }
 

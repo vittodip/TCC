@@ -46,11 +46,11 @@ export default function AlterarSolicitacao({ item, acao, abrir }) {
 
     return ( 
         <main className={`pop-up-main ${abrir}`} >
+                <img src="/assets/images/excluir.png" width={30} height={30} onClick={() => acao('fechado', null)} /> 
             <div className='alterar-sol'>
                 
                 <Toaster />
 
-                <img src="/assets/images/excluir.png" width={30} height={30} onClick={() => acao('fechado', null)} /> 
             
             
                     <h2>Alterar Solicitação</h2>
