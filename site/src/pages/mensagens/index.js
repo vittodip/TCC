@@ -4,6 +4,8 @@ import BotaoBranco from '../../components/botao'
 import storage from 'local-storage'
 import { useNavigate } from 'react-router-dom'
 
+import ChatHeader from '../../components/chat-header'
+
 export default function MensagensPage() {
 
 
@@ -32,7 +34,7 @@ export default function MensagensPage() {
                 <div className='contatos'>
                     <div className='selecionado-conversa'>
                         <img src='/assets/images/male-user.png'/>
-                        <div>
+                        <div className='usu-info'>
                             <label>
                                 Mateus Andrade
                                 <p>Então a sessão tá marcada pra 00:00?</p>
@@ -41,7 +43,7 @@ export default function MensagensPage() {
                     </div>
                     <div className='selecionado-conversa'>
                         <img src='/assets/images/male-user.png'/>
-                        <div>
+                        <div className='usu-info'>
                             <label>
                                 Mateus Andrade
                                 <p>Então a sessão tá marcada pra 00:00?</p>
@@ -50,8 +52,105 @@ export default function MensagensPage() {
                     </div>
                 </div>
             </div>
-            <div className=''>
-
+            <div className='session-chat'>
+                <ChatHeader />
+                <div className='chat'>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-esquerda'>
+                        <div className='mensagem-esquerda'>
+                            <p>Me ajuda, eu so loco</p>
+                        </div> 
+                    </div>
+                    <div className='campo-mensagem-direita'>
+                        <div className='mensagem-direita'>
+                            <p>procura um psicólogo</p>
+                        </div> 
+                    </div>
+                    
+                </div>
+                <div className='chat-input-container'>
+                    <input type="text" />
+                    <img src="/assets/images/sent.svg" alt="" />
+                </div>
             </div>
         </main>
     )

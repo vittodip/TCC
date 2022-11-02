@@ -1,0 +1,40 @@
+.header-chat{
+    background: #FFFFFF;
+    padding: 0.5em 1em 0.5em 1em;
+    
+    box-shadow: 0px 0px 4px #00000040;
+    font-family: "Mulish";
+
+    .section-header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        p{
+            font-size: 18px;
+            color: #656565;
+            padding-left: 0.5em;
+        }
+    
+        
+        .header-circulo{
+
+    
+            h3{
+                color: #ffff;
+                margin: 0px;
+            }
+        }
+        .alinhamento-content, .alinhamento-content2{
+            display: flex;
+            flex-direction: row;
+        }
+        .alinhamento-content2 > *{
+            margin-left: 1em;
+            margin-right: 1em;
+            cursor: pointer;
+        }
+    }
+}
