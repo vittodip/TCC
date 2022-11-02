@@ -5,6 +5,7 @@ import Storage  from 'local-storage';
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
+
 import { toast, ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -258,12 +259,13 @@ function excluirSolicitacao(id) {
                         {item.situacao === 0 && 
                           <img onClick={openModal2} src='/assets/images/black-edit.png' />
                         }
-                          <img onClick={() => excluirSolicitacao(solicitacao)} src='/assets/images/trash.png'/>
+
+                          <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
+
                         <Modal 
-              
                             isOpen={modalIsOpen2}
                             onRequestClose={closeModal2}
-                            style={customStyles}>
+                            style={customStyles2}>
                               <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal2} />
                           <AlterarSolicitacao solicitacaoId={item.solicitacao} />                        
                       
