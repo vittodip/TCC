@@ -63,6 +63,6 @@ export async function deletarSolicitacaoPsic(id){
 }
 
 export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
-    const resposta = await api.get(`/solicitacao/usuario/busca/?usuario=${usuario}&solicitacao=${solicitacao}`)
+    const resposta = await api.get(`/usuario/solicitacao/busca/?usuario=${usuario}&solicitacao=${solicitacao}`)
     return resposta.data;
 }

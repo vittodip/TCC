@@ -5,7 +5,7 @@ import Storage  from 'local-storage';
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
-import { ToastContainer, toast } from "react-toastify";
+import { Toaster, toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 
 import AlterarSolicitacao from "../../../components/alterarSolicitacao";
@@ -44,7 +44,11 @@ export default function PerfilUsuario() {
       const resp = await inserirSolicitacao(idUser , assunto);
       carregarTodasSolicitacoes();
       
-      toast("Solicitação feita com sucesso");
+      toast.loading('Enviando...')
+      setTimeout(() => {
+        toast.dismiss()
+        toast.success('Solicitação enviada com sucesso!')
+      }, 600)
       
     } catch (err) {
       toast(err.response.data.erro);
@@ -148,9 +152,9 @@ function excluirSolicitacao(id) {
 
   return (
     <main className="usuario-perfil">
+      <Toaster/>
       <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
       <div className="infos">
-        <ToastContainer />
         <div className="card-infos-gerais">
             <div className="card-titulo">
               <h2>Informações Gerais</h2>

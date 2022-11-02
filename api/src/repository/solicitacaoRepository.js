@@ -55,7 +55,7 @@ export async function listarSoliciPsicologo(id) {
 export async function alterarSolicitacao(solicitacao, id) {
     const comando = `update tb_solicitacao 
                         set ds_solicitacao = ?,
-                            ds_situacao = null, 
+                            ds_situacao = false, 
                             dt_situacao = now()
                       where id_solicitacao = ?`
                     

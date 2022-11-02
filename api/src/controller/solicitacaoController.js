@@ -74,11 +74,11 @@ server.put('/solicitacao/:id' , async (req, resp) => {
         if (!solicitacao.assunto.trim()){
             throw new Error("Não foi possível alterar Solicitação.")
         }
+        
+        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
         if (resposta != 1) {
             throw new Error("Não foi possível alterar Solicitação.")
         }
-        
-        const resposta = await alterarSolicitacao(solicitacao, solicitacaoId);
         resp.status(202).send()
     } catch (err) {
         resp.status(404).send({

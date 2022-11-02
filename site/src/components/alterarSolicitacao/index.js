@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 // npm
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast, Toaster } from 'react-hot-toast'
 import Storage from 'local-storage'
 
 
@@ -22,13 +22,13 @@ export default function AlterarSolicitacao(props) {
         if(Storage('usuario-logado')) {
             const userId = Storage('usuario-logado').id;
             const resposta = await carregarSolicitacaoUsuario(userId, props.solicitacaoId)
-            setAssunto(resposta.assunto)
+            setAssunto(resposta.solicitacao)
         }
     }
 
     async function salvarSolicitacao() {
         try {
-                await alterarSolicitacao(solicitacao, assunto)
+                await alterarSolicitacao(props.solicitacaoId, assunto)
                 toast.success('Solicitação alterada com sucesso.')
             
         } catch (err) {
@@ -51,7 +51,7 @@ export default function AlterarSolicitacao(props) {
 
     return (
         <main className='alterar-sol-main'>
-             <ToastContainer />
+             <Toaster />
             <h2>Alterar Solicitação</h2>
 
             <textarea value={assunto} onChange={e => setAssunto(e.target.value)}></textarea>
