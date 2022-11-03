@@ -268,7 +268,7 @@ insert into tb_consulta(ID_USUARIO, ID_PSICOLOGO, DT_CONSULTA, DS_LINK_MEET)
      
 -- SELECIONAR CONSULTA
      select id_consulta   CONSULTA,
-			id_usuario	  USUARIO,
+			      id_usuario	  USUARIO,
             id_psicologo  PSICOLOGO,
             DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as HORARIO,
             ds_link_meet  MEET

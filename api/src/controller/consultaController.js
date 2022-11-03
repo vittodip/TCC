@@ -1,5 +1,5 @@
 import Router from 'express'
-import marcarConsulta from '../repository/consultaRepository.js';
+import {marcarConsulta, listarConsulta }from '../repository/consultaRepository.js';
 
 const server = Router();
 
@@ -24,6 +24,18 @@ server.post('/consulta', async (req, resp) => {
             erro: err.message
         })
    }
+})
+
+server.get('/consulta' , async (req, resp) => {
+    try {
+        const resposta = await listarConsulta()
+        resp.send(resposta)
+
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
 })
 
 
