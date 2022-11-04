@@ -1,0 +1,123 @@
+.pop-up-marcar {
+    background-color: #fff;
+    width: 50%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    position: absolute;
+    top: 20%;
+
+    font-family: "Mulish";
+
+
+
+    .titulo-pop {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 60%;
+        padding-right: 10em;
+        justify-content: space-between;
+        margin-bottom: 1em;
+
+        h1 {
+            color: #6C2F81;
+        }
+
+        img {
+            height: 20px;
+            cursor: pointer;
+        }
+
+        img:hover {
+            transform: scale(115%);
+            transition: all 0.5s;
+        }
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+
+        button {
+            align-self: flex-end;
+            margin-top: 1.5em;
+            background-color: #79458B;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 1em 2em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(110%);
+            transition: all 0.3s;
+        }
+
+        .linha1-input {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+
+            label {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    background-color: #DEDEDE;
+                    border-radius: 20px;
+                    border: none;
+                    outline: none;
+                    padding: 1em 10px;
+                    font-family: "Mulish";
+                }
+
+                p {
+                    margin: 0px 0px 3px 0px;
+                    padding-left: 12px;
+                    font-family: "Mulish";
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .linha2-input {
+            margin-top: 2em;
+        }
+
+        .linha2-input>label {
+            display: flex;
+            flex-direction: column;
+
+            p {
+                margin: 0px 0px 3px 0px;
+                padding-left: 12px;
+                font-family: "Mulish";
+                font-weight: 600;
+            }
+
+            input {
+                background-color: #DEDEDE;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                padding: 1em 10px;
+                font-family: "Mulish";
+            }
+        }
+
+        ::-webkit-input-placeholder {
+            color: #757575;
+            font-size: 15px;
+            font-family: "Mulish";
+        }
+
+    }
+
+}

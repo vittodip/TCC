@@ -6,15 +6,25 @@ import { useNavigate } from 'react-router-dom'
 
 import ChatHeader from '../../components/chat-header'
 
+
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:5000'); 
+
 export default function MensagensPage() {
 
-
+    socket.emit('msg', 'VIM DO FRONT');
+    socket.on('msg', async(data)=>{
+        console.log(data);
+    })
     const navigate = useNavigate();
 
-    
+
+   
 
     return (
         <main className='chat-main'>
+            
             <div className='lateral-contatos'>
                 <div className='header-contatos'>
                     <h2>Conversas</h2>

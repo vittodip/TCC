@@ -158,7 +158,7 @@ server.get('/usuario/solicitacao/busca', async (req, resp) => {
         
         const { usuario, solicitacao } = req.query;
         const resposta = await carregarSolicitacaoUsuario(usuario, solicitacao)
-        console.log(resposta)
+        
         resp.send(resposta);
     } catch (err) {
         resp.status(404).send({
