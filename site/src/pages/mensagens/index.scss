@@ -61,7 +61,7 @@
 
         .chat{
             background-color: #F4F4F4;
-            max-height: 80vh;
+            min-height: 80vh;
             padding: 0em 2em;
             overflow-y: auto;
             display: flex;
