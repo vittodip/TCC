@@ -13,6 +13,7 @@ import prontuarioController from './controller/prontuarioController.js'
 import categoriaController from './controller/categoriaController.js'
 import senhaController from './controller/senhaController.js'
 import consultaController from './controller/consultaController.js'
+import chatController from './controller/chatController.js'
 
 
 import express from 'express';
@@ -33,6 +34,8 @@ server.use(prontuarioController);
 server.use(categoriaController);
 server.use(senhaController);
 server.use(consultaController);
+server.use(chatController);
+
 
 
 
