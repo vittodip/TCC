@@ -1,5 +1,5 @@
 import {  Router } from 'express'
-import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem } from '../repository/chatRepository.js';
+import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem, checarChat, carregarNome } from '../repository/chatRepository.js';
 
 
 const server = Router();
@@ -17,6 +17,19 @@ server.post('/chat', async (req, resp) => {
         })
     }
 }) 
+
+server.get('/chat/disponivel', async (req, resp) => {
+    try{
+        const { usuario, psicologo } = req.query;
+        const resposta = await checarChat(usuario, psicologo);
+        resp.send(resposta)
+    }
+    catch(err){
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 server.get('/usuario/mensagem/:id', async (req, resp) => {
     try {
@@ -61,14 +74,28 @@ server.post('/chat/mensagem', async (req, resp) => {
     }
 })
 
-server.get('/conversa/mensagem', async (req, resp) => {
+server.get('/conversa/mensagem/:id', async (req, resp) => {
     try {
-        const resposta = await mostrarMensagem()
+        const idChat = req.params.id;
+        const resposta = await mostrarMensagem(idChat)
 
         resp.send(resposta)
     } catch (err) {
         resp.status(400).send({
             erro:err.message
+        })
+    }
+})
+
+server.get('/chat/nome/:id', async (req, resp) => {
+    try{
+        const idUsuario = req.params.id;
+        const resposta = await carregarNome(idUsuario)
+        resp.send(resposta)
+    }
+    catch(err){
+        resp.send({
+            erro: err.message
         })
     }
 })

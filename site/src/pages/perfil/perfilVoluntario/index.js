@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { API_URL } from "../../../api/config";
 import { consultarProntuarioUsuario, enviarProntuario } from "../../../api/prontuarioApi";
+import { criarChat, checarChat } from "../../../api/chatApi";
 
 
 export default function PerfilVoluntario() {
@@ -131,6 +132,24 @@ export default function PerfilVoluntario() {
     }
   }
 
+  async function conversa(idUsuario){
+    try{
+      const idPsic = Storage('voluntario-logado').id;
+      const check = await checarChat(idUsuario, idPsic);
+      if(check === null) {
+        const resp = await criarChat(idUsuario, idPsic);
+        toast.loading('Criando chat...')
+        navigate('/chat')
+      }
+      else{
+        navigate('/chat')
+      }
+    }
+    catch(err){
+      toast(err.message)
+    }
+  }
+
 
   return (
     <main className="voluntario-perfil">
@@ -223,7 +242,7 @@ export default function PerfilVoluntario() {
               </div>
               <div className="ficha-buttons">
                 <button onClick={() => prontuario(item.idUsuario)}>Prontuário</button>
-                <button>Conversas</button>
+                <button onClick={() => conversa(item.idUsuario)}>Conversas</button>
                 <button onClick={() => excluirSolicitacao(item.solicitacao)}>Excluir</button>
               </div>
 

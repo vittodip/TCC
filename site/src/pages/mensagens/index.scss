@@ -61,7 +61,7 @@
 
         .chat{
             background-color: #F4F4F4;
-            min-height: 80vh;
+            max-height: 80vh;
             padding: 0em 2em;
             overflow-y: auto;
             display: flex;
@@ -70,11 +70,13 @@
             
             .campo-mensagem-esquerda{
                 width: 100%;
+                margin: 15px 0px;
             }
             .campo-mensagem-direita{
                 display: flex;
                 flex-direction: row-reverse;
                 width: 100%;
+                margin: 15px 0px;
 
             }
             .mensagem-esquerda{
