@@ -26,6 +26,7 @@ export default function MensagensPage() {
             if (tipo != null) {
                 const x = await enviarMensagem('voluntario', idChat, mensagem)
                 socket.emit('msg', idChat);
+
                 socket.on('msg', async (data) => {
                     setMensagemLista(data);
                 })
@@ -33,6 +34,7 @@ export default function MensagensPage() {
             else {
                 const x = await enviarMensagem('paciente', idChat, mensagem)
                 socket.emit('msg', idChat);
+                setMensagem()
                 socket.on('msg', async (data) => {
                     setMensagemLista(data);
                 })
@@ -54,12 +56,12 @@ export default function MensagensPage() {
         }
     }
 
-    async function carregarNome(id){
-        try{
-            
-            
+    async function carregarNome(id) {
+        try {
+
+
         }
-        catch(err){
+        catch (err) {
 
         }
     }
@@ -71,6 +73,8 @@ export default function MensagensPage() {
 
     const navigate = useNavigate();
 
+
+    
 
 
     return (
@@ -121,29 +125,54 @@ export default function MensagensPage() {
                 <div className='chat'>
                     {mensagemLista.map(item =>
                         <div>
-                            {item.TP_REMETENTE === 'voluntario' &&
-                                <div className='campo-mensagem-esquerda'>
-                                    <div className='mensagem-esquerda'>
-                                        <p>{item.DS_MENSAGEM}</p>
-                                    </div>
-                                </div>
-                            }
-                            {item.TP_REMETENTE === 'paciente' &&
-                                <div className='campo-mensagem-direita'>
-                                    <div className='mensagem-direita'>
-                                        <p>{item.DS_MENSAGEM}</p>
-                                    </div>
-                                </div>
-                            }
+                            {storage('usuario-logado') &&
+                                <div>
+                                    {item.TP_REMETENTE === 'voluntario' &&
+                                        <div className='campo-mensagem-esquerda'>
+                                            <div className='mensagem-esquerda'>
+                                                <p>{item.DS_MENSAGEM}</p>
+                                            </div>
+                                        </div>
+                                    }
+                                    {item.TP_REMETENTE === 'paciente' &&
+                                        <div className='campo-mensagem-direita'>
+                                            <div className='mensagem-direita'>
+                                                <p>{item.DS_MENSAGEM}</p>
+                                            </div>
+                                        </div>
+                                    }
 
+                                </div>
+                            }
+                            {storage('voluntario-logado') &&
+                                <div>
+                                    {item.TP_REMETENTE === 'paciente' &&
+                                        <div className='campo-mensagem-esquerda'>
+                                            <div className='mensagem-esquerda'>
+                                                <p>{item.DS_MENSAGEM}</p>
+                                            </div>
+                                        </div>
+                                    }
+                                    {item.TP_REMETENTE === 'voluntario' &&
+                                        <div className='campo-mensagem-direita'>
+                                            <div className='mensagem-direita'>
+                                                <p>{item.DS_MENSAGEM}</p>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            }
                         </div>
                     )}
 
                 </div>
-                <div className='chat-input-container'>
+                <form className='chat-input-container'>
                     <input type="text" onChange={e => setMensagem(e.target.value)} />
-                    <img src="/assets/images/sent.svg" alt="" onClick={() => envioMensagem(1)} />
-                </div>
+                    <button className='Sent-button' type='reset'>
+                        <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(1)} />
+                    </button>
+                </form>
             </div>
         </main>
     )

@@ -3,7 +3,7 @@ import './index.scss'
 import MarcarPop from '../../components/marcarConsulta'
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react'
- 
+import storage from 'local-storage'
 
 
 export default function ChatHeader(){
@@ -46,7 +46,9 @@ export default function ChatHeader(){
                 <p>Eduardo Cesar</p>
             </div>
             <div className='alinhamento-content2'>
+                {storage('voluntario-logado') &&
                 <img src="/assets/images/meet-icon.svg" alt="" onClick={openModal} />
+              }
                 <img src="/assets/images/tres-pontos.svg" alt=""  />
                 <Modal 
               
