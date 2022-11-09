@@ -275,5 +275,10 @@ insert into tb_consulta(ID_USUARIO, ID_PSICOLOGO, DT_CONSULTA, DS_LINK_MEET)
      from tb_consulta
 
 
+--CRIAR CHAT PSICOLOGO USUARIO
+
+insert into tb_chat(id_usuario, id_psicologo)
+values(1, 1)
+
 
 

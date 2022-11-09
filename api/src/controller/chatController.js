@@ -35,7 +35,7 @@ server.get('/usuario/mensagem/:id', async (req, resp) => {
     try {
         const id = Number(req.params.id);
 
-        const resposta = await carregarChatsUsuario(id)
+        const resposta = await carregarChatsUsuario(id);
 
         resp.send(resposta)
     } catch (err) {

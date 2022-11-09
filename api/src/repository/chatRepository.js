@@ -30,9 +30,15 @@ export async function carregarChatsUsuario(id) {
 }
 
 export async function carregarChatsPsicologo(id) {
-    const comando = `select * 
-                        from tb_chat
-                    where id_psicologo = ?`
+    const comando = `select id_chat 		            idChat,
+                            tb_usuario.id_usuario 	    idUser,
+                            tb_usuario.nm_usuario       nomeUsuario,
+                            tb_psicologo.id_psicologo   idPsic,
+                            tb_psicologo.nm_psicologo   nomePsicologo
+                       from tb_chat
+                inner join tb_usuario on tb_usuario.id_usuario = tb_chat.id_usuario
+                inner join tb_psicologo on tb_psicologo.id_psicologo = tb_chat.id_psicologo
+                     where tb_psicologo.id_psicologo = ?`
 
     const [resposta] = await con.query(comando, [id]);
     return resposta;

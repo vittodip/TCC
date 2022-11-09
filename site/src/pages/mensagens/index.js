@@ -48,8 +48,11 @@ export default function MensagensPage() {
     async function carregarChats() {
         try {
             const idPsic = Storage('voluntario-logado').id;
+            console.log(idPsic)
             const load = await carregarChatsPsicologo(idPsic)
+            
             setChats(load.data);
+            console.log(load)
         }
         catch (err) {
 
@@ -102,22 +105,14 @@ export default function MensagensPage() {
                             <img src='/assets/images/male-user.png' />
                             <div className='usu-info'>
                                 <label>
-                                    {item.nome}
+                                    {item.nomeUsuario}
                                     <p>Então a sessão tá marcada pra 00:00?</p>
                                 </label>
                             </div>
                         </div>
                     )}
 
-                    <div className='selecionado-conversa'>
-                        <img src='/assets/images/male-user.png' />
-                        <div className='usu-info'>
-                            <label>
-                                Mateus Andrade
-                                <p>Então a sessão tá marcada pra 00:00?</p>
-                            </label>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div className='session-chat'>
@@ -167,12 +162,10 @@ export default function MensagensPage() {
                     )}
 
                 </div>
-                <form className='chat-input-container'>
+                <div className='chat-input-container'>
                     <input type="text" onChange={e => setMensagem(e.target.value)} />
-                    <button className='Sent-button' type='reset'>
-                        <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(1)} />
-                    </button>
-                </form>
+                    <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(1)} />
+                </div>
             </div>
         </main>
     )

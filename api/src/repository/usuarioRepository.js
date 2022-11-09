@@ -102,8 +102,7 @@ export async function pegarEmailUser(email){
 export async function mudarSenhaUser(id){
     const comando = `update tb_usuario
                         set ds_senha = ?
-                      where id_usuario = ? 
-                        and ds_email = ?`
+                      where id_usuario = ? `
     const [resposta] = await con.query(comando, [pegarEmailUser])
     console.log(resposta)
     return resposta.affectedRows

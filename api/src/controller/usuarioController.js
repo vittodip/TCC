@@ -4,6 +4,7 @@ import { Router } from "express";
 
 import nodemailer from 'nodemailer'
 
+
 const server = Router();
 
 server.post('/login/usuario', async (req, resp) => {
@@ -142,22 +143,6 @@ server.get('/listar/usuario', async (req, resp) => {
     }
 })
 
-server.get('/email/usuario', async (req, resp) =>{
-    try {
-        const {email} = req.body;
-        const r = await pegarEmailUser(email);
-        console.log(r)
-        resp.send(r);
-        
-    } catch (err) {
-        resp.status(404).send({
-            erro: err.message
-        })
-    }
-
-
-
-})
 
 server.put('/senha/usuario/:id', async (req, resp) =>{
 
@@ -194,7 +179,7 @@ server.post('/enviar-email', async (req, resp) =>{
         pass: process.env.SENHA
     }
     })
-    
+
     const message = {
     from: process.env.EMAIL,
      to: data.email,
@@ -232,9 +217,8 @@ server.post('/enviar-email', async (req, resp) =>{
                 </div>
             </div>
         </div>
-        
      `
-     
+
     }
     transport.sendMail(message, (error, info)=> {
         if (error) {
@@ -242,6 +226,24 @@ server.post('/enviar-email', async (req, resp) =>{
         }
         return resp.status(200).send('Email enviado com sucesso!')
     })
+})
+
+
+server.get('/email/usuario', async (req, resp) =>{
+    try {
+        const {email} = req.body;
+        const r = await pegarEmailUser(email);
+        console.log(r)
+        resp.send(r);
+        
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+
+
+
 })
 
 

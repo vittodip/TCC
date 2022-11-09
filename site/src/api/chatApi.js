@@ -32,8 +32,7 @@ export async function checarChat(idUsuario, idPsic) {
     return resposta;
 }
 
-export async function carregarChatsPsicologo(idPsic) {
-    const resposta = await api.get(`/psicologo/mensagem/${idPsic}`)
-    console.log(resposta) 
+export async function carregarChatsPsicologo(id) {
+    const resposta = await api.get(`/psicologo/mensagem/${id}`)
     return resposta;
 }
