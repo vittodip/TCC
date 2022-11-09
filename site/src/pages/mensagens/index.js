@@ -19,6 +19,7 @@ export default function MensagensPage() {
     const [mensagem, setMensagem] = useState();
     const [mensagemLista, setMensagemLista] = useState([]);
     const [chats, setChats] = useState([]);
+    const [id, setId] = useState(0);
 
     async function envioMensagem(idChat) {
         try {
@@ -48,7 +49,6 @@ export default function MensagensPage() {
     async function carregarChats() {
         try {
             const idPsic = Storage('voluntario-logado').id;
-            console.log(idPsic)
             const load = await carregarChatsPsicologo(idPsic)
             
             setChats(load.data);
@@ -59,13 +59,14 @@ export default function MensagensPage() {
         }
     }
 
-    async function carregarNome(id) {
-        try {
-
-
+    async function carregarMensagens(idChat){
+        try{
+            setId(idChat)
+            const resp = mostrarMensagem(idChat);
+            setMensagemLista(resp);
         }
-        catch (err) {
-
+        catch(err){
+            
         }
     }
 
@@ -73,6 +74,7 @@ export default function MensagensPage() {
     useEffect(() => {
         carregarChats();
     }, []);
+
 
     const navigate = useNavigate();
 
@@ -101,7 +103,7 @@ export default function MensagensPage() {
                 </div>
                 <div className='contatos'>
                     {chats.map(item =>
-                        <div className='selecionado-conversa'>
+                        <div className='selecionado-conversa' onClick={() => carregarMensagens(item.ID_CHAT)}>
                             <img src='/assets/images/male-user.png' />
                             <div className='usu-info'>
                                 <label>
@@ -118,6 +120,9 @@ export default function MensagensPage() {
             <div className='session-chat'>
                 <ChatHeader />
                 <div className='chat'>
+                    {id === 0 &&
+                        <img></img>
+                    }
                     {mensagemLista.map(item =>
                         <div>
                             {storage('usuario-logado') &&
@@ -164,7 +169,7 @@ export default function MensagensPage() {
                 </div>
                 <div className='chat-input-container'>
                     <input type="text" onChange={e => setMensagem(e.target.value)} />
-                    <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(1)} />
+                    <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(id)} />
                 </div>
             </div>
         </main>
