@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import Storage from 'local-storage';
-import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom'
-import { mudarSenhaUser } from '../../api/usuarioApi';
+import { enviarEmail } from '../../api/usuarioApi';
 import './index.scss';
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('');
+
+    async function emailUser(){
+        try {
+            
+            const emailUsuario = await enviarEmail(email);
+            setEmail(emailUsuario)
+            toast('funcionou')
+        } catch (err) {
+            toast('Deu ruim')
+        }
+    }   
+
+
 
 
 
@@ -37,7 +49,7 @@ export default function EsqueciSenha() {
                         <label>E-mail</label>
                         <input type='text' placeholder='email@email.com' value={email} onChange={e => setEmail(e.target.value)} />
                     </div>
-                    <button>Enviar</button>
+                    <button onClick={emailUser}>Enviar</button>
                 </div>
                 <img src='/assets/images/mocaFormas.png' className='img2' />
 

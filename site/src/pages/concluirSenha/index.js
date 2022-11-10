@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import { mudarSenhaUser } from '../../api/usuarioApi';
 import './index.scss';
 
@@ -7,9 +8,15 @@ export default function ConcluirSenha(){
     const [senha, setSenha] = useState('');
 
     async function trocarSenha(){
-        const r = await mudarSenhaUser();
-
-        setSenha(r)
+        try {
+            const r = await mudarSenhaUser();
+    
+            setSenha(r)
+            toast('deu certo')
+            
+        } catch (err) {
+            toast('deu ruim')
+        }
     }
 
     return(
@@ -31,7 +38,7 @@ export default function ConcluirSenha(){
                     <label>Nova senha</label>
                     <input type='text' placeholder='***********' value={senha} onChange={e => setSenha(e.target.value)} />
                 </div>
-                <button>Concluir</button>
+                <button onClick={trocarSenha}>Concluir</button>
             </div>
                 <img src='/assets/images/mocaFormas.png' className='img2' />
 

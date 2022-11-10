@@ -110,7 +110,7 @@ export default function Home() {
 
                 <div className="integrantes">
                     <Equipe className='integrante-1' integrante='/assets/images/image 19.png' nome='Mateus Andrade' função='DBA' link='https://www.instagram.com/amandafitas/?hl=pt-br' />
-                    <Equipe className='integrante-2' integrante='/assets/images/image 18.png' nome='Bruno Virgilio' função='DBA' />
+                    <Equipe className='integrante-2' integrante='/assets/images/image 18.png' nome='Bruno Virgilio' função='Back-End' />
                     <Equipe className='integrante-3' integrante='/assets/images/image 17.png' nome='Jennifer Oliveira' função='Front-End' />
                     <Equipe className='integrante-4' integrante='/assets/images/image 21.png' nome='Eduardo César' função='Backend' />
                     <Equipe className='integrante-5' integrante='/assets/images/image 20.png' nome='Victor de Paula' função='Full-Stack' />

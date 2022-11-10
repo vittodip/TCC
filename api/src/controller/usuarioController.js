@@ -229,22 +229,22 @@ server.post('/enviar-email', async (req, resp) =>{
 })
 
 
-server.get('/email/usuario', async (req, resp) =>{
-    try {
-        const {email} = req.body;
-        const r = await pegarEmailUser(email);
-        console.log(r)
-        resp.send(r);
+// server.get('/email/usuario', async (req, resp) =>{
+//     try {
+//         const {email} = req.body;
+//         const r = await pegarEmailUser(email);
+//         console.log(r)
+//         resp.send(r);
         
-    } catch (err) {
-        resp.status(404).send({
-            erro: err.message
-        })
-    }
+//     } catch (err) {
+//         resp.status(404).send({
+//             erro: err.message
+//         })
+//     }
 
 
 
-})
+// })
 
 
 
