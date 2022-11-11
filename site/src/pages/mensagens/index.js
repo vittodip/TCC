@@ -21,28 +21,37 @@ export default function MensagensPage() {
     const [chats, setChats] = useState([]);
     const [id, setId] = useState(0);
 
-    async function envioMensagem(idChat) {
-        try {
-            const tipo = Storage('voluntario-logado');
-            if (tipo != null) {
-                const x = await enviarMensagem('voluntario', idChat, mensagem)
-                socket.emit('msg', idChat);
-
-                socket.on('msg', async (data) => {
-                    setMensagemLista(data);
-                })
-            }
-            else {
-                const x = await enviarMensagem('paciente', idChat, mensagem)
-                socket.emit('msg', idChat);
-                setMensagem()
-                socket.on('msg', async (data) => {
-                    setMensagemLista(data);
-                })
-            }
+    async function envioMensagem(ev) {
+        if(!mensagem.trim() || mensagem === ''){
+            return;
         }
-        catch (err) {
-            console.log(err.message)
+        else{
+            if (ev && ev.key !== 'Enter')
+                return;
+    
+            try {
+                const tipo = Storage('voluntario-logado');
+                if (tipo != null) {
+                    const x = await enviarMensagem('voluntario', id, mensagem)
+                    socket.emit('msg', id);
+    
+                    socket.on('msg', async (data) => {
+                        setMensagemLista(data);
+                    })
+                    
+                }
+                else {
+                    const x = await enviarMensagem('paciente', id, mensagem)
+                    socket.emit('msg', id);
+                    socket.on('msg', async (data) => {
+                        setMensagemLista(data);
+                    })
+    
+                }
+            }
+            catch (err) {
+                console.log(err.message)
+            }
         }
     }
 
@@ -50,23 +59,24 @@ export default function MensagensPage() {
         try {
             const idPsic = Storage('voluntario-logado').id;
             const load = await carregarChatsPsicologo(idPsic)
-            
-            setChats(load.data);
-            console.log(load)
+
+            setChats(load);
         }
         catch (err) {
 
         }
     }
 
-    async function carregarMensagens(idChat){
-        try{
+
+    async function carregarMensagens(idChat) {
+        try {
             setId(idChat)
-            const resp = mostrarMensagem(idChat);
+            const resp = await mostrarMensagem(idChat);
             setMensagemLista(resp);
+
         }
-        catch(err){
-            
+        catch (err) {
+
         }
     }
 
@@ -75,11 +85,20 @@ export default function MensagensPage() {
         carregarChats();
     }, []);
 
+    useEffect(() => {
+        VoltarBaixoClick()
+    }, [mensagemLista]);
+
+    function VoltarBaixoClick() {
+        var btn = document.querySelector("#back-to-down");
+        btn.scrollTo(0, 10000);
+    }
+
 
     const navigate = useNavigate();
 
 
-    
+
 
 
     return (
@@ -89,21 +108,22 @@ export default function MensagensPage() {
                 <div className='header-contatos'>
                     <h2>Conversas</h2>
                     {storage('voluntario-logado') &&
-                        <BotaoBranco botao='Perfil' onClick={() => [navigate('/perfil/voluntario')]} />
+                        <button onClick={() => [navigate('/perfil/voluntario')]}>Perfil</button>
                     }
 
                     {storage('usuario-logado') &&
-                        <BotaoBranco botao='Perfil' onClick={() => [navigate('/perfil/usuario')]} />
+                        <button  onClick={() => [navigate('/perfil/usuario')]}>Perfil</button>
                     }
 
                     {storage('voluntario-logado') &&
-                        <BotaoBranco botao='Solicitações' />
+                        <button  onClick={() => [navigate('/solicitacoes')]}>Solicitações</button>
                     }
 
                 </div>
                 <div className='contatos'>
                     {chats.map(item =>
-                        <div className='selecionado-conversa' onClick={() => carregarMensagens(item.ID_CHAT)}>
+                        <div className='selecionado-conversa' onClick={() => carregarMensagens(item.idChat)}>
+
                             <img src='/assets/images/male-user.png' />
                             <div className='usu-info'>
                                 <label>
@@ -113,65 +133,76 @@ export default function MensagensPage() {
                             </div>
                         </div>
                     )}
-
-                    
                 </div>
             </div>
             <div className='session-chat'>
+                
+                
+            {id === 0 && 
+                <div className='porcima'>
+                    <p>nada</p>
+                </div>
+
+            }
+                
+                
                 <ChatHeader />
-                <div className='chat'>
-                    {id === 0 &&
-                        <img></img>
+                <div className='chat' id='back-to-down'>
+                    {id !== 0 &&
+                    
+                        <div>{mensagemLista.map(item =>
+                            <div>
+                                {storage('usuario-logado') &&
+                                    <div>
+                                        {item.TP_REMETENTE === 'voluntario' &&
+                                            <div className='campo-mensagem-esquerda'>
+                                                <div className='mensagem-esquerda'>
+                                                    <p>{item.DS_MENSAGEM}</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        {item.TP_REMETENTE === 'paciente' &&
+                                            <div className='campo-mensagem-direita'>
+                                                <div className='mensagem-direita'>
+                                                    <p>{item.DS_MENSAGEM}</p>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                                {storage('voluntario-logado') &&
+                                    <div>
+                                        {item.TP_REMETENTE === 'paciente' &&
+                                            <div className='campo-mensagem-esquerda'>
+                                                <div className='mensagem-esquerda'>
+                                                    <p>{item.DS_MENSAGEM}</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        {item.TP_REMETENTE === 'voluntario' &&
+                                            <div className='campo-mensagem-direita'>
+                                                <div className='mensagem-direita'>
+                                                    <p>{item.DS_MENSAGEM}</p>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                            </div>
+                        )}</div>
                     }
-                    {mensagemLista.map(item =>
-                        <div>
-                            {storage('usuario-logado') &&
-                                <div>
-                                    {item.TP_REMETENTE === 'voluntario' &&
-                                        <div className='campo-mensagem-esquerda'>
-                                            <div className='mensagem-esquerda'>
-                                                <p>{item.DS_MENSAGEM}</p>
-                                            </div>
-                                        </div>
-                                    }
-                                    {item.TP_REMETENTE === 'paciente' &&
-                                        <div className='campo-mensagem-direita'>
-                                            <div className='mensagem-direita'>
-                                                <p>{item.DS_MENSAGEM}</p>
-                                            </div>
-                                        </div>
-                                    }
 
-                                </div>
-                            }
-                            {storage('voluntario-logado') &&
-                                <div>
-                                    {item.TP_REMETENTE === 'paciente' &&
-                                        <div className='campo-mensagem-esquerda'>
-                                            <div className='mensagem-esquerda'>
-                                                <p>{item.DS_MENSAGEM}</p>
-                                            </div>
-                                        </div>
-                                    }
-                                    {item.TP_REMETENTE === 'voluntario' &&
-                                        <div className='campo-mensagem-direita'>
-                                            <div className='mensagem-direita'>
-                                                <p>{item.DS_MENSAGEM}</p>
-                                            </div>
-                                        </div>
-                                    }
-
-                                </div>
-                            }
-                        </div>
-                    )}
 
                 </div>
                 <div className='chat-input-container'>
-                    <input type="text" onChange={e => setMensagem(e.target.value)} />
-                    <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem(id)} />
+                    <input type="text" onKeyDown={envioMensagem} onChange={e => setMensagem(e.target.value)} />
+                    <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem()} />
                 </div>
             </div>
+           
+            
         </main>
     )
 }

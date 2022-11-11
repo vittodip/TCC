@@ -47,11 +47,12 @@ server.get('/usuario/mensagem/:id', async (req, resp) => {
 
 server.get('/psicologo/mensagem/:id', async (req, resp) => {
     try {
-        const id = Number(req.params.id)
-
-        const resposta = await carregarChatsPsicologo(id);
+        const idPsic = Number(req.params.id)
+    
+        const resposta = await carregarChatsPsicologo(idPsic);
 
         resp.send(resposta)
+        console.log(resposta)
     } catch (err) {
         resp.status(400).send({
             erro:err.message
@@ -65,6 +66,7 @@ server.post('/chat/mensagem', async (req, resp) => {
         const { remetente, id, mensagem } = req.body;
 
         const resposta = await enviarMensagem(remetente, id, mensagem); 
+        
 
         resp.send(resposta)
     } catch (err) {
