@@ -14,25 +14,28 @@ export async function enviarMensagem(tipo, id, mensagem){
         id: id,
         mensagem: mensagem
     })
-    return resposta;
+    return resposta.data;
 }
 
 export async function mostrarMensagem(id){
     const resposta = await api.get(`/conversa/mensagem/${id}`)
-    return resposta;
+    return resposta.data;
 }
 
 export async function criarChat(idUsuario, idPsic) {
     const resposta = await api.post(`/chat/?usuario=${idUsuario}&psicologo=${idPsic}`)
-    return resposta
+    return resposta.data
 }
 
 export async function checarChat(idUsuario, idPsic) {
     const resposta = await api.get(`/chat/disponivel/?usuario=${idUsuario}&psicologo=${idPsic}`)
-    return resposta;
+    return resposta.data;
 }
 
 export async function carregarChatsPsicologo(id) {
     const resposta = await api.get(`/psicologo/mensagem/${id}`)
-    return resposta;
+    
+    console.log('a' + resposta)
+    return resposta.data;
+    
 }

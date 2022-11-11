@@ -52,7 +52,7 @@ export async function enviarMensagem(remetente, id, mensagem) {
                     ds_mensagem)
                     values (?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [remetente, id, mensagem]);
+    const [resposta] = await con.query(comando, [remetente, id, mensagem.trim()]);
     return resposta
 }
 
