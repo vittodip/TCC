@@ -1,7 +1,24 @@
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { marcarConsulta } from '../../api/consultaApi'
 import './index.scss'
 
 
 export default function MarcarPop(props) {
+    const [consulta, setConsulta] = useState([])
+    
+    async function marcarConsult(){
+        try {
+            const idPsic = Storage('voluntario-logado').id;
+            const marcar = await marcarConsulta(consulta, idPsic);
+            setConsulta(marcar)
+            toast.dark('Consulta Marcada')
+        } catch (err) {
+            toast.dark('Deu Erro')
+        }
+
+    } 
+
     return(
         <main className='pop-up-marcar'>
             <div className='titulo-pop'>
@@ -26,7 +43,7 @@ export default function MarcarPop(props) {
                         <input placeholder='https://meet.google.com/aaa-aaaa-aaa'/>
                     </label>
                 </div>
-                <button>Salvar</button>
+                <button onClick={marcarConsult}>Salvar</button>
             </div>
 
         </main>

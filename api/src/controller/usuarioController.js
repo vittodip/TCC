@@ -1,4 +1,4 @@
- import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
+ import { pegarIDuser ,cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -144,19 +144,16 @@ server.get('/listar/usuario', async (req, resp) => {
 })
 
 
-server.put('/senha/usuario/:id', async (req, resp) =>{
-
+server.put('/senha/usuario', async (req, resp) =>{
     try {
-        const usuarioID = Number(req.params.id);
-        const user = req.body;
+        const email = req.query;
         
-        const usuario = await carregarUsuario(usuarioID);
+        const id = await pegarIDuser(email.email);
 
-        if(user.senha === usuario.senha){
-            throw new Error('Insira uma senha diferente da anterior')
-        }
-
-        const r = await mudarSenhaUser(user, usuarioID)
+        const senha = req.body;
+        
+        const r = await mudarSenhaUser(senha.senha, email.email, id.id);
+        
         resp.status(204).send()
 
     } catch (err) {
@@ -168,7 +165,15 @@ server.put('/senha/usuario/:id', async (req, resp) =>{
 
 })
 
+
+
+
+
+
+
 server.post('/enviar-email', async (req, resp) =>{
+
+    
     let data = req.body;
     const transport = nodemailer.createTransport({
     host: process.env.HOST,
@@ -219,7 +224,9 @@ server.post('/enviar-email', async (req, resp) =>{
         </div>
      `
 
+
     }
+    
     transport.sendMail(message, (error, info)=> {
         if (error) {
             return resp.status(400).send('Erro, tente novamente')
@@ -229,22 +236,6 @@ server.post('/enviar-email', async (req, resp) =>{
 })
 
 
-// server.get('/email/usuario', async (req, resp) =>{
-//     try {
-//         const {email} = req.body;
-//         const r = await pegarEmailUser(email);
-//         console.log(r)
-//         resp.send(r);
-        
-//     } catch (err) {
-//         resp.status(404).send({
-//             erro: err.message
-//         })
-//     }
-
-
-
-// })
 
 
 

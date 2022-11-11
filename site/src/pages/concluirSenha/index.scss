@@ -1,15 +1,21 @@
 .CSenha{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+
     font-family: mulish;
     background-image: linear-gradient(180deg, #CFA7CA 29.17%, #A791C0 96.87%);
     height: 100vh;
     
 
-    .header{
+    .headerSenha{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        position: absolute;
+        top: 0;
+        width: 100%;
 
         a{
             font-weight: 400;
@@ -21,20 +27,30 @@
             margin-right: 5em;
         }
 
+        .topicos{
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    .pop-up{
+        display: flex;
+        justify-content: center;
+
     }
 
     .painel{
         display: flex;
         flex-direction: column;
-        align-items: center!important;
-        justify-content: center;
+        align-items: center;
         background-color: white;
         width:30em;
         padding: 40px 20px;
         box-shadow: 0px 0px 7.31527px rgba(85, 79, 90, 0.47);
         border-radius: 32.9187px;
         text-align: center;
-        margin: 6em 43em;
         height: 47vh;
         z-index: 2;
         position: relative;
@@ -81,18 +97,18 @@
 
     .img{
         position: absolute;
-        top: 7em;
+        top: 9em;
         right: 4em;
-        width: 46em;
+        width: 26em;
         z-index: 1;
         
     }
 
     .img2{
         position: absolute;
-        top: 13em;
-        left: 9em;
-        width: 42em;
+        bottom: 2em;
+        left: 1em;
+        width: 32em;
         z-index: 3;
     }
 
