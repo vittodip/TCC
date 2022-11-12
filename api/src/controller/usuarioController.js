@@ -1,4 +1,4 @@
- import { pegarIDuser ,cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
+ import { pegarIDuser ,cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser, buscarUserNome} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
@@ -236,7 +236,22 @@ server.post('/enviar-email', async (req, resp) =>{
 })
 
 
+server.get('/user/busca', async (req, resp) => {
+    try {
+        const { nome } = req.query;
 
+        const resposta = await buscarUserNome(nome)
+
+        if(!resposta)
+            resp.status(404).send([])
+        else
+            resp.send(resposta);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 
 

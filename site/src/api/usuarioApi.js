@@ -55,7 +55,7 @@ export async function mostrarUsuarios(){
     return resposta.data
 }
 
-export async function mudarSenhaUser(senha, email, id){
+export async function mudarSenhaUser(email, id, senha){
     const resposta = await api.put(`/senha/usuario?email=${email}`, {
         id: id,
         senha:senha
@@ -67,6 +67,11 @@ export async function enviarEmail(email){
     const resposta = await api.post('/enviar-email', {
         email: email
     });
+    return resposta.data
+}
+
+export async function buscarNomeUser(nome){
+    const resposta = await api.get(`/user/busca?nome=${nome}`);
     return resposta.data
 }
 

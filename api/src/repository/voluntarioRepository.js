@@ -111,3 +111,15 @@ export async function mudarSenhaVolunt(volunt, id){
     const [resposta] = await con.query(comando, [volunt.senha, id, volunt.email])
     return resposta.affectedRows
 }
+
+export async function buscarVoluntNome(nome){
+    const comando = `select nm_psicologo     nome,
+                            ds_email       email,
+                            nr_telefone    telefone,
+                            ds_cpf         cpf,
+                            dt_nascimento  DataDeNascimento
+                     from tb_psicologo
+                     where nm_psicologo like ?`
+    const [resposta] = await con.query(comando, [ `%${nome}%`]);
+    return resposta
+}
