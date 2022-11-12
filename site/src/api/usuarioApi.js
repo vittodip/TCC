@@ -55,11 +55,8 @@ export async function mostrarUsuarios(){
     return resposta.data
 }
 
-export async function mudarSenhaUser(senha, email, id){
-    const resposta = await api.put(`/senha/usuario?email=${email}`, {
-        id: id,
-        senha:senha
-    });
+export async function mudarSenha(senha, email){
+    const resposta = await api.put(`/senha/usuario?email=${email}&senha=${senha}`);
     return resposta.data
 }
 

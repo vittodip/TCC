@@ -3,6 +3,7 @@
 import { Router } from "express";
 
 import nodemailer from 'nodemailer'
+import { mudarSenhaVolunt, PegarIDPsic } from '../repository/voluntarioRepository.js';
 
 
 const server = Router();
@@ -146,14 +147,18 @@ server.get('/listar/usuario', async (req, resp) => {
 
 server.put('/senha/usuario', async (req, resp) =>{
     try {
-        const email = req.query;
-        
-        const id = await pegarIDuser(email.email);
-
-        const senha = req.body;
-        
-        const r = await mudarSenhaUser(senha.senha, email.email, id.id);
-        
+        const { email, senha } = req.query
+        const idUsuario = await pegarIDuser(email);
+        const idPsicologo = await PegarIDPsic(email);
+        if(idUsuario && !idPsicologo){
+            const r = await mudarSenhaUser(senha, idUsuario);
+        }
+        else if(!idUsuario && idPsicologo){
+            const r = await mudarSenhaVolunt(senha, idPsicologo);
+        }
+        if(!idUsuario && !idPsicologo){
+            throw new Error('Verifique se o e-mail está correto.')
+        }
         resp.status(204).send()
 
     } catch (err) {
@@ -161,10 +166,7 @@ server.put('/senha/usuario', async (req, resp) =>{
             erro: err.message
         })
     }
-
-
 })
-
 
 
 

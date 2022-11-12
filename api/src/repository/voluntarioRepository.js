@@ -103,11 +103,19 @@ export async function mostrarPsicologos(){
          return resposta;
 }
 
-export async function mudarSenhaVolunt(volunt, id){
+export async function mudarSenhaVolunt(senha, id){
     const comando = `update tb_psicologo
                         set ds_senha = ?
-                      where id_psicologo = ? 
-                        and ds_email = ?`
-    const [resposta] = await con.query(comando, [volunt.senha, id, volunt.email])
+                      where id_psicologo = ?`
+    const [resposta] = await con.query(comando, [senha, id])
     return resposta.affectedRows
+}
+
+export async function PegarIDPsic(email){
+    const comando = `select id_psicologo
+                     from tb_psicologo
+                     where ds_email = ?`
+
+    const [resposta] = await con.query(comando, [email])
+    return resposta[0];
 }

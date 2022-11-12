@@ -84,7 +84,7 @@ export async function mostrarUsuarios(){
 }
 
 export async function pegarIDuser(email){
-    const comando = `select id_usuario	id
+    const comando = `select id_usuario
                        from tb_usuario
                       where ds_email = ?`
 
@@ -95,12 +95,11 @@ export async function pegarIDuser(email){
 
 
 
-export async function mudarSenhaUser(senha, email, id){
+export async function mudarSenhaUser(senha, id){
     const comando = `update tb_usuario
                         set ds_senha = ?
-                      where ds_email = ?
-                        and id_usuario = ?`
-    const [resposta] = await con.query(comando, [senha, email, id]);
+                      where id_usuario = ?`
+    const [resposta] = await con.query(comando, [senha, id]);
     return resposta.affectedRows;
 }
 

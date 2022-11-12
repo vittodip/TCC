@@ -1,30 +1,25 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify';
-
-import { mudarSenhaUser } from '../../api/usuarioApi';
+import { ToastContainer, toast } from "react-toastify";
+import { mudarSenha } from '../../api/usuarioApi';
 import './index.scss';
 
 export default function ConcluirSenha(){
     const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
-    const [id, setId] = useState();
 
     async function trocarSenha(){
         try {
-            
-            const r = await mudarSenhaUser(email, senha, id);
-            setEmail()
-            toast('deu certo')
-            
-            
+            const r = await mudarSenha(senha, email);
+            toast.success('Senha alterada com sucesso!')
         } catch (err) {
-            toast('deu ruim')
+            toast.error('Verifique se o e-mail está correto.')
         }
     }
 
     return(
         <main className='CSenha'>
+            <ToastContainer/>
             <div className='headerSenha'>
                 <img src='/assets/images/logonat.png' />
                 <div className='topicos'>
