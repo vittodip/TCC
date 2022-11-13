@@ -1,10 +1,10 @@
 import { con } from './connection.js'
 
 export async function denunciarUsuario(denunciaUser) {
-    const comando = `insert tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia, id_solicitacao)
-                                          value(?, ?, ?, ?)`
+    const comando = `insert tb_denuncia_usuario(id_usuario, id_psicologo, id_solicitacao)
+                                          value(?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [denunciaUser.idUsuario, denunciaUser.idPsicologo, denunciaUser.depoimento.trim(), denunciaUser.idSolicitacao]);
+    const [resposta] = await con.query(comando, [denunciaUser.idUsuario, denunciaUser.idPsicologo, denunciaUser.idSolicitacao]);
     denunciaUser.id = resposta.insertId;
     
     return denunciaUser;
@@ -18,4 +18,6 @@ export async function denunciarPsicologo(denunciaPsi) {
     
     return denunciaPsi;
 }
+
+
 

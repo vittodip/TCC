@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 export default function CardsAdmin(props) {
 
-  
-  
+
+
   async function aprovarPsic(idPsicologo) {
 
     try {
@@ -30,10 +30,10 @@ export default function CardsAdmin(props) {
 
 
 
-  async function aceitarDenunciaUsuario(idUsuario) {
+  async function aceitarDenunciaUsuario(idUsuarioDenun) {
     try {
 
-      const resp = await aceitarDenunciaUser(idUsuario);
+      const resp = await aceitarDenunciaUser(idUsuarioDenun);
 
       alert('funfou')
     } catch (err) {
@@ -47,7 +47,7 @@ export default function CardsAdmin(props) {
 
       alert('funfou')
     } catch (err) {
-      alert('não funfou')     
+      alert('não funfou')
     }
   }
 
@@ -66,11 +66,11 @@ export default function CardsAdmin(props) {
 
       alert('funfou')
     } catch (err) {
-      alert('não funfou')     
+      alert('não funfou')
     }
   }
 
-  
+
 
   return (
     <div className="card">
@@ -151,6 +151,34 @@ export default function CardsAdmin(props) {
               <img src="/assets/images/botao-aprovar.svg" />
             </button>
             <button onClick={() => recusarDenunciaPsicologo(props.DenunciaId)}>
+              <img src="/assets/images/botao-reprovar.svg" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {props.tipo === "denuncia-usuario" && (
+        <div className={props.css}>
+          <div className="infos-usuarios">
+              <div>
+                <label>Nome</label>
+                <p>{props.nomeUsuario}</p>
+              </div>
+              <div>
+                <label>E-mail</label>
+                <p>{props.emailUsuario}</p>
+              </div>
+            </div>
+          <div className="depoimento">
+            <label>Solicitação</label>
+            <p>{props.solicitacao}</p>
+          </div>
+
+          <div className="botoes">
+            <button onClick={() => aceitarDenunciaUsuario(props.UsuarioDenuncia)}>
+              <img src="/assets/images/botao-aprovar.svg" />
+            </button>
+            <button onClick={() => recusarDenunciaUsuario(props.idUsuario)}>
               <img src="/assets/images/botao-reprovar.svg" />
             </button>
           </div>

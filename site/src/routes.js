@@ -16,6 +16,7 @@ import Home from './pages/adm/home/index.js';
 import CadastrosPendentes from './pages/adm/cadastros/index.js';
 import ListaVolunts from './pages/adm/tdsPsiEusers/index.js';
 import DenunciasPsicologos from './pages/adm/denuncia-psicologo/index.js';
+import DenunciasUsuarios  from './pages/adm/denuncia-usuario/index.js';
 import LoginADM from './pages/login/Admin/index.js';
 import ListarUsers from './pages/adm/allUsers/index.js';
 import EsqueciSenha from './pages/esqueciSenha/index.js';
@@ -53,6 +54,7 @@ export default function Rotas() {
                 <Route path='/admin/volunts' element={<ListaVolunts />} />
                 <Route path='/admin/usuario' element={<ListarUsers />} />
                 <Route path='/admin/denuncias/psicologo' element={<DenunciasPsicologos />} />
+                <Route path='/admin/denuncias/usuario' element={<DenunciasUsuarios />} />
                 {/* Esqueci a Senha */}
                 <Route path='/login/esqueci-senha' element={<EsqueciSenha />} />
                 <Route path='/login/concluir-senha' element={<ConcluirSenha />} />
