@@ -1,5 +1,5 @@
 
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem, mostrarPsicologos, mudarSenhaVolunt, buscarVoluntNome } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem, mostrarPsicologos, mudarSenhaVolunt, buscarVoluntNome, PegarIDPsic } from "../repository/voluntarioRepository.js";
 
 import multer from 'multer'
 import { Router } from "express";
@@ -33,11 +33,24 @@ server.post('/cadastro/voluntario', async (req, resp) => {
     try {
         const volunt = req.body;
 
+        const emailCheck = await PegarIDPsic(volunt.email); 
+
+        const data = new Date() - new Date(volunt.nascimento); 
+        
+        if(volunt.nome.length < 5){
+            throw new Error('Insira um nome válido!')
+        }
         if(!volunt.email) {
             throw new Error('Insira um email!')
         }
+        if(emailCheck){
+            throw new Error('Este e-mail já existe!')
+        }
         if(!volunt.senha) {
             throw new Error('Insira uma senha!')
+        }
+        if(volunt.senha.length < 5) {
+            throw new Error('A senha deve ter ao menos 5 caracteres!')
         }
         if(!volunt.nome.trim()) {
             throw new Error('Insira um nome!')
@@ -51,8 +64,14 @@ server.post('/cadastro/voluntario', async (req, resp) => {
         if(new Date(volunt.nascimento) >= new Date()) {
             throw new Error('Insira uma data de nascimento válida!')
         }
+        if(data < 563761963363){
+            throw new Error('Você deve ter ao menos 18 anos.')
+        }
         if(!volunt.telefone) {
             throw new Error('Insira um telefone!')
+        }
+        if(volunt.telefone.length < 11 || volunt.telefone.length > 11) {
+            throw new Error('Insira um telefone válido!')
         }
         if(!volunt.vagas) {
             throw new Error('Insira a quantidade de vagas que você poderá atender!')

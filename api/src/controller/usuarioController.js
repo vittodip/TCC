@@ -30,12 +30,29 @@ server.post('/login/usuario', async (req, resp) => {
 server.post('/cadastro/usuario', async (req, resp) => {
     try {
         const user = req.body;
+
+        const emailCheck = await pegarIDuser(user.email); 
+
+        const data = new Date() - new Date(user.nascimento); 
+        console.log(data);
         
+        if(user.nome.length < 5){
+            throw new Error('Insira um nome válido!')
+        }
         if(!user.email) {
             throw new Error('Insira um email!')
         }
+        if(emailCheck){
+            throw new Error('Este e-mail já existe!')
+        }
+        if(user.email.length < 11){
+            throw new Error('Insira um e-mail válido!')
+        }
         if(!user.senha) {
             throw new Error('Insira uma senha!')
+        }
+        if(user.senha.length < 5) {
+            throw new Error('A senha deve ter ao menos 5 caracteres!')
         }
         if(!user.nome) {
             throw new Error('Insira um nome!')
@@ -49,8 +66,14 @@ server.post('/cadastro/usuario', async (req, resp) => {
         if(new Date(user.nascimento) >= new Date()) {
             throw new Error('Insira uma data de nascimento válida!')
         }
+        if(data < 500690697803){
+            throw new Error('Você deve ter ao menos 16 anos.')
+        }
         if(!user.telefone) {
             throw new Error('Insira um telefone!')
+        }
+        if(user.telefone.length < 11 || user.telefone.length > 11) {
+            throw new Error('Insira um telefone válido!')
         }
         
         const resposta = await cadastroUsuario(user);
