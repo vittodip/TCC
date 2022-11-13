@@ -19,3 +19,10 @@ export async function denunciarPsicologo(denunciarPsi){
     })
     return resposta.data
 }
+
+export async function denunciarUsuarioChat(denunciarUserChat){
+    const resposta = await api.post(`/chatdenuncia/usuario`, {
+       depoimento:denunciarUserChat
+    }) 
+    return resposta.data
+}
