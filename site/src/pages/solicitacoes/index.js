@@ -42,9 +42,6 @@ export default function SolicitacoesPsic() {
         carregarSolicitacao();
     }, []); 
 
-    function irPerfil () {
-        navigate('/perfil/voluntario')
-    }
 
     return (
         <main className="solicitacoes-principal">
@@ -53,8 +50,8 @@ export default function SolicitacoesPsic() {
                 <div className='hd-alinhamento-1'>
                     <img src="/assets/images/logonat.png" alt="" />
                     <div className="hd-alinhamento-buttons">
-                        <button>Conversas</button>
-                        <button onClick={irPerfil} >Perfil</button>
+                        <button onClick={() => [navigate('/chat')]}>Conversas</button>
+                        <button onClick={() => [navigate('/perfil/voluntario')]} >Perfil</button>
                     </div>
                 </div>
                 <div className='hd-alinhamento-2'>

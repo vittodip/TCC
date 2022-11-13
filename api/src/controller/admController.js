@@ -173,23 +173,6 @@ server.get('/denuncia/psicologo', async (req, resp) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 server.delete('/positivo/denuncia/usuario', async (req, resp) => {
     try {
         const id = req.body;

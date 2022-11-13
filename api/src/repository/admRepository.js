@@ -40,18 +40,25 @@ export async function carregarAdmin(id) {
 
 
 export async function listarDenunciasUsuario() {
-    const comando = `select id_denuncia     denuncia,
-                            nm_usuario      nome,
-                            ds_email        email,
-                            ds_solicitacao  solicitação
-                       from tb_denuncia_usuario
-inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario
-inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario.id_solicitacao`
+    const comando = `select        tb_denuncia_usuario.id_denuncia 	    denuncia,
+                                   tb_denuncia_usuario.id_solicitacao   solicitacao,
+                                   tb_psicologo.id_psicologo            idPsic,
+                                   tb_usuario.id_usuario	            idUser,
+                                   tb_usuario.nm_usuario	            nome,
+                                   tb_usuario.ds_email		            email,
+                                   tb_solicitacao.ds_solicitacao		solicitacao
+                    from tb_denuncia_usuario
+    inner join tb_psicologo on tb_psicologo.id_psicologo = tb_denuncia_usuario.id_psicologo
+    inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario
+    inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario.id_solicitacao`
 
     const [resposta] = await con.query(comando);
     return resposta;
 
 }
+
+
+
 
 export async function listarDenunciasPsicologo() {
     const comando = `select  id_denuncia               denuncia,
@@ -126,42 +133,6 @@ export async function deletarDenuncia(id) {
     const [resposta] = await con.query(comando, [id]);
     return resposta;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export async function aceitarDenunciaUser(id) {

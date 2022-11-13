@@ -45,7 +45,7 @@ function voltarCLick(){
                 <div className='header-painel'>
                     <img src='/assets/images/logonat.png' width={200} />
 
-                    <button>Perfil</button>
+                    <button onClick={() => [navigate('/perfil/usuario')]}>Perfil</button>
                 </div>
                 <div className='alinhamento-linear'>
                     <div className='titulo-desc'>
