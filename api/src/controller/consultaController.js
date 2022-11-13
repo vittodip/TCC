@@ -4,7 +4,7 @@ import {marcarConsulta, listarConsulta }from '../repository/consultaRepository.j
 const server = Router();
 
 
-server.post('/consulta', async (req, resp) => {
+server.post('/agenda/consulta', async (req, resp) => {
    try {
         const { idUsuario, idPsicologo } = req.query;
         const consulta = req.body;
@@ -26,9 +26,10 @@ server.post('/consulta', async (req, resp) => {
    }
 })
 
-server.get('/consulta' , async (req, resp) => {
+server.get('/consulta/:id' , async (req, resp) => {
     try {
-        const resposta = await listarConsulta()
+        const usuario = Number(req.params.id)
+        const resposta = await listarConsulta(usuario)
         resp.send(resposta)
 
     } catch (err) {

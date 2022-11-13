@@ -17,12 +17,14 @@ import { carregarUsuario } from "../../../api/usuarioApi.js";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
+import { listarConsulta } from "../../../api/consultaApi";
 
 
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
   const [solicitacao, setSolicitacao] = useState([]); 
+  const [consulta, setConsulta] = useState([]);
 
   const [assunto, setAssunto] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -40,6 +42,13 @@ export default function PerfilUsuario() {
     const resp = await listarSolicitacao(idUser)
     console.log(resp)
     setSolicitacao(resp)
+  }
+
+  async function carregarConsultas() {
+    const idUser = Storage('usuario-logado').id;
+    const resposta = await listarConsulta(idUser);
+    setConsulta(resposta);
+    console.log(resposta)
   }
 
   async function cadastrarSolicitacao() {
@@ -92,6 +101,7 @@ function excluirSolicitacao(id) {
       navigate('/login/paciente')
     }
     carregarTodasSolicitacoes();
+    carregarConsultas();
   }, []);
 
 
@@ -163,52 +173,25 @@ function excluirSolicitacao(id) {
         <div className="card-consultas">
           <h2>Sessões marcadas</h2>
 
+
+        {consulta.map (item =>
           <div className="linha-consulta">
             <label>
               Profissional
-              <p>Amanda Fitas</p>
+              <p>{item.profissional}</p>
             </label>
             <label>
               Data
-              <p>00/00/0000</p>
+              <p>{String(item.horario).substr(0,10)}</p>
             </label>
             <label>
               Hora
-              <p>00:00</p>
+              <p>{String(item.horario).substr(10,20)}</p>
             </label> 
-            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
+            <a href={item.meet}><img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> </a>
           </div>
-          <div className="linha-consulta">
-            <label>
-              Profissional
-              <p>Amanda Fitas</p>
-            </label>
-            <label>
-              Data
-              <p>00/00/0000</p>
-            </label>
-            <label>
-              Hora
-              <p>00:00</p>
-            </label> 
-            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
-          </div>
-          <div className="linha-consulta">
-            <label>
-              Profissional
-              <p>Amanda Fitas</p>
-            </label>
-            <label>
-              Data
-              <p>00/00/0000</p>
-            </label>
-            <label>
-              Hora
-              <p>00:00</p>
-            </label> 
-            <img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> 
-          </div>
-          
+        
+        )}
         </div>
 
       </div>

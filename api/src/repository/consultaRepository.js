@@ -6,7 +6,7 @@ export async function marcarConsulta(idUsuario, idPsicologo, consulta) {
     const comando = `insert into tb_consulta(
                     ID_USUARIO,
                     ID_PSICOLOGO,
-                    DT_CONSULTA,
+                    DATE_FORMAT(DT_CONSULTA, '%d/%m/%Y %H:%i'),
                     DS_LINK_MEET)
                     values(?, ?, ?, ?)`
     const [resposta] = await con.query(comando, [idUsuario, idPsicologo, consulta.data, consulta.link]);
@@ -14,14 +14,18 @@ export async function marcarConsulta(idUsuario, idPsicologo, consulta) {
 }
 
 // Listar Consulta
-export async function listarConsulta(){
-    const comando = `select id_consulta   CONSULTA,
-                            id_usuario	  USUARIO,
-                            id_psicologo  PSICOLOGO,
-                            DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as HORARIO,
-                            ds_link_meet  MEET
-                     from tb_consulta`
-    const [resposta] = await con.query(comando);
+export async function listarConsulta(id){
+    const comando = `select 	tb_consulta.id_consulta  	      CONSULTA,
+							    tb_usuario.id_usuario	  	      USUARIO,
+                                tb_psicologo.id_psicologo         PSICOLOGO,
+                                tb_psicologo.nm_psicologo         profissional,
+                    DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as horario,
+                                ds_link_meet                      meet
+                    from        tb_consulta
+            inner join tb_psicologo on tb_psicologo.id_psicologo = tb_consulta.id_psicologo
+            inner join tb_usuario on tb_usuario.id_usuario = tb_consulta.id_usuario
+            where tb_consulta.id_usuario = ?`
+    const [resposta] = await con.query(comando, id);
     return resposta
 
 }

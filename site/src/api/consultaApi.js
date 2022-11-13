@@ -15,7 +15,12 @@ export async function marcarConsulta(idUsuario, idPsicologo, consulta, link) {
 }
 
 export async function consultarConsulta() {
-    const resposta = await api.get('/consulta');
+    const resposta = await api.post('/agenda/consulta');
     return resposta.data;
 }
+
+export async function listarConsulta(id) {
+    const resposta = await api.get(`/consulta/${id}`);
+    return resposta.data;
+} 
 

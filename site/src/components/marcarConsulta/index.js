@@ -12,6 +12,7 @@ export default function MarcarPop(props) {
             const idPsic = Storage('voluntario-logado').id;
             const marcar = await marcarConsulta(consulta, idPsic);
             setConsulta(marcar)
+            
             toast.dark('Consulta Marcada')
         } catch (err) {
             toast.dark('Deu Erro')
@@ -22,7 +23,7 @@ export default function MarcarPop(props) {
     return(
         <main className='pop-up-marcar'>
             <div className='titulo-pop'>
-                <img src='/assets/images/exit-purple.png' onClick={props.click }/>
+                <img src='/assets/images/exit-purple.png' onClick={props.click}/>
                 <h1>Marcar Sessão</h1>
             </div>
             <div className='inputs'>
