@@ -140,7 +140,8 @@ export default function MensagensPage() {
             <div className='session-chat'>
                 {id === 0 &&
                     <div className='porcima'>
-                        <p>nada</p>
+                        <img width={250} src='/assets/images/logo-login.png'/>
+                        <p>Te escutando de onde estiver, quando puder.</p>
                     </div>
                 }
                 <ChatHeader nome={nome} />
