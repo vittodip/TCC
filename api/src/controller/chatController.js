@@ -1,5 +1,5 @@
 import {  Router } from 'express'
-import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem, checarChat, carregarNome } from '../repository/chatRepository.js';
+import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem, checarChat, carregarNomeUsuario, carregarNomePsic } from '../repository/chatRepository.js';
 
 
 const server = Router();
@@ -52,7 +52,6 @@ server.get('/psicologo/mensagem/:id', async (req, resp) => {
         const resposta = await carregarChatsPsicologo(idPsic);
 
         resp.send(resposta)
-        console.log(resposta)
     } catch (err) {
         resp.status(400).send({
             erro:err.message
@@ -89,10 +88,23 @@ server.get('/conversa/mensagem/:id', async (req, resp) => {
     }
 })
 
-server.get('/chat/nome/:id', async (req, resp) => {
+server.get('/chat/nome/usuario/:id', async (req, resp) => {
     try{
-        const idUsuario = req.params.id;
-        const resposta = await carregarNome(idUsuario)
+        const idChat = req.params.id;
+        const resposta = await carregarNomeUsuario(idChat)
+        resp.send(resposta)
+    }
+    catch(err){
+        resp.send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/chat/nome/psicologo/:id', async (req, resp) => {
+    try{
+        const idChat = req.params.id;
+        const resposta = await carregarNomePsic(idChat)
         resp.send(resposta)
     }
     catch(err){
