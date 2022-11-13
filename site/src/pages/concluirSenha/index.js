@@ -2,16 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import { mudarSenha } from '../../api/usuarioApi';
+import { useNavigate } from 'reac-router-dom'
 import './index.scss';
 
 export default function ConcluirSenha(){
     const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
 
+    const navigate = useNavigate();
+
     async function trocarSenha(){
         try {
             const r = await mudarSenha(senha, email);
             toast.success('Senha alterada com sucesso!')
+            navigate('/cadastro/home')
         } catch (err) {
             toast.error('Verifique se o e-mail está correto.')
         }
