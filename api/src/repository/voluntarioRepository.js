@@ -111,6 +111,7 @@ export async function mudarSenhaVolunt(senha, id){
     return resposta.affectedRows
 }
 
+
 export async function PegarIDPsic(email){
     const comando = `select id_psicologo
                      from tb_psicologo
@@ -118,4 +119,16 @@ export async function PegarIDPsic(email){
 
     const [resposta] = await con.query(comando, [email])
     return resposta[0];
+}
+
+export async function buscarVoluntNome(nome){
+    const comando = `select nm_psicologo     nome,
+                            ds_email       email,
+                            nr_telefone    telefone,
+                            ds_cpf         cpf,
+                            dt_nascimento  DataDeNascimento
+                     from tb_psicologo
+                     where nm_psicologo like ?`
+    const [resposta] = await con.query(comando, [ `%${nome}%`]);
+    return resposta;
 }

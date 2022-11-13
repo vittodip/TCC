@@ -1,5 +1,5 @@
 
-import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem, mostrarPsicologos, mudarSenhaVolunt } from "../repository/voluntarioRepository.js";
+import { loginVoluntario, cadastroVoluntario, carregarVoluntario, alterarVoluntario, alterarImagem, mostrarPsicologos, mudarSenhaVolunt, buscarVoluntNome } from "../repository/voluntarioRepository.js";
 
 import multer from 'multer'
 import { Router } from "express";
@@ -177,6 +177,23 @@ server.put('/senha/voluntario/:id', async (req, resp) =>{
     }
 
 
+})
+
+server.get('/volunt/busca', async (req, resp) => {
+    try {
+        const { nome } = req.query;
+
+        const resposta = await buscarVoluntNome(nome)
+
+        if(!resposta)
+            resp.status(404).send([])
+        else
+            resp.send(resposta);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
 })
 
 export default server;

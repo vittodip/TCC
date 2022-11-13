@@ -47,6 +47,15 @@ select nm_adm 	 nome,
        date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
   from tb_adm
 where id_adm = 1;  
+
+-- BUSCAR USUARIO
+select nm_usuario,
+       ds_email,
+       nr_telefone,
+       ds_cpf,
+       dt_nascimento
+  from tb_usuario
+ where nm_usuario like '%B%';
   
   
 -- INFO PERFIL USUARIO

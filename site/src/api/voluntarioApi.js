@@ -74,3 +74,8 @@ export async function mostrarPsicologos(){
     const resposta = await api.get('/listar/voluntario');
     return resposta.data
 }
+
+export async function buscarNomeVolunt(nome){
+    const resposta = await api.get(`/volunt/busca?nome=${nome}`);
+    return resposta.data
+}

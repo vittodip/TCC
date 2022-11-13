@@ -104,6 +104,17 @@ export async function mudarSenhaUser(senha, id){
 }
 
 
+export async function buscarUserNome(nome){
+    const comando = `select nm_usuario     nome,
+                            ds_email       email,
+                            nr_telefone    telefone,
+                            ds_cpf         cpf,
+                            dt_nascimento  DataDeNascimento
+                     from tb_usuario
+                     where nm_usuario like ?`
+    const [resposta] = await con.query(comando, [ `%${nome}%`]);
+    return resposta
+}
 
 
 
