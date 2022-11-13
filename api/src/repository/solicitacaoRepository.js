@@ -83,7 +83,8 @@ export async function deletarSolicitacao(id) {
 
 export async function mostrarTodasSolicitações(){
     const comando = `select
-                     id_solicitacao , 
+                     id_solicitacao ,
+                     id_usuario     idUsuario,
                      ds_solicitacao texto,
                      date_format(dt_situacao, '%d/%m/%Y %H:%i') as data
                      from tb_solicitacao

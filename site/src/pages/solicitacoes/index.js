@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Storage from 'local-storage'
+import { checarChat, criarChat } from '../../api/chatApi';
 
 
 export default function SolicitacoesPsic() {
@@ -20,29 +21,30 @@ export default function SolicitacoesPsic() {
         setSolicitacoes(resp)
     }
 
-    async function aceitarSolicitacaoClick(idSolicitacao) {
-      
-        try{
-            const idSoli = idSolicitacao
-            const idPsic = Storage('voluntario-logado').id
-
-            const r = await aceitarSolicitacao(idPsic, idSoli)
-            
-            toast("Atendimento oferecido!")
+    async function aceitarSolicitacaoClick(idSolicitacao, idUsuario) {
+        try {
+            const idPsic = Storage('voluntario-logado').id;
+            const r = await aceitarSolicitacao(idPsic, idSolicitacao);
+            const ChatCheck = await checarChat(idUsuario, idPsic);
+            if(!ChatCheck){
+                const chat = await criarChat(idUsuario, idPsic);
+                navigate('/chat');
+            }
+            else{
+                toast("Atendimento oferecido!");
+                navigate('/chat');
+            }            
         }
-        catch (err){
-            
-            toast('erro')
+        catch (err) {
+            toast('Erro.')
         }
-        
-        
     }
 
     useEffect(() => {
         carregarSolicitacao();
-    }, []); 
+    }, []);
 
-    function irPerfil () {
+    function irPerfil() {
         navigate('/perfil/voluntario')
     }
 
@@ -68,24 +70,24 @@ export default function SolicitacoesPsic() {
             </header>
             <section className="secao-solicitacao">
 
-                {solicitacoes.map(item => 
-                <div key='Listagem' className="container-principal">
-                    <div className="cp-info-date">
-                        <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
-                        <p>{item.data.substr(0,10)}</p>
-                    </div>
-                    <div className="cp-texto">
-                        <p>{item.texto}</p>
-                    </div>
-                    <div className="cp-funcionalidades">
-                        <p></p>
+                {solicitacoes.map(item =>
+                    <div key='Listagem' className="container-principal">
+                        <div className="cp-info-date">
+                            <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
+                            <p>{item.data.substr(0, 10)}</p>
+                        </div>
+                        <div className="cp-texto">
+                            <p>{item.texto}</p>
+                        </div>
+                        <div className="cp-funcionalidades">
+                            <p></p>
 
-                        <div className="alinhamento">
-                            <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
-                            <button onClick={() => aceitarSolicitacaoClick(item.id_solicitacao)}>Oferecer atendimento</button>
+                            <div className="alinhamento">
+                                <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
+                                <button onClick={() => aceitarSolicitacaoClick(item.id_solicitacao, item.idUsuario)}>Oferecer atendimento</button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 )}
 
             </section>
