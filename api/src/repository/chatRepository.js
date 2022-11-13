@@ -66,11 +66,22 @@ export async function mostrarMensagem(id) {
     return resposta;
 }
 
-export async function carregarNome(id){
-    const comando = `select nm_usuario
+export async function carregarNomeUsuario(id){
+    const comando = `select nm_usuario nome
                      from tb_usuario
-                     where id_usuario = ?`
+                     inner join tb_chat on tb_chat.id_chat = tb_usuario.id_usuario
+                     where tb_chat.id_chat = ?`
                      
     const [resposta] = await con.query(comando, [id]);
-    return resposta;
+    return resposta[0];
+}
+
+export async function carregarNomePsic(id){
+    const comando = `select nm_psicologo nome
+                     from tb_psicologo
+                     inner join tb_chat on tb_chat.id_chat = tb_psicologo.id_psicologo
+                     where tb_chat.id_chat = ?`
+                     
+    const [resposta] = await con.query(comando, [id]);
+    return resposta[0];
 }

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import storage from 'local-storage'
 
 
-export default function ChatHeader(){
+export default function ChatHeader(props){
     
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -43,7 +43,7 @@ export default function ChatHeader(){
             
             <div className='alinhamento-content'>
                 <img src="/assets/images/perfil-anonimo-chat.svg" alt="" />
-                <p>Eduardo Cesar</p>
+                <p>{props.nome}</p>
             </div>
             <div className='alinhamento-content2'>
                 {storage('voluntario-logado') &&
