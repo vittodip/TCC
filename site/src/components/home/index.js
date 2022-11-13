@@ -60,7 +60,7 @@ export default function Menu(props) {
                         <img src="/assets/images/Spam.png" alt="Denúncia Psicólogos" />
                         <div>Denúncia Psicólogos</div>
                     </div>
-                    <div className={verificarMenuSelecionado('Denúncia pacientes')}>
+                    <div className={verificarMenuSelecionado('Denúncia pacientes')} onClick={() => [navigate('/admin/denuncias/usuario')]}>
                         <img src="/assets/images/Spam.png" alt="Denúncia Pacientes" />
                         <div>Denúncia Pacientes</div>
                     </div>
