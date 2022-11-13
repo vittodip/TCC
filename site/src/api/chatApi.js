@@ -46,3 +46,8 @@ export async function carregarNomePsic(idChat) {
     const resposta = await api.get(`/chat/nome/psicologo/${idChat}`)
     return resposta.data;
 }
+
+export async function mostrarUltimaMensagem(idChat) {
+    const resposta = await api.get(`/conversa/mensagem/ultima/${idChat}`)
+    return resposta.data;
+}

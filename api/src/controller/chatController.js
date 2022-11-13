@@ -1,5 +1,5 @@
 import {  Router } from 'express'
-import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem, checarChat, carregarNomeUsuario, carregarNomePsic } from '../repository/chatRepository.js';
+import { carregarChatsPsicologo, carregarChatsUsuario, criarChat, enviarMensagem, mostrarMensagem, checarChat, carregarNomeUsuario, carregarNomePsic, mostrarUltimaMensagem } from '../repository/chatRepository.js';
 
 
 const server = Router();
@@ -48,10 +48,17 @@ server.get('/usuario/mensagem/:id', async (req, resp) => {
 server.get('/psicologo/mensagem/:id', async (req, resp) => {
     try {
         const idPsic = Number(req.params.id)
-    
+        const mensagens = []
         const resposta = await carregarChatsPsicologo(idPsic);
-
-        resp.send(resposta)
+        const array = resposta
+        for(let i = 0; i < resposta.length; i++){
+            const ultima = await mostrarUltimaMensagem(resposta[i].idChat);
+            mensagens.push(ultima)
+        }
+        for(let i = 0; i < resposta.length; i++){
+            array[i].mensagem = mensagens[i].mensagem;
+        }
+        resp.send(array)
     } catch (err) {
         resp.status(400).send({
             erro:err.message
@@ -79,6 +86,19 @@ server.get('/conversa/mensagem/:id', async (req, resp) => {
     try {
         const idChat = req.params.id;
         const resposta = await mostrarMensagem(idChat)
+
+        resp.send(resposta)
+    } catch (err) {
+        resp.status(400).send({
+            erro:err.message
+        })
+    }
+})
+
+server.get('/conversa/mensagem/ultima/:id', async (req, resp) => {
+    try {
+        const idChat = req.params.id;
+        const resposta = await mostrarUltimaMensagem(idChat)
 
         resp.send(resposta)
     } catch (err) {

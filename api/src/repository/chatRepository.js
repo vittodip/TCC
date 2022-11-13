@@ -66,6 +66,16 @@ export async function mostrarMensagem(id) {
     return resposta;
 }
 
+export async function mostrarUltimaMensagem(id) {
+    const comando = `select ds_mensagem mensagem
+                     from tb_mensagem
+                     inner join tb_chat on tb_chat.id_chat = tb_mensagem.id_chat
+                     where tb_chat.id_chat = ?`
+
+    const [resposta] = await con.query(comando, [id]);
+    return resposta[resposta.length -1];
+}
+
 export async function carregarNomeUsuario(id){
     const comando = `select nm_usuario nome
                      from tb_usuario

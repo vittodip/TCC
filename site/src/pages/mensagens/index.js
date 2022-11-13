@@ -11,13 +11,14 @@ import io from 'socket.io-client';
 import { useEffect, useState } from 'react'
 import Storage from 'local-storage';
 
-import { enviarMensagem, mostrarMensagem, carregarChatsPsicologo, carregarNomeUsuario, carregarNomePsic } from '../../api/chatApi'
+import { enviarMensagem, mostrarMensagem, carregarChatsPsicologo, carregarNomeUsuario, carregarNomePsic, mostrarUltimaMensagem } from '../../api/chatApi'
 
 const socket = io.connect('http://localhost:5000');
 
 export default function MensagensPage() {
     const [mensagem, setMensagem] = useState();
     const [mensagemLista, setMensagemLista] = useState([]);
+    const [ultima, setUltima] = useState([])
     const [chats, setChats] = useState([]);
     const [id, setId] = useState(0);
     const [nome, setNome] = useState('')
@@ -52,7 +53,7 @@ export default function MensagensPage() {
         }
     }
 
-    async function carregarChats() {
+    async function carregarChats(idChat) {
         try {
             const idPsic = Storage('voluntario-logado').id;
             const load = await carregarChatsPsicologo(idPsic)
@@ -62,6 +63,8 @@ export default function MensagensPage() {
 
         }
     }
+
+
 
     async function carregarMensagens(idChat) {
         try {
@@ -81,6 +84,7 @@ export default function MensagensPage() {
 
         }
     }
+    
 
     useEffect(() => {
         carregarChats();
@@ -124,7 +128,9 @@ export default function MensagensPage() {
                             <div className='usu-info'>
                                 <label>
                                     {item.nomeUsuario}
-                                    <p>Então a sessão tá marcada pra 00:00?</p>
+                                    <p>{item.mensagem}</p>
+
+
                                 </label>
                             </div>
                         </div>
