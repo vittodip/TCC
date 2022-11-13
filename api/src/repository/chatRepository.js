@@ -17,7 +17,7 @@ export async function checarChat(usuario, psicologo) {
                      and id_psicologo = ?`
     
     const [resposta] = await con.query(comando, [usuario, psicologo]);
-    return resposta;
+    return resposta[0];
 }
 
 export async function carregarChatsUsuario(id) {
