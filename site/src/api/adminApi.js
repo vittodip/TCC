@@ -59,6 +59,11 @@ export async function denunciaPsico(){
 
 }
 
+export async function carregarDenunciaUser() {
+    const resposta = await api.get('/denuncia/usuario');
+    return resposta.data
+}
+
 
 export async function aceitarDenunciaUser(id) {
     const resposta = await api.delete(`/positivo/denuncia/usuario/${id}`);

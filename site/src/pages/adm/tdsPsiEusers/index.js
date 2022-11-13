@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { carregarVoluntario } from "../../../api/voluntarioApi";
-import { mostrarPsicologos } from "../../../api/voluntarioApi";
+import { mostrarPsicologos, buscarNomeVolunt } from "../../../api/voluntarioApi";
 import Menu from "../../../components/home";
 import Storage from 'local-storage'
 import { useNavigate } from "react-router-dom";
@@ -9,8 +8,15 @@ import "./index.scss";
 import HeaderAdmin from "../../../components/adm/header";
 
 export default function ListaVolunts() {
+  
 
   const [voluntario, setVoluntario] = useState([]);
+  const [filtro, setFiltro] = useState('')
+
+  async function filtrar(){
+    const resp = await buscarNomeVolunt(filtro)
+    setVoluntario(resp)
+  }
 
   async function carregarPsicologo() {
     const resposta = await mostrarPsicologos();
@@ -47,9 +53,9 @@ export default function ListaVolunts() {
         <div className="listagemPsics">
           <div className="search">
             <div>
-              <input type='search' placeholder="Pesquisar Voluntario" />
+              <input type='search' placeholder="Pesquisar Voluntario" value={filtro} onChange={e => setFiltro(e.target.value)} />
             </div>
-            <img src="/assets/images/lupa.png" />
+            <img src="/assets/images/lupa.png" onClick={filtrar} />
           </div>
 
           {/* Listagem */}

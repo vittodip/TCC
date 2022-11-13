@@ -1,10 +1,10 @@
 import Router from 'express'
-import marcarConsulta from '../repository/consultaRepository.js';
+import {marcarConsulta, listarConsulta }from '../repository/consultaRepository.js';
 
 const server = Router();
 
 
-server.post('/consulta', async (req, resp) => {
+server.post('/agenda/consulta', async (req, resp) => {
    try {
         const { idUsuario, idPsicologo } = req.query;
         const consulta = req.body;
@@ -24,6 +24,19 @@ server.post('/consulta', async (req, resp) => {
             erro: err.message
         })
    }
+})
+
+server.get('/consulta/:id' , async (req, resp) => {
+    try {
+        const usuario = Number(req.params.id)
+        const resposta = await listarConsulta(usuario)
+        resp.send(resposta)
+
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
 })
 
 

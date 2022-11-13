@@ -1,8 +1,10 @@
- import { cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser} from '../repository/usuarioRepository.js'
+ import { pegarIDuser ,cadastroUsuario, loginUsuario, carregarUsuario, alterarUsuario, deletarUsuario, mostrarUsuarios, mudarSenhaUser, buscarUserNome} from '../repository/usuarioRepository.js'
 
 import { Router } from "express";
 
 import nodemailer from 'nodemailer'
+import { mudarSenhaVolunt, PegarIDPsic } from '../repository/voluntarioRepository.js';
+
 
 const server = Router();
 
@@ -28,12 +30,29 @@ server.post('/login/usuario', async (req, resp) => {
 server.post('/cadastro/usuario', async (req, resp) => {
     try {
         const user = req.body;
+
+        const emailCheck = await pegarIDuser(user.email); 
+
+        const data = new Date() - new Date(user.nascimento); 
+        console.log(data);
         
+        if(user.nome.length < 5){
+            throw new Error('Insira um nome válido!')
+        }
         if(!user.email) {
             throw new Error('Insira um email!')
         }
+        if(emailCheck){
+            throw new Error('Este e-mail já existe!')
+        }
+        if(user.email.length < 11){
+            throw new Error('Insira um e-mail válido!')
+        }
         if(!user.senha) {
             throw new Error('Insira uma senha!')
+        }
+        if(user.senha.length < 5) {
+            throw new Error('A senha deve ter ao menos 5 caracteres!')
         }
         if(!user.nome) {
             throw new Error('Insira um nome!')
@@ -47,8 +66,14 @@ server.post('/cadastro/usuario', async (req, resp) => {
         if(new Date(user.nascimento) >= new Date()) {
             throw new Error('Insira uma data de nascimento válida!')
         }
+        if(data < 500690697803){
+            throw new Error('Você deve ter ao menos 16 anos.')
+        }
         if(!user.telefone) {
             throw new Error('Insira um telefone!')
+        }
+        if(user.telefone.length < 11 || user.telefone.length > 11) {
+            throw new Error('Insira um telefone válido!')
         }
         
         const resposta = await cadastroUsuario(user);
@@ -142,36 +167,21 @@ server.get('/listar/usuario', async (req, resp) => {
     }
 })
 
-server.get('/email/usuario', async (req, resp) =>{
+
+server.put('/senha/usuario', async (req, resp) =>{
     try {
-        const {email} = req.body;
-        const r = await pegarEmailUser(email);
-        console.log(r)
-        resp.send(r);
-        
-    } catch (err) {
-        resp.status(404).send({
-            erro: err.message
-        })
-    }
-
-
-
-})
-
-server.put('/senha/usuario/:id', async (req, resp) =>{
-
-    try {
-        const usuarioID = Number(req.params.id);
-        const user = req.body;
-        
-        const usuario = await carregarUsuario(usuarioID);
-
-        if(user.senha === usuario.senha){
-            throw new Error('Insira uma senha diferente da anterior')
+        const { email, senha } = req.query
+        const idUsuario = await pegarIDuser(email);
+        const idPsicologo = await PegarIDPsic(email);
+        if(idUsuario && !idPsicologo){
+            const r = await mudarSenhaUser(senha, idUsuario);
         }
-
-        const r = await mudarSenhaUser(user, usuarioID)
+        else if(!idUsuario && idPsicologo){
+            const r = await mudarSenhaVolunt(senha, idPsicologo);
+        }
+        if(!idUsuario && !idPsicologo){
+            throw new Error('Verifique se o e-mail está correto.')
+        }
         resp.status(204).send()
 
     } catch (err) {
@@ -179,11 +189,16 @@ server.put('/senha/usuario/:id', async (req, resp) =>{
             erro: err.message
         })
     }
-
-
 })
 
+
+
+
+
+
 server.post('/enviar-email', async (req, resp) =>{
+
+    
     let data = req.body;
     const transport = nodemailer.createTransport({
     host: process.env.HOST,
@@ -194,7 +209,7 @@ server.post('/enviar-email', async (req, resp) =>{
         pass: process.env.SENHA
     }
     })
-    
+
     const message = {
     from: process.env.EMAIL,
      to: data.email,
@@ -232,10 +247,11 @@ server.post('/enviar-email', async (req, resp) =>{
                 </div>
             </div>
         </div>
-        
      `
-     
+
+
     }
+    
     transport.sendMail(message, (error, info)=> {
         if (error) {
             return resp.status(400).send('Erro, tente novamente')
@@ -244,6 +260,23 @@ server.post('/enviar-email', async (req, resp) =>{
     })
 })
 
+
+server.get('/user/busca', async (req, resp) => {
+    try {
+        const { nome } = req.query;
+
+        const resposta = await buscarUserNome(nome)
+
+        if(!resposta)
+            resp.status(404).send([])
+        else
+            resp.send(resposta);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
 
 
 

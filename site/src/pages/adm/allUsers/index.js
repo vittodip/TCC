@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import HeaderAdmin from "../../../components/adm/header";
 import Storage from 'local-storage'
 import Menu from "../../../components/home";
-import { mostrarUsuarios } from "../../../api/usuarioApi";
+import { mostrarUsuarios, buscarNomeUser } from "../../../api/usuarioApi";
 
 
 export default function ListarUsers(){
 
     const [usuario, setUsuario] = useState([]);
+    const [filtro, setFiltro] = useState('')
+
+    async function filtrar(){
+      const resp = await buscarNomeUser(filtro)
+      setUsuario(resp)
+    }
 
     async function carregarUsuario() {
         const resposta = await mostrarUsuarios();
@@ -42,9 +48,9 @@ export default function ListarUsers(){
         <div className="listagemPsics">
           <div className="search">
             <div>
-              <input type='search' placeholder="Pesquisar Usuario" />
+              <input type='search' placeholder="Pesquisar Usuario" value={filtro} onChange={e => setFiltro(e.target.value)} />
             </div>
-            <img src="/assets/images/lupa.png" />
+            <img src="/assets/images/lupa.png" onClick={filtrar} />
           </div>
 
           {/* Listagem */}

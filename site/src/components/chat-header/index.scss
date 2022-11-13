@@ -1,8 +1,8 @@
 .header-chat{
     background: #FFFFFF;
-    padding: 0.5em 1em 0.5em 1em;
+    padding: 0.35em 1em 0.35em 1em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
     
-    box-shadow: 0px 0px 4px #00000040;
     font-family: "Mulish";
 
     .section-header{
@@ -11,6 +11,7 @@
         align-items: center;
         width: 100%;
         justify-content: space-between;
+        
 
         p{
             font-size: 18px;

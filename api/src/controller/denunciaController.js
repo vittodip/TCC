@@ -10,10 +10,6 @@ server.post('/denuncia/usuario', async (req, resp) => {
     try {
         const denunciaUser = req.body;
 
-        if (!denunciaUser.depoimento || !denunciaUser.depoimento.trim()) {
-            throw new Error('Insira algum depoimento!')
-        }
-
         const resposta = await denunciarUsuario(denunciaUser);
 
         resp.send(resposta);

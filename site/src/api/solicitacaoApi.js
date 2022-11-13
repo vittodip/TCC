@@ -67,3 +67,5 @@ export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
     console.log(resposta)
     return resposta.data;
 }
+
+

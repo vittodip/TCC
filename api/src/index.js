@@ -1,5 +1,8 @@
 import 'dotenv/config'
 
+import { serverHttp, server } from './WebSockt/scoket.js';
+import './WebSockt/server.js';
+
 import usuarioController from './controller/usuarioController.js';
 import voluntarioController from './controller/voluntarioController.js'
 import admController from './controller/admController.js'
@@ -10,14 +13,12 @@ import prontuarioController from './controller/prontuarioController.js'
 import categoriaController from './controller/categoriaController.js'
 import senhaController from './controller/senhaController.js'
 import consultaController from './controller/consultaController.js'
+import chatController from './controller/chatController.js'
+
 
 import express from 'express';
 import cors from 'cors';
 
-const server = express();
-
-server.use(cors());
-server.use(express.json());
 
 // liberar arquivos da storage
 server.use('/storage/fotosVoluntarios', express.static('storage/fotosVoluntarios'));
@@ -33,6 +34,10 @@ server.use(prontuarioController);
 server.use(categoriaController);
 server.use(senhaController);
 server.use(consultaController);
+server.use(chatController);
 
-server.listen(process.env.PORT,
+
+
+
+serverHttp.listen(process.env.PORT,
              () => console.log(`API online na porta ${process.env.PORT}`));

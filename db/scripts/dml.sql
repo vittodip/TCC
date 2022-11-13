@@ -47,6 +47,15 @@ select nm_adm 	 nome,
        date_format(dt_nascimento, '%d/%m/%Y') as DataDeNascimento
   from tb_adm
 where id_adm = 1;  
+
+-- BUSCAR USUARIO
+select nm_usuario,
+       ds_email,
+       nr_telefone,
+       ds_cpf,
+       dt_nascimento
+  from tb_usuario
+ where nm_usuario like '%B%';
   
   
 -- INFO PERFIL USUARIO
@@ -268,12 +277,17 @@ insert into tb_consulta(ID_USUARIO, ID_PSICOLOGO, DT_CONSULTA, DS_LINK_MEET)
      
 -- SELECIONAR CONSULTA
      select id_consulta   CONSULTA,
-			id_usuario	  USUARIO,
+			      id_usuario	  USUARIO,
             id_psicologo  PSICOLOGO,
             DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as HORARIO,
             ds_link_meet  MEET
      from tb_consulta
 
+
+--CRIAR CHAT PSICOLOGO USUARIO
+
+insert into tb_chat(id_usuario, id_psicologo)
+values(1, 1)
 
 
 

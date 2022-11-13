@@ -83,33 +83,38 @@ export async function mostrarUsuarios(){
          return resposta;
 }
 
-export async function pegarEmailUser(email){
-    const comando = `select id_usuario	ID,
-                            nm_usuario nome,
-                            ds_senha   senha
+export async function pegarIDuser(email){
+    const comando = `select id_usuario
                        from tb_usuario
                       where ds_email = ?`
 
     
-    const [resposta] = await con.query(comando, [email])
-    enviarEmail(resposta, email)
-    return resposta[0]
-
+    const [resposta] = await con.query(comando, [email]);
+    return resposta[0];
 }
 
 
 
-export async function mudarSenhaUser(id){
+export async function mudarSenhaUser(senha, id){
     const comando = `update tb_usuario
                         set ds_senha = ?
-                      where id_usuario = ? 
-                        and ds_email = ?`
-    const [resposta] = await con.query(comando, [pegarEmailUser])
-    console.log(resposta)
-    return resposta.affectedRows
+                      where id_usuario = ?`
+    const [resposta] = await con.query(comando, [senha, id]);
+    return resposta.affectedRows;
 }
 
 
+export async function buscarUserNome(nome){
+    const comando = `select nm_usuario     nome,
+                            ds_email       email,
+                            nr_telefone    telefone,
+                            ds_cpf         cpf,
+                            dt_nascimento  DataDeNascimento
+                     from tb_usuario
+                     where nm_usuario like ?`
+    const [resposta] = await con.query(comando, [ `%${nome}%`]);
+    return resposta
+}
 
 
 
