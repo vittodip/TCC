@@ -20,6 +20,7 @@ export default function SolicitacoesPsic() {
         const resp = await mostrarTodasSolicitações();
         setSolicitacoes(resp)
     }
+    
 
     async function aceitarSolicitacaoClick(idSolicitacao, idUsuario) {
         try {

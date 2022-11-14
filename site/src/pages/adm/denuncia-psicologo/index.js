@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 
 export default function DenunciasPsicologos() {
   const [denuncia, setDenuncia] = useState([]);
-  console.log(denuncia)
+  
+  
   async function carregarDenunciasPsicologo() {
     const resp = await denunciaPsico();
     setDenuncia(resp);

@@ -30,10 +30,10 @@ export default function CardsAdmin(props) {
 
 
 
-  async function aceitarDenunciaUsuario(idUsuario) {
+  async function aceitarDenunciaUsuario(usuarioId) {
     try {
 
-      const resp = await aceitarDenunciaUser(idUsuario);
+      const resp = await aceitarDenunciaUser(usuarioId);
 
       alert('funfou')
     } catch (err) {
@@ -41,9 +41,9 @@ export default function CardsAdmin(props) {
     }
   }
 
-  async function recusarDenunciaUsuario(idUsuario) {
+  async function recusarDenunciaUsuario(denunciaId) {
     try {
-      const resp = await recusarDenunciaUser(idUsuario);
+      const resp = await recusarDenunciaUser(denunciaId);
 
       alert('funfou')
     } catch (err) {
@@ -178,7 +178,7 @@ export default function CardsAdmin(props) {
             <button onClick={() => aceitarDenunciaUsuario(props.UsuarioDenuncia)}>
               <img src="/assets/images/botao-aprovar.svg" />
             </button>
-            <button onClick={() => recusarDenunciaUsuario(props.idUsuario)}>
+            <button onClick={() => recusarDenunciaUsuario(props.DenunciaId)}>
               <img src="/assets/images/botao-reprovar.svg" />
             </button>
           </div>

@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi, deletarDenuncia } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -173,36 +173,35 @@ server.get('/denuncia/psicologo', async (req, resp) => {
 
 
 
-server.delete('/positivo/denuncia/usuario', async (req, resp) => {
+
+server.delete('/negativo/denuncia/usuario/:id', async (req, resp) => {
     try {
-        const id = req.body;
-        const deletar = await deletarDenuncia(id.denunciaId)
-        const resposta = await aceitarDenunciaUser(id.usuarioId);
-
+        const id = Number(req.params.id);
+        
+        const resposta = await recusarDenunciaUser(id);
+        
         if (resposta != 1) {
-            throw new Error('Não foi possivel aceitar esta Denúncia!')
+            throw new Error('Não foi possivel recusar esta Denúncia!')
         }
-
-        resp.status(202).send()
-
+        
+        resp.status(202).send();
+        
     } catch (err) {
         resp.status(404).send({
             erro: err.message
         })
     }
 })
-
-server.delete('/negativo/denuncia/usuario/:id', async (req, resp) => {
+server.delete('/positivo/denuncia/usuario/:id', async (req, resp) => {
     try {
         const id = Number(req.params.id);
-
-        const resposta = await recusarDenunciaUser(id);
+        const resposta = await aceitarDenunciaUser(id);
 
         if (resposta != 1) {
-            throw new Error('Não foi possivel recusar esta Denúncia!')
+            throw new Error('Não foi possivel aceitar esta Denúncia!')
         }
 
-        resp.status(202).send();
+        resp.status(202).send()
 
     } catch (err) {
         resp.status(404).send({
