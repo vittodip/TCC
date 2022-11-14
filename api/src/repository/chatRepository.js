@@ -21,9 +21,15 @@ export async function checarChat(usuario, psicologo) {
 }
 
 export async function carregarChatsUsuario(id) {
-    const comando = `select * 
-                        from tb_chat
-                    where id_usuario = ?`
+    const comando = `select id_chat 		            idChat,
+                    tb_usuario.id_usuario 	    idUser,
+                    tb_usuario.nm_usuario       nomeUsuario,
+                    tb_psicologo.id_psicologo   idPsic,
+                    tb_psicologo.nm_psicologo   nomePsicologo
+                from tb_chat
+                inner join tb_usuario on tb_usuario.id_usuario = tb_chat.id_usuario
+                inner join tb_psicologo on tb_psicologo.id_psicologo = tb_chat.id_psicologo
+                where tb_usuario.id_usuario = ?`
 
     const [resposta] = await con.query(comando, [id]);
     return resposta;
@@ -79,7 +85,7 @@ export async function mostrarUltimaMensagem(id) {
 export async function carregarNomeUsuario(id){
     const comando = `select nm_usuario nome
                      from tb_usuario
-                     inner join tb_chat on tb_chat.id_chat = tb_usuario.id_usuario
+                     inner join tb_chat on tb_chat.id_usuario = tb_usuario.id_usuario
                      where tb_chat.id_chat = ?`
                      
     const [resposta] = await con.query(comando, [id]);
@@ -89,7 +95,7 @@ export async function carregarNomeUsuario(id){
 export async function carregarNomePsic(id){
     const comando = `select nm_psicologo nome
                      from tb_psicologo
-                     inner join tb_chat on tb_chat.id_chat = tb_psicologo.id_psicologo
+                     inner join tb_chat on tb_chat.id_psicologo = tb_psicologo.id_psicologo
                      where tb_chat.id_chat = ?`
                      
     const [resposta] = await con.query(comando, [id]);

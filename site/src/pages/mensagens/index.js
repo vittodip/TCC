@@ -11,7 +11,7 @@ import io from 'socket.io-client';
 import { useEffect, useState } from 'react'
 import Storage from 'local-storage';
 
-import { enviarMensagem, mostrarMensagem, carregarChatsPsicologo, carregarNomeUsuario, carregarNomePsic, mostrarUltimaMensagem } from '../../api/chatApi'
+import { enviarMensagem, mostrarMensagem, carregarChatsPsicologo, carregarNomeUsuario, carregarNomePsic, mostrarUltimaMensagem, carregarChatsUsuario } from '../../api/chatApi'
 
 const socket = io.connect('http://localhost:5000');
 
@@ -37,6 +37,7 @@ export default function MensagensPage() {
                     socket.emit('msg', id);
                     socket.on('msg', async (data) => {
                         setMensagemLista(data);
+                        setMensagem('');
                     })
                 }
                 else {
@@ -44,6 +45,7 @@ export default function MensagensPage() {
                     socket.emit('msg', id);
                     socket.on('msg', async (data) => {
                         setMensagemLista(data);
+                        setMensagem('');
                     })
                 }
             }
@@ -55,9 +57,16 @@ export default function MensagensPage() {
 
     async function carregarChats(idChat) {
         try {
-            const idPsic = Storage('voluntario-logado').id;
-            const load = await carregarChatsPsicologo(idPsic)
-            setChats(load);
+            if(storage('voluntario-logado')){
+                const idPsic = Storage('voluntario-logado').id;
+                const load = await carregarChatsPsicologo(idPsic)
+                setChats(load);
+            }
+            else{
+                const idUsuario = Storage('usuario-logado').id;
+                const load = await carregarChatsUsuario(idUsuario)
+                setChats(load);
+            }
         }
         catch (err) {
 
@@ -88,7 +97,7 @@ export default function MensagensPage() {
 
     useEffect(() => {
         carregarChats();
-    }, []);
+    }, [[],chats]);
 
     useEffect(() => {
         VoltarBaixoClick()
@@ -128,7 +137,7 @@ export default function MensagensPage() {
                             <div className='usu-info'>
                                 <label>
                                     {item.nomeUsuario}
-                                    <p>{item.mensagem}</p>
+                                    <p>{item.mensagem.substr(0,30)}...</p>
 
 
                                 </label>
@@ -190,7 +199,7 @@ export default function MensagensPage() {
                     }
                 </div>
                 <div className='chat-input-container'>
-                    <input type="text" onKeyDown={envioMensagem} onChange={e => setMensagem(e.target.value)} />
+                    <input type="text" value={mensagem} onKeyDown={envioMensagem} onChange={e => setMensagem(e.target.value)} />
                     <img src="/assets/images/sent.svg" alt="" value={mensagem} onClick={() => envioMensagem()} />
                 </div>
             </div>
