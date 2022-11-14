@@ -33,11 +33,18 @@ server.get('/chat/disponivel', async (req, resp) => {
 
 server.get('/usuario/mensagem/:id', async (req, resp) => {
     try {
-        const id = Number(req.params.id);
-
+        const id = Number(req.params.id)
+        const mensagens = []
         const resposta = await carregarChatsUsuario(id);
-
-        resp.send(resposta)
+        const array = resposta
+        for(let i = 0; i < resposta.length; i++){
+            const ultima = await mostrarUltimaMensagem(resposta[i].idChat);
+            mensagens.push(ultima)
+        }
+        for(let i = 0; i < resposta.length; i++){
+            array[i].mensagem = mensagens[i].mensagem;
+        }
+        resp.send(array)
     } catch (err) {
         resp.status(400).send({
             erro:err.message
