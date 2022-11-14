@@ -65,8 +65,8 @@ export async function carregarDenunciaUser() {
 }
 
 
-export async function aceitarDenunciaUser(id) {
-    const resposta = await api.delete(`/positivo/denuncia/usuario/${id}`);
+export async function aceitarDenunciaUser() {
+    const resposta = await api.delete(`/positivo/denuncia/usuario`);
     return resposta.data;
 }
 

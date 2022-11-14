@@ -177,7 +177,7 @@ server.delete('/positivo/denuncia/usuario', async (req, resp) => {
     try {
         const id = req.body;
         const deletar = await deletarDenuncia(id.denunciaId)
-        const resposta = await aceitarDenunciaUser(id.psicologoId);
+        const resposta = await aceitarDenunciaUser(id.usuarioId);
 
         if (resposta != 1) {
             throw new Error('Não foi possivel aceitar esta Denúncia!')

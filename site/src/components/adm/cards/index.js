@@ -30,10 +30,10 @@ export default function CardsAdmin(props) {
 
 
 
-  async function aceitarDenunciaUsuario(idUsuarioDenun) {
+  async function aceitarDenunciaUsuario(idUsuario) {
     try {
 
-      const resp = await aceitarDenunciaUser(idUsuarioDenun);
+      const resp = await aceitarDenunciaUser(idUsuario);
 
       alert('funfou')
     } catch (err) {

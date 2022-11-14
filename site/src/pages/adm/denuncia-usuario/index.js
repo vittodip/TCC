@@ -12,8 +12,8 @@ export default function DenunciasUsuarios() {
   async function carregarDenunciasUsuario() {
     const resp = await carregarDenunciaUser();
     setDenuncia(resp);
+    
     console.log(resp)
-    console.log(denuncia)
   }
 
   useEffect(() => {
@@ -35,8 +35,8 @@ export default function DenunciasUsuarios() {
         <div className="section-cadastros">
           {denuncia.map(item => 
             <CardsAdmin 
-            idUsuario={item.denuncia}
-            UsuarioDenuncia={item.usuario}
+            idUsuario={item.usuario}
+            UsuarioDenuncia={item.denuncia}
             css="card-denuncia-psicologo"
             tipo= "denuncia-usuario"
             
