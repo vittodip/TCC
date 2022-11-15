@@ -9,7 +9,9 @@ import './index.scss'
 import Modal from 'react-modal'
 import AlterarInfos from "../../../components/editar-infos";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { API_URL } from "../../../api/config";
 import { consultarProntuarioUsuario, enviarProntuario } from "../../../api/prontuarioApi";
 import { criarChat, checarChat } from "../../../api/chatApi";
@@ -103,15 +105,29 @@ export default function PerfilVoluntario() {
 
   }
 
-  async function excluirSolicitacao(item){
-    try{
-      const x = await deletarSolicitacaoPsic(item)
-      toast('Solicitação Excluída!')
-    }
-    catch(err){
-      return(err.message)
-    }
+ 
+
+  function excluirSolicitacao(item) {
+    confirmAlert({
+      title:'Deseja excluir essa solicitação?',
+      message:``,
+      buttons:[
+          {
+              label:'Sim',
+              onClick: async () => {
+                const x = await deletarSolicitacaoPsic(item)
+                toast('Solicitação Excluída!')
+                        
+              }
+              
+          },
+          {
+              label:'Não'
+          }
+      ]
+  })
   }
+
 
 
   async function prontuario(idUsuario){
@@ -153,7 +169,7 @@ export default function PerfilVoluntario() {
 
   return (
     <main className="voluntario-perfil">
-      <ToastContainer />
+      <Toaster/>
       <Perfil inicial={voluntario.nome} usuario={voluntario.nome} perfil="voluntario" />
       <div className="info-voluntario">
         <div className="infos-volunt">

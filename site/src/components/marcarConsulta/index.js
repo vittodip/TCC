@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast, Toaster } from 'react-hot-toast'
 import { marcarConsulta } from '../../api/consultaApi'
 import './index.scss'
 
@@ -22,6 +22,7 @@ export default function MarcarPop(props) {
 
     return(
         <main className='pop-up-marcar'>
+            <Toaster/>
             <div className='titulo-pop'>
                 <img src='/assets/images/exit-purple.png' onClick={props.click}/>
                 <h1>Marcar Sessão</h1>

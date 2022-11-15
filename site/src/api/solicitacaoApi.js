@@ -50,7 +50,7 @@ export async function deletarSolicitacao(id) {
     return resposta.status;
 }
 
-export async function mostrarTodasSolicitações(){
+export async function mostrarTodasSolicitacoes(){
     const resposta = await api.get('/solicitacao');
     return resposta.data;
 

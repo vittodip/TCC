@@ -81,7 +81,7 @@ export async function deletarSolicitacao(id) {
     return resposta.affectedRows;
 }
 
-export async function mostrarTodasSolicitações(){
+export async function mostrarTodasSolicitacoes(){
     const comando = `select
                      id_solicitacao ,
                      tb_usuario.id_usuario     idUsuario,
@@ -89,7 +89,7 @@ export async function mostrarTodasSolicitações(){
                      date_format(dt_situacao, '%d/%m/%Y %H:%i') as data,
                      tb_usuario.nm_usuario nome
                      from tb_solicitacao
-                     inner join tb_usuario on tb_usuario.id_usuario = tb_solicitacao.id_solicitacao
+                     inner join tb_usuario on tb_usuario.id_usuario = tb_solicitacao.id_usuario
                      where ds_situacao = false;
                        `
 

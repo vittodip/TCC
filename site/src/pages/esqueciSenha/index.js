@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Storage from 'local-storage';
 import "./index.scss";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom'
 import { enviarEmail } from '../../api/usuarioApi';
@@ -28,7 +28,7 @@ export default function EsqueciSenha() {
 
     return (
         <main className='ESenha'>
-            <ToastContainer />
+            <Toaster />
             <div>
                 <div className='headerSenha'>
                     <img src='/assets/images/logonat.png' />

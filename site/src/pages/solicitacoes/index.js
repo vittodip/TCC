@@ -1,12 +1,14 @@
 import './index.scss'
 import { useEffect, useState } from 'react'
 
-import { mostrarTodasSolicitações } from '../../api/solicitacaoApi'
+import { mostrarTodasSolicitacoes } from '../../api/solicitacaoApi'
 import { useNavigate } from 'react-router-dom';
 import { aceitarSolicitacao } from '../../api/solicitacaoApi';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
+import { toast, Toaster } from 'react-hot-toast'
+import "react-toastify/dist/ReactToastify.css";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import Storage from 'local-storage'
 import { checarChat, criarChat } from '../../api/chatApi';
 import { denunciarUsuario } from '../../api/denunciaApi';
@@ -18,8 +20,9 @@ export default function SolicitacoesPsic() {
     const navigate = useNavigate();
 
     async function carregarSolicitacao() {
-        const resp = await mostrarTodasSolicitações();
+        const resp = await mostrarTodasSolicitacoes();
         setSolicitacoes(resp)
+        
     }
     
 
@@ -42,17 +45,28 @@ export default function SolicitacoesPsic() {
         }
     }
 
-    async function denunciarSolicitacao(idUsuario, idSolicitacao){
-        try{
-            const idPsicologo = Storage('voluntario-logado').id;
-            const resp = await denunciarUsuario(idUsuario, idPsicologo, idSolicitacao)
-            toast.success('Denúncia feita com sucesso.')
-        }
-        catch(err){
-            toast.error(err.message)
-        }
-    }
 
+    function denunciarSolicitacao(idUsuario, idSolicitacao) {
+        confirmAlert({
+          title:'Deseja denunciar essa solicitação?',
+          message:`Sua denuncia será enviada para revisão.`,
+          buttons:[
+              {
+                  label:'Sim',
+                  onClick: async () => {
+                    const idPsicologo = Storage('voluntario-logado').id;
+                    const resp = await denunciarUsuario(idUsuario, idPsicologo, idSolicitacao)
+                    toast.success('Denúncia feita com sucesso.')
+                            
+                  }
+                  
+              },
+              {
+                  label:'Não'
+              }
+          ]
+      })
+      }
 
     useEffect(() => {
         carregarSolicitacao();
@@ -61,7 +75,7 @@ export default function SolicitacoesPsic() {
 
     return (
         <main className="solicitacoes-principal">
-            <ToastContainer />
+            <Toaster />
             <header className='header'>
                 <div className='hd-alinhamento-1'>
                     <img src="/assets/images/logonat.png" alt="" />
@@ -82,7 +96,7 @@ export default function SolicitacoesPsic() {
             <section className="secao-solicitacao">
 
                 {solicitacoes.map(item =>
-                    <div key='Listagem' className="container-principal">
+                    <div className="container-principal">
                         <div className="cp-info-date">
                             <div className='img-nome'>
                                 <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />

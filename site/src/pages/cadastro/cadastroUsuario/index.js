@@ -3,7 +3,7 @@ import { cadastroUsuario } from "../../../api/usuarioApi";
 import { Link, useNavigate } from "react-router-dom";
 import LogoHorizontal from "../../../components/logos";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -39,7 +39,7 @@ export default function Cadastro1() {
 
   return (
     <main className="Main-cadastro-paciente">
-        <ToastContainer/>
+        <Toaster/>
       <section className="global">
         <div className="lado-esquerdo">
           <div className="div-logo">

@@ -4,7 +4,7 @@ import { consultarProntuarioUsuario, novoProntuario } from '../../api/prontuario
 import { useNavigate, useParams } from 'react-router-dom'
 import Storage from 'local-storage'
 import { useState, useEffect } from 'react'
-import { toast, ToastContainer } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
 
 
 export default function Prontuario(){
@@ -56,7 +56,7 @@ export default function Prontuario(){
 
     return(
         <main className="prontuario-principal">
-            <ToastContainer />
+            <Toaster/>
             <div className="header">
                 <div>
                     <LogoHorizontal />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { ToastContainer, toast } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
 import { mudarSenha } from '../../api/usuarioApi';
 import { useNavigate } from 'react-router-dom'
 import './index.scss';
@@ -23,7 +23,7 @@ export default function ConcluirSenha(){
 
     return(
         <main className='CSenha'>
-            <ToastContainer/>
+            <Toaster/>
             <div className='headerSenha'>
                 <img src='/assets/images/logonat.png' />
                 <div className='topicos'>

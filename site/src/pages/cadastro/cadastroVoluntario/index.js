@@ -9,7 +9,7 @@ import { carregarVoluntario } from "../../../api/voluntarioApi.js";
 import { Link } from "react-router-dom";
 
 import { cadastroVoluntario } from "../../../api/voluntarioApi";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, Toaster } from 'react-hot-toast'
 import "react-toastify/dist/ReactToastify.css";
 
 export default function CadastroVoluntario() {
@@ -54,7 +54,7 @@ export default function CadastroVoluntario() {
 
   return (
     <main className="cadastro-voluntario">
-      <ToastContainer />
+      <Toaster />
       <section className="secao1">
         <div className="logonat">
           <LogoHorizontal />

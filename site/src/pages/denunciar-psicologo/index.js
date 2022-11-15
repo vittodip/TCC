@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, Toaster } from 'react-hot-toast'
 import { denunciarPsicologo } from '../../api/denunciaApi';
 import './index.scss'
 
@@ -40,6 +40,7 @@ function voltarCLick(){
 
     return (
         <main className='denunciar-psicologo-main'>
+            <Toaster/>
 
             <div className='painel-linear'>
                 <div className='header-painel'>

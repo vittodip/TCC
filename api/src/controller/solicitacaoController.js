@@ -1,6 +1,6 @@
 import { Router } from "express";   
 
-import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitações, deletarSolicitacaoPsic } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitacoes, deletarSolicitacaoPsic } from '../repository/solicitacaoRepository.js';
 import { carregarUsuario } from "../repository/usuarioRepository.js";
 
 
@@ -130,7 +130,7 @@ server.delete('/solicitacao/:id', async (req, resp) => {
 server.get('/solicitacao', async (req, resp) => {
     try {
         
-        const resposta = await mostrarTodasSolicitações() 
+        const resposta = await mostrarTodasSolicitacoes() 
         resp.send(resposta)
 
     } catch (err) {

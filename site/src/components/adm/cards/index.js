@@ -1,6 +1,7 @@
 import { aprovarPsicologo, reprovarPsicologo, aceitarDenunciaPsi, aceitarDenunciaUser, recusarDenunciaUser, recusarDenunciaPsi } from "../../../api/adminApi";
 import "./index.scss";
 import { useEffect } from "react";
+import { toast, Toaster } from 'react-hot-toast'
 
 export default function CardsAdmin(props) {
 
@@ -11,9 +12,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await aprovarPsicologo(idPsicologo);
 
-      alert('Voluntário aprovado com sucesso!')
+      toast('Voluntário aprovado com sucesso!')
     } catch (err) {
-      alert('Não foi possível aprovar.')
+      toast('Não foi possível aprovar.')
     }
   }
 
@@ -22,9 +23,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await reprovarPsicologo(idPsicologo);
 
-      alert('funfou')
+      toast('funfou')
     } catch (err) {
-      alert('não funfou')
+      toast('não funfou')
     }
   }
 
@@ -35,9 +36,9 @@ export default function CardsAdmin(props) {
 
       const resp = await aceitarDenunciaUser(usuarioId);
 
-      alert('funfou')
+      toast('funfou')
     } catch (err) {
-      alert('não funfou')
+      toast('não funfou')
     }
   }
 
@@ -45,18 +46,18 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaUser(denunciaId);
 
-      alert('funfou')
+      toast('funfou')
     } catch (err) {
-      alert('não funfou')
+      toast('não funfou')
     }
   }
 
   async function aceitarDenunciaPsicologo(PsicologoDenuncia) {
     try {
       const resp = await aceitarDenunciaPsi(PsicologoDenuncia);
-      alert('funfou')
+      toast('funfou')
     } catch (err) {
-      alert('não funfou')
+      toast('não funfou')
     }
   }
 
@@ -64,9 +65,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaPsi(DenunciaId);
 
-      alert('funfou')
+      toast('funfou')
     } catch (err) {
-      alert('não funfou')
+      toast('não funfou')
     }
   }
 
@@ -74,6 +75,7 @@ export default function CardsAdmin(props) {
 
   return (
     <div className="card">
+      <Toaster/>
       {props.tipo === "A ser aprovado" && (
         //"section-cad-container"
         <div className={props.css}>

@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
 
-import { toast, ToastContainer } from "react-toastify";
+
+import { toast, Toaster } from 'react-hot-toast'
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -139,7 +140,7 @@ function excluirSolicitacao(id) {
   return (
     <main className="usuario-perfil">
       {abrir !== 'fechado' && <AlterarSolicitacao item={itemSelecionado} acao={acao} abrir={abrir} />}
-      <ToastContainer/>
+      <Toaster/>
       <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
       <div className="infos">
         <div className="card-infos-gerais">

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 // npm
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, Toaster } from 'react-hot-toast'
 
 import Storage from 'local-storage'
 
@@ -95,7 +95,7 @@ export default function AlterarInfos(props) {
 
         <main className='pop-alterar'>
 
-            <ToastContainer />
+            <Toaster/>
             <h2>Alterar Informações</h2>
             
         <div className="inputs">
