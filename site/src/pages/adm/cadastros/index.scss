@@ -14,7 +14,7 @@
 
         .section-cadastros{
             overflow-y: scroll;
-            height: 100vh;
+            height: 80vh;
             padding: 2em 0em;
             display: grid;
             grid-template-columns:auto auto;
@@ -24,8 +24,6 @@
             
             column-gap: 7em;
             row-gap: 2em;
-            
-            
         }
     }
 }

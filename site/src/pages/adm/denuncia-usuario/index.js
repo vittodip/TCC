@@ -41,7 +41,7 @@ export default function DenunciasUsuarios() {
             
             nomeUsuario={item.nome}
             emailUsuario={item.email}
-            solicitacao={item.solicitacao}
+            solicitacao={item.assunto}
             />
             
             )}

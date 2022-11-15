@@ -8,12 +8,12 @@ import "./index.scss";
 import HeaderAdmin from "../../../components/adm/header";
 
 export default function ListaVolunts() {
-  
+
 
   const [voluntario, setVoluntario] = useState([]);
   const [filtro, setFiltro] = useState('')
 
-  async function filtrar(){
+  async function filtrar() {
     const resp = await buscarNomeVolunt(filtro)
     setVoluntario(resp)
   }
@@ -30,7 +30,7 @@ export default function ListaVolunts() {
 
   useEffect(() => {
     carregarPsicologo();
-    if(!Storage('admin-logado')) {
+    if (!Storage('admin-logado')) {
       navigate('admin/login')
     }
   }, []);
@@ -59,42 +59,39 @@ export default function ListaVolunts() {
           </div>
 
           {/* Listagem */}
-          <div>
-            {voluntario.map(item =>
-              <main className="listaBG">
 
-                <div className="listaBlock">
+          {voluntario.map(item =>
+            <div className="listaBG">
 
-                  <div className="listaItens">
-                    <p>Nome</p>
-                    <label> {item.nome} </label>
-                  </div>
-                  <div className="listaItens">
-                    <p>Email</p>
-                    <label>{item.email}</label>
-                  </div>
-                  <div className="listaItens">
-                    <p>Data de Nascimento</p>
-                    <label>{item.data}</label>
-                  </div>
-                  <div className="listaItens">
-                    <p>Telefone</p>
-                    <label>{item.telefone}</label>
-                  </div>
-                  <div className="listaItens">
-                    <p>CPF</p>
-                    <label>{item.cpf}</label>
-                  </div>
-                  <div className="listaItens">
-                    <p>CRP</p>
-                    <label>{item.crp}</label>
-                  </div>
+              <div className="listaBlock">
+
+                <div className="listaItens">
+                  <p>Nome</p>
+                  <label> {item.nome} </label>
                 </div>
-              </main>
-            )}
-
-
-          </div>
+                <div className="listaItens">
+                  <p>Email</p>
+                  <label>{item.email}</label>
+                </div>
+                <div className="listaItens">
+                  <p>Data de Nascimento</p>
+                  <label>{item.data}</label>
+                </div>
+                <div className="listaItens">
+                  <p>Telefone</p>
+                  <label>{item.telefone}</label>
+                </div>
+                <div className="listaItens">
+                  <p>CPF</p>
+                  <label>{item.cpf}</label>
+                </div>
+                <div className="listaItens">
+                  <p>CRP</p>
+                  <label>{item.crp}</label>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
       </section>

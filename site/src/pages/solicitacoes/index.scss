@@ -101,6 +101,9 @@
     .cp-texto {
       padding-left: 2em;
       padding-right: 2em;
+      p{
+        word-wrap: break-word;
+      }
     }
     .cp-funcionalidades {
       display: flex;

@@ -18,7 +18,6 @@ const socket = io.connect('http://localhost:5000');
 export default function MensagensPage() {
     const [mensagem, setMensagem] = useState();
     const [mensagemLista, setMensagemLista] = useState([]);
-    const [ultima, setUltima] = useState([])
     const [chats, setChats] = useState([]);
     const [id, setId] = useState(0);
     const [nome, setNome] = useState('')

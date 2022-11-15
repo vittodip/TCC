@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Storage from 'local-storage'
 import { checarChat, criarChat } from '../../api/chatApi';
+import { denunciarUsuario } from '../../api/denunciaApi';
 
 
 export default function SolicitacoesPsic() {
@@ -40,6 +41,18 @@ export default function SolicitacoesPsic() {
             toast('Erro.')
         }
     }
+
+    async function denunciarSolicitacao(idUsuario, idSolicitacao){
+        try{
+            const idPsicologo = Storage('voluntario-logado').id;
+            const resp = await denunciarUsuario(idUsuario, idPsicologo, idSolicitacao)
+            toast.success('Denúncia feita com sucesso.')
+        }
+        catch(err){
+            toast.error(err.message)
+        }
+    }
+
 
     useEffect(() => {
         carregarSolicitacao();
@@ -81,7 +94,7 @@ export default function SolicitacoesPsic() {
                             <p></p>
 
                             <div className="alinhamento">
-                                <img src="/assets/images/spam-denuncia-icon.svg" alt="" />
+                                <img src="/assets/images/spam-denuncia-icon.svg" alt="" onClick={() => denunciarSolicitacao(item.idUsuario, item.id_solicitacao)} />
                                 <button onClick={() => aceitarSolicitacaoClick(item.id_solicitacao, item.idUsuario)}>Oferecer atendimento</button>
                             </div>
                         </div>

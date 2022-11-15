@@ -6,12 +6,16 @@ const api = axios.create({
 })
 
 
-export async function denunciarUsuario(denunciarUser){
+export async function denunciarUsuario(idUsuario, idPsicologo, idSolicitacao){
     const resposta = await api.post(`/denuncia/usuario`, {
-       depoimento:denunciarUser
+       idUsuario: idUsuario,
+       idPsicologo: idPsicologo,
+       idSolicitacao: idSolicitacao
     }) 
     return resposta.data
 }
+
+
 
 export async function denunciarPsicologo(denunciarPsi){
     const resposta = await api.post(`/denuncia/psicologo`, {

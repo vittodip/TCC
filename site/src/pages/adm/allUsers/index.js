@@ -80,10 +80,6 @@ export default function ListarUsers(){
                     <p>CPF</p>
                     <label>{item.cpf}</label>
                   </div>
-                  <div className="listaItens">
-                    <p>CRP</p>
-                    <label>{item.crp}</label>
-                  </div>
                 </div>
               </main>
             )}

@@ -46,11 +46,12 @@ export async function listarDenunciasUsuario() {
                                    tb_usuario.id_usuario	            idUser,
                                    tb_usuario.nm_usuario	            nome,
                                    tb_usuario.ds_email		            email,
-                                   tb_solicitacao.ds_solicitacao		solicitacao
+                                   tb_solicitacao.ds_solicitacao		assunto
                     from tb_denuncia_usuario
     inner join tb_psicologo on tb_psicologo.id_psicologo = tb_denuncia_usuario.id_psicologo
     inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_usuario.id_usuario
-    inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario.id_solicitacao`
+    inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_denuncia_usuario.id_solicitacao
+    `
 
     const [resposta] = await con.query(comando);
     return resposta;
