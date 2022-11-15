@@ -84,11 +84,13 @@ export async function deletarSolicitacao(id) {
 export async function mostrarTodasSolicitações(){
     const comando = `select
                      id_solicitacao ,
-                     id_usuario     idUsuario,
+                     tb_usuario.id_usuario     idUsuario,
                      ds_solicitacao texto,
-                     date_format(dt_situacao, '%d/%m/%Y %H:%i') as data
+                     date_format(dt_situacao, '%d/%m/%Y %H:%i') as data,
+                     tb_usuario.nm_usuario nome
                      from tb_solicitacao
-                     where ds_situacao = false
+                     inner join tb_usuario on tb_usuario.id_usuario = tb_solicitacao.id_solicitacao
+                     where ds_situacao = false;
                        `
 
     const [resposta] = await con.query(comando)

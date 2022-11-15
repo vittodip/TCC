@@ -98,6 +98,13 @@
         width: 2em;
       }
     }
+
+    .img-nome{
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
     .cp-texto {
       padding-left: 2em;
       padding-right: 2em;

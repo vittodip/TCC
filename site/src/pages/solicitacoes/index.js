@@ -84,7 +84,11 @@ export default function SolicitacoesPsic() {
                 {solicitacoes.map(item =>
                     <div key='Listagem' className="container-principal">
                         <div className="cp-info-date">
-                            <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
+                            <div className='img-nome'>
+                                <img src="/assets/images/perfil-anonimo-icon.svg" alt='' />
+                                <p>{item.nome}</p>
+                            </div>
+                           
                             <p>{item.data.substr(0, 10)}</p>
                         </div>
                         <div className="cp-texto">
