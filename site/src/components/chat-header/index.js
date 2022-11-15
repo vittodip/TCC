@@ -4,11 +4,14 @@ import MarcarPop from '../../components/marcarConsulta'
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react'
 import storage from 'local-storage'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ChatHeader(props){
     
   const [modalIsOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   Modal.setAppElement('#root');
 
@@ -49,7 +52,7 @@ export default function ChatHeader(props){
                 {storage('voluntario-logado') &&
                 <img src="/assets/images/meet-icon.svg" alt="" onClick={openModal} />
               }
-                <img src="/assets/images/tres-pontos.svg" alt=""  />
+                <img src="/assets/images/spam-denuncia-icon.svg" alt="" onClick={navigate('/denunciar/psicologo')} />
                 <Modal 
               
                   isOpen={modalIsOpen}
