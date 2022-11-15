@@ -31,15 +31,14 @@ export async function denunciarUsuarioChat(denunciarUserChat) {
     return resposta.data
 }
 
-export async function denunciaPerfil(nomeUsuario, nomePsicologo, emailPsicologo, emailUsuario, depoimento, idUsuario, idPsicologo) {
+export async function denunciaPerfil(paciente, psicologo, emailPaci, emailPsi, depoimento, idUser) {
     const resposta = await api.post(`/denunciaperfil/`, {
-        nomeUsuario: nomeUsuario,
-        nomePsicologo: nomePsicologo,
-        emailUsuario: emailUsuario,
-        emailPsicologo: emailPsicologo,
+        nomeUsuario: paciente,
+        nomePsicologo: psicologo,
+        emailUsuario: emailPaci,
+        emailPsicologo: emailPsi,
         depoimento: depoimento,
-        idPsicologo: idPsicologo,
-        idUsuario: idUsuario
+        idUsuario: idUser
     })
     return resposta.data;
 }

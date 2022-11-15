@@ -7,7 +7,6 @@ import './index.scss'
 
 
 export default function DenunciarPsicologo() {
-
     const [paciente, setPaciente] = useState("");
     const [psicologo, setPsicologo] = useState("");
     const [emailPaci, setEmailPaci] = useState("");
@@ -30,7 +29,7 @@ export default function DenunciarPsicologo() {
     async function denunciarUsuario() {
         try {
             const idUser = Storage('usuario-logado').id;
-            const resposta = await denunciaPerfil(paciente, psicologo, emailPaci, emailPsi, depoimento);
+            const resposta = await denunciaPerfil(paciente, psicologo, emailPaci, emailPsi, depoimento, idUser);
             toast.success('Denuncia registrada.')
             console.log(resposta)
         } catch (err) {

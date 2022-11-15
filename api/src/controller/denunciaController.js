@@ -66,6 +66,7 @@ server.post('/chatdenuncia/usuario', async (req, resp) => {
 server.post('/denunciaperfil/', async (req, resp) => {
     try {
         const denuncia = req.body;
+        const idPsicologo = await idPsicologoDenuncia(denuncia);
 
         if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
             throw new Error('Insira algum depoimento!')
@@ -83,19 +84,14 @@ server.post('/denunciaperfil/', async (req, resp) => {
             throw new Error('Insira o email do Psicologo!')
         }
 
-        const idUsuario = await idUsuarioDenuncia(denuncia)
-        const idPsicologo = await idPsicologoDenuncia(denuncia);
-        const resposta = await denunciaPerfil(denuncia);
+        
+        const resposta = await denunciaPerfil(idPsicologo, denuncia);
 
         if(!resposta) {
             throw new Error('Deu ruim!')
         }
 
-        resp.send({
-            resposta: resposta,
-            idPsicologo: idPsicologo,
-            idUsuario: idUsuario
-        });
+        resp.send(resposta);
     } catch (err) {
         resp.status(404).send({
             erro: err.message
