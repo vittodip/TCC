@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, denunciaPsiPerfil } from "../repository/denunciaRepository.js";
+import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, denunciaPerfil, idPsicologoDenuncia, idUsuarioDenuncia } from "../repository/denunciaRepository.js";
 
 
 const server = Router();
@@ -63,7 +63,7 @@ server.post('/chatdenuncia/usuario', async (req, resp) => {
 })
 
 // denunciar psicologo pelo perfil
-server.post('/denunciaperfil/psicologo', async (req, resp) => {
+server.post('/denunciaperfil/', async (req, resp) => {
     try {
         const denuncia = req.body;
 
@@ -83,9 +83,19 @@ server.post('/denunciaperfil/psicologo', async (req, resp) => {
             throw new Error('Insira o email do Psicologo!')
         }
 
-        const resposta = await denunciaPsiPerfil(denuncia);
+        const idUsuario = await idUsuarioDenuncia(denuncia)
+        const idPsicologo = await idPsicologoDenuncia(denuncia);
+        const resposta = await denunciaPerfil(denuncia);
 
-        resp.send(resposta);
+        if(!resposta) {
+            throw new Error('Deu ruim!')
+        }
+
+        resp.send({
+            resposta: resposta,
+            idPsicologo: idPsicologo,
+            idUsuario: idUsuario
+        });
     } catch (err) {
         resp.status(404).send({
             erro: err.message

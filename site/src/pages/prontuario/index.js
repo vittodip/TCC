@@ -41,7 +41,6 @@ export default function Prontuario(){
     async function editarProntuario(){
         try{
             const idPsic = Storage('voluntario-logado').id;
-            console.log(idPsic)
             const edit = await novoProntuario(usuarioParam, idPsic, diagnostico, reacoes, estado, historia, exame, geral);
             toast.success('Edição registrada.')
         }

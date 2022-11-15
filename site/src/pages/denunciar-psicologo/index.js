@@ -1,46 +1,49 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast'
-import { denunciarPsicologo } from '../../api/denunciaApi';
+import { denunciaPerfil } from '../../api/denunciaApi';
+import Storage from 'local-storage'
 import './index.scss'
 
 
 export default function DenunciarPsicologo() {
 
+    const [paciente, setPaciente] = useState("");
     const [psicologo, setPsicologo] = useState("");
-    const [emailPsi, setEmailPsi] = useState("");
-    const [ paciente, setPaciente] = useState("");
     const [emailPaci, setEmailPaci] = useState("");
+    const [emailPsi, setEmailPsi] = useState("");
     const [depoimento, setDepoimento] = useState("");
- 
-
-const navigate = useNavigate();
-
-useEffect(() => {
-   salvarDepoimento();
-}, [])
 
 
+    async function denunciarPsicologo() {
+        try {
+            const idPsic = Storage('voluntario-logado').id;
+            const resposta = await denunciaPerfil(depoimento, paciente, psicologo, emailPaci, emailPsi);
+            toast.success('Denuncia registrada.')
+            console.log(resposta)
 
- async function salvarDepoimento(){
-    try {
-        
-    const tipo = await denunciarPsicologo(psicologo,emailPsi, paciente, emailPaci, depoimento);
-
-
-    } catch (err) {
-        toast.error(err.message);    
+        } catch (err) {
+            toast.error(err.message)
+        }
     }
- }
 
-function voltarCLick(){
-    navigate(`/`)
-}
+    async function denunciarUsuario() {
+        try {
+            const idUser = Storage('usuario-logado').id;
+            const resposta = await denunciaPerfil(paciente, psicologo, emailPaci, emailPsi, depoimento);
+            toast.success('Denuncia registrada.')
+            console.log(resposta)
+        } catch (err) {
+            toast.error(err.message)
+        }
+    }
+
+    const navigate = useNavigate();
 
 
     return (
         <main className='denunciar-psicologo-main'>
-            <Toaster/>
+            <Toaster />
 
             <div className='painel-linear'>
                 <div className='header-painel'>
@@ -61,36 +64,37 @@ function voltarCLick(){
             </div>
             <div className='campos-denuncia-psic'>
                 <div className='campos-input'>
-                   
-                        <div className='linha'>
-                            <label>
-                                Psicólogo
-                                <input placeholder='Nome e sobrenome' value={psicologo} onChange={e => setPsicologo(e.target.value)} />
-                            </label>
-                            
-                            <label>
-                                E-mail Psicólogo
-                                <input placeholder='example@example' value={emailPsi} onChange={e => setEmailPsi(e.target.value)} />
-                            </label>
-                        </div>
-                        <div className='linha'>
-                            <label>
-                                Paciente
-                                <input placeholder='Nome e sobrenome' value={paciente} onChange={e => setPaciente(e.target.value)} />
-                            </label>
-                            <label>
-                                E-mail Paciente
-                                <input placeholder='example@example' value={emailPaci} onChange={e => setEmailPaci(e.target.value)} />
-                            </label>
-                        </div>  
-                        <div className='depoimento'>
-                            <label>
-                                Depoimento
-                                <textarea value={depoimento} onChange={e => setDepoimento(e.target.value)}></textarea>
-                            </label>
-                            <button onClick={salvarDepoimento}  >Enviar denúncia</button>
-                        </div>                      
-                    
+
+                    <div className='linha'>
+                        <label>
+                            Psicólogo
+                            <input placeholder='Nome e sobrenome' value={psicologo} onChange={e => setPsicologo(e.target.value)} />
+                        </label>
+
+                        <label>
+                            E-mail Psicólogo
+                            <input placeholder='example@example' value={emailPsi} onChange={e => setEmailPsi(e.target.value)} />
+                        </label>
+                    </div>
+                    <div className='linha'>
+                        <label>
+                            Paciente
+                            <input placeholder='Nome e sobrenome' value={paciente} onChange={e => setPaciente(e.target.value)} />
+                        </label>
+                        <label>
+                            E-mail Paciente
+                            <input placeholder='example@example' value={emailPaci} onChange={e => setEmailPaci(e.target.value)} />
+                        </label>
+                    </div>
+                    <div className='depoimento'>
+                        <label>
+                            Depoimento
+                            <textarea value={depoimento} onChange={e => setDepoimento(e.target.value)}></textarea>
+                        </label>
+                        {Storage('voluntario-logado') && <button onClick={() => denunciarPsicologo()}  >Enviar denúncia</button>}
+                        {Storage('usuario-logado') && <button onClick={() => denunciarUsuario()}  >Enviar denúncia</button>}
+                    </div>
+
                 </div>
             </div>
         </main>
