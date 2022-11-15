@@ -63,7 +63,13 @@ server.get('/psicologo/mensagem/:id', async (req, resp) => {
             mensagens.push(ultima)
         }
         for(let i = 0; i < resposta.length; i++){
-            array[i].mensagem = mensagens[i].mensagem;
+            if(!mensagens[i]){
+                array[i].mensagem = 'Inicie uma conversa agora!';
+            }
+            else{
+                array[i].mensagem = mensagens[i].mensagem;
+            }
+            
         }
         resp.send(array)
     } catch (err) {
