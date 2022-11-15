@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast'
-import { denunciaPerfil } from '../../api/denunciaApi';
+import { denunciaPerfil, denunciaPerfilPsicologo, denunciaPerfilUsuario } from '../../api/denunciaApi';
 import Storage from 'local-storage'
 import './index.scss'
 
@@ -17,10 +17,8 @@ export default function DenunciarPsicologo() {
     async function denunciarPsicologo() {
         try {
             const idPsic = Storage('voluntario-logado').id;
-            const resposta = await denunciaPerfil(depoimento, paciente, psicologo, emailPaci, emailPsi);
+            const resposta = await denunciaPerfilPsicologo(depoimento, paciente, psicologo, emailPaci, emailPsi, idPsic);
             toast.success('Denuncia registrada.')
-            console.log(resposta)
-
         } catch (err) {
             toast.error(err.message)
         }
@@ -29,9 +27,8 @@ export default function DenunciarPsicologo() {
     async function denunciarUsuario() {
         try {
             const idUser = Storage('usuario-logado').id;
-            const resposta = await denunciaPerfil(paciente, psicologo, emailPaci, emailPsi, depoimento, idUser);
+            const resposta = await denunciaPerfilUsuario(paciente, psicologo, emailPaci, emailPsi, depoimento, idUser);
             toast.success('Denuncia registrada.')
-            console.log(resposta)
         } catch (err) {
             toast.error(err.message)
         }

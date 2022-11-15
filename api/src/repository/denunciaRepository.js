@@ -49,7 +49,7 @@ export async function idPsicologoDenuncia(denuncia) {
                         from tb_psicologo
                     where nm_psicologo = ? and ds_email = ?`
 
-    const [resposta] = await con.query(comando, [denuncia.nomePsicologo, denuncia.emailPsicologo])
+    const [resposta] = await con.query(comando, [denuncia.nomePsicologo.trim(), denuncia.emailPsicologo.trim()]);
     return resposta[0];
 }
 
@@ -59,6 +59,6 @@ export async function idUsuarioDenuncia(denuncia) {
                         from tb_usuario
                     where nm_usuario = ? and ds_email = ?`
 
-    const [resposta] = await con.query(comando, [denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()])
-    return resposta[0]
+    const [resposta] = await con.query(comando, [denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()]);
+    return resposta[0];
 }
