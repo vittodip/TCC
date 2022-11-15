@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat } from "../repository/denunciaRepository.js";
+import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, denunciaPsiPerfil } from "../repository/denunciaRepository.js";
 
 
 const server = Router();
@@ -61,5 +61,37 @@ server.post('/chatdenuncia/usuario', async (req, resp) => {
         })
     }
 })
+
+// denunciar psicologo pelo perfil
+server.post('/denunciaperfil/psicologo', async (req, resp) => {
+    try {
+        const denuncia = req.body;
+
+        if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
+            throw new Error('Insira algum depoimento!')
+        }
+        if (!denuncia.nomeUsuario || !denuncia.nomeUsuario.trim()) {
+            throw new Error('Insira seu nome de Usuario!')
+        }
+        if (!denuncia.nomePsicologo || !denuncia.nomePsicologo.trim()) {
+            throw new Error('Insira o nome do Psicologo!')
+        }
+        if (!denuncia.emailUsuario || !denuncia.emailUsuario.trim()) {
+            throw new Error('Insira seu email de Usuario!')
+        }
+        if (!denuncia.emailPsicologo || !denuncia.emailPsicologo.trim()) {
+            throw new Error('Insira o email do Psicologo!')
+        }
+
+        const resposta = await denunciaPsiPerfil(denuncia);
+
+        resp.send(resposta);
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
 
 export default server;
