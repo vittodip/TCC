@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, denunciaPerfil, idPsicologoDenuncia, idUsuarioDenuncia } from "../repository/denunciaRepository.js";
+import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, denunciaPerfilUsuario, idPsicologoDenuncia, idUsuarioDenuncia, denunciaPerfilPsicologo } from "../repository/denunciaRepository.js";
 
 
 const server = Router();
@@ -63,7 +63,7 @@ server.post('/chatdenuncia/usuario', async (req, resp) => {
 })
 
 // denunciar psicologo pelo perfil
-server.post('/denunciaperfil/', async (req, resp) => {
+server.post('/denunciaperfil/psicologo', async (req, resp) => {
     try {
         const denuncia = req.body;
 
@@ -85,7 +85,48 @@ server.post('/denunciaperfil/', async (req, resp) => {
 
         const idUsuario = await idUsuarioDenuncia(denuncia)
         const idPsicologo = await idPsicologoDenuncia(denuncia);
-        const resposta = await denunciaPerfil(denuncia);
+        const resposta = await denunciaPerfilPsicologo(denuncia);
+
+        if(!resposta) {
+            throw new Error('Deu ruim!')
+        }
+
+        resp.send({
+            resposta: resposta,
+            idPsicologo: idPsicologo,
+            idUsuario: idUsuario
+        });
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+// denunciar usuario pelo perfil
+server.post('/denunciaperfil/usuario', async (req, resp) => {
+    try {
+        const denuncia = req.body;
+
+        if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
+            throw new Error('Insira algum depoimento!')
+        }
+        if (!denuncia.nomeUsuario || !denuncia.nomeUsuario.trim()) {
+            throw new Error('Insira o nome do Usuario!')
+        }
+        if (!denuncia.nomePsicologo || !denuncia.nomePsicologo.trim()) {
+            throw new Error('Insira seu nome de Psicologo!')
+        }
+        if (!denuncia.emailUsuario || !denuncia.emailUsuario.trim()) {
+            throw new Error('Insira o email do Usuario!')
+        }
+        if (!denuncia.emailPsicologo || !denuncia.emailPsicologo.trim()) {
+            throw new Error('Insira o seu email de Psicologo!')
+        }
+
+        const idUsuario = await idUsuarioDenuncia(denuncia)
+        const idPsicologo = await idPsicologoDenuncia(denuncia);
+        const resposta = await denunciaPerfilUsuario(denuncia);
 
         if(!resposta) {
             throw new Error('Deu ruim!')

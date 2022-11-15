@@ -34,8 +34,21 @@ export async function denunciarUsuarioChat(denunciaUserChat) {
 }
 
 // denunciar psicologo pelo perfil
-export async function denunciaPerfil(denuncia) {
+export async function denunciaPerfilPsicologo(denuncia) {
     const comando = `insert into tb_denuncia_psicologo(id_usuario, id_psicologo, ds_denuncia)
+                        select id_usuario, id_psicologo, ?
+                            from tb_usuario, tb_psicologo
+                        where tb_usuario.nm_usuario = ? and  tb_psicologo.nm_psicologo = ?
+                        and tb_usuario.ds_email = ? and tb_psicologo.ds_email = ?`
+
+    const [resposta] = await con.query(comando, [denuncia.depoimento.trim(), denuncia.nomeUsuario.trim(), denuncia.nomePsicologo.trim(), denuncia.emailUsuario.trim(), denuncia.emailPsicologo.trim()]);
+    denuncia.id = resposta.insertId;
+    return denuncia
+}
+
+// denunciar usuario pelo perfil
+export async function denunciaPerfilUsuario(denuncia) {
+    const comando = `insert into tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia)
                         select id_usuario, id_psicologo, ?
                             from tb_usuario, tb_psicologo
                         where tb_usuario.nm_usuario = ? and  tb_psicologo.nm_psicologo = ?
