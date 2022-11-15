@@ -68,4 +68,12 @@ export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
     return resposta.data;
 }
 
+export async function inserirCategoriaSol(solicitacao, categoria){
+    const resp = await api.post(`/usuario/sol/cat/?solicitacao=${solicitacao}&categoria=${categoria}`)
+    return resp.data;
+}
 
+export async function mostrarCategoriaSol(id){
+    const resposta = await api.get(`/usuario/solcad/cat/?solicitacao=${id}`)
+    return resposta;
+}

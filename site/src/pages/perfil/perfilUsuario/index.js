@@ -1,7 +1,7 @@
 import Perfil from "../../../components/perfil";
 
 import { useEffect, useState } from "react";
-import Storage  from 'local-storage';
+import Storage from 'local-storage';
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
@@ -17,14 +17,14 @@ import Modal from 'react-modal'
 import { carregarUsuario } from "../../../api/usuarioApi.js";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao } from "../../../api/solicitacaoApi.js";
+import { listarSolicitacao, inserirSolicitacao, alterarSolicitacao, deletarSolicitacao, inserirCategoriaSol, mostrarCategoriaSol } from "../../../api/solicitacaoApi.js";
 import { listarConsulta } from "../../../api/consultaApi";
 
 
 
 export default function PerfilUsuario() {
   const [usuario, setUsuario] = useState([]);
-  const [solicitacao, setSolicitacao] = useState([]); 
+  const [solicitacao, setSolicitacao] = useState([]);
   const [consulta, setConsulta] = useState([]);
 
   const [assunto, setAssunto] = useState("");
@@ -32,13 +32,16 @@ export default function PerfilUsuario() {
   const [abrir, setAbrir] = useState('fechado')
   const [itemSelecionado, setItemSelecionado] = useState();
 
+  const [categoria, setCategoria] = useState([])
+  const [categoriasCad, setCategoriasCad] = useState('')
+
   async function carregarUser() {
     const idUser = Storage('usuario-logado').id
     const resposta = await carregarUsuario(idUser);
     setUsuario(resposta);
   }
 
-  async function carregarTodasSolicitacoes(){
+  async function carregarTodasSolicitacoes() {
     const idUser = Storage('usuario-logado').id
     const resp = await listarSolicitacao(idUser)
     console.log(resp)
@@ -56,143 +59,154 @@ export default function PerfilUsuario() {
     try {
       const idUser = Storage('usuario-logado').id
 
-      const resp = await inserirSolicitacao(idUser , assunto);
+      const resp = await inserirSolicitacao(idUser, assunto);
       carregarTodasSolicitacoes();
-      
+
       toast.loading('Enviando...')
       setTimeout(() => {
         toast.dismiss()
         toast.success('Solicitação enviada com sucesso!')
       }, 600)
-      
+
     } catch (err) {
       toast(err.response.data.erro);
     }
   }
-
-
-
-
-function excluirSolicitacao(id) {
-    confirmAlert({
-      title:'Deletar solicitação',
-      message:`Tem certeza?`,
-      buttons:[
-          {
-              label:'Sim',
-              onClick: async () => {
-              const resposta = await deletarSolicitacao(id);
-              carregarTodasSolicitacoes();
-                toast.success('Solicitação deletada com sucesso')           
-              }
-              
-          },
-          {
-              label:'Não'
-          }
-      ]
-  })
+  
+  async function inserirCatSol() {
+    const resp = await inserirCategoriaSol(`22`, categoria)
+    toast.success('Categoria inserida com sucesso')
+    setCategoria(resp)
   }
 
-    const navigate = useNavigate();
+  async function mostrarCatSol(){
+    const resposta = await mostrarCategoriaSol(`22`);
+    setCategoriasCad(resposta);
+  }
+
+
+  function excluirSolicitacao(id) {
+    confirmAlert({
+      title: 'Deletar solicitação',
+      message: `Tem certeza?`,
+      buttons: [
+        {
+          label: 'Sim',
+          onClick: async () => {
+            const resposta = await deletarSolicitacao(id);
+            carregarTodasSolicitacoes();
+            toast.success('Solicitação deletada com sucesso')
+          }
+
+        },
+        {
+          label: 'Não'
+        }
+      ]
+    })
+  }
+
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     carregarUser();
-    if(!Storage('usuario-logado')) {
+    if (!Storage('usuario-logado')) {
       navigate('/login/paciente')
     }
     carregarTodasSolicitacoes();
     carregarConsultas();
+    mostrarCatSol();
   }, []);
 
 
   Modal.setAppElement('#root');
 
-    function openModal() {
-        setIsOpen(true);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+
+  const customStyles = {
+    content: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItens: 'center',
+      border: 'none',
+      margin: 'none',
+      backgroundColor: '#00000000',
+
+    },
+    overlay: {
+      backgroundColor: '#000000ce'
     }
+  };
 
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-
-    const customStyles = {
-        content: {
-            display:'flex',
-            justifyContent:'center',
-            alignItens:'center',
-            border:'none',
-            margin:'none',
-            backgroundColor:'#00000000',
-            
-        },
-        overlay: {
-            backgroundColor: '#000000ce'
-        }
-    };
-
-    function acao(classe, item) {
-      setAbrir(classe);
-      if(item !== null) setItemSelecionado(item);
-    }
+  function acao(classe, item) {
+    setAbrir(classe);
+    if (item !== null) setItemSelecionado(item);
+  }
 
   return (
     <main className="usuario-perfil">
       {abrir !== 'fechado' && <AlterarSolicitacao item={itemSelecionado} acao={acao} abrir={abrir} />}
-      <Toaster/>
+      <Toaster />
       <Perfil inicial={usuario.nome} usuario={usuario.nome} perfil="usuario" />
       <div className="infos">
         <div className="card-infos-gerais">
-            <div className="card-titulo">
-              <h2>Informações Gerais</h2>
-              <img src="/assets/images/Edit.png" onClick={openModal} />
-              <Modal 
-              
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  style={customStyles}>
-                    <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
-                  <AlterarInfos perfil='usuario'  />                        
-                
-              </Modal>
-            </div>
-            <div>
-              <h3>Nome</h3>
-              <p>{usuario.nome}</p>
-              <h3>E-mail</h3>
-              <p>{usuario.email}</p>
-              <h3>Telefone</h3>
-              <p>{usuario.telefone}</p>
-              <h3>CPF</h3>
-              <p>{usuario.cpf}</p>
-              <h3>Data de nascimento</h3>
-              <p>{String(usuario.DataDeNascimento).substr(0, 10)}</p>
-            </div>
+          <div className="card-titulo">
+            <h2>Informações Gerais</h2>
+            <img src="/assets/images/Edit.png" onClick={openModal} />
+            <Modal
+
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={customStyles}>
+              <img src="/assets/images/excluir.png" width={30} height={30} onClick={closeModal} />
+              <AlterarInfos perfil='usuario' />
+
+            </Modal>
+          </div>
+          <div>
+            <h3>Nome</h3>
+            <p>{usuario.nome}</p>
+            <h3>E-mail</h3>
+            <p>{usuario.email}</p>
+            <h3>Telefone</h3>
+            <p>{usuario.telefone}</p>
+            <h3>CPF</h3>
+            <p>{usuario.cpf}</p>
+            <h3>Data de nascimento</h3>
+            <p>{String(usuario.DataDeNascimento).substr(0, 10)}</p>
+          </div>
 
         </div>
         <div className="card-consultas">
           <h2>Sessões marcadas</h2>
 
 
-        {consulta.map (item =>
-          <div className="linha-consulta">
-            <label>
-              Profissional
-              <p>{item.profissional}</p>
-            </label>
-            <label>
-              Data
-              <p>{String(item.horario).substr(0,10)}</p>
-            </label>
-            <label>
-              Hora
-              <p>{String(item.horario).substr(10,20)}</p>
-            </label> 
-            <a href={item.meet}><img src="/assets/images/google-meet.png" alt="" width={50} height={55}/> </a>
-          </div>
-        
-        )}
+          {consulta.map(item =>
+            <div className="linha-consulta">
+              <label>
+                Profissional
+                <p>{item.profissional}</p>
+              </label>
+              <label>
+                Data
+                <p>{String(item.horario).substr(0, 10)}</p>
+              </label>
+              <label>
+                Hora
+                <p>{String(item.horario).substr(10, 20)}</p>
+              </label>
+              <a href={item.meet}><img src="/assets/images/google-meet.png" alt="" width={50} height={55} /> </a>
+            </div>
+
+          )}
         </div>
 
       </div>
@@ -201,7 +215,7 @@ function excluirSolicitacao(id) {
         <h2>Suas Solicitações</h2>
         <div className="box-solicitacao">
           <div className="top-solicitacao">
-            <p>Categorias:</p> <span>+</span>
+            
           </div>
           <div className="text-solicitacao">
             <textarea
@@ -215,36 +229,47 @@ function excluirSolicitacao(id) {
       </div>
 
       <div className='faixa-solicitacoes'>
-              {solicitacao.map (item =>  
-                <div className='box-solicitacao'>
-                    <div className='top-solicitacao-2'>
-                        <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
+        {solicitacao.map(item =>
+          <div className='box-solicitacao'>
+            <div className='top-solicitacao-2'>
+              <p>{item.horario} - {item.situacao === 0 ? "Solicitação em aberto" : "Solicitação aceita"} </p>
 
-                        {item.situacao === 0 && 
-                          <img src='/assets/images/black-edit.png' onClick={() => acao('aberto', item)}/>
-                        } 
+              {item.situacao === 0 &&
+                <img src='/assets/images/black-edit.png' onClick={() => acao('aberto', item)} />
+              }
 
-                          <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png'/>
+              <img onClick={() => excluirSolicitacao(item.solicitacao)} src='/assets/images/trash.png' />
 
-                        
 
-                    </div>
-                    <div className='text-solicitacao'>
-                        <hr color="#DEDEDE"/>
-                        <p>{item.texto}</p>
-                        <hr color="#DEDEDE" />
 
-                    </div>
-                    <div className='categorias-solicitacao'>
-                        <div><p>Categorias: Burnout, estresse, neurose</p></div>
-                        
-                    </div>
-                </div>
-                )}
+            </div>
+            <div className='text-solicitacao'>
+              <hr color="#DEDEDE" />
+              <p>{item.texto}</p>
+              <hr color="#DEDEDE" />
+
+            </div>
+            <div className='categorias-solicitacao'>
+              <div>  <select onChange={e => setCategoria(e.target.value)}>
+              <option disabled selected hidden>Selecione sua categoria</option>
+              <option value='1'>Burnout</option>
+              <option value='4'>Esquisofrenia</option>
+              <option value='5'>Ansiedade</option>
+              <option value='6'>Depressão</option>
+              <option value='7'>Autismo</option>
+              <option value='9'>Traumas</option>
+            </select>
+            <button onClick={inserirCatSol}>+</button>
+            <p>Categorias</p> <p> {/*categoriasCad*/}</p>
             </div>
 
+            </div>
+          </div>
+        )}
+      </div>
 
-      
+
+
     </main>
   );
 }

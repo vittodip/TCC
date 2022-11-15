@@ -1,6 +1,6 @@
 import { Router } from "express";   
 
-import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitacoes, deletarSolicitacaoPsic } from '../repository/solicitacaoRepository.js';
+import { aceitarSolicitacao, alterarSolicitacao, carregarSolicitacaoUsuario, deletarSolicitacao, inserirSolicitacao, listarSoliciPsicologo, listarSolicitacao, mostrarTodasSolicitacoes, deletarSolicitacaoPsic, inserirCategoria, consultarCategorias, mostrarCatSol } from '../repository/solicitacaoRepository.js';
 import { carregarUsuario } from "../repository/usuarioRepository.js";
 
 
@@ -167,5 +167,33 @@ server.get('/usuario/solicitacao/busca', async (req, resp) => {
     }
 })
 
+server.post('/usuario/sol/cat', async (req, resp) => {
+    try {
+        
+        
+        const {categoria, solicitacao} = req.query;
+
+        const resposta = await inserirCategoria(categoria, solicitacao);
+        resp.status(204).send()
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+
+})
+
+
+server.get('/usuario/solcad/cat/', async (req, resp) => {
+    try {
+        const {solicitacao} = req.query
+        const resposta = await mostrarCatSol(solicitacao)
+        resp.send(resposta)
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
+        })
+    }
+})
 
 export default server;
