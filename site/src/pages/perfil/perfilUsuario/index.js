@@ -32,7 +32,7 @@ export default function PerfilUsuario() {
   const [abrir, setAbrir] = useState('fechado')
   const [itemSelecionado, setItemSelecionado] = useState();
 
-  const [categoria, setCategoria] = useState([])
+  const [categoria, setCategoria] = useState([]);
   const [categoriasCad, setCategoriasCad] = useState('')
 
   async function carregarUser() {
@@ -52,7 +52,6 @@ export default function PerfilUsuario() {
     const idUser = Storage('usuario-logado').id;
     const resposta = await listarConsulta(idUser);
     setConsulta(resposta);
-    console.log(resposta)
   }
 
   async function cadastrarSolicitacao() {
@@ -72,14 +71,14 @@ export default function PerfilUsuario() {
       toast(err.response.data.erro);
     }
   }
-  
+
   async function inserirCatSol() {
     const resp = await inserirCategoriaSol(`22`, categoria)
     toast.success('Categoria inserida com sucesso')
     setCategoria(resp)
   }
 
-  async function mostrarCatSol(){
+  async function mostrarCatSol() {
     const resposta = await mostrarCategoriaSol(`22`);
     setCategoriasCad(resposta);
   }
@@ -215,7 +214,7 @@ export default function PerfilUsuario() {
         <h2>Suas Solicitações</h2>
         <div className="box-solicitacao">
           <div className="top-solicitacao">
-            
+
           </div>
           <div className="text-solicitacao">
             <textarea
@@ -250,18 +249,19 @@ export default function PerfilUsuario() {
 
             </div>
             <div className='categorias-solicitacao'>
-              <div>  <select onChange={e => setCategoria(e.target.value)}>
-              <option disabled selected hidden>Selecione sua categoria</option>
-              <option value='1'>Burnout</option>
-              <option value='4'>Esquisofrenia</option>
-              <option value='5'>Ansiedade</option>
-              <option value='6'>Depressão</option>
-              <option value='7'>Autismo</option>
-              <option value='9'>Traumas</option>
-            </select>
-            <button onClick={inserirCatSol}>+</button>
-            <p>Categorias</p> <p> {/*categoriasCad*/}</p>
-            </div>
+              <div>
+                <select onChange={e => setCategoria(e.target.value)}>
+                  <option disabled selected hidden>Selecione sua categoria</option>
+                  <option value='1'>Burnout</option>
+                  <option value='4'>Esquisofrenia</option>
+                  <option value='5'>Ansiedade</option>
+                  <option value='6'>Depressão</option>
+                  <option value='7'>Autismo</option>
+                  <option value='9'>Traumas</option>
+                </select>
+                <button onClick={() => inserirCatSol()}>+</button>
+                <p>Categorias</p> <p>{categoria}</p>
+              </div>
 
             </div>
           </div>
