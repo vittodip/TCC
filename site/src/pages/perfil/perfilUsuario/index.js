@@ -72,16 +72,6 @@ export default function PerfilUsuario() {
     }
   }
 
-  async function inserirCatSol() {
-    const resp = await inserirCategoriaSol(`22`, categoria)
-    toast.success('Categoria inserida com sucesso')
-    setCategoria(resp)
-  }
-
-  async function mostrarCatSol() {
-    const resposta = await mostrarCategoriaSol(`22`);
-    setCategoriasCad(resposta);
-  }
 
 
   function excluirSolicitacao(id) {
@@ -115,7 +105,6 @@ export default function PerfilUsuario() {
     }
     carregarTodasSolicitacoes();
     carregarConsultas();
-    mostrarCatSol();
   }, []);
 
 
@@ -245,25 +234,9 @@ export default function PerfilUsuario() {
             <div className='text-solicitacao'>
               <hr color="#DEDEDE" />
               <p>{item.texto}</p>
-              <hr color="#DEDEDE" />
 
             </div>
-            <div className='categorias-solicitacao'>
-              <div>
-                <select onChange={e => setCategoria(e.target.value)}>
-                  <option disabled selected hidden>Selecione sua categoria</option>
-                  <option value='1'>Burnout</option>
-                  <option value='4'>Esquisofrenia</option>
-                  <option value='5'>Ansiedade</option>
-                  <option value='6'>Depressão</option>
-                  <option value='7'>Autismo</option>
-                  <option value='9'>Traumas</option>
-                </select>
-                <button onClick={() => inserirCatSol()}>+</button>
-                <p>Categorias</p> <p>{categoria}</p>
-              </div>
-
-            </div>
+            
           </div>
         )}
       </div>

@@ -52,7 +52,7 @@ export default function ChatHeader(props){
                 {storage('voluntario-logado') &&
                 <img src="/assets/images/meet-icon.svg" alt="" onClick={openModal} />
               }
-                <img src="/assets/images/spam-denuncia-icon.svg" alt="" onClick={navigate('/denunciar/psicologo')} />
+                <img src="/assets/images/spam-denuncia-icon.svg" alt="" /*onClick={navigate('/denunciar/psicologo')} */ />
                 <Modal 
               
                   isOpen={modalIsOpen}
