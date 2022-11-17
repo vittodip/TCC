@@ -26,6 +26,12 @@ export default function Prontuario(){
         carregarProntuario();
     }, [])
 
+    useEffect(() => {
+        if(!Storage('voluntario-logado')) {
+            navigate('/')
+          }
+        }, []);
+
     async function carregarProntuario(){
         const resp = await consultarProntuarioUsuario(usuarioParam);
         setNome(resp.usuario)

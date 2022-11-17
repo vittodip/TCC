@@ -13,9 +13,9 @@ export default function MarcarPop(props) {
             const marcar = await marcarConsulta(consulta, idPsic);
             setConsulta(marcar)
             
-            toast.dark('Consulta Marcada')
+            toast.success('Consulta Marcada')
         } catch (err) {
-            toast.dark('Deu Erro')
+            toast.error('Erro')
         }
 
     } 

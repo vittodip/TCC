@@ -32,9 +32,6 @@ export default function PerfilUsuario() {
   const [abrir, setAbrir] = useState('fechado')
   const [itemSelecionado, setItemSelecionado] = useState();
 
-  const [categoria, setCategoria] = useState([]);
-  const [categoriasCad, setCategoriasCad] = useState('')
-
   async function carregarUser() {
     const idUser = Storage('usuario-logado').id
     const resposta = await carregarUsuario(idUser);

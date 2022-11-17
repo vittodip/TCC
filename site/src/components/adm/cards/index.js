@@ -23,9 +23,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await reprovarPsicologo(idPsicologo);
 
-      toast('funfou')
+      toast('Psicólogo reprovado.')
     } catch (err) {
-      toast('não funfou')
+      toast('Erro.')
     }
   }
 
@@ -36,9 +36,9 @@ export default function CardsAdmin(props) {
 
       const resp = await aceitarDenunciaUser(usuarioId);
 
-      toast('funfou')
+      toast('Penalidade aplicada.')
     } catch (err) {
-      toast('não funfou')
+      toast('Erro')
     }
   }
 
@@ -46,18 +46,18 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaUser(denunciaId);
 
-      toast('funfou')
+      toast('Denúncia recusada')
     } catch (err) {
-      toast('não funfou')
+      toast('Erro')
     }
   }
 
   async function aceitarDenunciaPsicologo(PsicologoDenuncia) {
     try {
       const resp = await aceitarDenunciaPsi(PsicologoDenuncia);
-      toast('funfou')
+      toast('Penalidade aplicada.')
     } catch (err) {
-      toast('não funfou')
+      toast('Erro')
     }
   }
 
@@ -65,9 +65,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaPsi(DenunciaId);
 
-      toast('funfou')
+      toast('Denúncia recusada.')
     } catch (err) {
-      toast('não funfou')
+      toast('Erro')
     }
   }
 

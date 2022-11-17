@@ -21,7 +21,6 @@ export default function LoginPaciente(){
     const navigate = useNavigate();
     const ref = useRef();
 
-    const localidinfo = localStorage.getItem("id-usuario");
 
     useEffect(() => {
         if(Storage('usuario-logado')) {
@@ -37,9 +36,7 @@ export default function LoginPaciente(){
         
         try {
           const r = await loginUsuario(email, senha);
-          const id = r.id;
           Storage('usuario-logado', r);
-          localStorage.setItem("id", id)
           setTimeout(() => {
             navigate(`/perfil/usuario/`);
           }, 3000)

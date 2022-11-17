@@ -4,16 +4,26 @@ import HeaderAdmin from "../../../components/adm/header";
 import CardsAdmin from "../../../components/adm/cards";
 import { carregarDenunciaUser } from "../../../api/adminApi";
 import { useEffect, useState } from "react";
+import Storage from 'local-storage'
+import { useNavigate } from "react-router-dom";
+
 
 export default function DenunciasUsuarios() {
   const [denuncia, setDenuncia] = useState([]);
   
+  const navigate = useNavigate()
 
   async function carregarDenunciasUsuario() {
     const resp = await carregarDenunciaUser();
     setDenuncia(resp);
     
   }
+
+  useEffect(() => {
+    if(!Storage('admin-logado')) {
+        navigate('admin/login')
+      }
+    }, []);
 
   useEffect(() => {
     carregarDenunciasUsuario()
@@ -27,6 +37,7 @@ export default function DenunciasUsuarios() {
         <Menu selecionado="Denúncia Psicólogo" Menu="Denúncia Psicólogo" />
       </div>
       
+    
 
       <section className="adm-cad-section">
         <HeaderAdmin />

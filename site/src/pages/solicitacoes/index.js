@@ -69,6 +69,9 @@ export default function SolicitacoesPsic() {
       }
 
     useEffect(() => {
+        if(!Storage('voluntario-logado')) {
+            navigate('/')
+        }
         carregarSolicitacao();
     }, []);
 

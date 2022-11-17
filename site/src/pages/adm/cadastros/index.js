@@ -4,17 +4,30 @@ import HeaderAdmin from "../../../components/adm/header";
 import CardsAdmin from "../../../components/adm/cards";
 import { PsicologosParaAprovar } from "../../../api/adminApi";
 import { useEffect, useState } from "react";
+import Storage from 'local-storage'
+import { useNavigate } from "react-router-dom";
 
 export default function CadastrosPendentes() {
   const [voluntario, setVoluntario] = useState([]);
+
+  const navigate = useNavigate()
   
 
   async function carregarPsicosAprovar() {
-    const resp = await PsicologosParaAprovar();
-    setVoluntario(resp);
+    try{
+      const resp = await PsicologosParaAprovar();
+      setVoluntario(resp);
+    }
+    catch(err){
+
+    }
   }
 
-  
+  useEffect(() => {
+    if(!Storage('admin-logado')) {
+        navigate('admin/login')
+      }
+    }, []);
 
   useEffect(() => {
     carregarPsicosAprovar();

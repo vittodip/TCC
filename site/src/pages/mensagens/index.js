@@ -102,6 +102,12 @@ export default function MensagensPage() {
         VoltarBaixoClick()
     }, [mensagemLista]);
 
+    useEffect(() => {
+        if(!Storage('usuario-logado') && !Storage('voluntario-logado')) {
+            navigate('/')
+          }
+        }, []);
+
     function VoltarBaixoClick() {
         var btn = document.querySelector("#back-to-down");
         btn.scrollTo(0, 10000);
