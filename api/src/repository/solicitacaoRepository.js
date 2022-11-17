@@ -17,7 +17,7 @@ export async function inserirSolicitacao(solicitacao) {
     return solicitacao;
 }
 
-export async function listarSolicitacao(id){
+export async function listarSolicitacao(id) {
     const comando = `select 
            id_solicitacao solicitacao,
            id_usuario 	  usuario,
@@ -57,7 +57,7 @@ export async function alterarSolicitacao(solicitacao, id) {
                         set ds_solicitacao = ?, 
                             dt_situacao = now()
                       where id_solicitacao = ?`
-                    
+
     const [resposta] = await con.query(comando, [solicitacao.assunto.trim(), id]);
     return resposta.affectedRows;
 }
@@ -67,7 +67,7 @@ export async function aceitarSolicitacao(ids) {
                         set id_psicologo    = ?,
                             ds_situacao     = true
                     where id_solicitacao    = ?`
-                
+
     const [resposta] = await con.query(comando, [ids.idPsic, ids.idSoli]);
     return resposta.affectedRows;
 }
@@ -81,7 +81,7 @@ export async function deletarSolicitacao(id) {
     return resposta.affectedRows;
 }
 
-export async function mostrarTodasSolicitacoes(){
+export async function mostrarTodasSolicitacoes() {
     const comando = `select
                      id_solicitacao ,
                      tb_usuario.id_usuario     idUsuario,
@@ -99,7 +99,7 @@ export async function mostrarTodasSolicitacoes(){
 }
 
 
-export async function deletarSolicitacaoPsic(id){
+export async function deletarSolicitacaoPsic(id) {
     const comando = `update tb_solicitacao 
                      set ds_situacao = 0
                      where id_solicitacao = ?`
@@ -109,12 +109,40 @@ export async function deletarSolicitacaoPsic(id){
 }
 
 export async function carregarSolicitacaoUsuario(usuario, solicitacao) {
-    
+
     const comando = `select ds_solicitacao solicitacao
                        from tb_solicitacao
                       where id_usuario = ?
                         and id_solicitacao = ?`
-    
+
     const [linhas] = await con.query(comando, [usuario, solicitacao]);
     return linhas[0]
+}
+
+export async function inserirCategoria(categoria, solicitacao, id) {
+    const comando = `insert into tb_solicitacao_categoria(id_categoria, id_solicitacao) 
+    values( ? , ?)`
+
+    const [resposta] = await con.query(comando, [categoria, solicitacao])
+    return resposta.affectedRows
+}
+
+
+export async function mostrarCatSol(idSolicitacao) {
+    const comando = `   select tb_categoria.nm_categoria 
+                          from tb_solicitacao_categoria
+                    inner join tb_categoria on tb_categoria.id_categoria = tb_solicitacao_categoria.id_categoria
+                    inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_solicitacao_categoria.id_solicitacao
+                         where tb_solicitacao.id_solicitacao = ?`
+    const [resposta] = await con.query(comando, [idSolicitacao])
+    return resposta
+}
+
+export async function consultarCategorias() {
+    const comando = `  select tb_categoria.nm_categoria 
+                                         from tb_solicitacao_categoria
+                                   inner join tb_categoria on tb_categoria.id_categoria = tb_solicitacao_categoria.id_categoria
+                  `
+    const [resposta] = await con.query(comando)
+    return resposta
 }

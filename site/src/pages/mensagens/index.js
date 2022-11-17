@@ -56,12 +56,12 @@ export default function MensagensPage() {
 
     async function carregarChats(idChat) {
         try {
-            if(storage('voluntario-logado')){
+            if (storage('voluntario-logado')) {
                 const idPsic = Storage('voluntario-logado').id;
                 const load = await carregarChatsPsicologo(idPsic)
                 setChats(load);
             }
-            else{
+            else {
                 const idUsuario = Storage('usuario-logado').id;
                 const load = await carregarChatsUsuario(idUsuario)
                 setChats(load);
@@ -92,11 +92,11 @@ export default function MensagensPage() {
 
         }
     }
-    
+
 
     useEffect(() => {
         carregarChats();
-    }, [[],chats]);
+    }, [[], chats]);
 
     useEffect(() => {
         VoltarBaixoClick()
@@ -136,7 +136,7 @@ export default function MensagensPage() {
                             <div className='usu-info'>
                                 <label>
                                     {item.nomeUsuario}
-                                    <p>{item.mensagem.substr(0,30)}...</p>
+                                    <p>{item.mensagem.substr(0, 30)}...</p>
 
 
                                 </label>
@@ -148,11 +148,14 @@ export default function MensagensPage() {
             <div className='session-chat'>
                 {id === 0 &&
                     <div className='porcima'>
-                        <img width={250} src='/assets/images/logo-login.png'/>
+                        <img width={250} src='/assets/images/logo-login.png' />
                         <p>Te escutando de onde estiver, quando puder.</p>
                     </div>
                 }
-                <ChatHeader nome={nome} />
+                <div>
+                    <ChatHeader nome={nome} />
+                </div>
+
                 <div className='chat' id='back-to-down'>
                     {id !== 0 &&
                         <div>{mensagemLista.map(item =>

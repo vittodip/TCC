@@ -33,11 +33,11 @@ export default function SolicitacoesPsic() {
             const ChatCheck = await checarChat(idUsuario, idPsic);
             if(!ChatCheck){
                 const chat = await criarChat(idUsuario, idPsic);
-                navigate('/chat');
+                navigate('/perfil/voluntario');
             }
             else{
                 toast("Atendimento oferecido!");
-                navigate('/chat');
+                navigate('/perfil/voluntario');
             }            
         }
         catch (err) {
