@@ -34,6 +34,12 @@ export default function DenunciarPsicologo() {
         }
     }
 
+    useEffect(() => {
+        if (!Storage('usuario-logado') && !Storage('voluntario-logado')) {
+            navigate('/')
+          }
+    })
+
     const navigate = useNavigate();
 
 

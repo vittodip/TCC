@@ -24,23 +24,34 @@ export default function AlterarInfos(props) {
     
 
     async function carregarInfoUsuario() {
-        if(Storage('usuario-logado')) {
-            const idUser = Storage('usuario-logado').id;
-            const r = await carregarUsuario(idUser)
-            setNome(r.nome)
-            setEmail(r.email)
-            setTelefone(r.telefone)
-        }    
+        try{
+            if(Storage('usuario-logado')) {
+                const idUser = Storage('usuario-logado').id;
+                const r = await carregarUsuario(idUser)
+                setNome(r.nome)
+                setEmail(r.email)
+                setTelefone(r.telefone)
+            }
+        }
+        catch(err) {
+            toast.error(err.message)
+        }
+
     }
 
     async function carregarInfoPsicologo() {
-        if(Storage('voluntario-logado')) {
-            const idPsic = Storage('voluntario-logado').id;
-            const r = await carregarVoluntario(idPsic)
-            setNome(r.nome)
-            setEmail(r.email)
-            setTelefone(r.telefone)
-        } 
+        try{
+            if(Storage('voluntario-logado')) {
+                const idPsic = Storage('voluntario-logado').id;
+                const r = await carregarVoluntario(idPsic)
+                setNome(r.nome)
+                setEmail(r.email)
+                setTelefone(r.telefone)
+            }
+        }
+        catch(err) {
+            toast.error(err.message)
+        }
     }
 
     useEffect(() =>{
