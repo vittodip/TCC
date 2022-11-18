@@ -41,7 +41,7 @@ export default function SolicitacoesPsic() {
             }            
         }
         catch (err) {
-            toast('Erro.')
+            toast.error('Ocorreu um erro ao oferecer um atendimento.');
         }
     }
 
@@ -58,8 +58,7 @@ export default function SolicitacoesPsic() {
                     const resp = await denunciarUsuario(idUsuario, idPsicologo, idSolicitacao)
                     toast.success('Denúncia feita com sucesso.')
                             
-                  }
-                  
+                  } 
               },
               {
                   label:'Não'
