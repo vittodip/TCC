@@ -84,3 +84,8 @@ export async function recusarDenunciaPsi(id) {
     const resposta = await api.delete(`/negativo/denuncia/psicologo/${id}`);
     return resposta.data;
 }
+
+export async function listarDenunciasPsicDepoimento(){
+    const resposta = await api.get(`/lista/denuncias/psic`);
+    return resposta.data;
+}

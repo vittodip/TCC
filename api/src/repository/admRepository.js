@@ -171,3 +171,9 @@ export async function recusarDenunciaPsi(id) {
     const [resposta] = await con.query(comando, [id]);
     return resposta.affectedRows;
 }
+
+export async function listarDenunciasPsicDepoimento(){
+    const comando = `select * from tb_denuncia_psicologo`
+    const [resposta] = await con.query(comando)
+    return resposta;
+}
