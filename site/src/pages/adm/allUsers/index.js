@@ -48,7 +48,7 @@ export default function ListarUsers(){
         <div className="listagemPsics">
           <div className="search">
             <div>
-              <input type='search' placeholder="Pesquisar Usuario" value={filtro} onChange={e => setFiltro(e.target.value)} />
+              <input type='search' placeholder="Pesquisar Usuário" value={filtro} onChange={e => setFiltro(e.target.value)} />
             </div>
             <img src="/assets/images/lupa.png" onClick={filtrar} />
           </div>
@@ -65,7 +65,7 @@ export default function ListarUsers(){
                     <label> {item.nome} </label>
                   </div>
                   <div className="listaItens">
-                    <p>Email</p>
+                    <p>E-mail</p>
                     <label>{item.email}</label>
                   </div>
                   <div className="listaItens">

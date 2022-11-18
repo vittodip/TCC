@@ -10,19 +10,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function DenunciasUsuarios() {
   const [denuncia, setDenuncia] = useState([]);
-  const [denunciaDep, setDenunciaDep] = useState([])
+  const [denunciaDep, setDenunciaDep] = useState([]);
   
   const navigate = useNavigate()
 
   async function carregarDenunciasUsuario() {
     const resp = await carregarDenunciaUser();
     setDenuncia(resp);
-    
   }
 
   async function carregarDenunciaUsuarioDep() {
     const resp = await listarDenunciasUsuDepoimento();
     setDenunciaDep(resp);
+    
   }
 
   useEffect(() => {
@@ -53,26 +53,27 @@ export default function DenunciasUsuarios() {
           {denuncia.map(item => 
             <CardsAdmin 
             DenunciaId={item.denuncia}
-            UsuarioDenuncia={item.idUser}
+            UsuarioDenuncia={item.usuario}
             css="card-denuncia-psicologo"
             tipo= "denuncia-usuario"
             
-            nomeUsuario={item.nome}
+            nomeUsuario={item.nomeU}
             emailUsuario={item.email}
             solicitacao={item.assunto}
             />
             
             )}
-          {denunciaDep.map(item => {
+          {denunciaDep.map(item => 
             <CardsAdmin
             tipo='denuncia-usuario-com-depoimento'
+            css="card-denuncia-usuario-depoimento"
             nomePsi={item.nomepsi}
             nomeUsuario={item.nome}
             depoimento={item.texto}
             UsuarioDenuncia={item.usuario}
             DenunciaId={item.denuncia}
             />
-          })}
+          )}
 
         </div>
       </section>

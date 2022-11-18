@@ -17,7 +17,7 @@ export default function DenunciarPsicologo() {
     async function denunciarPsicologo() {
         try {
             const idPsic = Storage('voluntario-logado').id;
-            const resposta = await denunciaPerfilPsicologo(depoimento, paciente, psicologo, emailPaci, emailPsi, idPsic);
+            const resposta = await denunciaPerfilPsicologo(paciente, psicologo, emailPaci, emailPsi, depoimento, idPsic);
             toast.success('Denuncia registrada.')
         } catch (err) {
             toast.error(err.message)
@@ -55,7 +55,7 @@ export default function DenunciarPsicologo() {
                 </div>
                 <div className='alinhamento-linear'>
                     <div className='titulo-desc'>
-                        <h2>Denunciar Psicólogo</h2>
+                        <h2>Denunciar</h2>
                         <p>Sua denuncia será enviada e revisada por administradores.
                             Ela é muito importante para a manutenção da segurança de nosso site!
                         </p>
@@ -93,7 +93,7 @@ export default function DenunciarPsicologo() {
                             Depoimento
                             <textarea value={depoimento} onChange={e => setDepoimento(e.target.value)}></textarea>
                         </label>
-                        {Storage('voluntario-logado') && <button onClick={() => denunciarPsicologo()}  >Enviar denúncia</button>}
+                        {Storage('voluntario-logado') && <button onClick={denunciarPsicologo}  >Enviar denúncia</button>}
                         {Storage('usuario-logado') && <button onClick={() => denunciarUsuario()}  >Enviar denúncia</button>}
                     </div>
 

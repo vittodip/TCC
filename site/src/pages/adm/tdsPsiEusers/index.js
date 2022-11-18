@@ -52,7 +52,7 @@ export default function ListaVolunts() {
         <div className="listagemPsics">
           <div className="search">
             <div>
-              <input type='search' placeholder="Pesquisar Voluntario" value={filtro} onChange={e => setFiltro(e.target.value)} />
+              <input type='search' placeholder="Pesquisar Voluntário" value={filtro} onChange={e => setFiltro(e.target.value)} />
             </div>
             <img src="/assets/images/lupa.png" onClick={filtrar} />
           </div>
@@ -69,7 +69,7 @@ export default function ListaVolunts() {
                   <label> {item.nome} </label>
                 </div>
                 <div className="listaItens">
-                  <p>Email</p>
+                  <p>E-mail</p>
                   <label>{item.email}</label>
                 </div>
                 <div className="listaItens">

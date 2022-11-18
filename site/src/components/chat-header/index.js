@@ -14,7 +14,7 @@ export default function ChatHeader(props){
   const navigate = useNavigate();
 
   function navegarClick(){
-    navigate('/denunciar/psicologo')
+    navigate('/denunciar')
   }
 
   Modal.setAppElement('#root');

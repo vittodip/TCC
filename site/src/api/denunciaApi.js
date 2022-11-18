@@ -44,6 +44,7 @@ export async function denunciaPerfilUsuario(paciente, psicologo, emailPaci, emai
 }
 
 export async function denunciaPerfilPsicologo(paciente, psicologo, emailPaci, emailPsi, depoimento, idPsicologo) {
+    
     const resposta = await api.post(`/denunciaperfil/psicologo`, {
         nomeUsuario: paciente,
         nomePsicologo: psicologo,

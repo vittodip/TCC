@@ -124,6 +124,7 @@
                 flex-direction: row-reverse;
                 width: 100%;
                 margin: 15px 0px;
+                
 
             }
 
@@ -132,6 +133,8 @@
                 width: fit-content;
                 border-radius: 15px 15px 15px 0px;
                 padding: 0.2em 0.7em;
+                max-width: 40em;
+                word-break: break-all;
             }
 
             .mensagem-direita {
@@ -140,6 +143,8 @@
                 border-radius: 15px 15px 0px 15px;
                 padding: 0.2em 0.7em;
                 justify-self: flex-end;
+                max-width: 40em;
+                word-break: break-all;
             }
         }
 

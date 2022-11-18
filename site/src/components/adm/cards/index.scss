@@ -135,44 +135,104 @@
             }
         }
 }
+.card-denuncia-usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 20em;
+    height: fit-content;
+    padding: 1em 1.5em;
+    box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
+    border-radius: 27px;
+    
+    img {
+        cursor: pointer;
+    }
 
-.card-denuncia-psicologo{
+    p{
+        margin: 0px;
+        padding: 5px 20px 10px 0px;
+        word-wrap: break-word;
+    }
+    label{
+        font-weight: 600;
+    }
+
+    .infos-usuarios {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: #fff;
-        width: 20em;
-        min-height: fit-content;
-        padding: 1em 1.5em;
-        box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
-        border-radius: 27px;
-    
-        p{
-            margin: 0;
-            padding: 5px 20px 10px 0px;
-            word-wrap: break-word;
+        flex-direction:row ;
+        
+        .emails{
+            margin-left: 1em;
         }
-        label{
-            font-weight: 600;
+        
+    }
+    .botoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        
+        button {
+        background: none;
+        outline: none;
+        border:none;
         }
-    
-        .infos-usuarios {
-            display: flex;
-            flex-direction:row ;
-            
-            
-        }
-        .botoes {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            
-            button {
-            background: none;
-            outline: none;
-            border:none;
-            }
-        }
+    }
 }
+
+}
+
+.card-denuncia-usuario-depoimento{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 20em;
+    height: fit-content;
+    padding: 1em 1.5em;
+    box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
+    border-radius: 27px;
+    
+    img {
+        cursor: pointer;
+    }
+
+    p{
+        margin: 0px;
+        padding: 5px 20px 10px 0px;
+        word-wrap: break-word;
+    }
+    label{
+        font-weight: 600;
+    }
+
+    .usuarios{
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+    }
+
+    .infos-usuarios {
+        display: flex;
+        flex-direction:row ;
+        
+        .emails{
+            margin-left: 1em;
+        }
+        
+    }
+    .botoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        
+        button {
+        background: none;
+        outline: none;
+        border:none;
+        }
+    }
+
 }
 

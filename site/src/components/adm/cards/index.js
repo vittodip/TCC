@@ -12,9 +12,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await aprovarPsicologo(idPsicologo);
 
-      toast('Voluntário aprovado com sucesso!')
+      toast.success('Voluntário aprovado com sucesso!')
     } catch (err) {
-      toast('Não foi possível aprovar.')
+      toast.error('Não foi possível aprovar.')
     }
   }
 
@@ -23,9 +23,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await reprovarPsicologo(idPsicologo);
 
-      toast('Psicólogo reprovado.')
+      toast.success('Psicólogo reprovado.')
     } catch (err) {
-      toast('Erro.')
+      toast.error('Erro.')
     }
   }
 
@@ -36,9 +36,9 @@ export default function CardsAdmin(props) {
 
       const resp = await aceitarDenunciaUser(usuarioId);
 
-      toast('Penalidade aplicada.')
+      toast.success('Penalidade aplicada.')
     } catch (err) {
-      toast('Erro')
+      toast.error('Erro')
     }
   }
 
@@ -46,18 +46,18 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaUser(denunciaId);
 
-      toast('Denúncia recusada')
+      toast.success('Denúncia recusada')
     } catch (err) {
-      toast('Erro')
+      toast.error('Erro')
     }
   }
 
   async function aceitarDenunciaPsicologo(PsicologoDenuncia) {
     try {
       const resp = await aceitarDenunciaPsi(PsicologoDenuncia);
-      toast('Penalidade aplicada.')
+      toast.success('Penalidade aplicada.')
     } catch (err) {
-      toast('Erro')
+      toast.error('Erro')
     }
   }
 
@@ -65,9 +65,9 @@ export default function CardsAdmin(props) {
     try {
       const resp = await recusarDenunciaPsi(DenunciaId);
 
-      toast('Denúncia recusada.')
+      toast.success('Denúncia recusada.')
     } catch (err) {
-      toast('Erro')
+      toast.error('Erro')
     }
   }
 
@@ -75,7 +75,7 @@ export default function CardsAdmin(props) {
 
   return (
     <div className="card">
-      <Toaster/>
+      <Toaster />
       {props.tipo === "A ser aprovado" && (
         //"section-cad-container"
         <div className={props.css}>
@@ -162,15 +162,15 @@ export default function CardsAdmin(props) {
       {props.tipo === "denuncia-usuario" && (
         <div className={props.css}>
           <div className="infos-usuarios">
-              <div>
-                <label>Nome</label>
-                <p>{props.nomeUsuario}</p>
-              </div>
-              <div>
-                <label>E-mail</label>
-                <p>{props.emailUsuario}</p>
-              </div>
+            <div>
+              <label>Nome</label>
+              <p>{props.nomeUsuario}</p>
             </div>
+            <div>
+              <label>E-mail</label>
+              <p>{props.emailUsuario}</p>
+            </div>
+          </div>
           <div className="depoimento">
             <label>Solicitação</label>
             <p>{props.solicitacao}</p>
@@ -187,30 +187,35 @@ export default function CardsAdmin(props) {
         </div>
       )}
 
-      {props.tipo === "denuncia-usuario-com-depoimento" && 
-              <div className={props.css}>
-              <div className="infos-usuarios">
-                <div className="usuarios">
-                  <label>Psicólogo</label>
-                  <p>{props.nomePsi}</p>
-                  <label>Usuário</label>
-                  <p>{props.nomeUsuario}</p>
-                </div>
+      {props.tipo === "denuncia-usuario-com-depoimento" &&
+        <div className={props.css}>
+          <div className="infos-usuarios">
+            <div className="usuarios">
+              <div>
+                <label>Psicólogo</label>
+                <p>{props.nomePsi}</p>
               </div>
-              <div className="depoimento">
-                <label>Depoimento</label>
-                <p>{props.depoimento}</p>
+              <div>
+                <label>Usuário</label>
+                <p>{props.nomeUsuario}</p>
               </div>
-    
-              <div className="botoes">
-                <button onClick={() => aceitarDenunciaUsuario(props.UsuarioDenuncia)}>
-                  <img src="/assets/images/botao-aprovar.svg" />
-                </button>
-                <button onClick={() => recusarDenunciaUsuario(props.DenunciaId)}>
-                  <img src="/assets/images/botao-reprovar.svg" />
-                </button>
-              </div>
-            </div>  
+
+            </div>
+          </div>
+          <div className="depoimento">
+            <label>Depoimento</label>
+            <p>{props.depoimento}</p>
+          </div>
+
+          <div className="botoes">
+            <button onClick={() => aceitarDenunciaUsuario(props.UsuarioDenuncia)}>
+              <img src="/assets/images/botao-aprovar.svg" />
+            </button>
+            <button onClick={() => recusarDenunciaUsuario(props.DenunciaId)}>
+              <img src="/assets/images/botao-reprovar.svg" />
+            </button>
+          </div>
+        </div>
       }
 
 

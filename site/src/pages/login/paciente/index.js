@@ -89,7 +89,7 @@ export default function LoginPaciente(){
                       <div>
                         <p>{erro}</p>
                       </div>
-                      <a href="">Esqueci minha senha</a>
+                      <a href="/login/esqueci-senha">Esqueci minha senha</a>
                     </div>
                     
                 </div> 

@@ -43,6 +43,15 @@ export async function denunciaPerfil(idPsicologo, denuncia) {
     return denuncia;
 }
 
+export async function denunciaPerfilUsuario(idUsuario, denuncia) {
+    const comando = `insert into tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia)
+                     values(?, ?, ?)`
+
+    const [resposta] = await con.query(comando, [idUsuario.id_usuario, denuncia.idPsicologo, denuncia.depoimento.trim()]);
+    denuncia.id = resposta.insertId;
+    return denuncia;
+}
+
 //pegar id do psicologo
 export async function idPsicologoDenuncia(denuncia) {
     const comando = `select id_psicologo 
@@ -58,6 +67,8 @@ export async function idUsuarioDenuncia(denuncia) {
     const comando = `select id_usuario 
                         from tb_usuario
                     where nm_usuario = ? and ds_email = ?`
+
+    console.log([denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()])                    
 
     const [resposta] = await con.query(comando, [denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()]);
     return resposta[0];

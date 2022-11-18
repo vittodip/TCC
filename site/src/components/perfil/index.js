@@ -30,7 +30,7 @@ export default function Perfil(props) {
                 
                 <div className='buttons'>
                     {props.perfil === 'usuario' && 
-                        <button onClick={() => [navigate('/denunciar/psicologo')]}>Denunciar</button>
+                        <button onClick={() => [navigate('/denunciar')]}>Denunciar</button>
                     }
                     {props.perfil === 'usuario' && 
                         <button onClick={() => [navigate('/chat')]}>Conversas</button>

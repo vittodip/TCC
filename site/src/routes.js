@@ -61,7 +61,7 @@ export default function Rotas() {
                 {/* Prontuário */}
                 <Route path='/prontuario/:usuarioParam' element={<Prontuario />} />
                 {/*Denunciar*/} 
-                <Route path='/denunciar/psicologo' element={<DenunciarPsicologo />} />
+                <Route path='/denunciar' element={<DenunciarPsicologo />} />
                 {/*chat*/}
                 <Route path='/chat' element={<MensagensPage/>} />
                 

@@ -33,7 +33,7 @@ export default function EsqueciSenha() {
                 <div className='headerSenha'>
                     <img src='/assets/images/logonat.png' />
                     <div className="topicos">
-                        <Link to='/'>Pagina Inicial</Link>
+                        <Link to='/'>Página Inicial</Link>
                         <Link to='/home/login'>Voltar</Link>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, idPsicologoDenuncia, idUsuarioDenuncia, denunciaPerfil } from "../repository/denunciaRepository.js";
+import { denunciarUsuario, denunciarPsicologo, denunciarUsuarioChat, idPsicologoDenuncia, idUsuarioDenuncia, denunciaPerfil, denunciaPerfilUsuario } from "../repository/denunciaRepository.js";
 
 
 const server = Router();
@@ -66,7 +66,9 @@ server.post('/chatdenuncia/usuario', async (req, resp) => {
 server.post('/denunciaperfil/psicologo', async (req, resp) => {
     try {
         const denuncia = req.body;
-        const idPsicologo = await idPsicologoDenuncia(denuncia);
+
+        const idUsuario = await idUsuarioDenuncia(denuncia);
+
 
         if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
             throw new Error('Insira algum depoimento!')
@@ -84,9 +86,9 @@ server.post('/denunciaperfil/psicologo', async (req, resp) => {
             throw new Error('Insira o email do Psicologo!')
         }
 
-        const resposta = await denunciaPerfil(idPsicologo, denuncia);
+        const resposta = await denunciaPerfilUsuario(idUsuario, denuncia);
 
-        
+
         if(!resposta) {
             throw new Error('Erro')
         }
@@ -103,7 +105,8 @@ server.post('/denunciaperfil/psicologo', async (req, resp) => {
 server.post('/denunciaperfil/usuario', async (req, resp) => {
     try {
         const denuncia = req.body;
-        const idUsuario = await idUsuarioDenuncia(denuncia);
+        
+        const idPsicologo = await idPsicologoDenuncia(denuncia);
 
         if (!denuncia.depoimento || !denuncia.depoimento.trim()) {
             throw new Error('Insira algum depoimento!')
@@ -121,7 +124,7 @@ server.post('/denunciaperfil/usuario', async (req, resp) => {
             throw new Error('Insira o seu email de Psicologo!')
         }
 
-        const resposta = await denunciaPerfil(idUsuario, denuncia);
+        const resposta = await denunciaPerfil(idPsicologo, denuncia);
 
         if(!resposta) {
             throw new Error('Erro')
