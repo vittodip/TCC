@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi, listarDenunciasPsicDepoimento } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -250,7 +250,18 @@ server.delete('/negativo/denuncia/psicologo/:id', async (req, resp) => {
 })
 
 
+server.get('/lista/denuncias/psic', async (req, resp) => {
+    try{
+        const resposta = await listarDenunciasPsicDepoimento();
 
+        resp.status(200).send(resposta)
+    }
+    catch(err){
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 

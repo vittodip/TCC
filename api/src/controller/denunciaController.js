@@ -88,7 +88,7 @@ server.post('/denunciaperfil/psicologo', async (req, resp) => {
 
         
         if(!resposta) {
-            throw new Error('Deu ruim!')
+            throw new Error('Erro')
         }
 
         resp.send(resposta);
@@ -124,7 +124,7 @@ server.post('/denunciaperfil/usuario', async (req, resp) => {
         const resposta = await denunciaPerfil(idUsuario, denuncia);
 
         if(!resposta) {
-            throw new Error('Deu ruim!')
+            throw new Error('Erro')
         }
 
         resp.send(resposta);
