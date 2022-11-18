@@ -173,7 +173,16 @@ export async function recusarDenunciaPsi(id) {
 }
 
 export async function listarDenunciasPsicDepoimento(){
-    const comando = `select * from tb_denuncia_psicologo`
+    const comando = `select id_denuncia  denuncia,
+                     tb_psicologo.id_psicologo  psicologo,
+                     tb_usuario.id_usuario      usuario,
+                     tb_usuario.nm_usuario      nome,
+                     tb_psicologo.nm_psicologo  nomepsi,
+                     ds_denuncia                texto
+                     from tb_denuncia_psicologo
+                inner join tb_psicologo on tb_psicologo.id_psicologo = tb_denuncia_psicologo.id_psicologo
+                inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_psicologo.id_usuario;
+                    `
     const [resposta] = await con.query(comando)
     return resposta;
 }

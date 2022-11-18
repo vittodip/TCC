@@ -89,3 +89,8 @@ export async function listarDenunciasPsicDepoimento(){
     const resposta = await api.get(`/lista/denuncias/psic`);
     return resposta.data;
 }
+
+export async function listarDenunciasUsuDepoimento(){
+    const resposta = await api.get(`/lista/denuncias/usu`)
+    return resposta.data;
+}
