@@ -1,4 +1,4 @@
-import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi, listarDenunciasPsicDepoimento } from "../repository/admRepository.js";
+import { loginAdm, cadastroAdm, listarDenunciasUsuario, listarDenunciasPsicologo, carregarAdmin, PsicologosParaAprovar, aprovarPsicologo, carregarTodosVoluntarios, reprovarPsicologo, aceitarDenunciaUser, recusarDenunciaPsi, recusarDenunciaUser, aceitarDenunciaPsi, listarDenunciasPsicDepoimento, listarDenunciasUsuDepoimento } from "../repository/admRepository.js";
 
 import { Router } from "express";
 
@@ -263,6 +263,18 @@ server.get('/lista/denuncias/psic', async (req, resp) => {
     }
 })
 
+server.get('/lista/denuncias/usu', async (req, resp) => {
+    try{
+        const resposta = await listarDenunciasUsuDepoimento();
+
+        resp.status(200).send(resposta)
+    }
+    catch(err){
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
 
 
 
