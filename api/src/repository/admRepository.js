@@ -173,7 +173,7 @@ export async function recusarDenunciaPsi(id) {
 }
 
 export async function listarDenunciasPsicDepoimento(){
-    const comando = `select id_denuncia  denuncia,
+    const comando = `select id_denuncia         denuncia,
                      tb_psicologo.id_psicologo  psicologo,
                      tb_usuario.id_usuario      usuario,
                      tb_usuario.nm_usuario      nome,
@@ -188,7 +188,7 @@ export async function listarDenunciasPsicDepoimento(){
 }
 
 export async function listarDenunciasUsuDepoimento(){
-    const comando = `select id_denuncia  denuncia,
+    const comando = `select id_denuncia         denuncia,
                      tb_psicologo.id_psicologo  psicologo,
                      tb_usuario.id_usuario      usuario,
                      tb_usuario.nm_usuario      nome,
