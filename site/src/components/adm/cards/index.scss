@@ -9,6 +9,10 @@
     box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
     border-radius: 27px;
 
+    img {
+        cursor: pointer;
+    }
+
     .container-colunas-alinhamento{
         display: flex;
         flex-direction: row;
@@ -58,6 +62,9 @@
     box-shadow: 0px 0px 6px rgba(85, 79, 90, 0.47);
     border-radius: 27px;
     
+    img {
+        cursor: pointer;
+    }
 
     p{
         margin: 0px;

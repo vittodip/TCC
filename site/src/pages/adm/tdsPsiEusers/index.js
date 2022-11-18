@@ -3,7 +3,7 @@ import { mostrarPsicologos, buscarNomeVolunt } from "../../../api/voluntarioApi"
 import Menu from "../../../components/home";
 import Storage from 'local-storage'
 import { useNavigate } from "react-router-dom";
-import ListarTudo from "../../../components/adm/tdsPsiEusers";
+  
 import "./index.scss";
 import HeaderAdmin from "../../../components/adm/header";
 

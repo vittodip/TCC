@@ -1,6 +1,5 @@
 use NEEDATALK_DB;
 
-
 -- CADASTRO ADM
 insert into tb_adm (ds_email, ds_senha, nm_adm, ds_cpf, dt_nascimento, nr_telefone)
 	   values('depaula@email', '1234', 'De Paula','123.456.789-01', '2004-09-23', '(11)912345678');
@@ -78,7 +77,6 @@ select nm_psicologo 	nome,
   from tb_psicologo
  where id_psicologo = 1;
 
-select * from tb_psicologo;
 
 -- ACEITAR PSICÓLOGO
 
@@ -135,10 +133,6 @@ select id_solicitacao 	solicitacao,
  where id_psicologo  = 1
    and ds_situacao     = true;
 
-select * from tb_solicitacao;
-
-
-
 
 -- aceitar solicitação
 update tb_solicitacao
@@ -156,21 +150,7 @@ update tb_solicitacao
 delete from tb_solicitacao
 	  where id_solicitacao = 1;
 
--- ADICIONAR CATEGORIA
-insert tb_categoria(nm_categoria)
- value('Esquizofrenia');
- 
-select * from tb_categoria;
-      
--- ADICIONAR CATEGORIA NA SOLICITAÇÃO
-insert tb_solicitacao_categoria(ID_SOLICITACAO, ID_CATEGORIA)
- value(1, 1);
--- MOSTRAR CATEGORIA
-select * 
-  from tb_solicitacao_categoria;
 
-
-select * from tb_solicitacao_categoria;
 
 -- ACEITAR PSICOLOGO
 update tb_psicologo
@@ -224,39 +204,13 @@ select   id_denuncia               denuncia,
 inner join tb_psicologo on tb_psicologo.id_psicologo = tb_denuncia_psicologo.id_psicologo
 inner join tb_usuario on tb_usuario.id_usuario = tb_denuncia_psicologo.id_usuario;
 
-select id_solicitacao solicitacao,
-	   nm_categoria	  categoria
-from tb_solicitacao
- inner join tb_solicitacao on tb_solicitacao.id_solicitacao = tb_categoria.id_categoria
- where id_solicitacao = 1;
- 
- select tb_categoria.id_categoria		 	idCategoria,
-		tb_solicitacao.id_solicitacao		idSolicitacao,
-        tb_solicitacao.ds_solicitacao       solicitacao,
-        tb_categoria.nm_categoria			nomeCategoria
-from tb_solicitacao_categoria
-inner join tb_solicitacao on tb_solicitacao_categoria.id_solicitacao = tb_solicitacao.id_solicitacao
-inner join tb_categoria on tb_solicitacao_categoria.id_categoria = tb_categoria.id_categoria
-where tb_solicitacao.id_solicitacao = 2;
 
- select tb_categoria.id_categoria		 	idCategoria,
-		tb_solicitacao.id_solicitacao		idSolicitacao,
-        tb_solicitacao.ds_solicitacao       solicitacao,
-        tb_categoria.nm_categoria			nomeCategoria
-from tb_solicitacao_categoria
-inner join tb_solicitacao on tb_solicitacao_categoria.id_solicitacao = tb_solicitacao.id_solicitacao
-inner join tb_categoria on tb_solicitacao_categoria.id_categoria = tb_categoria.id_categoria
-where tb_solicitacao.id_solicitacao = 1;
-	   
 
-        
 
-select * from tb_denuncia_psicologo;
-
-select * from tb_denuncia_usuario;
+-- denuncia de psicólogo para usuário
 
 insert tb_denuncia_usuario(id_usuario, id_psicologo, ds_denuncia, id_solicitacao)
-                                          value(1, 2, 'babalu', 36);
+                                          value(1, 2, 'depoimento', 36);
 
 -- ACEITAR DENÚNCIA - DELETAR PSICÓLOGO
 

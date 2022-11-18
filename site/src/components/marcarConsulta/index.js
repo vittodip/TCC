@@ -15,7 +15,7 @@ export default function MarcarPop(props) {
             
             toast.success('Consulta Marcada')
         } catch (err) {
-            toast.error('Erro')
+            toast.error('Ocorreu um erro ao marcar a consulta.')
         }
 
     } 

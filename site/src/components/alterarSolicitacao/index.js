@@ -13,11 +13,17 @@ export default function AlterarSolicitacao({ item, acao, abrir }) {
     const [assunto, setAssunto] = useState(item.texto)
    
     async function carregarSolicitacao() {
-        if(Storage('usuario-logado')) {
+        
+        try{
+            if(Storage('usuario-logado')) {
             const userId = Storage('usuario-logado').id;
             const resposta = await carregarSolicitacaoUsuario(userId, item.solicitacao)
             
             setAssunto(resposta.solicitacao)
+            }
+        }
+        catch(err) {
+            toast.error(err.message)
         }
     }
 
