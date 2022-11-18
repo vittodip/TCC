@@ -196,12 +196,6 @@ export default function CardsAdmin(props) {
                   <label>Usuário</label>
                   <p>{props.nomeUsuario}</p>
                 </div>
-                <div className="emails">
-                  <label>E-mail</label>
-                  <p>{props.emailPsi}</p>
-                  <label>E-mail</label>
-                  <p>{props.emailUsuario}</p>
-                </div>
               </div>
               <div className="depoimento">
                 <label>Depoimento</label>

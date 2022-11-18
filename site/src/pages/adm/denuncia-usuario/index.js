@@ -66,7 +66,11 @@ export default function DenunciasUsuarios() {
           {denunciaDep.map(item => {
             <CardsAdmin
             tipo='denuncia-usuario-com-depoimento'
-            
+            nomePsi={item.nomepsi}
+            nomeUsuario={item.nome}
+            depoimento={item.texto}
+            UsuarioDenuncia={item.usuario}
+            DenunciaId={item.denuncia}
             />
           })}
 
