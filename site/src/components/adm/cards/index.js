@@ -187,6 +187,38 @@ export default function CardsAdmin(props) {
         </div>
       )}
 
+      {props.tipo === "denuncia-usuario-com-depoimento" && 
+              <div className={props.css}>
+              <div className="infos-usuarios">
+                <div className="usuarios">
+                  <label>Psicólogo</label>
+                  <p>{props.nomePsi}</p>
+                  <label>Usuário</label>
+                  <p>{props.nomeUsuario}</p>
+                </div>
+                <div className="emails">
+                  <label>E-mail</label>
+                  <p>{props.emailPsi}</p>
+                  <label>E-mail</label>
+                  <p>{props.emailUsuario}</p>
+                </div>
+              </div>
+              <div className="depoimento">
+                <label>Depoimento</label>
+                <p>{props.depoimento}</p>
+              </div>
+    
+              <div className="botoes">
+                <button onClick={() => aceitarDenunciaUsuario(props.UsuarioDenuncia)}>
+                  <img src="/assets/images/botao-aprovar.svg" />
+                </button>
+                <button onClick={() => recusarDenunciaUsuario(props.DenunciaId)}>
+                  <img src="/assets/images/botao-reprovar.svg" />
+                </button>
+              </div>
+            </div>  
+      }
+
 
     </div>
 

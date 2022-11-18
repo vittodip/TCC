@@ -2,7 +2,7 @@ import "./index.scss";
 import Menu from "../../../components/home";
 import HeaderAdmin from "../../../components/adm/header";
 import CardsAdmin from "../../../components/adm/cards";
-import { carregarDenunciaUser } from "../../../api/adminApi";
+import { carregarDenunciaUser, listarDenunciasUsuDepoimento } from "../../../api/adminApi";
 import { useEffect, useState } from "react";
 import Storage from 'local-storage'
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function DenunciasUsuarios() {
   const [denuncia, setDenuncia] = useState([]);
+  const [denunciaDep, setDenunciaDep] = useState([])
   
   const navigate = useNavigate()
 
@@ -19,6 +20,11 @@ export default function DenunciasUsuarios() {
     
   }
 
+  async function carregarDenunciaUsuarioDep() {
+    const resp = await listarDenunciasUsuDepoimento();
+    setDenunciaDep(resp);
+  }
+
   useEffect(() => {
     if(!Storage('admin-logado')) {
         navigate('admin/login')
@@ -26,7 +32,8 @@ export default function DenunciasUsuarios() {
     }, []);
 
   useEffect(() => {
-    carregarDenunciasUsuario()
+    carregarDenunciasUsuario();
+    carregarDenunciaUsuarioDep();
   }, [])
 
   
@@ -56,6 +63,12 @@ export default function DenunciasUsuarios() {
             />
             
             )}
+          {denunciaDep.map(item => {
+            <CardsAdmin
+            tipo='denuncia-usuario-com-depoimento'
+            
+            />
+          })}
 
         </div>
       </section>
