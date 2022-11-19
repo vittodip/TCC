@@ -118,7 +118,7 @@
       justify-content: space-between;
       width: 94%;
       align-self: center;
-
+      padding: 0.7em;
       align-items: center;
       border-top: 1px solid #d1c8d1;
 
@@ -139,8 +139,7 @@
       }
 
       button {
-        height: 2.5em;
-        width: 13em;
+        padding: 0.8em 1.5em;
         border-radius: 25px;
         border: none;
         background-color: #8f6fb4;

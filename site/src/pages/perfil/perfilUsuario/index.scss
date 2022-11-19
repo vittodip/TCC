@@ -120,12 +120,15 @@
                     background: #EDECEC;
                     border: 1px solid #a8a3a8;
                     border-radius: 25px;
-                    width: 85vw;
+                    width: 96%;
                     padding: 1.5em;
                     outline:none;
                     
                 }
             }
+        }
+        .box-solicitacao:last-child{
+            margin-bottom: 5em;
         }
     }
 

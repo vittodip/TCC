@@ -51,7 +51,14 @@ export default function DenunciarPsicologo() {
                 <div className='header-painel'>
                     <img src='/assets/images/logonat.png' width={200} />
 
-                    <button onClick={() => [navigate('/perfil/usuario')]}>Perfil</button>
+                    {Storage('usuario-logado') && 
+                        <button onClick={() => [navigate('/perfil/usuario')]}>Perfil</button>
+                    }
+                    {Storage('voluntario-logado') && 
+                        <button onClick={() => [navigate('/perfil/voluntario')]}>Perfil</button>
+                    }
+
+                    
                 </div>
                 <div className='alinhamento-linear'>
                     <div className='titulo-desc'>
