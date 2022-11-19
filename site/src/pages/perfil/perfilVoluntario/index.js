@@ -115,9 +115,13 @@ export default function PerfilVoluntario() {
           {
               label:'Sim',
               onClick: async () => {
+               try{
                 const x = await deletarSolicitacaoPsic(item)
-                toast('Solicitação Excluída!')
-                        
+                toast.success('Solicitação Excluída!')
+                }
+                catch(err) {
+                  toast.error('Ocorreu um erro ao excluir a solicitação.')
+                }
               }
               
           },
@@ -136,7 +140,7 @@ export default function PerfilVoluntario() {
       if(resp.status === 404){
         let idPsic = Storage('voluntario-logado').id;
         const x = await enviarProntuario(idUsuario, idPsic);
-        toast('Carregando prontuário...')
+        toast.loading('Carregando prontuário...')
       }
       else{
         navigate(`/prontuario/${idUsuario}`)
@@ -144,7 +148,7 @@ export default function PerfilVoluntario() {
       
     }
     catch(err){
-      toast(err.message)
+      toast.error(err.message)
     }
   }
 
@@ -162,7 +166,7 @@ export default function PerfilVoluntario() {
       }
     }
     catch(err){
-      toast(err.message)
+      toast.error(err.message)
     }
   }
 

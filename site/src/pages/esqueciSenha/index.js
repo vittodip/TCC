@@ -15,9 +15,9 @@ export default function EsqueciSenha() {
             
             const emailUsuario = await enviarEmail(email);
             setEmail(emailUsuario)
-            toast('E-mail enviado.')
+            toast.success('E-mail enviado.')
         } catch (err) {
-            toast('Erro')
+            toast.error('Ocorreu um erro ao enviar o e-mail.')
         }
     }   
 

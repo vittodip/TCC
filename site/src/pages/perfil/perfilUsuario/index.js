@@ -65,7 +65,7 @@ export default function PerfilUsuario() {
       }, 600)
 
     } catch (err) {
-      toast(err.response.data.erro);
+      toast.error('Não foi possível enviar sua solicitação.');
     }
   }
 
@@ -79,9 +79,14 @@ export default function PerfilUsuario() {
         {
           label: 'Sim',
           onClick: async () => {
+            try{
             const resposta = await deletarSolicitacao(id);
             carregarTodasSolicitacoes();
             toast.success('Solicitação deletada com sucesso')
+            }
+            catch(err){
+              toast.error('Ocorreu um erro ao deletar a solicitação.')
+            }
           }
 
         },

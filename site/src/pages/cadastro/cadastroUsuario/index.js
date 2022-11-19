@@ -25,14 +25,14 @@ export default function Cadastro1() {
       if(termos === true){
         const resp = await cadastroUsuario(email, senha, nome, cpf, nascimento, telefone);
         setErro('')
-        toast("Usuario cadastrado com sucesso")
+        toast.success("Usuario cadastrado com sucesso")
         navigate('/login/paciente')
       }
       else{
         setErro('É necessário ler e concordar com a política de privacidade para continuar.')
       }
     } catch (err) {
-        toast(err.response.data.erro)
+        toast.error(err.response.data.erro)
     }
     
   }

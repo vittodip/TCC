@@ -36,8 +36,8 @@ export default function SolicitacoesPsic() {
                 navigate('/perfil/voluntario');
             }
             else{
-                toast("Atendimento oferecido!");
-                navigate('/perfil/voluntario');
+                toast.success("Atendimento oferecido!");
+                
             }            
         }
         catch (err) {
@@ -54,10 +54,15 @@ export default function SolicitacoesPsic() {
               {
                   label:'Sim',
                   onClick: async () => {
+                    try{
                     const idPsicologo = Storage('voluntario-logado').id;
                     const resp = await denunciarUsuario(idUsuario, idPsicologo, idSolicitacao)
                     toast.success('Denúncia feita com sucesso.')
-                            
+                
+                    }
+                    catch(err) {
+                        toast.error('Ocorreu um erro ao denunciar.')
+                    }        
                   } 
               },
               {

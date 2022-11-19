@@ -40,7 +40,7 @@ export default function CadastroVoluntario() {
           crp
         );
         setErro("");
-        toast("Dados enviados para revisão");
+        toast.success("Dados enviados para revisão");
         navigate('/login/voluntario')
       } else {
         setErro(
@@ -48,7 +48,7 @@ export default function CadastroVoluntario() {
         );
       }
     } catch (err) {
-      toast(err.response.data.erro);
+      toast.error(err.response.data.erro);
     }
   }
 

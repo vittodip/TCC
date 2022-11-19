@@ -25,7 +25,7 @@ export default function CardsAdmin(props) {
 
       toast.success('Psicólogo reprovado.')
     } catch (err) {
-      toast.error('Erro.')
+      toast.error('Ocorreu um erro ao reprovar.')
     }
   }
 
@@ -38,7 +38,7 @@ export default function CardsAdmin(props) {
 
       toast.success('Penalidade aplicada.')
     } catch (err) {
-      toast.error('Erro')
+      toast.error('Ocorreu um erro ao aplicar a penalidade.')
     }
   }
 
@@ -48,7 +48,7 @@ export default function CardsAdmin(props) {
 
       toast.success('Denúncia recusada')
     } catch (err) {
-      toast.error('Erro')
+      toast.error('Ocorreu um erro ao recusar.')
     }
   }
 
@@ -57,7 +57,7 @@ export default function CardsAdmin(props) {
       const resp = await aceitarDenunciaPsi(PsicologoDenuncia);
       toast.success('Penalidade aplicada.')
     } catch (err) {
-      toast.error('Erro')
+      toast.error('Ocorreu um erro ao aplicar a penalidade.')
     }
   }
 
@@ -67,7 +67,7 @@ export default function CardsAdmin(props) {
 
       toast.success('Denúncia recusada.')
     } catch (err) {
-      toast.error('Erro')
+      toast.error('Ocorreu um erro ao recusar.')
     }
   }
 
