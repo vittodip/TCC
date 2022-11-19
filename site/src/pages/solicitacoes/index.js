@@ -85,7 +85,7 @@ export default function SolicitacoesPsic() {
             <Toaster />
             <header className='header'>
                 <div className='hd-alinhamento-1'>
-                    <img src="/assets/images/logonat.png" alt="" />
+                    <img src="/assets/images/logonat.png" alt="" onClick={() => [navigate('/')]} />
                     <div className="hd-alinhamento-buttons">
                         <button onClick={() => [navigate('/chat')]}>Conversas</button>
                         <button onClick={() => [navigate('/perfil/voluntario')]} >Perfil</button>

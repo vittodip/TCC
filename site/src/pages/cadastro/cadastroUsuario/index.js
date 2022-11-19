@@ -56,7 +56,7 @@ export default function Cadastro1() {
               <span>Seja bem-vindo!</span>
             </p>
 
-            <Link to="/" className="botao-direito">
+            <Link to="/home/login" className="botao-direito">
               Voltar para a página inicial
             </Link>
           </div>

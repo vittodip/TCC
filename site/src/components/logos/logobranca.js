@@ -4,7 +4,7 @@ export default function LogoHorizontalBranca(){
 
     return(
         <div>
-            <img src="/assets/images/logohorizontalbranca.svg" alt="" />
+            <img src="/assets/images/logohorizontalbranca.svg" alt=""  />
         </div>
     )
 }

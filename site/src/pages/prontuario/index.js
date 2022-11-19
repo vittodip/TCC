@@ -64,7 +64,7 @@ export default function Prontuario(){
             <Toaster/>
             <div className="header">
                 <div>
-                    <LogoHorizontal />
+                    <LogoHorizontal onClick={() => [navigate('/')]}/>
                 </div>
                 <button onClick={VoltarClick} className="voltar-button">Voltar</button>
             </div>

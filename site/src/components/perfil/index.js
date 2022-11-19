@@ -26,7 +26,7 @@ export default function Perfil(props) {
         <main className='perfil-usuario-main'>
             <div className='pic-background-user'>
            
-                <img src='/assets/images/logonat.png'/>
+                <img src='/assets/images/logonat.png' onClick={() => [navigate('/')]} />
                 
                 <div className='buttons'>
                     {props.perfil === 'usuario' && 

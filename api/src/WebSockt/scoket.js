@@ -13,7 +13,7 @@ const serverHttp = new http.createServer(server);
 
 const io = new Server( serverHttp, {
     cors:{ 
-        origin: ['http://localhost:3000']
+        origin: ['http://192.168.3.10:3055']
     }
 } );
 
