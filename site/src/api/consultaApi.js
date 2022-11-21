@@ -5,13 +5,15 @@ const api = axios.create({
     baseURL: API_URL
 })
 
-export async function marcarConsulta(idUsuario, idPsicologo, consulta, link) {
-    const resposta = await api.post(`/consulta?idUsuario=${idUsuario}&idPsicologo=${idPsicologo}`, {
-        data: consulta,
-        hora: consulta,
-        link: link
+export async function marcarConsulta(consultaData, consultaHora, consultaLink, idPsic, idUsu) {
+    const resposta = await api.post('/agendamento', {
+        data: consultaData,
+        hora: consultaHora,
+        link: consultaLink,
+        idPsicologo: idPsic,
+        idUsuario: idUsu
     })
-    return resposta.data;
+    return resposta.data
 }
 
 export async function consultarConsulta() {

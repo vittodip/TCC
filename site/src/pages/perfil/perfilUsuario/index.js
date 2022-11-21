@@ -108,6 +108,9 @@ export default function PerfilUsuario() {
     carregarTodasSolicitacoes();
     carregarConsultas();
   }, []);
+  useEffect(() => {
+    carregarUser();
+  }, [usuario]);
 
 
   Modal.setAppElement('#root');

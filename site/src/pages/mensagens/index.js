@@ -3,8 +3,9 @@ import './index.scss'
 import BotaoBranco from '../../components/botao'
 import storage from 'local-storage'
 import { useNavigate } from 'react-router-dom'
-
+import { toast, Toaster } from 'react-hot-toast'
 import ChatHeader from '../../components/chat-header'
+import Situacao from '../../components/marcarConsulta'
 
 
 import io from 'socket.io-client';
@@ -21,6 +22,12 @@ export default function MensagensPage() {
     const [chats, setChats] = useState([]);
     const [id, setId] = useState(0);
     const [nome, setNome] = useState('')
+    const [idUsu, setIdUsu] = useState()
+    const [idPsic, setIdPsic] = useState()
+
+    
+
+    
 
     async function envioMensagem(ev) {
         if (!mensagem.trim() || mensagem === '') {
@@ -81,10 +88,12 @@ export default function MensagensPage() {
             if (storage('voluntario-logado')) {
                 const nome = await carregarNomeUsuario(idChat);
                 setNome(nome.nome);
+                setIdUsu(nome.idUsuario)
             }
             else if (storage('usuario-logado')) {
                 const nome = await carregarNomePsic(idChat);
                 setNome(nome.nome);
+                setIdPsic(nome.idPsicologo)
             }
             setMensagemLista(resp);
         }
@@ -92,6 +101,7 @@ export default function MensagensPage() {
 
         }
     }
+
 
 
     useEffect(() => {
@@ -103,21 +113,23 @@ export default function MensagensPage() {
     }, [mensagemLista]);
 
     useEffect(() => {
-        if(!Storage('usuario-logado') && !Storage('voluntario-logado')) {
+        if (!Storage('usuario-logado') && !Storage('voluntario-logado')) {
             navigate('/')
-          }
-        }, []);
+        }
+    }, []);
 
     function VoltarBaixoClick() {
         var btn = document.querySelector("#back-to-down");
         btn.scrollTo(0, 10000);
     }
 
+    
+
     const navigate = useNavigate();
 
     return (
         <main className='chat-main'>
-
+            <Toaster />
             <div className='lateral-contatos'>
                 <div className='header-contatos'>
                     <h2>Conversas</h2>
@@ -135,9 +147,15 @@ export default function MensagensPage() {
 
                 </div>
                 <div className='contatos'>
+                    {chats[0] === undefined &&
+                        <div className='nulo'>
+                            {storage('usuario-logado') &&
+                                <h5>Você ainda não possui conversas, aguarde um voluntário atender sua solicitação!</h5>
+                            }
+                        </div>
+                    }
                     {chats.map(item =>
                         <div className='selecionado-conversa' onClick={() => carregarMensagens(item.idChat)}>
-
                             <img src='/assets/images/male-user.png' />
                             <div className='usu-info'>
                                 <label>
@@ -159,7 +177,7 @@ export default function MensagensPage() {
                     </div>
                 }
                 <div>
-                    <ChatHeader nome={nome} />
+                    <ChatHeader nome={nome} idUsu={idUsu} />
                 </div>
 
                 <div className='chat' id='back-to-down'>

@@ -5,6 +5,125 @@
     
     font-family: "Mulish";
 
+    .pop-up-marcar{
+        position: absolute;
+        background-color: #fff;
+        z-index: 20;
+        width: 70%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Baloo Thambi 2', cursive;
+        color: #4e255a;
+
+        .titulo-pop {
+            
+    
+            h1 {
+                color: #6C2F81;
+            }
+    
+            img {
+                height: 20px;
+                cursor: pointer;
+            }
+    
+            img:hover {
+                transform: scale(115%);
+                transition: all 0.5s;
+            }
+        }
+    
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+    
+            button {
+                align-self: flex-end;
+                margin-top: 1.5em;
+                background-color: #79458B;
+                color: #fff;
+                border: none;
+                border-radius: 20px;
+                padding: 1em 2em;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                transform: scale(110%);
+                transition: all 0.3s;
+            }
+    
+            .linha1-input {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 2em;
+    
+    
+                label {
+                    display: flex;
+                    flex-direction: column;
+    
+                    input {
+                        background-color: #DEDEDE;
+                        border-radius: 20px;
+                        border: none;
+                        outline: none;
+                        padding: 1em 10px;
+                        font-family: "Mulish";
+                        width: 10em;
+                        padding-left: 2.5em;
+                    }
+    
+                    p {
+                        margin: 0px 0px 3px 0px;
+                        padding-left: 12px;
+                        font-family: "Mulish";
+                        font-weight: 600;
+                    }
+                }
+            }
+    
+            .linha2-input {
+                margin-top: 2em;
+            }
+    
+            .linha2-input>label {
+                display: flex;
+                flex-direction: column;
+    
+                p {
+                    margin: 0px 0px 3px 0px;
+                    padding-left: 12px;
+                    font-family: "Mulish";
+                    font-weight: 600;
+                }
+    
+                input {
+                    background-color: #DEDEDE;
+                    border-radius: 20px;
+                    border: none;
+                    outline: none;
+                    padding: 1em 10px;
+                    font-family: "Mulish";
+                }
+            }
+    
+            ::-webkit-input-placeholder {
+                color: #757575;
+                font-size: 15px;
+                font-family: "Mulish";
+            }
+    
+        }
+    }
+
+
     .section-header{
         display: flex;
         flex-direction: row;

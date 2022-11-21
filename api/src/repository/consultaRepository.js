@@ -2,14 +2,15 @@ import { con } from './connection.js'
 
 
 // Marcar Consulta
-export async function marcarConsulta(idUsuario, idPsicologo, consulta) {
+export async function marcarConsulta(consulta) {
     const comando = `insert into tb_consulta(
                     ID_USUARIO,
                     ID_PSICOLOGO,
-                    DATE_FORMAT(DT_CONSULTA, '%d/%m/%Y %H:%i'),
+                    DT_CONSULTA,
+                    DS_HORA,
                     DS_LINK_MEET)
-                    values(?, ?, ?, ?)`
-    const [resposta] = await con.query(comando, [idUsuario, idPsicologo, consulta.data, consulta.link]);
+                    values(?, ?, STR_TO_DATE(?, "%d/%m/%Y"), ?, ?)`
+    const [resposta] = await con.query(comando, [consulta.idUsuario, consulta.idPsicologo, consulta.data, consulta.hora, consulta.link]);
     return resposta[0];
 }
 

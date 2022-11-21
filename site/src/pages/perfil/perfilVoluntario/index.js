@@ -56,6 +56,9 @@ export default function PerfilVoluntario() {
     carregarSolicitacoesAceitas();
   }, [solicitacaoPsi])
 
+  useEffect(() => {
+    carregarPsicologo();
+  }, [voluntario])
 
   useEffect(() => {
     if (typeof (imagem) === 'object') {
@@ -136,19 +139,14 @@ export default function PerfilVoluntario() {
 
   async function prontuario(idUsuario){
     try{
-      const resp = await fetch(consultarProntuarioUsuario(idUsuario))
-      if(resp.status === 404){
-        let idPsic = Storage('voluntario-logado').id;
-        const x = await enviarProntuario(idUsuario, idPsic);
-        toast.loading('Carregando prontuário...')
-      }
-      else{
-        navigate(`/prontuario/${idUsuario}`)
-      }
-      
+      const resp = await consultarProntuarioUsuario(idUsuario)
+      navigate(`/prontuario/${idUsuario}`)
     }
     catch(err){
-      toast.error(err.message)
+      let idPsic = Storage('voluntario-logado').id;
+      const x = await enviarProntuario(idUsuario, idPsic);
+      toast.loading('Carregando prontuário...')
+      navigate(`/prontuario/${idUsuario}`)
     }
   }
 

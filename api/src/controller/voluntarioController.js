@@ -114,14 +114,8 @@ server.put('/alterar/voluntario/:id', async (req, resp) => {
         const voluntario = await carregarVoluntario(voluntarioId);
 
         
-        if(volunt.nome === voluntario.nome) {
-            throw new Error('Insira um nome diferente do anterior!')
-        }
-        if(volunt.email == voluntario.email) {
-            throw new Error('Insira um email diferente do anterios!')
-        }
-        if(volunt.telefone === voluntario.telefone) {
-            throw new Error('Insira um telefone diferente do anterior!')
+        if(volunt.nome === voluntario.nome && volunt.email == voluntario.email && volunt.telefone === voluntario.telefone){
+            throw new Error('Não houve alterações!')
         }
         if(!volunt.email.trim()) {
             throw new Error('Insira um email!')

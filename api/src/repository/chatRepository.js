@@ -83,7 +83,8 @@ export async function mostrarUltimaMensagem(id) {
 }
 
 export async function carregarNomeUsuario(id){
-    const comando = `select nm_usuario nome
+    const comando = `select tb_usuario.nm_usuario nome,
+                            tb_usuario.id_usuario idUsuario
                      from tb_usuario
                      inner join tb_chat on tb_chat.id_usuario = tb_usuario.id_usuario
                      where tb_chat.id_chat = ?`
@@ -93,7 +94,8 @@ export async function carregarNomeUsuario(id){
 }
 
 export async function carregarNomePsic(id){
-    const comando = `select nm_psicologo nome
+    const comando = `select tb_psicologo.nm_psicologo nome,
+                            tb_psicologo.id_psicologo idPsicologo
                      from tb_psicologo
                      inner join tb_chat on tb_chat.id_psicologo = tb_psicologo.id_psicologo
                      where tb_chat.id_chat = ?`

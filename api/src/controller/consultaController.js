@@ -4,9 +4,8 @@ import {marcarConsulta, listarConsulta }from '../repository/consultaRepository.j
 const server = Router();
 
 
-server.post('/agenda/consulta', async (req, resp) => {
+server.post('/agendamento', async (req, resp) => {
    try {
-        const { idUsuario, idPsicologo } = req.query;
         const consulta = req.body;
 
         if (!consulta.data) {
@@ -16,7 +15,7 @@ server.post('/agenda/consulta', async (req, resp) => {
             throw new Error('Insira as informações da consulta!')
         }
 
-        const resposta = await marcarConsulta(idUsuario, idPsicologo, consulta);
+        const resposta = await marcarConsulta(consulta);
 
         resp.send(resposta);
    } catch (err) {

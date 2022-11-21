@@ -25,6 +25,7 @@
                     position: absolute;
                     right: -1em;
                     bottom: 1.2em;
+                    cursor: pointer;
                 }
             }
         }
@@ -160,6 +161,9 @@
                 justify-content: center;
                 align-items: center;
                 
+                img{
+                    cursor: pointer;
+                }
 
                 p {
                     margin: 0;

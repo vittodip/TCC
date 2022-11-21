@@ -8,6 +8,7 @@ const api = axios.create({
 
 
 
+
 export async function enviarMensagem(tipo, id, mensagem){
     const resposta = await api.post('/chat/mensagem', {
         remetente: tipo,
