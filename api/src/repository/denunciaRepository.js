@@ -66,9 +66,7 @@ export async function idPsicologoDenuncia(denuncia) {
 export async function idUsuarioDenuncia(denuncia) {
     const comando = `select id_usuario 
                         from tb_usuario
-                    where nm_usuario = ? and ds_email = ?`
-
-    console.log([denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()])                    
+                    where nm_usuario = ? and ds_email = ?`                    
 
     const [resposta] = await con.query(comando, [denuncia.nomeUsuario.trim(), denuncia.emailUsuario.trim()]);
     return resposta[0];

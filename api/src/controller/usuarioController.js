@@ -34,7 +34,6 @@ server.post('/cadastro/usuario', async (req, resp) => {
         const emailCheck = await pegarIDuser(user.email); 
 
         const data = new Date() - new Date(user.nascimento); 
-        console.log(data);
         
         if(user.nome.length < 5){
             throw new Error('Insira um nome válido!')

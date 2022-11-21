@@ -72,9 +72,9 @@ export default function Menu(props) {
                         <img src="/assets/images/do-utilizador (1) 3.png" alt="Pacientes cadastrados" />
                         <div onClick={irListarUser}>Pacientes cadastrados</div>
                     </div>
-                    <div className='menu-sair'>
+                    <div onClick={sairClickAdm} className='menu-sair'>
                         <img className="img-sair" src="/assets/images/Logout.png" alt="Sair" />
-                        <span onClick={sairClickAdm}>Sair</span>
+                        <span>Sair</span>
                     </div>
                 </div>
             </div>

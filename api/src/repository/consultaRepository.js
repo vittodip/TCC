@@ -9,7 +9,7 @@ export async function marcarConsulta(consulta) {
                     DT_CONSULTA,
                     DS_HORA,
                     DS_LINK_MEET)
-                    values(?, ?, STR_TO_DATE(?, "%d/%m/%Y"), ?, ?)`
+                    values(?, ?, ?, ?, ?)`
     const [resposta] = await con.query(comando, [consulta.idUsuario, consulta.idPsicologo, consulta.data, consulta.hora, consulta.link]);
     return resposta[0];
 }
@@ -20,7 +20,8 @@ export async function listarConsulta(id){
 							    tb_usuario.id_usuario	  	      USUARIO,
                                 tb_psicologo.id_psicologo         PSICOLOGO,
                                 tb_psicologo.nm_psicologo         profissional,
-                    DATE_FORMAT(dt_consulta, '%d/%m/%Y %H:%i') as horario,
+                    DATE_FORMAT(dt_consulta, '%d/%m/%Y') as horario,
+                                ds_hora                           hora,
                                 ds_link_meet                      meet
                     from        tb_consulta
             inner join tb_psicologo on tb_psicologo.id_psicologo = tb_consulta.id_psicologo

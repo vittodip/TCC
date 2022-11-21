@@ -19,8 +19,6 @@ export default function ListaVolunts() {
 
   async function carregarPsicologo() {
     const resposta = await mostrarPsicologos();
-    console.log(resposta)
-
     setVoluntario(resposta);
   }
 

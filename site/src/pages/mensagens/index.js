@@ -24,10 +24,11 @@ export default function MensagensPage() {
     const [nome, setNome] = useState('')
     const [idUsu, setIdUsu] = useState()
     const [idPsic, setIdPsic] = useState()
+    const [email, setEmail] = useState();
 
-    
 
-    
+
+
 
     async function envioMensagem(ev) {
         if (!mensagem.trim() || mensagem === '') {
@@ -56,7 +57,7 @@ export default function MensagensPage() {
                 }
             }
             catch (err) {
-                console.log(err.message)
+                toast.error(err.message)
             }
         }
     }
@@ -88,12 +89,14 @@ export default function MensagensPage() {
             if (storage('voluntario-logado')) {
                 const nome = await carregarNomeUsuario(idChat);
                 setNome(nome.nome);
-                setIdUsu(nome.idUsuario)
+                setEmail(nome.email);
+                setIdUsu(nome.idUsuario);
             }
             else if (storage('usuario-logado')) {
                 const nome = await carregarNomePsic(idChat);
                 setNome(nome.nome);
-                setIdPsic(nome.idPsicologo)
+                setEmail(nome.email);
+                setIdPsic(nome.idPsicologo);
             }
             setMensagemLista(resp);
         }
@@ -123,7 +126,7 @@ export default function MensagensPage() {
         btn.scrollTo(0, 10000);
     }
 
-    
+
 
     const navigate = useNavigate();
 
@@ -177,7 +180,7 @@ export default function MensagensPage() {
                     </div>
                 }
                 <div>
-                    <ChatHeader nome={nome} idUsu={idUsu} />
+                    <ChatHeader nome={nome} idUsu={idUsu} email={email} />
                 </div>
 
                 <div className='chat' id='back-to-down'>

@@ -11,7 +11,7 @@ import Storage from 'local-storage'
 import { loginAdm } from '../../../api/adminApi.js';
 
 
-export default function LoginADM(){
+export default function LoginADM() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [erro, setErro] = useState('');
@@ -23,32 +23,31 @@ export default function LoginADM(){
     const idadmin = localStorage.getItem("id");
 
     useEffect(() => {
-        if(Storage('admin-logado')) {
-          navigate(`/admin`);
+        if (Storage('admin-logado')) {
+            navigate(`/admin`);
         }
-      }, [])
-    
+    }, [])
 
-    async function entrarClick(){
+
+    async function entrarClick() {
         ref.current.continuousStart();
         setCarregando(true);
         try {
             const r = await loginAdm(email, senha);
-            console.log(r)
             const id = r.id;
             Storage('admin-logado', r);
             localStorage.setItem("id", id)
             setTimeout(() => {
                 navigate(`/admin`);
-              }, 3000)
+            }, 3000)
 
-            
-            
+
+
         } catch (err) {
             ref.current.complete();
             setCarregando(false);
             if (err.response.status === 401) {
-              setErro(err.response.data.erro);
+                setErro(err.response.data.erro);
             }
         }
     }
@@ -58,24 +57,24 @@ export default function LoginADM(){
             const btn = document.querySelector("#send");
             btn.click();
         }
-      })
+    })
 
-    return(
+    return (
         <main className='pagADMlog'>
-            <LoadingBar color='#79458B' ref={ref}/>
-            <img src='/assets/images/logonat.png' className='logoNat'/>
-            <img src='/assets/images/hominhodeescada.png' className='img'/>
-            <img src='/assets/images/programador.png' className='img2'/>
+            <LoadingBar color='#79458B' ref={ref} />
+            <img src='/assets/images/logonat.png' className='logoNat' />
+            <img src='/assets/images/hominhodeescada.png' className='img' />
+            <img src='/assets/images/programador.png' className='img2' />
             <Link to='/' className='botaozin'>Página Inicial</Link>
             <div className='inputs'>
                 <h1>Login - Administrador</h1>
                 <div className='credenciais'>
-                    <label>E-mail</label><input type='text' value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"/>
+                    <label>E-mail</label><input type='text' value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
                 </div>
                 <div className='credenciais'>
-                    <label>Senha</label><input type='password'  value={senha} onChange={e => setSenha(e.target.value)} placeholder="**************"/>
+                    <label>Senha</label><input type='password' value={senha} onChange={e => setSenha(e.target.value)} placeholder="**************" />
                 </div>
-                <button onClick={entrarClick} id='send' ><img src='/assets/images/portaentrar.png'/></button>
+                <button onClick={entrarClick} id='send' ><img src='/assets/images/portaentrar.png' /></button>
             </div>
 
 

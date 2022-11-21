@@ -41,7 +41,6 @@ export default function PerfilUsuario() {
   async function carregarTodasSolicitacoes() {
     const idUser = Storage('usuario-logado').id
     const resp = await listarSolicitacao(idUser)
-    console.log(resp)
     setSolicitacao(resp)
   }
 
@@ -79,12 +78,12 @@ export default function PerfilUsuario() {
         {
           label: 'Sim',
           onClick: async () => {
-            try{
-            const resposta = await deletarSolicitacao(id);
-            carregarTodasSolicitacoes();
-            toast.success('Solicitação deletada com sucesso')
+            try {
+              const resposta = await deletarSolicitacao(id);
+              carregarTodasSolicitacoes();
+              toast.success('Solicitação deletada com sucesso')
             }
-            catch(err){
+            catch (err) {
               toast.error('Ocorreu um erro ao deletar a solicitação.')
             }
           }
@@ -194,12 +193,13 @@ export default function PerfilUsuario() {
               </label>
               <label>
                 Hora
-                <p>{String(item.horario).substr(10, 20)}</p>
+                <p>{String(item.hora).substr(0, 5)}</p>
               </label>
               <a href={item.meet}><img src="/assets/images/google-meet.png" alt="" width={50} height={55} /> </a>
             </div>
 
           )}
+
         </div>
 
       </div>
@@ -241,7 +241,7 @@ export default function PerfilUsuario() {
               <p>{item.texto}</p>
 
             </div>
-            
+
           </div>
         )}
       </div>

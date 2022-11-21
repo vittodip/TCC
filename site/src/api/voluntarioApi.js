@@ -7,7 +7,6 @@ const api = axios.create({
 
 
 export async function cadastroVoluntario(email, senha, nome, cpf, nascimento, telefone, vagas, crp) {
-    console.log(email, senha, nome, cpf, nascimento, telefone, vagas, crp)
     const resposta = await api.post('/cadastro/voluntario', {
         email: email,
         senha: senha,

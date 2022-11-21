@@ -24,5 +24,5 @@ export async function consultarConsulta() {
 export async function listarConsulta(id) {
     const resposta = await api.get(`/consulta/${id}`);
     return resposta.data;
-} 
+}
 

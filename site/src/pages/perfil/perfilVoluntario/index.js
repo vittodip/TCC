@@ -27,8 +27,6 @@ export default function PerfilVoluntario() {
   async function carregarPsicologo() {
     const idPsic = Storage('voluntario-logado').id
     const resposta = await carregarVoluntario(idPsic);
-    console.log(resposta)
-
     setVoluntario(resposta);
     setImagem(resposta.imagem);
   }
@@ -101,48 +99,48 @@ export default function PerfilVoluntario() {
 
   function mostarFoto() {
     if (typeof (imagem) === 'string') {
-      return API_URL  + '/' + imagem;
+      return API_URL + '/' + imagem;
     }
     else
       return URL.createObjectURL(imagem)
 
   }
 
- 
+
 
   function excluirSolicitacao(item) {
     confirmAlert({
-      title:'Deseja excluir essa solicitação?',
-      message:``,
-      buttons:[
-          {
-              label:'Sim',
-              onClick: async () => {
-               try{
-                const x = await deletarSolicitacaoPsic(item)
-                toast.success('Solicitação Excluída!')
-                }
-                catch(err) {
-                  toast.error('Ocorreu um erro ao excluir a solicitação.')
-                }
-              }
-              
-          },
-          {
-              label:'Não'
+      title: 'Deseja excluir essa solicitação?',
+      message: ``,
+      buttons: [
+        {
+          label: 'Sim',
+          onClick: async () => {
+            try {
+              const x = await deletarSolicitacaoPsic(item)
+              toast.success('Solicitação Excluída!')
+            }
+            catch (err) {
+              toast.error('Ocorreu um erro ao excluir a solicitação.')
+            }
           }
+
+        },
+        {
+          label: 'Não'
+        }
       ]
-  })
+    })
   }
 
 
 
-  async function prontuario(idUsuario){
-    try{
+  async function prontuario(idUsuario) {
+    try {
       const resp = await consultarProntuarioUsuario(idUsuario)
       navigate(`/prontuario/${idUsuario}`)
     }
-    catch(err){
+    catch (err) {
       let idPsic = Storage('voluntario-logado').id;
       const x = await enviarProntuario(idUsuario, idPsic);
       toast.loading('Carregando prontuário...')
@@ -150,20 +148,20 @@ export default function PerfilVoluntario() {
     }
   }
 
-  async function conversa(idUsuario){
-    try{
+  async function conversa(idUsuario) {
+    try {
       const idPsic = Storage('voluntario-logado').id;
       const check = await checarChat(idUsuario, idPsic);
-      if(check === null) {
+      if (check === null) {
         const resp = await criarChat(idUsuario, idPsic);
         toast.loading('Criando chat...')
         navigate('/chat')
       }
-      else{
+      else {
         navigate('/chat')
       }
     }
-    catch(err){
+    catch (err) {
       toast.error(err.message)
     }
   }
@@ -171,7 +169,7 @@ export default function PerfilVoluntario() {
 
   return (
     <main className="voluntario-perfil">
-      <Toaster/>
+      <Toaster />
       <Perfil inicial={voluntario.nome} usuario={voluntario.nome} perfil="voluntario" />
       <div className="info-voluntario">
         <div className="infos-volunt">
